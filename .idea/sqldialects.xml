@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/../CKK/业务/SQL/股东大会/股东大会出席表决.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/SQL文件/scratch.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/SQL文件/业绩预告信息来源编码为空.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/SQL文件/业绩预告高峰期.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/SQL文件/任务中心.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/SQL文件/券商融资融券历史补录.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/SQL文件/外包任务核查.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/SQL文件/工具.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/SQL文件/稽核错误.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/SQL文件/行情.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/SQL文件/预约披露查询.sql" dialect="TSQL" />
+    <file url="PROJECT" dialect="TSQL" />
+  </component>
+</project>

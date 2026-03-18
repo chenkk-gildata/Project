@@ -1,0 +1,20 @@
+SELECT HASHCODE
+     , B.GPDM
+     , B.ZQJC
+     , CONVERT(DATE, A.XXFBRQ) AS XXFBRQ
+     , A.XXBT
+     , A.FBSJ
+FROM [10.101.0.212].JYPRIME.dbo.usrGSGGYWFWB A
+     JOIN [10.101.0.212].JYPRIME.dbo.usrZQZB B 
+        ON A.INBBM = B.INBBM 
+        AND B.ZQSC IN (83, 90, 18) 
+        AND B.ZQLB IN (1, 2, 41)
+WHERE A.XXLB = 20 
+  AND A.NRLB = 5 
+  AND A.XXLY IN (69, 70, 410007600) 
+  AND A.MTCC IN ('上海证券交易所','深圳证券交易所','北京证券交易所')
+  AND A.XXFBRQ BETWEEN '2026-01-01' AND '2026-05-01'
+  AND A.XXBT NOT LIKE '%英文%' AND A.XXBT NOT LIKE '%网页已%' AND A.XXBT NOT LIKE '%延期%' AND A.XXBT NOT LIKE '%披露%'
+  AND A.XXBT NOT LIKE '%修正%' AND A.XXBT NOT LIKE '%修订%' AND A.XXBT NOT LIKE '%更正%' AND A.XXBT NOT LIKE '%更新%'
+  {incremental_condition}
+ORDER BY A.FBSJ DESC

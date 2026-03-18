@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.sql" charset="GBK" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/scratches/测试库.sql" charset="GBK" />
+    <file url="file://$USER_HOME$/Desktop/外包任务核查.sql" charset="GBK" />
+    <file url="file://$USER_HOME$/Desktop/定报-主要指标/三季报/1.第三季数量核查.sql" charset="GBK" />
+    <file url="file://$USER_HOME$/Desktop/定报-主要指标/半年报/0.半年报数量核查.sql" charset="GBK" />
+    <file url="file://$USER_HOME$/Desktop/定报-主要指标/半年报/1.数据提取比对.sql" charset="GBK" />
+    <file url="file://$USER_HOME$/Desktop/定报-主要指标/半年报/2.股本核查最新.sql" charset="GBK" />
+    <file url="file://$USER_HOME$/Desktop/定报-主要指标/年报/0.年报数量核查.sql" charset="GBK" />
+    <file url="file://$USER_HOME$/Desktop/定报-主要指标/年报/2.股本核查最新.sql" charset="GBK" />
+    <file url="file://$USER_HOME$/Desktop/工具.sql" charset="GBK" />
+    <file url="file://$USER_HOME$/Desktop/稽核错误.sql" charset="GBK" />
+    <file url="file://$USER_HOME$/Desktop/行情.sql" charset="GBK" />
+    <file url="file://$USER_HOME$/Desktop/财务最新XXFBRQ为空-11月底.sql" charset="GBK" />
+    <file url="file://$USER_HOME$/Desktop/预约披露查询.sql" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/../CKK/业务/SQL/股东大会/股东大会出席表决.sql" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/../CKK/业务/规划文档、触发器文件/触发器/TRI_usrRZRQBDZQMX_IU.sql" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/../CKK/业务/规划文档、触发器文件/触发器/uspd_mk_usrRZRQBDZQ.sql" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/../CKK/业务/规划文档、触发器文件/触发器/uspd_mod_usrRZRQBDZQ.sql" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/../CKK/业务/需求文档/停牌复牌/uspd_mk_usrTPFP.sql" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/SQL文件/业绩预告高峰期.sql" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/SQL文件/任务中心.sql" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/SQL文件/外包任务核查.sql" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/SQL文件/工具.sql" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/SQL文件/稽核错误.sql" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/SQL文件/行情.sql" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/SQL文件/预约披露查询.sql" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/业绩预告比对/WITH TEMP AS.sql" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/股东股权变动/WITH TEMP AS.sql" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/../业务/规划文档、触发器文件/触发器/TRI_usrRZRQBDZQMX_IU.sql" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/../业务/规划文档、触发器文件/触发器/uspd_mk_usrRZRQBDZQ.sql" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/../业务/规划文档、触发器文件/触发器/uspd_mod_usrRZRQBDZQ.sql" charset="GBK" />
+    <file url="file://Y:/特别组/9.外包/外包验收结算/外包任务核查.sql" charset="GBK" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

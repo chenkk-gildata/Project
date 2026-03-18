@@ -1,0 +1,7 @@
+pyinstaller>=5.0
+pyodbc>=4.0
+requests>=2.28
+PyMuPDF>=1.21
+PyPDF2>=3.0
+prettytable>=3.0
+readchar>=4.0

@@ -1,0 +1,260 @@
+-----累计错误统计数据
+SELECT PTID,SJDM,CONVERT(DATE,GGRQ) GGRQ,CONVERT(DATE,SJJHRQ) SJJHRQ,
+	CASE WHEN  GGRQ >= '2025-01-01' THEN '日增' ELSE '历史'  END AS 标识,
+	SJKB 表名,CWMS 错误原因,YWRY 问题责任人,
+	'' 跟踪人,
+	WTFL 问题分类,
+	SFYBMCS 是否有避免措施,
+	CSQK1 措施,
+	BZ 备注,
+	SCSFJS 是否修改,
+	XH 问题数量
+INTO #JHCWTBLJ
+FROM  [10.101.1.144].FSCSJ.dbo.usrNBSYJHCWTB
+WHERE  (YWX = 'A股-特别组'  OR YWX = 'A股-衍生组')
+	AND SJJHRQ BETWEEN '2025-5-1' AND '2026-1-31'
+	AND SCSFJS='是'
+    AND WTLX != '规则歧义'
+ORDER BY 2,3,5
+
+DROP TABLE #JHCWTBLJ
+
+SELECT * FROM #JHCWTBLJ ORDER BY 1 DESC
+
+SELECT * FROM #JHCWTBLJ WHERE 表名 LIKE '%GDGQBD%' ORDER BY 1 DESC
+
+
+SELECT MONTH(SJJHRQ) 月份,COUNT(1) 错误总量 FROM #JHCWTBLJ GROUP BY MONTH(SJJHRQ)
+
+SELECT MONTH(SJJHRQ) 月份,COUNT(1) 日增数量 FROM #JHCWTBLJ WHERE GGRQ>='2025-01-01' GROUP BY MONTH(SJJHRQ)
+
+
+SELECT 标识,表名,COUNT(*) 数量 FROM #JHCWTBLJ GROUP BY 标识,表名 ORDER BY 标识 DESC,COUNT(*) DESC
+
+SELECT 标识,表名,COUNT(*) 数量 FROM #JHCWTBLJ WHERE MONTH(SJJHRQ)=5 GROUP BY 标识,表名 ORDER BY 标识 DESC,COUNT(*) DESC
+
+SELECT 问题责任人,COUNT(*) FROM #JHCWTBLJ WHERE 表名='usrCWJCZBZYCYJYGCJB' AND MONTH(SJJHRQ)=5 GROUP BY 问题责任人 ORDER BY 2 DESC
+
+SELECT 问题责任人,COUNT(*) FROM #JHCWTBLJ WHERE 标识='日增' GROUP BY 问题责任人 ORDER BY 2 DESC
+
+SELECT MONTH(SJJHRQ) 月份,COUNT(1) 日增数量
+FROM #JHCWTBLJ
+WHERE GGRQ>='2025-01-01'
+  AND 表名 IN ('usrGSZYLDRJSRZQK','usrGSZYLDRJS')
+GROUP BY MONTH(SJJHRQ)
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----月度错误统计数据
+SELECT PTID,
+	CASE WHEN  GGRQ >= '2026-01-01' THEN '日增' ELSE '历史'  END AS 标识,
+	SJKB 表名,CWMS 错误原因,YWRY 问题责任人,
+	WTFL 问题分类,
+	SFYBMCS 是否有避免措施,
+	CSQK1 措施,
+	BZ 备注,
+	SCSFJS 是否修改,
+	TBSFRK 填报是否认可,
+	SJDM,
+	CONVERT(DATE,GGRQ) GGRQ,
+	CONVERT(DATE,SJJHRQ) SJJHRQ,
+	XH 问题数量
+INTO #JHCWTB
+FROM  [10.101.1.144].FSCSJ.dbo.usrNBSYJHCWTB
+WHERE  (YWX = 'A股-特别组'  OR YWX = 'A股-衍生组')
+	AND SJJHRQ BETWEEN '2026-3-1' AND '2026-03-31'
+    AND WTLX != '规则歧义' AND SCSFJS='是'
+ORDER BY 2,3,5
+
+DROP TABLE #JHCWTB
+
+--稽核错误邮件月报
+SELECT PTID,标识,SJJHRQ,表名,SJDM,GGRQ,问题数量,错误原因,问题责任人 FROM #JHCWTB ORDER BY 标识,PTID
+
+SELECT PTID,标识,SJJHRQ,表名,错误原因,问题分类,是否有避免措施,措施,备注 FROM #JHCWTB ORDER BY PTID
+
+SELECT PTID,标识,表名,错误原因,问题责任人,是否有避免措施,措施,'' AP,SJJHRQ,SJDM,GGRQ,问题分类,备注 FROM #JHCWTB ORDER BY 1
+
+SELECT * FROM #JHCWTB WHERE 表名='usrGDGQBD' ORDER BY 1
+
+--清洗
+SELECT * FROM #JHCWTB WHERE 问题数量 <10
+
+
+
+
+
+--特别组库表数据源
+SELECT A.TABLENAME 英文名,A.TABLENAMECHN 中文名
+FROM [10.101.0.212].JYPRIME.dbo.cmdTABLES A
+	JOIN [10.101.0.212].JYPRIME.dbo.dscmdTABLES B
+		ON A.TABLENAME=B.AB
+	JOIN [10.101.0.212].JYPRIME.dbo.usrSJZXKBSJY C
+		ON B.AA=C.TABLENAME
+WHERE C.WHXZ=149 AND C.SSYW=40 AND C.WHZT=1
+
+
+
+
+----------------------------------------------------------------------------------------------------------------
+--领导人外包内审错误核查
+SELECT DISTINCT
+    A.PTID,
+    C.GPDM 股票代码,
+    CONVERT(DATE,A.GGRQ) 公告日期,
+    CONVERT(DATE,B.NSRQ) 内审日期,
+    CONVERT(DATE,A.JHRQ) 提交日期,
+    A.SJKB 涉及库表,
+    A.YWRY 问题责任人,
+    D.OPERATORNAME 内审人员
+FROM [10.101.1.144].FSCSJ.dbo.usrNBSYJHCWTB A---内部使用-稽核错误填报
+    JOIN [10.101.0.212].JYPRIME.dbo.usrSJCBSHB B ON A.GGRQ=B.GGRQ AND B.GGLB IN (50,39,36)
+    JOIN [10.101.0.212].JYPRIME.dbo.usrSJCBSHB_SL E ON E.ID = B.ID AND E.LB = 1 AND E.DM IN (198)
+    JOIN [10.101.0.212].JYPRIME.dbo.usrZQZB C ON B.INBBM=C.INBBM AND C.ZQSC IN (18,83,90)
+	JOIN [10.101.0.212].JYPRIME.dbo.cmdOPERATORS D ON B.NSRY=D.OPERATORID
+WHERE (A.YWX = 'A股-特别组'  or A.YWX = 'A股-衍生组')
+  AND A.SJKB LIKE '%LDR%' AND A.SJKB <>'usrZYLDRCG'
+  AND B.NSRY IS NOT NULL AND B.NSRY<>'0'
+  AND LEFT(A.SJDM,6)=C.GPDM AND A.JHRQ>='2025-01-01'
+ORDER BY 1
+
+
+
+---------------------------------------------------------------------------------------------------------------
+--T日修正
+SELECT PTID,
+	CASE WHEN  GGRQ >= '2026-01-01' THEN '日增' ELSE '历史'  END AS 标识,
+	CONVERT(DATE,SJJHRQ) SJJHRQ,
+	SJKB 表名,
+	SJDM,
+	CONVERT(DATE,GGRQ) GGRQ,
+	XH,
+	CWMS 错误原因,
+	YWRY 问题责任人,
+	WTFL 问题分类,
+	SFYBMCS 是否有避免措施,
+	CSQK1 措施
+FROM  [10.101.1.144].FSCSJ.dbo.usrNBSYJHCWTB
+WHERE  (YWX = 'A股-特别组'  OR YWX = 'A股-衍生组')
+    AND (SCSFJS IS NULL OR (SCSFJS= '是' AND TBSFRK IS NULL))
+	AND SJJHRQ > '2026-1-1'
+    AND CONVERT(DATE,JHRQ) <= CONVERT(DATE,GETDATE())
+ORDER BY 1
+
+
+
+--T+3复盘
+SELECT PTID,
+	CASE WHEN  GGRQ >= '2026-01-01' THEN '日增' ELSE '历史'  END AS 标识,
+	CONVERT(DATE,SJJHRQ) SJJHRQ,
+	SJKB 表名,
+	SJDM,
+	CONVERT(DATE,GGRQ) GGRQ,
+	XH,
+	CWMS 错误原因,
+	YWRY 问题责任人,
+	WTFL 问题分类,
+	SFYBMCS 是否有避免措施,
+	CSQK1 措施,
+	BZ,
+	CONVERT(DATE,GETDATE()) XTRQ
+FROM  [10.101.1.144].FSCSJ.dbo.usrNBSYJHCWTB
+WHERE  (YWX = 'A股-特别组'  OR YWX = 'A股-衍生组')
+    AND SCSFJS='是'
+    AND (WTFL IS NULL OR SFYBMCS IS NULL)
+	AND SJJHRQ > '2026-1-1'
+    AND DATEADD(DAY,1,CONVERT(DATE,SJJHRQ)) <= CONVERT(DATE,GETDATE())
+ORDER BY 1
+
+
+
+
+--无效措施情况
+SELECT PTID,
+	CASE WHEN  GGRQ >= '2026-01-01' THEN '日增' ELSE '历史'  END AS 标识,
+	CONVERT(DATE,SJJHRQ) SJJHRQ,
+	SJKB 表名,
+	SJDM,
+	CONVERT(DATE,GGRQ) GGRQ,
+	XH,
+	CWMS 错误原因,
+	YWRY 问题责任人,
+	WTFL 问题分类,
+	SFYBMCS 是否有避免措施,
+	CSQK1 措施,
+    CSLSSJ1 措施落实时间,
+    BZ 备注
+FROM  [10.101.1.144].FSCSJ.dbo.usrNBSYJHCWTB
+WHERE  (YWX = 'A股-特别组'  OR YWX = 'A股-衍生组')
+    AND SCSFJS='是'
+	AND SJJHRQ >= '2026-10-1'
+    AND (
+        ((CSQK1 IS NULL OR CSLSSJ1 IS NULL) AND SFYBMCS NOT IN ('无','已有'))
+        OR
+        (BZ IS NULL AND SFYBMCS='无')
+        )
+ORDER BY 1
+
+
+
+
+--月度错误汇总(汇报版)
+SELECT PTID,
+	CASE WHEN  GGRQ >= '2025-01-01' THEN '日增' ELSE '历史'  END AS 标识,
+	CONVERT(DATE,SJJHRQ) SJJHRQ,
+	SJKB 表名,
+	SJDM,
+	CONVERT(DATE,GGRQ) GGRQ,
+	XH,
+	CWMS 错误原因,YWRY 问题责任人
+FROM  [10.101.1.144].FSCSJ.dbo.usrNBSYJHCWTB
+WHERE  (YWX = 'A股-特别组'  OR YWX = 'A股-衍生组')
+    AND SCSFJS='是'
+    AND WTLX != '规则歧义'
+	AND SJJHRQ BETWEEN '2025-10-01' AND '2026-12-31'
+    AND YWRY LIKE '%苏航%'
+ORDER BY 1
+------------------------------------------------------------------------------------------------------------------------
+--周报错误汇总(汇报版)
+SELECT PTID,
+	CASE WHEN  GGRQ >= '2026-01-01' THEN '日增' ELSE '历史'  END AS 标识,
+	CONVERT(DATE,SJJHRQ) 稽核日期,
+	SJKB 表名,
+	CWMS 错误原因,
+	YWRY 问题责任人,
+	WTFL 问题分类,
+	SFYBMCS 是否有避免措施,
+	CSQK1 措施,
+    BZ 备注
+FROM  [10.101.1.144].FSCSJ.dbo.usrNBSYJHCWTB
+WHERE  (YWX = 'A股-特别组'  OR YWX = 'A股-衍生组')
+    AND SCSFJS='是'
+    AND WTLX != '规则歧义'
+	AND SJJHRQ BETWEEN '2026-01-01' AND '2026-03-04'
+ORDER BY 1
+
+
+SELECT PTID,
+	CASE WHEN  GGRQ >= '2025-01-01' THEN '日增' ELSE '历史'  END AS 标识,
+	CONVERT(DATE,SJJHRQ) 稽核日期,
+	SJKB 表名,
+	CWMS 错误原因,
+	YWRY 问题责任人,
+	WTFL 问题分类,
+	SFYBMCS 是否有避免措施,
+	CSQK1 措施,
+    BZ 备注
+FROM  [10.101.1.144].FSCSJ.dbo.usrNBSYJHCWTB
+WHERE  (YWX = 'A股-特别组'  OR YWX = 'A股-衍生组')
+    AND SCSFJS='是'
+    AND WTLX != '规则歧义'
+	AND SJJHRQ BETWEEN '2025-01-01' AND '2025-01-31'
+ORDER BY 1
+
+
+
+
+
+
+
+
