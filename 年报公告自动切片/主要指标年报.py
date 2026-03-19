@@ -567,6 +567,45 @@ def append_content_to_pdf(existing_pdf_path, source_pdf_path, append_start_info,
         print(f"追加内容到PDF时出错: {str(e)}")
         return existing_pdf_path
 
+def save_append_content_pdf(pdf_path, append_start_info, append_end_info, output_dir):
+    """
+    将净资产收益率/每股收益模块单独保存为PDF
+    
+    Args:
+        pdf_path: 源PDF路径
+        append_start_info: 开始关键词信息
+        append_end_info: 结束关键词信息
+        output_dir: 主输出目录
+    
+    Returns:
+        str: 输出文件路径，如果无内容则返回None
+    """
+    try:
+        append_pages = extract_append_pages(pdf_path, append_start_info, append_end_info)
+        if not append_pages:
+            print("没有找到净资产收益率/每股收益内容")
+            return None
+        
+        mgsy_dir = os.path.join(output_dir, "净资产收益率和每股收益")
+        if not os.path.exists(mgsy_dir):
+            os.makedirs(mgsy_dir)
+        
+        base_name = os.path.splitext(os.path.basename(pdf_path))[0]
+        output_path = os.path.join(mgsy_dir, f"{base_name}_mgsy.pdf")
+        
+        writer = PdfWriter()
+        for page in append_pages:
+            writer.add_page(page)
+        
+        with open(output_path, "wb") as output_file:
+            writer.write(output_file)
+        
+        print(f"净资产收益率/每股收益内容已保存到: {output_path}")
+        return output_path
+    except Exception as e:
+        print(f"保存净资产收益率/每股收益内容时出错: {str(e)}")
+        return None
+
 def process_pdf(pdf_path, keywords, output_dir):
     """通用PDF处理函数，处理北交所和沪深交易所PDF"""
     start_info = keywords['start']
@@ -593,14 +632,14 @@ def process_pdf(pdf_path, keywords, output_dir):
         print(f"特殊处理：只找到结束关键词，按原逻辑处理")
         output_path = crop_page_before_keyword(pdf_path, end_info, output_dir)
         if output_path and (append_start_info or append_end_info):
-            output_path = append_content_to_pdf(output_path, pdf_path, append_start_info, append_end_info, output_dir)
+            save_append_content_pdf(pdf_path, append_start_info, append_end_info, output_dir)
         return output_path
     
     if start_info and not end_info:
         print(f"特殊处理：只找到开始关键词，输出包含开始关键词页的后五页内容")
         output_path = crop_page_after_keyword(pdf_path, start_info, output_dir)
         if output_path and (append_start_info or append_end_info):
-            output_path = append_content_to_pdf(output_path, pdf_path, append_start_info, append_end_info, output_dir)
+            save_append_content_pdf(pdf_path, append_start_info, append_end_info, output_dir)
         return output_path
     
     if start_info and end_info:
@@ -608,7 +647,7 @@ def process_pdf(pdf_path, keywords, output_dir):
             print(f"特殊处理：开始关键词页码({start_info['page_number']})大于结束关键词页码({end_info['page_number']})，按只找到结束关键词处理")
             output_path = crop_page_before_keyword(pdf_path, end_info, output_dir)
             if output_path and (append_start_info or append_end_info):
-                output_path = append_content_to_pdf(output_path, pdf_path, append_start_info, append_end_info, output_dir)
+                save_append_content_pdf(pdf_path, append_start_info, append_end_info, output_dir)
             return output_path
         
         reader = PdfReader(pdf_path)
@@ -617,17 +656,15 @@ def process_pdf(pdf_path, keywords, output_dir):
         if start_info['page_number'] == end_info['page_number']:
             print(f"特殊处理：开始关键词和结束关键词在同一页，直接输出该页面")
             writer.add_page(reader.pages[start_info['page_number'] - 1])
-            
-            if append_start_info or append_end_info:
-                append_pages = extract_append_pages(pdf_path, append_start_info, append_end_info)
-                if append_pages:
-                    for page in append_pages:
-                        writer.add_page(page)
 
             with open(output_path, "wb") as output_file:
                 writer.write(output_file)
 
             print(f"已处理并保存到: {output_path}")
+            
+            if append_start_info or append_end_info:
+                save_append_content_pdf(pdf_path, append_start_info, append_end_info, output_dir)
+            
             return output_path
         
         try:
@@ -743,16 +780,14 @@ def process_pdf(pdf_path, keywords, output_dir):
                 
                 writer.add_page(cropped_end_page)
             
-            if append_start_info or append_end_info:
-                append_pages = extract_append_pages(pdf_path, append_start_info, append_end_info)
-                if append_pages:
-                    for page in append_pages:
-                        writer.add_page(page)
-            
             with open(output_path, "wb") as output_file:
                 writer.write(output_file)
             
             print(f"已处理并保存到: {output_path}")
+            
+            if append_start_info or append_end_info:
+                save_append_content_pdf(pdf_path, append_start_info, append_end_info, output_dir)
+            
             return output_path
         except Exception as e:
             print(f"处理文件时出错: {str(e)}")

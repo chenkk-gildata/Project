@@ -5,7 +5,17 @@ from pathlib import Path
 from openai import OpenAI
 
 
-def load_prompt_from_md(md_file_path: Path = r"业绩预告比对/业绩预告优化.md"):
+def load_prompt_from_md1(md_file_path: Path = r"主要指标年报/主要指标年度报告test1.md"):
+    """从MD文件加载提示词"""
+    try:
+        if os.path.exists(md_file_path):
+            with open(md_file_path, 'r', encoding='utf-8') as f:
+                return f.read()
+        return ""
+    except Exception as e:
+        return ""
+
+def load_prompt_from_md2(md_file_path: Path = r"主要指标年报/主要指标年度报告test2.md"):
     """从MD文件加载提示词"""
     try:
         if os.path.exists(md_file_path):
@@ -23,29 +33,33 @@ client = OpenAI(
 )
 
 file_object1 = client.files.create(file=Path(
-    # r"C:\Users\chenkk\Desktop\test\688577-2026-01-29-浙海德曼-浙海德曼2025年年度业绩预告.PDF"),
-    r"Z:\特别组\9.外包\AI比对\业绩预告\业绩预告小程序比对\files\20260129_225222\000301-2026-01-30-东方盛虹-2025年度业绩预告.PDF"),
+    r"C:\Users\chenkk\Desktop\25年度报告\主要指标\600830-2026-03-07-香溢融通-香溢融通控股集团股份有限公司2025年年度报告.pdf"),
     purpose = "file-extract")
 #
-# file_object2 = client.files.create(file=Path(
-#     r"C:\Users\chenkk\Desktop\test\688690-2026-01-16-纳微科技-苏州纳微科技股份有限公司2025年年度业绩预告的自愿性披露公告.PDF"),
-#     purpose = "file-extract")
+file_object2 = client.files.create(file=Path(
+    r"C:\Users\chenkk\Desktop\25年度报告\主要指标\净资产收益率和每股收益\600830-2026-03-07-香溢融通-香溢融通控股集团股份有限公司2025年年度报告_mgsy.pdf"),
+    purpose = "file-extract")
 
 completion1 = client.chat.completions.create(
     model="qwen-long",
     messages=[
         {
             "role": "system",
-            "content": f"fileid://{file_object1.id}"},
+            "content": f"fileid1://{file_object2.id}"},
         {
             "role": "user",
-            "content": '''我上传了一个pdf文件，现在我希望你帮我读取这个文件里的内容并提取相关信息，为了方便查找，我将pdf文件里的关键字高亮显示了，请问这对于你提取信息是否有帮助？是否会影响提取的结果？
-            '''},
-        # {
-        #     "role": "user",
-        #     "content": f"以下是提示词：{load_prompt_from_md()}"},
+            "content": f"以下是fileid1的提示词：{load_prompt_from_md2()}"},
+        {
+            "role": "system",
+            "content": f"fileid2://{file_object1.id}"},
+        {
+            "role": "user",
+            "content": f"以下是fileid2的提示词：{load_prompt_from_md1()}"},
+        {
+            "role": "user",
+            "content": f"将fileid1和fileid2的提取结果full join合并为一个JSON对象"},
     ],
-    # response_format={"type": "json_object"},
+    response_format={"type": "json_object"},
     temperature=0.3,
     top_p=0.5,
 )

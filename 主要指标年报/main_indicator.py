@@ -22,6 +22,22 @@ logger = get_logger(__name__)
 file_only_logger = get_file_only_logger(__name__)
 main_dir = os.path.dirname(os.path.abspath(__file__))
 
+# 模块二子目录名称
+MODULE2_SUBDIR = "净资产收益率和每股收益"
+
+# 模块二文件名后缀
+MODULE2_FILE_SUFFIX = "_mgsy.pdf"
+
+# 提示词文件名
+PROMPT_MODULE1 = "主要指标年度报告test1.md"
+PROMPT_MODULE2 = "主要指标年度报告test2.md"
+
+# 每股收益类字段列表
+MGSY_FIELDS = ["JBMGSY", "XSMGSY", "JBMGSYKC", "XSMGSYKC"]
+
+# 净资产收益率类字段列表
+JZCSYL_FIELDS = ["PTGJZCSYLJQ", "KCPTGJZCSYLJQ"]
+
 # SQL查询语句
 SQL_QUERY = '''
 SELECT A.ID,B.GPDM,CONVERT(DATE,A.XXFBRQ) XXFBRQ,CONVERT(DATE,A.JZRQ) JZRQ,
@@ -30,9 +46,11 @@ SELECT A.ID,B.GPDM,CONVERT(DATE,A.XXFBRQ) XXFBRQ,CONVERT(DATE,A.JZRQ) JZRQ,
        CAST(A.KCHJLRJZCSYLJQ AS DECIMAL(18,8)) * 100 AS KCHJLRJZCSYLJQ,
        CAST(A.PTGJZCSYLJQ AS DECIMAL(18,8)) * 100 AS PTGJZCSYLJQ,
        CAST(A.KCPTGJZCSYLJQ AS DECIMAL(18,8)) * 100 AS KCPTGJZCSYLJQ,
-       A.YYZSR,A.YYZSRTBZZ*100 YYZSRTBZZ,A.YYSR,A.YYSRTBZZ*100 YYSRTBZZ,A.JLRHJ,A.JLRHJTBZZ*100 JLRHJTBZZ,
+       A.YYZSR,A.YYZSRTBZZ*100 YYZSRTBZZ,A.YYSR,A.YYSRTBZZ*100 YYSRTBZZ,
+       A.YYSRKCJE,A.KCHYYSR,A.KCHYYSRTBZZ*100 KCHYYSRTBZZ,A.JLRHJ,A.JLRHJTBZZ*100 JLRHJTBZZ,
        A.JLR,A.JLRTBZZ*100 JLRTBZZ,A.FJCXSY,A.KCFJYXSYHDJLR,A.KCFJYXSYHDJLRTBZZ*100 KCFJYXSYHDJLRTBZZ,
-       A.JYXJLLJE,A.MGJYXJLLJE,A.ZCZE,A.GDQYHJ,A.GDQY,A.MGJZCPL,A.GJKJZEJLR,A.GJKJZZJZC
+       A.PTGJLR,A.PTGJLRTBZZ*100 PTGJLRTBZZ,A.KCFJCXSYHPTGJLR,A.KCFJCXSYHPTGJLRTBZZ*100 KCFJCXSYHPTGJLRTBZZ,
+       A.JYXJLLJE,A.MGJYXJLLJE,A.ZCZE,A.GDQY,A.MGJZCPL,A.PTGMGJZC,A.GJKJZEJLR,A.GJKJZZJZC
 FROM [10.101.0.212].JYPRIME.dbo.usrGSCWZYZB A JOIN [10.101.0.212].JYPRIME.dbo.usrZQZB B
     ON A.INBBM=B.INBBM AND B.ZQSC IN (18,83,90) AND B.ZQLB IN (1,2,41)
 WHERE A.XXLYBM = 110101 AND A.GGLB = 20 AND
@@ -55,34 +73,111 @@ class EnhancedDataProcessor:
             print(f"配置验证失败: {e}")
             raise
 
-    def process_all_files(self, pdf_files: List[Path]) -> List[Dict[str, Any]]:
-        """处理所有PDF文件 - 优化版，增强流水线模式"""
-        if not pdf_files:
+    def _get_company_key(self, filename: str) -> Optional[str]:
+        """
+        从文件名提取公司唯一标识（股票代码-发布日期）
+        用于匹配模块一和模块二的文件
+        
+        Args:
+            filename: 文件名（不含路径）
+            
+        Returns:
+            公司标识字符串，格式为"股票代码-发布日期"，失败返回None
+        """
+        try:
+            base_name = os.path.splitext(filename)[0]
+            if base_name.endswith("_mgsy"):
+                base_name = base_name[:-5]
+            
+            parts = base_name.split('-')
+            
+            if len(parts) >= 4:
+                stock_code = parts[0]
+                publish_date = '-'.join(parts[1:4])
+                
+                try:
+                    datetime.strptime(publish_date, '%Y-%m-%d')
+                except ValueError:
+                    logger.warning(f"日期格式错误: {publish_date}")
+                    return None
+                
+                return f"{stock_code}-{publish_date}"
+            else:
+                logger.warning(f"文件名格式错误: {filename}")
+                return None
+                
+        except Exception as e:
+            logger.error(f"提取公司标识异常: {filename} - {e}")
+            return None
+
+    def _find_paired_files(self, base_dir: Path) -> Dict[str, Dict[str, Optional[Path]]]:
+        """
+        查找并配对模块一和模块二的文件
+        
+        Args:
+            base_dir: 基础目录路径
+            
+        Returns:
+            配对文件字典，结构为：
+            {
+                "company_key": {
+                    "module1_file": Path,  # 模块一文件路径
+                    "module2_file": Path   # 模块二文件路径（可能为None）
+                }
+            }
+        """
+        paired_files = {}
+        
+        module1_files = list(base_dir.glob("*.pdf"))
+        
+        module2_dir = base_dir / MODULE2_SUBDIR
+        module2_files = []
+        if module2_dir.exists():
+            module2_files = list(module2_dir.glob(f"*{MODULE2_FILE_SUFFIX}"))
+        
+        module2_map = {}
+        for m2_file in module2_files:
+            key = self._get_company_key(m2_file.name)
+            if key:
+                module2_map[key] = m2_file
+        
+        for m1_file in module1_files:
+            key = self._get_company_key(m1_file.name)
+            if key:
+                paired_files[key] = {
+                    "module1_file": m1_file,
+                    "module2_file": module2_map.get(key)
+                }
+        
+        logger.info(f"文件配对完成: 模块一文件 {len(module1_files)} 个, 模块二文件 {len(module2_files)} 个, 配对结果 {len(paired_files)} 组")
+        
+        return paired_files
+
+    def process_all_files(self, base_dir: Path) -> List[Dict[str, Any]]:
+        """处理所有PDF文件 - 优化版，支持模块一和模块二并发处理"""
+        if not base_dir or not base_dir.exists():
+            logger.error(f"目录不存在: {base_dir}")
             return []
 
-        # 使用优化后的流水线模式
-        return self._pipeline_upload_and_process(pdf_files)
+        paired_files = self._find_paired_files(base_dir)
+        if not paired_files:
+            logger.warning(f"未找到可处理的文件: {base_dir}")
+            return []
 
-    def _pipeline_upload_and_process(self, pdf_files: List[Path]) -> List[
-        Dict[str, Any]]:
+        return self._pipeline_upload_and_process(paired_files)
+
+    def _pipeline_upload_and_process(self, paired_files: Dict[str, Dict[str, Optional[Path]]]) -> List[Dict[str, Any]]:
         """
-        优化的流水线处理：上传和处理并行进行，避免资源竞争
+        优化的流水线处理：上传和处理并行进行，支持模块一和模块二并发处理
         
-        主要优化点：
-        1. 简化线程池配置和队列管理逻辑
-        2. 减少初始化阶段的复杂检查
-        3. 优化任务提交和处理流程
-        4. 简化异常处理，确保资源正确释放
-        5. 修复线程池过早关闭的问题
+        处理单元从"单个文件"变为"公司文件对"
         """
-        # 初始化变量
         all_results = []
-        upload_queue = pdf_files.copy()  # 待上传文件队列
-        failed_uploads = []  # 失败的上传文件列表
-
-        # 简化线程池配置 - 减少线程数以降低资源竞争
-        upload_workers = 2  # 上传线程数
-        process_workers = 16  # 处理线程数
+        company_keys = list(paired_files.keys())
+        total_companies = len(company_keys)
+        
+        upload_workers = 2
+        process_workers = 16
         
         upload_executor = concurrent.futures.ThreadPoolExecutor(
             max_workers=upload_workers,
@@ -93,142 +188,144 @@ class EnhancedDataProcessor:
             thread_name_prefix="Process"
         )
 
-        # 简化任务跟踪
-        upload_futures = {}  # 上传任务字典 {future: pdf_file}
-        process_futures = {}  # 处理任务字典 {future: pdf_file}
+        upload_futures = {}
+        process_futures = {}
+        
+        upload_queue = []
+        for company_key in company_keys:
+            file_pair = paired_files[company_key]
+            upload_queue.append(("module1", company_key, file_pair["module1_file"]))
+            if file_pair["module2_file"]:
+                upload_queue.append(("module2", company_key, file_pair["module2_file"]))
 
-        # 计数器
         upload_count = 0
         completed_count = 0
+        company_file_ids = {}
+        failed_uploads = {}
+        upload_success_printed = set()
 
         print(f"任务流配置: {upload_workers}个上传线程, {process_workers}个处理线程")
+        print(f"共 {total_companies} 家公司待处理")
 
         try:
-            # 主循环：处理上传和处理任务直到所有文件完成
-            # 修复条件：确保所有上传任务和处理任务都完成
             while upload_queue or upload_futures or process_futures:
-                # === 第一阶段：提交上传任务 ===
-                # 简化条件：有待上传文件且未达并发上限
                 while len(upload_futures) < upload_workers and upload_queue:
-                    # 从上传队列取出文件
-                    pdf_file = upload_queue.pop(0)
-
-                    # 提交上传任务到线程池
+                    module_type, company_key, pdf_file = upload_queue.pop(0)
+                    
                     future = upload_executor.submit(
                         self._upload_single_file_with_timeout,
                         pdf_file
                     )
-                    upload_futures[future] = pdf_file
-                    logger.debug(f"提交上传任务: {pdf_file.name}")
+                    upload_futures[future] = (module_type, company_key, pdf_file)
+                    logger.debug(f"提交上传任务: {module_type} - {pdf_file.name}")
 
-                # === 第二阶段：检查并处理完成的上传任务 ===
                 if upload_futures:
-                    # 使用as_completed处理完成的上传任务，提高效率
                     completed_uploads = []
                     try:
                         for future in concurrent.futures.as_completed(upload_futures, timeout=0.1):
                             completed_uploads.append(future)
                     except concurrent.futures.TimeoutError:
-                        # 没有完成的任务，继续下一轮循环
                         pass
                     
-                    # 处理每个完成的上传任务
                     for future in completed_uploads:
-                        pdf_file = upload_futures.pop(future)
+                        module_type, company_key, pdf_file = upload_futures.pop(future)
 
                         try:
-                            # 获取上传结果
                             file_id = future.result()
 
                             if file_id:
-                                # 上传成功
-                                upload_count += 1
-                                print(f"✓ 上传成功({upload_count}/{len(pdf_files)}): {pdf_file.name}")
+                                if company_key not in company_file_ids:
+                                    company_file_ids[company_key] = {}
+                                company_file_ids[company_key][module_type] = {
+                                    "file_id": file_id,
+                                    "filename": pdf_file.name,
+                                    "file_path": pdf_file
+                                }
 
-                                # 立即提交处理任务
-                                process_future = process_executor.submit(
-                                    self._process_and_cleanup_single_file,
-                                    pdf_file, file_id, pdf_file.name
-                                )
-                                process_futures[process_future] = pdf_file
-                                logger.debug(f"提交处理任务: {pdf_file.name}")
+                                file_pair = paired_files[company_key]
+                                has_module1 = "module1" in company_file_ids[company_key]
+                                has_module2 = "module2" in company_file_ids[company_key] or file_pair["module2_file"] is None
+                                
+                                if has_module1 and has_module2 and company_key not in upload_success_printed:
+                                    upload_success_printed.add(company_key)
+                                    upload_count += 1
+                                    module1_filename = company_file_ids[company_key]["module1"]["filename"]
+                                    print(f"✓ 上传成功({upload_count}): {module1_filename}")
+                                
+                                if has_module1 and has_module2:
+                                    process_future = process_executor.submit(
+                                        self._process_and_cleanup_company_files,
+                                        company_key,
+                                        company_file_ids[company_key],
+                                        file_pair
+                                    )
+                                    process_futures[process_future] = company_key
+                                    logger.debug(f"提交处理任务: {company_key}")
                             else:
-                                # 上传失败
-                                failed_uploads.append(pdf_file.name)
-                                print(f"✗ 上传失败 ({upload_count + 1}/{len(pdf_files)}): {pdf_file.name}")
+                                if company_key not in failed_uploads:
+                                    failed_uploads[company_key] = []
+                                failed_uploads[company_key].append(module_type)
+                                print(f"✗ 上传失败: {module_type} - {pdf_file.name}")
+                                
+                                if module_type == "module1":
+                                    print(f"✗ 公司 {company_key} 模块一上传失败，跳过该公司")
+                                    completed_count += 1
 
                         except Exception as e:
-                            # 上传异常
-                            failed_uploads.append(pdf_file.name)
-                            print(f"✗ 上传异常 ({upload_count + 1}/{len(pdf_files)}) {pdf_file.name}: {e}")
+                            if company_key not in failed_uploads:
+                                failed_uploads[company_key] = []
+                            failed_uploads[company_key].append(module_type)
+                            print(f"✗ 上传异常: {module_type} - {pdf_file.name} - {e}")
 
-                # === 第三阶段：检查并处理完成的处理任务 ===
                 if process_futures:
-                    # 使用as_completed处理完成的处理任务，提高效率
                     completed_processes = []
                     try:
                         for future in concurrent.futures.as_completed(process_futures, timeout=0.1):
                             completed_processes.append(future)
                     except concurrent.futures.TimeoutError:
-                        # 没有完成的任务，继续下一轮循环
                         pass
                     
-                    # 处理每个完成的处理任务
                     for future in completed_processes:
-                        pdf_file = process_futures.pop(future)
+                        company_key = process_futures.pop(future)
 
                         try:
-                            # 获取处理结果
                             result = future.result()
 
                             if result:
-                                # 处理成功
                                 all_results.append(result)
                                 status = "成功"
                             else:
-                                # 处理失败
                                 status = "失败"
 
                             completed_count += 1
-                            print(
-                                f"{'✓' if result else '✗'} 处理{status}({completed_count}/{len(pdf_files)}): {pdf_file.name}")
+                            print(f"{'✓' if result else '✗'} 处理{status}({completed_count}/{total_companies}): {company_key}")
 
                         except Exception as e:
-                            # 处理异常
                             completed_count += 1
-                            print(f"✗ 处理异常({completed_count}/{len(pdf_files)}): {pdf_file.name} - {e}")
+                            print(f"✗ 处理异常({completed_count}/{total_companies}): {company_key} - {e}")
 
-                # === 第四阶段：资源控制 ===
-                # 减少休眠时间，提高响应速度
                 time.sleep(0.05)
 
         except Exception as e:
-            # 记录异常但继续执行finally块
             logger.error(f"流水线处理过程中发生异常: {e}", exc_info=True)
         
         finally:
-            # === 资源清理阶段 ===
             logger.info("开始关闭线程池...")
 
-            # 等待所有上传任务完成
-            logger.info(f"等待 {len(upload_futures)} 个上传任务完成...")
             for future in list(upload_futures.keys()):
                 try:
-                    future.result(timeout=30)  # 给每个任务30秒完成时间
+                    future.result(timeout=30)
                 except Exception as e:
                     logger.error(f"等待上传任务完成时出错: {e}")
                     future.cancel()
 
-            # 等待所有处理任务完成
-            logger.info(f"等待 {len(process_futures)} 个处理任务完成...")
             for future in list(process_futures.keys()):
                 try:
-                    future.result(timeout=120)  # 给每个处理任务120秒完成时间
+                    future.result(timeout=120)
                 except Exception as e:
                     logger.error(f"等待处理任务完成时出错: {e}")
                     future.cancel()
 
-            # 关闭线程池
             upload_executor.shutdown(wait=True)
             process_executor.shutdown(wait=True)
 
@@ -236,49 +333,154 @@ class EnhancedDataProcessor:
 
         return all_results
 
-    def _process_and_cleanup_single_file(self, pdf_file: Path, file_id: str, filename: str) -> Optional[Dict[str, Any]]:
-        """处理单个文件并清理资源 - 增强日志版"""
+    def _process_and_cleanup_company_files(self, company_key: str, 
+                                             file_ids: Dict[str, Dict],
+                                             file_pair: Dict[str, Optional[Path]]) -> Optional[Dict[str, Any]]:
+        """
+        处理单家公司的模块一和模块二文件并清理资源
+        
+        Args:
+            company_key: 公司标识
+            file_ids: 文件ID字典 {"module1": {...}, "module2": {...}}
+            file_pair: 文件路径对
+            
+        Returns:
+            处理结果
+        """
         process_start_time = time.time()
-        logger.info(f"开始处理文件: {filename} (文件ID: {file_id})")
+        logger.info(f"开始处理公司: {company_key}")
         result = None
 
         try:
-            # 处理文件
-            result = self.process_file_with_uploaded_id(file_id, filename)
+            result = self._process_company_files(company_key, file_ids)
 
-            # 记录处理结果
             process_duration = time.time() - process_start_time
             if result:
-                file_only_logger.info(f"文件处理成功: {filename} (耗时: {process_duration:.2f}秒)")
-                # 更新文件状态
+                file_only_logger.info(f"公司处理成功: {company_key} (耗时: {process_duration:.2f}秒)")
                 with self.lock:
-                    self.file_status[pdf_file] = "completed"
+                    if file_pair.get("module1_file"):
+                        self.file_status[file_pair["module1_file"]] = "completed"
+                    if file_pair.get("module2_file"):
+                        self.file_status[file_pair["module2_file"]] = "completed"
             else:
-                logger.warning(f"文件处理失败: {filename} (耗时: {process_duration:.2f}秒)")
+                logger.warning(f"公司处理失败: {company_key} (耗时: {process_duration:.2f}秒)")
                 with self.lock:
-                    self.file_status[pdf_file] = "failed"
+                    if file_pair.get("module1_file"):
+                        self.file_status[file_pair["module1_file"]] = "failed"
+                    if file_pair.get("module2_file"):
+                        self.file_status[file_pair["module2_file"]] = "failed"
 
             return result
 
         except Exception as e:
-            # 记录处理异常
             process_duration = time.time() - process_start_time
-            logger.error(f"处理文件异常: {filename} (耗时: {process_duration:.2f}秒) - 错误: {str(e)}", exc_info=True)
+            logger.error(f"处理公司异常: {company_key} (耗时: {process_duration:.2f}秒) - 错误: {str(e)}", exc_info=True)
             with self.lock:
-                self.file_status[pdf_file] = "error"
+                if file_pair.get("module1_file"):
+                    self.file_status[file_pair["module1_file"]] = "error"
+                if file_pair.get("module2_file"):
+                    self.file_status[file_pair["module2_file"]] = "error"
             return None
 
         finally:
-            # 清理上传的文件
-            try:
-                self._cleanup_single_file(file_id)
-                file_only_logger.debug(f"已清理上传文件: {filename} (文件ID: {file_id})")
-            except Exception as e:
-                logger.error(f"清理上传文件失败: {filename} (文件ID: {file_id}) - 错误: {str(e)}")
+            for module_type, file_info in file_ids.items():
+                try:
+                    self._cleanup_single_file(file_info["file_id"])
+                    file_only_logger.debug(f"已清理上传文件: {module_type} - {file_info['filename']}")
+                except Exception as e:
+                    logger.error(f"清理上传文件失败: {module_type} - {file_info['filename']} - 错误: {str(e)}")
 
-            # 从上传文件ID字典中移除
-            with self.lock:
-                self.uploaded_file_ids.pop(pdf_file, None)
+    def _process_company_files(self, company_key: str, file_ids: Dict[str, Dict]) -> Optional[Dict[str, Any]]:
+        """
+        并发处理同一公司的模块一和模块二文件，合并结果后进行比对
+        
+        Args:
+            company_key: 公司标识（股票代码-发布日期）
+            file_ids: 文件ID字典 {"module1": {...}, "module2": {...}}
+            
+        Returns:
+            处理结果字典
+        """
+        parts = company_key.split('-')
+        stock_code = parts[0]
+        publish_date = '-'.join(parts[1:4])
+        
+        module1_data = None
+        module2_data = None
+        
+        try:
+            module1_info = file_ids.get("module1")
+            if not module1_info:
+                logger.error(f"模块一文件信息缺失: {company_key}")
+                return None
+            
+            module2_info = file_ids.get("module2")
+            
+            with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
+                futures = {}
+                
+                futures["module1"] = executor.submit(
+                    self._extract_module1_data,
+                    module1_info["file_id"],
+                    module1_info["filename"]
+                )
+                
+                if module2_info:
+                    futures["module2"] = executor.submit(
+                        self._extract_module2_data,
+                        module2_info["file_id"],
+                        module2_info["filename"]
+                    )
+                
+                module1_data = futures["module1"].result()
+                
+                if "module2" in futures:
+                    module2_data = futures["module2"].result()
+            
+            if not module1_data:
+                logger.error(f"模块一数据提取失败: {company_key}")
+                return None
+            
+            try:
+                script_dir = os.path.dirname(os.path.abspath(__file__))
+                log_dir = os.path.join(script_dir, "主要指标年报小程序比对", "logs")
+                if not os.path.exists(log_dir):
+                    os.makedirs(log_dir)
+                session_id = get_session_id()
+                with open(os.path.join(log_dir, f"ai_extraction_data_{session_id}.log"), "a", encoding="utf-8") as f:
+                    f.write(f"\n=== {module1_info['filename']} ===\n")
+                    f.write(f"【模块一】\n")
+                    f.write(f"{json.dumps(module1_data, ensure_ascii=False, indent=2)}\n")
+                    if module2_data:
+                        f.write(f"\n【模块二】\n")
+                        f.write(f"{json.dumps(module2_data, ensure_ascii=False, indent=2)}\n")
+            except Exception:
+                pass
+
+            merged_data = self._merge_extracted_data(module1_data, module2_data)
+
+            sql_data = None
+            try:
+                sql_data = self._query_database(stock_code, publish_date)
+            except Exception as e:
+                logger.warning(f"数据库查询失败: {company_key} - {str(e)}")
+
+            comparison_result = self._compare_data_with_keys(merged_data, sql_data, stock_code, publish_date)
+
+            result = {
+                "stock_code": stock_code,
+                "publish_date": publish_date,
+                "ai_datas": merged_data,
+                "sql_data": sql_data,
+                "comparison_result": comparison_result
+            }
+
+            logger.info(f"处理成功: {company_key}")
+            return result
+
+        except Exception as e:
+            logger.error(f"处理公司文件异常: {company_key} - 错误: {str(e)}")
+            return None
 
     def _cleanup_single_file(self, file_id: str):
         """清理单个上传的文件"""
@@ -322,92 +524,7 @@ class EnhancedDataProcessor:
                     return None
                 
                 # 简化重试等待时间
-                time.sleep(1)  # 固定等待1秒
-
-    def process_file_with_uploaded_id(self, file_id: str, filename: str) -> Optional[Dict[str, Any]]:
-        """处理单个PDF文件 - 简化错误处理和恢复机制"""
-        stock_code = None
-        publish_date = None
-        ai_datas = None
-        sql_data = None
-        
-        try:
-            # 从文件名提取股票代码和发布日期
-            stock_code, publish_date = self._parse_filename(filename)
-            if not stock_code or not publish_date:
-                logger.error(f"文件名格式错误: {filename}")
-                return None
-
-            # 使用AI服务提取数据 - 简化重试机制
-            max_retries = 1
-            ai_data_results = None
-            
-            for retry_count in range(max_retries + 1):
-                try:
-                    ai_data_results = enhanced_ai_service.extract_data_from_file(file_id, self.load_prompt_from_md())
-                    if ai_data_results and ai_data_results.get('extracted_data'):
-                        break
-                except Exception as e:
-                    if retry_count == max_retries:
-                        logger.error(f"AI数据提取失败: {filename} - {str(e)}")
-                        return None
-                    time.sleep(1)  # 简化重试等待
-            
-            if not ai_data_results or not ai_data_results.get('extracted_data'):
-                logger.error(f"AI数据提取返回空结果: {filename}")
-                return None
-                
-            ai_datas = ai_data_results.get('extracted_data')
-
-            # 将AI提取的JSON数据保存到日志文件 - 简化错误处理
-            try:
-                script_dir = os.path.dirname(os.path.abspath(__file__))
-                log_dir = os.path.join(script_dir, "主要指标年报小程序比对", "logs")
-                if not os.path.exists(log_dir):
-                    os.makedirs(log_dir)
-                session_id = get_session_id()
-                with open(os.path.join(log_dir, f"ai_extraction_data_{session_id}.log"), "a", encoding="utf-8") as f:
-                    f.write(f"\n=== {filename} ===\n")
-                    f.write(f"{json.dumps(ai_datas, ensure_ascii=False, indent=2)}\n")
-            except Exception:
-                pass  # 忽略日志保存错误，不影响主流程
-
-            # 查询数据库 - 简化重试机制
-            try:
-                sql_data = self._query_database(stock_code, publish_date)
-            except Exception as e:
-                logger.warning(f"数据库查询失败: {filename} - {str(e)}")
-                sql_data = None  # 设置为None，继续处理
-
-            # 比对数据 - 使用新的比对逻辑
-            comparison_result = self._compare_data_with_keys(ai_datas, sql_data, stock_code, publish_date)
-
-            # 生成处理结果
-            result = {
-                "stock_code": stock_code,
-                "publish_date": publish_date,
-                "ai_datas": ai_datas,
-                "sql_data": sql_data,
-                "comparison_result": comparison_result
-            }
-
-            # 记录处理成功
-            logger.info(f"处理成功: {filename}")
-            return result
-
-        except Exception as e:
-            # 记录错误信息
-            logger.error(f"处理文件异常: {filename} - 错误: {str(e)}")
-            return None
-
-    def _processed_ai_data(self, ai_datas: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        """预处理AI提取的JSON数据，去除空数据"""
-        processed_datas = ai_datas.get("extracted_data", [])
-        for ai_data in processed_datas:
-            if not ai_data.get("extracted_data"):  # 如果这条数据AI提取为空
-                  # 删除这一条数据
-                  processed_datas.remove(ai_data)
-        return processed_datas
+                time.sleep(1)
 
     def _query_database(self, stock_code: str, publish_date: str) -> Optional[List[Dict[str, Any]]]:
         """查询数据库获取主要指标数据 - 简化错误处理和恢复机制"""
@@ -567,8 +684,8 @@ class EnhancedDataProcessor:
 
         # 定义需要比对的字段列表（由于AI字段名和SQL字段名相同，直接使用字段列表）
         fields_to_compare = [
-            "YYZSR", "YYSR", "JLRHJ", "JLR", "KCFJYXSYHDJLR",
-            "YYZSRTBZZ", "YYSRTBZZ", "JLRHJTBZZ", "JLRTBZZ", "KCFJYXSYHDJLRTBZZ",
+            "YYZSR", "YYSR", "YYSRKCJE", "KCHYYSR", "JLRHJ", "JLR", "KCFJYXSYHDJLR",
+            "YYZSRTBZZ", "YYSRTBZZ", "KCHYYSRTBZZ", "JLRHJTBZZ", "JLRTBZZ", "KCFJYXSYHDJLRTBZZ",
             "PTGJLR", "PTGJLRTBZZ", "KCFJCXSYHPTGJLR", "KCFJCXSYHPTGJLRTBZZ",
             "JYXJLLJE", "JBMGSY", "XSMGSY", "JBMGSYKC", "XSMGSYKC",
             "JLRJZCSYLJQ", "KCHJLRJZCSYLJQ", "PTGJZCSYLJQ", "KCPTGJZCSYLJQ",
@@ -651,9 +768,7 @@ class EnhancedDataProcessor:
     def load_prompt_from_md(self, md_file_path: str = "主要指标年度报告test.md") -> str:
         """从MD文件加载提示词"""
         try:
-            # 获取脚本所在目录的绝对路径
             script_dir = os.path.dirname(os.path.abspath(__file__))
-            # 构建提示词文件的绝对路径
             abs_md_path = os.path.join(script_dir, md_file_path)
 
             if os.path.exists(abs_md_path):
@@ -665,6 +780,207 @@ class EnhancedDataProcessor:
         except Exception as e:
             logger.error(f"加载提示词文件失败: {e}")
             return ""
+
+    def _extract_module1_data(self, file_id: str, filename: str) -> Optional[List[Dict[str, Any]]]:
+        """
+        使用test1提示词提取模块一数据
+        
+        Args:
+            file_id: 上传后的文件ID
+            filename: 文件名
+            
+        Returns:
+            提取的数据列表，失败返回None
+        """
+        try:
+            prompt = self.load_prompt_from_md(PROMPT_MODULE1)
+            if not prompt:
+                logger.error(f"加载模块一提示词失败: {filename}")
+                return None
+            
+            ai_data_results = enhanced_ai_service.extract_data_from_file(file_id, prompt)
+            if ai_data_results and ai_data_results.get('extracted_data'):
+                return ai_data_results.get('extracted_data')
+            else:
+                logger.warning(f"模块一AI数据提取返回空结果: {filename}")
+                return None
+                
+        except Exception as e:
+            logger.error(f"模块一AI数据提取异常: {filename} - {e}")
+            return None
+
+    def _extract_module2_data(self, file_id: str, filename: str) -> Optional[List[Dict[str, Any]]]:
+        """
+        使用test2提示词提取模块二数据
+        
+        Args:
+            file_id: 上传后的文件ID
+            filename: 文件名
+            
+        Returns:
+            提取的数据列表，失败返回None
+        """
+        try:
+            prompt = self.load_prompt_from_md(PROMPT_MODULE2)
+            if not prompt:
+                logger.error(f"加载模块二提示词失败: {filename}")
+                return None
+            
+            ai_data_results = enhanced_ai_service.extract_data_from_file(file_id, prompt)
+            if ai_data_results and ai_data_results.get('extracted_data'):
+                return ai_data_results.get('extracted_data')
+            else:
+                logger.warning(f"模块二AI数据提取返回空结果: {filename}")
+                return None
+                
+        except Exception as e:
+            logger.error(f"模块二AI数据提取异常: {filename} - {e}")
+            return None
+
+    def _get_precision(self, value: Any) -> int:
+        """
+        获取数值的小数精度（小数点后位数）
+        
+        Args:
+            value: 需要判断精度的值
+            
+        Returns:
+            小数点后的位数，非数值返回0
+        """
+        if value is None:
+            return 0
+        
+        str_value = str(value).strip()
+        if not str_value:
+            return 0
+        
+        if str_value in ("不适用", "-", "--"):
+            return 0
+        
+        str_value = str_value.replace(',', '').replace('%', '')
+        
+        if '(' in str_value and ')' in str_value:
+            str_value = str_value.replace('(', '').replace(')', '')
+        
+        try:
+            float(str_value)
+        except ValueError:
+            return 0
+        
+        if '.' in str_value:
+            decimal_part = str_value.split('.')[-1]
+            return len(decimal_part)
+        else:
+            return 0
+
+    def _merge_mgsy_field(self, value1: Any, value2: Any) -> Any:
+        """
+        合并每股收益类字段
+        精度一致取模块二，否则取精度高的
+        
+        Args:
+            value1: 模块一的值
+            value2: 模块二的值
+            
+        Returns:
+            合并后的值
+        """
+        if not value1 and not value2:
+            return ""
+        if not value1:
+            return value2
+        if not value2:
+            return value1
+        
+        precision1 = self._get_precision(value1)
+        precision2 = self._get_precision(value2)
+        
+        if precision1 == precision2:
+            return value2
+        elif precision1 > precision2:
+            return value1
+        else:
+            return value2
+
+    def _merge_jzcsyl_field(self, value1: Any, value2: Any) -> Any:
+        """
+        合并净资产收益率类字段
+        以模块二为准
+        
+        Args:
+            value1: 模块一的值
+            value2: 模块二的值
+            
+        Returns:
+            合并后的值
+        """
+        if value2:
+            return value2
+        return value1 if value1 else ""
+
+    def _merge_single_record(self, record1: Dict[str, Any], record2: Optional[Dict[str, Any]]) -> Dict[str, Any]:
+        """
+        合并单条记录
+        
+        Args:
+            record1: 模块一的记录
+            record2: 模块二的记录（可能为None）
+            
+        Returns:
+            合并后的记录
+        """
+        merged = record1.copy()
+        
+        if not record2:
+            return merged
+        
+        for field in MGSY_FIELDS:
+            value1 = record1.get(field, "")
+            value2 = record2.get(field, "")
+            merged[field] = self._merge_mgsy_field(value1, value2)
+        
+        for field in JZCSYL_FIELDS:
+            value1 = record1.get(field, "")
+            value2 = record2.get(field, "")
+            merged[field] = self._merge_jzcsyl_field(value1, value2)
+        
+        kchjlrjzcsyljq = merged.get("KCHJLRJZCSYLJQ", "")
+        kcptgjzcsyljq = merged.get("KCPTGJZCSYLJQ", "")
+        if kchjlrjzcsyljq == "" and kcptgjzcsyljq:
+            merged["KCHJLRJZCSYLJQ"] = kcptgjzcsyljq
+        
+        return merged
+
+    def _merge_extracted_data(self, module1_data: List[Dict[str, Any]], 
+                               module2_data: Optional[List[Dict[str, Any]]]) -> List[Dict[str, Any]]:
+        """
+        合并模块一和模块二的提取数据
+        按JZRQ匹配后合并
+        
+        Args:
+            module1_data: 模块一提取的数据列表
+            module2_data: 模块二提取的数据列表（可能为None或空）
+            
+        Returns:
+            合并后的数据列表
+        """
+        if not module2_data:
+            return module1_data
+        
+        module2_map = {}
+        for record in module2_data:
+            jzrq = str(record.get("JZRQ", "")).strip()
+            if jzrq:
+                module2_map[jzrq] = record
+        
+        merged_data = []
+        for record1 in module1_data:
+            jzrq = str(record1.get("JZRQ", "")).strip()
+            record2 = module2_map.get(jzrq)
+            merged_record = self._merge_single_record(record1, record2)
+            merged_data.append(merged_record)
+        
+        return merged_data
 
     def generate_report(self, results: List[Dict[str, Any]], report_file: str = None) -> str:
         """生成比对报告"""
@@ -719,7 +1035,7 @@ class EnhancedDataProcessor:
 
 
 def main():
-    """主函数 - 优化版，增强错误处理和进度显示"""
+    """主函数 - 优化版，支持模块一和模块二并发处理"""
     print("=" * 60)
     print("主要指标年报AI比对系统")
     print("=" * 60)
@@ -740,30 +1056,26 @@ def main():
                     print("目录路径不能为空")
                     continue
 
-                # 验证目录是否存在
-                if not os.path.exists(custom_dir):
+                base_dir = Path(custom_dir)
+                if not base_dir.exists():
                     print(f"目录不存在: {custom_dir}")
                     continue
 
-                # 查找所有PDF文件
-                pdf_files = list(Path(custom_dir).glob("*.pdf"))
-                if not pdf_files:
+                module1_files = list(base_dir.glob("*.pdf"))
+                if not module1_files:
                     print(f"在目录 {custom_dir} 中未找到PDF文件")
                     continue
 
-                # 记录程序开始执行时间
                 program_start_time = datetime.now()
-                logger.info(f"程序开始执行 - 目录: {custom_dir}, 文件数量: {len(pdf_files)}")
-                print(f"\n开始处理 {len(pdf_files)} 个文件...")
+                logger.info(f"程序开始执行 - 目录: {custom_dir}, 模块一文件数量: {len(module1_files)}")
+                print(f"\n开始处理，模块一文件数量: {len(module1_files)}...")
 
                 start_time = datetime.now()
-                results = processor.process_all_files(pdf_files)
+                results = processor.process_all_files(base_dir)
                 end_time = datetime.now()
 
-                # 显示处理结果
-                print(f"\n\n处理完成! 共处理 {len(results)}/{len(pdf_files)} 个文件，耗时: {end_time - start_time}")
+                print(f"\n\n处理完成! 共处理 {len(results)} 家公司，耗时: {end_time - start_time}")
 
-                # 显示详细处理结果统计
                 success_count = 0
                 failed_files = []
                 with processor.lock:
@@ -776,7 +1088,7 @@ def main():
                 print(f"成功处理: {success_count} 个文件")
                 if failed_files:
                     print(f"处理失败: {len(failed_files)} 个文件")
-                    for file_name, status in failed_files[:5]:  # 只显示前5个失败文件
+                    for file_name, status in failed_files[:5]:
                         print(f"  - {file_name}: {status}")
                     if len(failed_files) > 5:
                         print(f"  ... 还有 {len(failed_files) - 5} 个文件处理失败")
