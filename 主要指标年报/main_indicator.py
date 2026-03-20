@@ -20,7 +20,13 @@ from logger_config import setup_logging, get_logger, get_session_id, get_file_on
 setup_logging()
 logger = get_logger(__name__)
 file_only_logger = get_file_only_logger(__name__)
-main_dir = os.path.dirname(os.path.abspath(__file__))
+
+
+def get_base_path():
+    """获取程序基础路径，兼容开发和打包环境"""
+    if getattr(sys, 'frozen', False):
+        return os.path.dirname(sys.executable)
+    return os.path.dirname(os.path.abspath(__file__))
 
 # 模块二子目录名称
 MODULE2_SUBDIR = "净资产收益率和每股收益"
@@ -29,8 +35,8 @@ MODULE2_SUBDIR = "净资产收益率和每股收益"
 MODULE2_FILE_SUFFIX = "_mgsy.pdf"
 
 # 提示词文件名
-PROMPT_MODULE1 = "主要指标年度报告test1.md"
-PROMPT_MODULE2 = "主要指标年度报告test2.md"
+PROMPT_MODULE1 = "主要指标年度报告.md"
+PROMPT_MODULE2 = "主要指标年度报告_每股收益.md"
 
 # 每股收益类字段列表
 MGSY_FIELDS = ["JBMGSY", "XSMGSY", "JBMGSYKC", "XSMGSYKC"]
@@ -250,7 +256,7 @@ class EnhancedDataProcessor:
                                     upload_success_printed.add(company_key)
                                     upload_count += 1
                                     module1_filename = company_file_ids[company_key]["module1"]["filename"]
-                                    print(f"✓ 上传成功({upload_count}): {module1_filename}")
+                                    print(f"↑ 上传成功({upload_count}): {module1_filename}")
                                 
                                 if has_module1 and has_module2:
                                     process_future = process_executor.submit(
@@ -442,8 +448,8 @@ class EnhancedDataProcessor:
                 return None
             
             try:
-                script_dir = os.path.dirname(os.path.abspath(__file__))
-                log_dir = os.path.join(script_dir, "主要指标年报小程序比对", "logs")
+                base_dir = get_base_path()
+                log_dir = os.path.join(base_dir, "logs")
                 if not os.path.exists(log_dir):
                     os.makedirs(log_dir)
                 session_id = get_session_id()
@@ -768,8 +774,8 @@ class EnhancedDataProcessor:
     def load_prompt_from_md(self, md_file_path: str = "主要指标年度报告test.md") -> str:
         """从MD文件加载提示词"""
         try:
-            script_dir = os.path.dirname(os.path.abspath(__file__))
-            abs_md_path = os.path.join(script_dir, md_file_path)
+            base_dir = get_base_path()
+            abs_md_path = os.path.join(base_dir, md_file_path)
 
             if os.path.exists(abs_md_path):
                 with open(abs_md_path, 'r', encoding='utf-8') as f:
@@ -988,10 +994,8 @@ class EnhancedDataProcessor:
             print("没有可生成报告的数据")
             return ""
 
-        # 获取脚本所在目录的绝对路径
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        # 确保report文件夹存在
-        report_dir = os.path.join(script_dir, "主要指标年报小程序比对", "report")
+        base_dir = get_base_path()
+        report_dir = os.path.join(base_dir, "report")
         if not os.path.exists(report_dir):
             os.makedirs(report_dir)
             print(f"创建报告目录: {report_dir}")
@@ -1096,9 +1100,8 @@ def main():
                 # 生成报告
                 if results:
                     print("\n生成处理报告...")
-                    # 获取脚本所在目录的绝对路径
-                    script_dir = os.path.dirname(os.path.abspath(__file__))
-                    report_dir = os.path.join(script_dir, "主要指标年报小程序比对", "report")
+                    base_dir = get_base_path()
+                    report_dir = os.path.join(base_dir, "report")
                     if not os.path.exists(report_dir):
                         os.makedirs(report_dir)
                         print(f"创建报告目录: {report_dir}")

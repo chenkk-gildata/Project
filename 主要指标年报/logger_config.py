@@ -3,8 +3,16 @@
 """
 import logging
 import os
+import sys
 from datetime import datetime
 from config import logging_config
+
+
+def get_base_path():
+    """获取程序基础路径，兼容开发和打包环境"""
+    if getattr(sys, 'frozen', False):
+        return os.path.dirname(sys.executable)
+    return os.path.dirname(os.path.abspath(__file__))
 
 # 全局会话ID，在程序启动时生成一次
 _session_id = None
@@ -28,10 +36,8 @@ def get_session_id():
 
 def setup_logging():
     """设置日志配置"""
-    # 获取主程序目录
-    main_dir = os.path.dirname(os.path.abspath(__file__))
-    # 创建logs目录，路径相对于主程序目录
-    log_dir = os.path.join(main_dir, "主要指标年报小程序比对", "logs")
+    base_dir = get_base_path()
+    log_dir = os.path.join(base_dir, "logs")
     if not os.path.exists(log_dir):
         os.makedirs(log_dir)
 
@@ -72,17 +78,13 @@ def get_file_only_logger(name: str) -> logging.Logger:
     """获取只写入文件不输出到控制台的日志器"""
     logger = logging.getLogger(f"{name}_file_only")
 
-    # 如果已经配置过处理器，则直接返回
     if logger.handlers:
         return logger
 
-    # 设置日志级别
     logger.setLevel(logging.DEBUG)
 
-    # 获取主程序目录
-    main_dir = os.path.dirname(os.path.abspath(__file__))
-    # 创建logs目录，路径相对于主程序目录
-    log_dir = os.path.join(main_dir, "主要指标年报小程序比对", "logs")
+    base_dir = get_base_path()
+    log_dir = os.path.join(base_dir, "logs")
     if not os.path.exists(log_dir):
         os.makedirs(log_dir)
 

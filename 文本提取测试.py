@@ -33,33 +33,33 @@ client = OpenAI(
 )
 
 file_object1 = client.files.create(file=Path(
-    r"C:\Users\chenkk\Desktop\25年度报告\主要指标\600830-2026-03-07-香溢融通-香溢融通控股集团股份有限公司2025年年度报告.pdf"),
+    r"C:\Users\chenkk\Desktop\25年度报告\主要指标\603268-2026-03-10--ST松发-2025年年度报告.pdf"),
     purpose = "file-extract")
 #
-file_object2 = client.files.create(file=Path(
-    r"C:\Users\chenkk\Desktop\25年度报告\主要指标\净资产收益率和每股收益\600830-2026-03-07-香溢融通-香溢融通控股集团股份有限公司2025年年度报告_mgsy.pdf"),
-    purpose = "file-extract")
+# file_object2 = client.files.create(file=Path(
+#     r"C:\Users\chenkk\Desktop\25年度报告\主要指标\净资产收益率和每股收益\600830-2026-03-07-香溢融通-香溢融通控股集团股份有限公司2025年年度报告_mgsy.pdf"),
+#     purpose = "file-extract")
 
 completion1 = client.chat.completions.create(
     model="qwen-long",
     messages=[
+        # {
+        #     "role": "system",
+        #     "content": f"fileid1://{file_object2.id}"},
+        # {
+        #     "role": "user",
+        #     "content": f"以下是fileid1的提示词：{load_prompt_from_md2()}"},
         {
             "role": "system",
-            "content": f"fileid1://{file_object2.id}"},
+            "content": f"fileid://{file_object1.id}"},
+        # {
+        #     "role": "user",
+        #     "content": f"以下是提示词：{load_prompt_from_md1()}"},
         {
             "role": "user",
-            "content": f"以下是fileid1的提示词：{load_prompt_from_md2()}"},
-        {
-            "role": "system",
-            "content": f"fileid2://{file_object1.id}"},
-        {
-            "role": "user",
-            "content": f"以下是fileid2的提示词：{load_prompt_from_md1()}"},
-        {
-            "role": "user",
-            "content": f"将fileid1和fileid2的提取结果full join合并为一个JSON对象"},
+            "content": f"解析文件并将文件的所有内容提取出来，格式为markdown"},
     ],
-    response_format={"type": "json_object"},
+    # response_format={"type": "json_object"},
     temperature=0.3,
     top_p=0.5,
 )

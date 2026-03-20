@@ -5,22 +5,23 @@
 """
 
 import os
+from PyInstaller.utils.hooks import copy_metadata
 
 spec_dir = os.path.dirname(os.path.abspath(SPEC))
 project_root = os.path.dirname(spec_dir)
 
 python_files = [
     os.path.join(project_root, 'tools', 'tools_menu.py'),
-    os.path.join(project_root, 'tools', '__init__.py'),
-    os.path.join(project_root, 'tools', 'announcement_viewer.py'),
-    os.path.join(project_root, 'tools', 'status_viewer.py'),
     os.path.join(project_root, 'config.py'),
     os.path.join(project_root, 'database.py'),
     os.path.join(project_root, 'logger.py'),
     os.path.join(project_root, 'models.py'),
 ]
 
-datas = []
+datas = [
+    *copy_metadata('readchar'),
+    *copy_metadata('prettytable'),
+]
 
 hiddenimports = [
     'sqlite3',
@@ -33,7 +34,13 @@ hiddenimports = [
     'logging',
     'logging.handlers',
     'prettytable',
+    'prettytable.colortable',
+    'prettytable.importers',
     'readchar',
+    'readchar.key',
+    'tools',
+    'tools.status_viewer',
+    'tools.announcement_viewer',
     'config',
     'database',
     'logger',

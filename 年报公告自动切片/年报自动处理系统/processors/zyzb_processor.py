@@ -64,6 +64,7 @@ class ZyzbProcessor(BaseProcessor):
                 return fitz.Rect(0, inst.y0 - 20, inst.x1 + 400, inst.y1 + 50)
 
         found = False
+        skip_directory_check = False
         for start_range, end_range in search_ranges:
             actual_start = max(1, start_range)
             actual_end = min(end_range, total_pages)
@@ -72,7 +73,12 @@ class ZyzbProcessor(BaseProcessor):
                 page = doc.load_page(page_num)
                 page_rect = page.rect
 
-                # 搜索开始关键词
+                if not skip_directory_check:
+                    directory_instances = page.search_for("目录")
+                    if directory_instances:
+                        skip_directory_check = True
+                        continue
+
                 if not start_info:
                     for keyword in ['会计数据', '财务指标']:
                         instances = page.search_for(keyword)
@@ -332,7 +338,45 @@ class ZyzbProcessor(BaseProcessor):
         except Exception as e:
             logger.error(f"追加内容到PDF时出错: {e}")
             return existing_pdf_path
-    
+
+    def _save_append_content_pdf(self, pdf_path: str, append_start_info: Dict, append_end_info: Dict) -> Optional[str]:
+        """
+        将净资产收益率/每股收益模块单独保存为PDF
+
+        Args:
+            pdf_path: 源PDF路径
+            append_start_info: 开始关键词信息
+            append_end_info: 结束关键词信息
+
+        Returns:
+            Optional[str]: 输出文件路径，如果无内容则返回None
+        """
+        try:
+            append_pages = self._extract_append_pages(pdf_path, append_start_info, append_end_info)
+            if not append_pages:
+                logger.debug(f"没有找到净资产收益率/每股收益内容: {os.path.basename(pdf_path)}")
+                return None
+
+            mgsy_dir = os.path.join(self.output_dir, "净资产收益率和每股收益")
+            if not os.path.exists(mgsy_dir):
+                os.makedirs(mgsy_dir)
+
+            base_name = os.path.splitext(os.path.basename(pdf_path))[0]
+            output_path = os.path.join(mgsy_dir, f"{base_name}_mgsy.pdf")
+
+            writer = PdfWriter()
+            for page in append_pages:
+                writer.add_page(page)
+
+            with open(output_path, "wb") as output_file:
+                writer.write(output_file)
+
+            logger.debug(f"净资产收益率/每股收益内容已保存到: {output_path}")
+            return output_path
+        except Exception as e:
+            logger.error(f"保存净资产收益率/每股收益内容时出错: {e}")
+            return None
+
     def process_pdf(self, pdf_path: str, keywords: Dict) -> Optional[str]:
         """处理主要指标PDF"""
         from PyPDF2 import PdfReader, PdfWriter
@@ -353,27 +397,27 @@ class ZyzbProcessor(BaseProcessor):
             logger.debug(f"主要指标只找到结束关键词: {os.path.basename(pdf_path)}")
             output_path = crop_page_before_keyword(pdf_path, end_info, self.output_dir, pre_pages=4)
             if output_path and (append_start_info or append_end_info):
-                output_path = self._append_content_to_pdf(output_path, pdf_path, append_start_info, append_end_info)
+                self._save_append_content_pdf(pdf_path, append_start_info, append_end_info)
             return output_path
-        
+
         if start_info and not end_info:
             logger.debug(f"主要指标只找到开始关键词: {os.path.basename(pdf_path)}")
             output_path = crop_page_after_keyword(pdf_path, start_info, self.output_dir, post_pages=4)
             if output_path and (append_start_info or append_end_info):
-                output_path = self._append_content_to_pdf(output_path, pdf_path, append_start_info, append_end_info)
+                self._save_append_content_pdf(pdf_path, append_start_info, append_end_info)
             return output_path
-        
+
         if start_info and end_info:
             if start_info['page_number'] > end_info['page_number']:
                 output_path = crop_page_before_keyword(pdf_path, end_info, self.output_dir, pre_pages=4)
                 if output_path and (append_start_info or append_end_info):
-                    output_path = self._append_content_to_pdf(output_path, pdf_path, append_start_info, append_end_info)
+                    self._save_append_content_pdf(pdf_path, append_start_info, append_end_info)
                 return output_path
-            
+
             if start_info['page_number'] == end_info['page_number']:
                 output_path = crop_same_page(pdf_path, start_info, end_info, self.output_dir)
                 if output_path and (append_start_info or append_end_info):
-                    output_path = self._append_content_to_pdf(output_path, pdf_path, append_start_info, append_end_info)
+                    self._save_append_content_pdf(pdf_path, append_start_info, append_end_info)
                 return output_path
             
             # 情况4.3: 正常情况
@@ -527,13 +571,10 @@ class ZyzbProcessor(BaseProcessor):
                     
                     # 添加裁剪后的结束关键词页
                     writer.add_page(cropped_end_page)
-                
+
                 if append_start_info or append_end_info:
-                    append_pages = self._extract_append_pages(pdf_path, append_start_info, append_end_info)
-                    if append_pages:
-                        for page in append_pages:
-                            writer.add_page(page)
-                
+                    self._save_append_content_pdf(pdf_path, append_start_info, append_end_info)
+
                 base_name = os.path.splitext(os.path.basename(pdf_path))[0]
                 os.makedirs(self.output_dir, exist_ok=True)
                 output_path = os.path.join(self.output_dir, f"{base_name}.pdf")

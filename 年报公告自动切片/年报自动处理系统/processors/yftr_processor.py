@@ -30,14 +30,14 @@ class YftrProcessor(BaseProcessor):
             start_keyword = ["研发人员", "研发投入"]
             end_keyword = ["发生重大变化的原因", "现金流"]
         elif exchange_code == "shs":
-            start_pattern = re.compile(r'[\d三四五][）)]?[、.．]?\s*研发投入', re.IGNORECASE | re.MULTILINE)
+            start_pattern = re.compile(r'[\d三四五][）)]?[、.．]?\s*研发投入|研发支出', re.IGNORECASE | re.MULTILINE)
             end_pattern = re.compile(r'[\d四五六][）)]?[、.．]?\s*现金流', re.IGNORECASE | re.MULTILINE)
-            start_keyword = ["研发投入"]
+            start_keyword = ["研发投入", "研发支出"]
             end_keyword = ["现金流"]
         elif exchange_code == "bjs":
             start_pattern = re.compile(r'[（(]?[一二三四九12349][）)]?[、.．]?\s*研发支出情况', re.IGNORECASE | re.MULTILINE)
             end_pattern = re.compile(r'[\d一二三四五][）)]?[、.．]?\s*专利情况', re.IGNORECASE | re.MULTILINE)
-            start_keyword = ["研发情况"]
+            start_keyword = ["研发支出"]
             end_keyword = ["专利情况"]
         else:  # 科创板
             start_pattern = re.compile(r'\d?[）)]?[、.．]?\s*研发投入情况表', re.IGNORECASE | re.MULTILINE)
