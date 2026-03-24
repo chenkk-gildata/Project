@@ -1,0 +1,124 @@
+2026-03-23 15:18:30,111 - __main__ - INFO - 程序开始执行 - 目录: C:\Users\chenkk\Desktop\2026-03-23\主要指标, 模块一文件数量: 8
+2026-03-23 15:18:30,112 - __main__ - INFO - 文件配对完成: 模块一文件 8 个, 模块二文件 8 个, 配对结果 8 组
+2026-03-23 15:18:31,150 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:18:31,151 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\000014-2026-03-18-沙河股份-2025年年度报告.pdf (文件ID: file-fe-e72c9e689af946d39dbfe96b)
+2026-03-23 15:18:31,151 - __main___file_only - INFO - 上传文件: 000014-2026-03-18-沙河股份-2025年年度报告.pdf (大小: 0.22 MB, ID: file-fe-e72c9e689af946d39dbfe96b)
+2026-03-23 15:18:31,420 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:18:31,421 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\净资产收益率和每股收益\000014-2026-03-18-沙河股份-2025年年度报告_mgsy.pdf (文件ID: file-fe-fd7f2e8cda3c4532b06fa326)
+2026-03-23 15:18:31,421 - __main___file_only - INFO - 上传文件: 000014-2026-03-18-沙河股份-2025年年度报告_mgsy.pdf (大小: 0.41 MB, ID: file-fe-fd7f2e8cda3c4532b06fa326)
+2026-03-23 15:18:31,467 - __main__ - INFO - 开始处理公司: 000014-2026-03-18
+2026-03-23 15:18:31,467 - __main__ - ERROR - 加载提示词文件失败: name 'sys' is not defined
+2026-03-23 15:18:31,468 - __main__ - ERROR - 加载提示词文件失败: name 'sys' is not defined
+2026-03-23 15:18:31,468 - __main__ - ERROR - 加载模块一提示词失败: 000014-2026-03-18-沙河股份-2025年年度报告.pdf
+2026-03-23 15:18:31,468 - __main__ - ERROR - 加载模块二提示词失败: 000014-2026-03-18-沙河股份-2025年年度报告_mgsy.pdf
+2026-03-23 15:18:31,468 - __main__ - ERROR - 模块一数据提取失败: 000014-2026-03-18
+2026-03-23 15:18:31,468 - __main__ - WARNING - 公司处理失败: 000014-2026-03-18 (耗时: 0.00秒)
+2026-03-23 15:18:31,673 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:18:31,673 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\301536-2026-03-10-星宸科技-2025年年度报告.pdf (文件ID: file-fe-c8b9069a1eb5469bb507a6af)
+2026-03-23 15:18:31,674 - __main___file_only - INFO - 上传文件: 301536-2026-03-10-星宸科技-2025年年度报告.pdf (大小: 0.37 MB, ID: file-fe-c8b9069a1eb5469bb507a6af)
+2026-03-23 15:18:32,052 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-e72c9e689af946d39dbfe96b "HTTP/1.1 200 OK"
+2026-03-23 15:18:32,307 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:18:32,308 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\净资产收益率和每股收益\301536-2026-03-10-星宸科技-2025年年度报告_mgsy.pdf (文件ID: file-fe-f22718a7dcf94804bb73a51a)
+2026-03-23 15:18:32,308 - __main___file_only - INFO - 上传文件: 301536-2026-03-10-星宸科技-2025年年度报告_mgsy.pdf (大小: 0.36 MB, ID: file-fe-f22718a7dcf94804bb73a51a)
+2026-03-23 15:18:32,528 - __main__ - INFO - 开始处理公司: 301536-2026-03-10
+2026-03-23 15:18:32,528 - __main__ - ERROR - 加载提示词文件失败: name 'sys' is not defined
+2026-03-23 15:18:32,529 - __main__ - ERROR - 加载模块一提示词失败: 301536-2026-03-10-星宸科技-2025年年度报告.pdf
+2026-03-23 15:18:32,529 - __main__ - ERROR - 加载提示词文件失败: name 'sys' is not defined
+2026-03-23 15:18:32,529 - __main__ - ERROR - 加载模块二提示词失败: 301536-2026-03-10-星宸科技-2025年年度报告_mgsy.pdf
+2026-03-23 15:18:32,529 - __main__ - ERROR - 模块一数据提取失败: 301536-2026-03-10
+2026-03-23 15:18:32,529 - __main__ - WARNING - 公司处理失败: 301536-2026-03-10 (耗时: 0.00秒)
+2026-03-23 15:18:32,616 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-fd7f2e8cda3c4532b06fa326 "HTTP/1.1 200 OK"
+2026-03-23 15:18:32,946 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:18:32,947 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\600282-2026-03-17-南钢股份-南京钢铁股份有限公司2025年年度报告.pdf (文件ID: file-fe-7206ea27c95b4db38e747374)
+2026-03-23 15:18:32,947 - __main___file_only - INFO - 上传文件: 600282-2026-03-17-南钢股份-南京钢铁股份有限公司2025年年度报告.pdf (大小: 0.31 MB, ID: file-fe-7206ea27c95b4db38e747374)
+2026-03-23 15:18:33,456 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-c8b9069a1eb5469bb507a6af "HTTP/1.1 200 OK"
+2026-03-23 15:18:33,489 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:18:33,490 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\净资产收益率和每股收益\600282-2026-03-17-南钢股份-南京钢铁股份有限公司2025年年度报告_mgsy.pdf (文件ID: file-fe-1bc5c049612d4a229c51495a)
+2026-03-23 15:18:33,490 - __main___file_only - INFO - 上传文件: 600282-2026-03-17-南钢股份-南京钢铁股份有限公司2025年年度报告_mgsy.pdf (大小: 0.28 MB, ID: file-fe-1bc5c049612d4a229c51495a)
+2026-03-23 15:18:33,583 - __main__ - INFO - 开始处理公司: 600282-2026-03-17
+2026-03-23 15:18:33,584 - __main__ - ERROR - 加载提示词文件失败: name 'sys' is not defined
+2026-03-23 15:18:33,584 - __main__ - ERROR - 加载模块一提示词失败: 600282-2026-03-17-南钢股份-南京钢铁股份有限公司2025年年度报告.pdf
+2026-03-23 15:18:33,584 - __main__ - ERROR - 加载提示词文件失败: name 'sys' is not defined
+2026-03-23 15:18:33,584 - __main__ - ERROR - 加载模块二提示词失败: 600282-2026-03-17-南钢股份-南京钢铁股份有限公司2025年年度报告_mgsy.pdf
+2026-03-23 15:18:33,584 - __main__ - ERROR - 模块一数据提取失败: 600282-2026-03-17
+2026-03-23 15:18:33,585 - __main__ - WARNING - 公司处理失败: 600282-2026-03-17 (耗时: 0.00秒)
+2026-03-23 15:18:34,033 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-f22718a7dcf94804bb73a51a "HTTP/1.1 200 OK"
+2026-03-23 15:18:34,151 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-7206ea27c95b4db38e747374 "HTTP/1.1 200 OK"
+2026-03-23 15:18:34,263 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:18:34,264 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\600299-2026-03-07-安迪苏-安迪苏2025年年度报告.pdf (文件ID: file-fe-a3d5d309e292451ebd7be971)
+2026-03-23 15:18:34,265 - __main___file_only - INFO - 上传文件: 600299-2026-03-07-安迪苏-安迪苏2025年年度报告.pdf (大小: 0.36 MB, ID: file-fe-a3d5d309e292451ebd7be971)
+2026-03-23 15:18:34,680 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:18:34,681 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\净资产收益率和每股收益\600299-2026-03-07-安迪苏-安迪苏2025年年度报告_mgsy.pdf (文件ID: file-fe-31954566a43943049e128b56)
+2026-03-23 15:18:34,681 - __main___file_only - INFO - 上传文件: 600299-2026-03-07-安迪苏-安迪苏2025年年度报告_mgsy.pdf (大小: 0.34 MB, ID: file-fe-31954566a43943049e128b56)
+2026-03-23 15:18:34,731 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-1bc5c049612d4a229c51495a "HTTP/1.1 200 OK"
+2026-03-23 15:18:34,888 - __main__ - INFO - 开始处理公司: 600299-2026-03-07
+2026-03-23 15:18:34,889 - __main__ - ERROR - 加载提示词文件失败: name 'sys' is not defined
+2026-03-23 15:18:34,890 - __main__ - ERROR - 加载提示词文件失败: name 'sys' is not defined
+2026-03-23 15:18:34,890 - __main__ - ERROR - 加载模块一提示词失败: 600299-2026-03-07-安迪苏-安迪苏2025年年度报告.pdf
+2026-03-23 15:18:34,890 - __main__ - ERROR - 加载模块二提示词失败: 600299-2026-03-07-安迪苏-安迪苏2025年年度报告_mgsy.pdf
+2026-03-23 15:18:34,890 - __main__ - ERROR - 模块一数据提取失败: 600299-2026-03-07
+2026-03-23 15:18:34,891 - __main__ - WARNING - 公司处理失败: 600299-2026-03-07 (耗时: 0.00秒)
+2026-03-23 15:18:35,315 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:18:35,316 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\600388-2026-03-21-龙净环保-2025年年度报告.pdf (文件ID: file-fe-c9b866a3fe71447499496c72)
+2026-03-23 15:18:35,316 - __main___file_only - INFO - 上传文件: 600388-2026-03-21-龙净环保-2025年年度报告.pdf (大小: 0.34 MB, ID: file-fe-c9b866a3fe71447499496c72)
+2026-03-23 15:18:35,473 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-a3d5d309e292451ebd7be971 "HTTP/1.1 200 OK"
+2026-03-23 15:18:35,864 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:18:35,865 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\净资产收益率和每股收益\600388-2026-03-21-龙净环保-2025年年度报告_mgsy.pdf (文件ID: file-fe-4c682f03ee62409eb304c360)
+2026-03-23 15:18:35,865 - __main___file_only - INFO - 上传文件: 600388-2026-03-21-龙净环保-2025年年度报告_mgsy.pdf (大小: 0.30 MB, ID: file-fe-4c682f03ee62409eb304c360)
+2026-03-23 15:18:35,948 - __main__ - INFO - 开始处理公司: 600388-2026-03-21
+2026-03-23 15:18:35,949 - __main__ - ERROR - 加载提示词文件失败: name 'sys' is not defined
+2026-03-23 15:18:35,949 - __main__ - ERROR - 加载提示词文件失败: name 'sys' is not defined
+2026-03-23 15:18:35,949 - __main__ - ERROR - 加载模块一提示词失败: 600388-2026-03-21-龙净环保-2025年年度报告.pdf
+2026-03-23 15:18:35,949 - __main__ - ERROR - 加载模块二提示词失败: 600388-2026-03-21-龙净环保-2025年年度报告_mgsy.pdf
+2026-03-23 15:18:35,949 - __main__ - ERROR - 模块一数据提取失败: 600388-2026-03-21
+2026-03-23 15:18:35,950 - __main__ - WARNING - 公司处理失败: 600388-2026-03-21 (耗时: 0.00秒)
+2026-03-23 15:18:36,222 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-31954566a43943049e128b56 "HTTP/1.1 200 OK"
+2026-03-23 15:18:36,440 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:18:36,441 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\600433-2026-03-11-冠豪高新-冠豪高新2025年年度报告.pdf (文件ID: file-fe-8081e5a814934c6b957dbc2c)
+2026-03-23 15:18:36,441 - __main___file_only - INFO - 上传文件: 600433-2026-03-11-冠豪高新-冠豪高新2025年年度报告.pdf (大小: 0.30 MB, ID: file-fe-8081e5a814934c6b957dbc2c)
+2026-03-23 15:18:36,691 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-c9b866a3fe71447499496c72 "HTTP/1.1 200 OK"
+2026-03-23 15:18:37,029 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:18:37,030 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\688535-2026-03-18-华海诚科-江苏华海诚科新材料股份有限公司2025年年度报告.pdf (文件ID: file-fe-420f5292d605439bb8c1ef73)
+2026-03-23 15:18:37,030 - __main___file_only - INFO - 上传文件: 688535-2026-03-18-华海诚科-江苏华海诚科新材料股份有限公司2025年年度报告.pdf (大小: 0.29 MB, ID: file-fe-420f5292d605439bb8c1ef73)
+2026-03-23 15:18:37,152 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:18:37,153 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\净资产收益率和每股收益\600433-2026-03-11-冠豪高新-冠豪高新2025年年度报告_mgsy.pdf (文件ID: file-fe-e14cf5e6180746f08c64e6ea)
+2026-03-23 15:18:37,153 - __main___file_only - INFO - 上传文件: 600433-2026-03-11-冠豪高新-冠豪高新2025年年度报告_mgsy.pdf (大小: 0.28 MB, ID: file-fe-e14cf5e6180746f08c64e6ea)
+2026-03-23 15:18:37,165 - __main__ - INFO - 开始处理公司: 600433-2026-03-11
+2026-03-23 15:18:37,165 - __main__ - ERROR - 加载提示词文件失败: name 'sys' is not defined
+2026-03-23 15:18:37,165 - __main__ - ERROR - 加载提示词文件失败: name 'sys' is not defined
+2026-03-23 15:18:37,165 - __main__ - ERROR - 加载模块一提示词失败: 600433-2026-03-11-冠豪高新-冠豪高新2025年年度报告.pdf
+2026-03-23 15:18:37,165 - __main__ - ERROR - 加载模块二提示词失败: 600433-2026-03-11-冠豪高新-冠豪高新2025年年度报告_mgsy.pdf
+2026-03-23 15:18:37,166 - __main__ - ERROR - 模块一数据提取失败: 600433-2026-03-11
+2026-03-23 15:18:37,166 - __main__ - WARNING - 公司处理失败: 600433-2026-03-11 (耗时: 0.00秒)
+2026-03-23 15:18:37,468 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-4c682f03ee62409eb304c360 "HTTP/1.1 200 OK"
+2026-03-23 15:18:37,710 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:18:37,711 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\净资产收益率和每股收益\688535-2026-03-18-华海诚科-江苏华海诚科新材料股份有限公司2025年年度报告_mgsy.pdf (文件ID: file-fe-e9ca92849b954e5fbf3aa6e3)
+2026-03-23 15:18:37,711 - __main___file_only - INFO - 上传文件: 688535-2026-03-18-华海诚科-江苏华海诚科新材料股份有限公司2025年年度报告_mgsy.pdf (大小: 0.26 MB, ID: file-fe-e9ca92849b954e5fbf3aa6e3)
+2026-03-23 15:18:37,783 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-8081e5a814934c6b957dbc2c "HTTP/1.1 200 OK"
+2026-03-23 15:18:37,956 - __main__ - INFO - 开始处理公司: 688535-2026-03-18
+2026-03-23 15:18:37,956 - __main__ - ERROR - 加载提示词文件失败: name 'sys' is not defined
+2026-03-23 15:18:37,957 - __main__ - ERROR - 加载模块一提示词失败: 688535-2026-03-18-华海诚科-江苏华海诚科新材料股份有限公司2025年年度报告.pdf
+2026-03-23 15:18:37,957 - __main__ - ERROR - 加载提示词文件失败: name 'sys' is not defined
+2026-03-23 15:18:37,957 - __main__ - ERROR - 加载模块二提示词失败: 688535-2026-03-18-华海诚科-江苏华海诚科新材料股份有限公司2025年年度报告_mgsy.pdf
+2026-03-23 15:18:37,957 - __main__ - ERROR - 模块一数据提取失败: 688535-2026-03-18
+2026-03-23 15:18:37,957 - __main__ - WARNING - 公司处理失败: 688535-2026-03-18 (耗时: 0.00秒)
+2026-03-23 15:18:38,431 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:18:38,432 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\920116-2026-03-20-星图测控-2025年年度报告.pdf (文件ID: file-fe-3a47a851a8cf4398bb307e04)
+2026-03-23 15:18:38,432 - __main___file_only - INFO - 上传文件: 920116-2026-03-20-星图测控-2025年年度报告.pdf (大小: 0.49 MB, ID: file-fe-3a47a851a8cf4398bb307e04)
+2026-03-23 15:18:38,443 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-e14cf5e6180746f08c64e6ea "HTTP/1.1 200 OK"
+2026-03-23 15:18:38,680 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-420f5292d605439bb8c1ef73 "HTTP/1.1 200 OK"
+2026-03-23 15:18:39,267 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:18:39,268 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\净资产收益率和每股收益\920116-2026-03-20-星图测控-2025年年度报告_mgsy.pdf (文件ID: file-fe-d7782c209a6845dcb4c43833)
+2026-03-23 15:18:39,268 - __main___file_only - INFO - 上传文件: 920116-2026-03-20-星图测控-2025年年度报告_mgsy.pdf (大小: 0.71 MB, ID: file-fe-d7782c209a6845dcb4c43833)
+2026-03-23 15:18:39,269 - __main__ - INFO - 开始处理公司: 920116-2026-03-20
+2026-03-23 15:18:39,269 - __main__ - ERROR - 加载提示词文件失败: name 'sys' is not defined
+2026-03-23 15:18:39,270 - __main__ - ERROR - 加载提示词文件失败: name 'sys' is not defined
+2026-03-23 15:18:39,270 - __main__ - ERROR - 加载模块一提示词失败: 920116-2026-03-20-星图测控-2025年年度报告.pdf
+2026-03-23 15:18:39,270 - __main__ - ERROR - 加载模块二提示词失败: 920116-2026-03-20-星图测控-2025年年度报告_mgsy.pdf
+2026-03-23 15:18:39,270 - __main__ - ERROR - 模块一数据提取失败: 920116-2026-03-20
+2026-03-23 15:18:39,271 - __main__ - WARNING - 公司处理失败: 920116-2026-03-20 (耗时: 0.00秒)
+2026-03-23 15:18:39,421 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-e9ca92849b954e5fbf3aa6e3 "HTTP/1.1 200 OK"
+2026-03-23 15:18:39,967 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-3a47a851a8cf4398bb307e04 "HTTP/1.1 200 OK"
+2026-03-23 15:18:40,570 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-d7782c209a6845dcb4c43833 "HTTP/1.1 200 OK"
+2026-03-23 15:18:40,621 - __main__ - INFO - 开始关闭线程池...
+2026-03-23 15:18:40,622 - __main__ - INFO - 所有线程池已关闭

@@ -76,25 +76,35 @@ class TaskDispatcher:
                     db.update_process_status(announcement.hashcode, ProcessStatus.PENDING)
                     continue
                 
-                all_modules_success = True
-                announcement_has_pending = False
+                all_modules_finished = True
+                announcement_has_recoverable = False
                 for module_name in PROCESS_CONFIG["modules"]:
                     module_status = db.get_module_status(announcement.hashcode, module_name)
-                    if module_status is None or module_status != ProcessStatus.SUCCESS:
-                        all_modules_success = False
-                        announcement_has_pending = True
-                        task = ProcessTask(
-                            hashcode=announcement.hashcode,
-                            file_path=announcement.file_path,
-                            module_name=module_name
-                        )
-                        if process_queue.put(task, block=False):
-                            recovered_modules += 1
+
+                    # 终态: 不再入队
+                    if module_status in (ProcessStatus.SUCCESS, ProcessStatus.NO_OUTPUT, ProcessStatus.SKIPPED):
+                        continue
+
+                    # 正在处理中的任务，不重复入队
+                    if module_status == ProcessStatus.PROCESSING:
+                        all_modules_finished = False
+                        continue
+
+                    # 待处理/失败/无状态，恢复入队
+                    all_modules_finished = False
+                    announcement_has_recoverable = True
+                    task = ProcessTask(
+                        hashcode=announcement.hashcode,
+                        file_path=announcement.file_path,
+                        module_name=module_name
+                    )
+                    if process_queue.put(task, block=False):
+                        recovered_modules += 1
                 
-                if announcement_has_pending:
+                if announcement_has_recoverable:
                     recovered_announcements += 1
                 
-                if all_modules_success:
+                if all_modules_finished:
                     skipped_all_success += 1
                     db.update_process_status(announcement.hashcode, ProcessStatus.SUCCESS)
             
@@ -117,18 +127,22 @@ class TaskDispatcher:
             file_name = self._file_names.get(hashcode, hashcode[:8])
             
             status = self._announcement_status.get(hashcode, {})
-            completed = status.get('completed', [])
-            no_output = status.get('no_output', [])
-            failed = status.get('failed', [])
+            completed = status.get('completed', set())
+            no_output = status.get('no_output', set())
+            failed = status.get('failed', set())
+            skipped = status.get('skipped', set())
+            finished_modules = completed | no_output | failed | skipped
             
-            if len(completed) + len(no_output) + len(failed) == total_modules:
+            if len(finished_modules) >= total_modules:
                 if len(failed) > 0:
-                    failed_modules = "/".join(failed)
+                    failed_modules = "/".join(sorted(failed))
                     logger.info(f"✗ {file_name} ({len(failed)}模块失败: {failed_modules})")
                     db.update_process_status(hashcode, ProcessStatus.FAILED)
-                elif len(no_output) > 0:
-                    no_output_modules = "/".join(no_output)
-                    logger.info(f"△ {file_name} ({len(completed)}模块完成, {len(no_output)}模块无输出: {no_output_modules})")
+                elif len(no_output) > 0 or len(skipped) > 0:
+                    no_output_modules = "/".join(sorted(no_output | skipped))
+                    logger.info(
+                        f"△ {file_name} ({len(completed)}模块完成, {len(no_output | skipped)}模块无输出/跳过: {no_output_modules})"
+                    )
                     db.update_process_status(hashcode, ProcessStatus.SUCCESS)
                 else:
                     logger.info(f"✓ {file_name} ({total_modules}模块完成)")
@@ -145,13 +159,16 @@ class TaskDispatcher:
         """处理单个任务"""
         module_name = task.module_name
         file_name = os.path.basename(task.file_path)
+        process_queue = queue_manager.get_process_queue()
         
         if self._stop_event.is_set():
+            process_queue.task_done(task)
             return
         
         processor = self.processors.get(module_name)
         if not processor:
             logger.error(f"未找到处理器: {module_name}")
+            process_queue.task_done(task)
             return
         
         with self._lock:
@@ -159,22 +176,29 @@ class TaskDispatcher:
             self._file_names[task.hashcode] = file_name
             if task.hashcode not in self._announcement_status:
                 self._announcement_status[task.hashcode] = {
-                    'completed': [],
-                    'no_output': [],
-                    'failed': []
+                    'completed': set(),
+                    'no_output': set(),
+                    'failed': set(),
+                    'skipped': set()
                 }
         
         try:
             logger.debug(f"开始处理任务: {module_name} - {file_name}")
-            success, message = processor.execute(task)
-            
+            success, message, final_status = processor.execute(task)
+
             with self._lock:
-                if success and "处理成功" in message:
-                    self._announcement_status[task.hashcode]['completed'].append(module_name)
-                elif success and "无输出" in message:
-                    self._announcement_status[task.hashcode]['no_output'].append(module_name)
+                announcement_status = self._announcement_status[task.hashcode]
+                for key in ("completed", "no_output", "failed", "skipped"):
+                    announcement_status[key].discard(module_name)
+
+                if final_status == ProcessStatus.SUCCESS:
+                    announcement_status['completed'].add(module_name)
+                elif final_status == ProcessStatus.NO_OUTPUT:
+                    announcement_status['no_output'].add(module_name)
+                elif final_status == ProcessStatus.SKIPPED:
+                    announcement_status['skipped'].add(module_name)
                 else:
-                    self._announcement_status[task.hashcode]['failed'].append(module_name)
+                    announcement_status['failed'].add(module_name)
             
             logger.debug(f"{module_name} 任务处理完成: {file_name} - {message}")
             
@@ -183,8 +207,13 @@ class TaskDispatcher:
         except Exception as e:
             logger.error(f"{module_name} 任务处理异常 {file_name}: {e}")
             with self._lock:
-                self._announcement_status[task.hashcode]['failed'].append(module_name)
+                self._announcement_status[task.hashcode]['failed'].add(module_name)
         finally:
+            try:
+                process_queue.task_done(task)
+            except Exception as done_error:
+                logger.error(f"处理队列 task_done 失败 {task.hashcode}/{module_name}: {done_error}")
+
             with self._lock:
                 self._active_tasks -= 1
     
@@ -208,7 +237,6 @@ class TaskDispatcher:
                     
                     if task:
                         executor.submit(self._process_task, task)
-                        process_queue.task_done()
                     
                     current_time = time.time()
                     if current_time - last_recovery_time > recovery_interval:

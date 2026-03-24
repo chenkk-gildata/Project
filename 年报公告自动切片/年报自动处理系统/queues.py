@@ -23,6 +23,7 @@ class TaskQueue:
     
     def put(self, task, block: bool = True, timeout: Optional[float] = None) -> bool:
         """添加任务到队列"""
+        task_key = None
         try:
             with self._lock:
                 # 去重检查
@@ -36,8 +37,16 @@ class TaskQueue:
                 self._total_put += 1
             return True
         except queue.Full:
+            if task_key is not None:
+                with self._lock:
+                    self._task_set.discard(task_key)
             logger.warning("队列已满,无法添加任务")
             return False
+        except Exception:
+            if task_key is not None:
+                with self._lock:
+                    self._task_set.discard(task_key)
+            raise
     
     def get(self, block: bool = True, timeout: Optional[float] = None):
         """从队列获取任务"""
@@ -51,8 +60,12 @@ class TaskQueue:
         except queue.Empty:
             return None
     
-    def task_done(self):
+    def task_done(self, task=None):
         """标记任务完成"""
+        if task is not None:
+            with self._lock:
+                task_key = self._get_task_key(task)
+                self._task_set.discard(task_key)
         self._queue.task_done()
     
     def qsize(self) -> int:
@@ -100,6 +113,9 @@ class DownloadQueue(TaskQueue):
         result = super().put(task, block, timeout)
         if result:
             logger.debug(f"添加下载任务: {task.announcement.hashcode}")
+        else:
+            with self._lock:
+                self._hashcode_set.discard(task.announcement.hashcode)
         return result
     
     def get(self, block: bool = True, timeout: Optional[float] = None) -> Optional[DownloadTask]:
@@ -128,6 +144,7 @@ class ProcessQueue(TaskQueue):
     def __init__(self, maxsize: int = 1000):
         super().__init__(maxsize=maxsize)
         self._task_keys = set()
+        self._active_task_keys = set()
     
     def _get_task_key(self, task: ProcessTask) -> str:
         """处理任务使用hashcode+模块名作为唯一标识"""
@@ -135,9 +152,9 @@ class ProcessQueue(TaskQueue):
     
     def put(self, task: ProcessTask, block: bool = True, timeout: Optional[float] = None) -> bool:
         """添加处理任务"""
+        task_key = self._get_task_key(task)
         with self._lock:
-            task_key = self._get_task_key(task)
-            if task_key in self._task_keys:
+            if task_key in self._task_keys or task_key in self._active_task_keys:
                 logger.debug(f"处理任务已存在,跳过: {task_key}")
                 return False
             self._task_keys.add(task_key)
@@ -145,6 +162,9 @@ class ProcessQueue(TaskQueue):
         result = super().put(task, block, timeout)
         if result:
             logger.debug(f"添加处理任务: {task.hashcode}/{task.module_name}")
+        else:
+            with self._lock:
+                self._task_keys.discard(task_key)
         return result
     
     def get(self, block: bool = True, timeout: Optional[float] = None) -> Optional[ProcessTask]:
@@ -154,7 +174,16 @@ class ProcessQueue(TaskQueue):
             with self._lock:
                 task_key = self._get_task_key(task)
                 self._task_keys.discard(task_key)
+                self._active_task_keys.add(task_key)
         return task
+
+    def task_done(self, task: Optional[ProcessTask] = None):
+        """标记处理任务完成，并从活跃任务集合中移除"""
+        if task:
+            with self._lock:
+                task_key = self._get_task_key(task)
+                self._active_task_keys.discard(task_key)
+        super().task_done(task)
     
     def batch_put(self, announcement: Announcement, modules: List[str]) -> int:
         """为单个公告批量添加多个模块的处理任务"""
@@ -221,16 +250,18 @@ class QueueManager:
         # 清空下载队列
         while not self.download_queue.empty():
             try:
-                self.download_queue.get(block=False)
-                self.download_queue.task_done()
+                task = self.download_queue.get(block=False)
+                if task:
+                    self.download_queue.task_done(task)
             except:
                 break
         
         # 清空处理队列
         while not self.process_queue.empty():
             try:
-                self.process_queue.get(block=False)
-                self.process_queue.task_done()
+                task = self.process_queue.get(block=False)
+                if task:
+                    self.process_queue.task_done(task)
             except:
                 break
         

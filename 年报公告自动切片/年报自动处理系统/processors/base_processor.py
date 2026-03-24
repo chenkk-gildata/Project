@@ -64,26 +64,24 @@ class BaseProcessor(ABC):
         base_name = os.path.splitext(os.path.basename(pdf_path))[0]
         return os.path.join(self.output_dir, f"{base_name}.pdf")
     
-    def execute(self, task: ProcessTask) -> Tuple[bool, str]:
+    def execute(self, task: ProcessTask) -> Tuple[bool, str, ProcessStatus]:
         """
         执行处理任务
         
         Returns:
-            Tuple[bool, str]: (是否成功, 消息)
+            Tuple[bool, str, ProcessStatus]: (是否成功, 消息, 最终状态)
         """
         hashcode = task.hashcode
         pdf_path = task.file_path
         
-        # 检查是否已处理
         if self.check_already_processed(hashcode):
             logger.debug(f"{self.MODULE_NAME}: {hashcode} 已处理过,跳过")
             db.update_module_status(
                 hashcode, self.MODULE_NAME, 
                 ProcessStatus.SKIPPED
             )
-            return True, "已处理过,跳过"
+            return True, "已处理过,跳过", ProcessStatus.SKIPPED
         
-        # 检查文件是否存在
         if not os.path.exists(pdf_path):
             error_msg = f"PDF文件不存在: {pdf_path}"
             logger.error(f"{self.MODULE_NAME}: {error_msg}")
@@ -91,9 +89,8 @@ class BaseProcessor(ABC):
                 hashcode, self.MODULE_NAME,
                 ProcessStatus.FAILED, error_msg, task.retry_count
             )
-            return False, error_msg
+            return False, error_msg, ProcessStatus.FAILED
         
-        # 更新状态为处理中
         db.update_module_status(
             hashcode, self.MODULE_NAME,
             ProcessStatus.PROCESSING
@@ -111,7 +108,7 @@ class BaseProcessor(ABC):
                     ProcessStatus.SUCCESS
                 )
                 logger.debug(f"{self.MODULE_NAME}: 处理成功 {os.path.basename(pdf_path)}")
-                return True, f"处理成功: {output_path}"
+                return True, f"处理成功: {output_path}", ProcessStatus.SUCCESS
             else:
                 db.update_module_status(
                     hashcode, self.MODULE_NAME,
@@ -120,15 +117,14 @@ class BaseProcessor(ABC):
                     task.retry_count
                 )
                 logger.debug(f"{self.MODULE_NAME}: 无输出 {os.path.basename(pdf_path)}")
-                return True, "无输出(正常执行)"
+                return True, "无输出(正常执行)", ProcessStatus.NO_OUTPUT
                 
         except Exception as e:
             error_msg = f"处理异常: {str(e)}"
             logger.error(f"{self.MODULE_NAME}: {error_msg}")
             
-            # 判断是否重试
             retry_count = task.retry_count + 1
-            if retry_count < 2:  # 最大重试2次
+            if retry_count < 2:
                 status = ProcessStatus.FAILED
                 logger.info(f"{self.MODULE_NAME}: 将重试 ({retry_count}/2)")
             else:
@@ -138,7 +134,7 @@ class BaseProcessor(ABC):
                 hashcode, self.MODULE_NAME,
                 status, error_msg, retry_count
             )
-            return False, error_msg
+            return False, error_msg, status
     
     def _get_search_rect(self, inst, keyword_type: str, page_width: float) -> fitz.Rect:
         """获取搜索区域"""

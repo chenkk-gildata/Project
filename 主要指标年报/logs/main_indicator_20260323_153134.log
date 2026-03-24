@@ -1,0 +1,117 @@
+2026-03-23 15:31:36,430 - __main__ - INFO - 程序开始执行 - 目录: C:\Users\chenkk\Desktop\2026-03-23\主要指标, 模块一文件数量: 8
+2026-03-23 15:31:36,431 - __main__ - INFO - 文件配对完成: 模块一文件 8 个, 模块二文件 8 个, 配对结果 8 组
+2026-03-23 15:31:37,589 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:31:37,591 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\000014-2026-03-18-沙河股份-2025年年度报告.pdf (文件ID: file-fe-e2d6a5fef24a4ccdab95170a)
+2026-03-23 15:31:37,591 - __main___file_only - INFO - 上传文件: 000014-2026-03-18-沙河股份-2025年年度报告.pdf (大小: 0.22 MB, ID: file-fe-e2d6a5fef24a4ccdab95170a)
+2026-03-23 15:31:37,934 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:31:37,935 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\净资产收益率和每股收益\000014-2026-03-18-沙河股份-2025年年度报告_mgsy.pdf (文件ID: file-fe-20534d0e69de47eda32479c4)
+2026-03-23 15:31:37,935 - __main___file_only - INFO - 上传文件: 000014-2026-03-18-沙河股份-2025年年度报告_mgsy.pdf (大小: 0.41 MB, ID: file-fe-20534d0e69de47eda32479c4)
+2026-03-23 15:31:38,086 - __main__ - INFO - 开始处理公司: 000014-2026-03-18
+2026-03-23 15:31:38,151 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:31:38,151 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\301536-2026-03-10-星宸科技-2025年年度报告.pdf (文件ID: file-fe-7b7851cda5c0449c99b40928)
+2026-03-23 15:31:38,152 - __main___file_only - INFO - 上传文件: 301536-2026-03-10-星宸科技-2025年年度报告.pdf (大小: 0.37 MB, ID: file-fe-7b7851cda5c0449c99b40928)
+2026-03-23 15:31:39,573 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:31:39,573 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\净资产收益率和每股收益\301536-2026-03-10-星宸科技-2025年年度报告_mgsy.pdf (文件ID: file-fe-d158b7752a724fc1aef2349e)
+2026-03-23 15:31:39,574 - __main___file_only - INFO - 上传文件: 301536-2026-03-10-星宸科技-2025年年度报告_mgsy.pdf (大小: 0.36 MB, ID: file-fe-d158b7752a724fc1aef2349e)
+2026-03-23 15:31:39,656 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:31:39,657 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\600282-2026-03-17-南钢股份-南京钢铁股份有限公司2025年年度报告.pdf (文件ID: file-fe-8feba296b98d47a09d494d5c)
+2026-03-23 15:31:39,657 - __main___file_only - INFO - 上传文件: 600282-2026-03-17-南钢股份-南京钢铁股份有限公司2025年年度报告.pdf (大小: 0.31 MB, ID: file-fe-8feba296b98d47a09d494d5c)
+2026-03-23 15:31:39,682 - __main__ - INFO - 开始处理公司: 301536-2026-03-10
+2026-03-23 15:31:40,978 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 15:31:41,173 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:31:41,174 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\净资产收益率和每股收益\600282-2026-03-17-南钢股份-南京钢铁股份有限公司2025年年度报告_mgsy.pdf (文件ID: file-fe-090eeed41fc747ceb6957ecd)
+2026-03-23 15:31:41,175 - __main___file_only - INFO - 上传文件: 600282-2026-03-17-南钢股份-南京钢铁股份有限公司2025年年度报告_mgsy.pdf (大小: 0.28 MB, ID: file-fe-090eeed41fc747ceb6957ecd)
+2026-03-23 15:31:41,274 - __main__ - INFO - 开始处理公司: 600282-2026-03-17
+2026-03-23 15:31:41,296 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:31:41,296 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\600299-2026-03-07-安迪苏-安迪苏2025年年度报告.pdf (文件ID: file-fe-7520dd8112af4d7b91c0097c)
+2026-03-23 15:31:41,296 - __main___file_only - INFO - 上传文件: 600299-2026-03-07-安迪苏-安迪苏2025年年度报告.pdf (大小: 0.36 MB, ID: file-fe-7520dd8112af4d7b91c0097c)
+2026-03-23 15:31:42,209 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:31:42,210 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\净资产收益率和每股收益\600299-2026-03-07-安迪苏-安迪苏2025年年度报告_mgsy.pdf (文件ID: file-fe-62b89197dfa2409baad9d116)
+2026-03-23 15:31:42,210 - __main___file_only - INFO - 上传文件: 600299-2026-03-07-安迪苏-安迪苏2025年年度报告_mgsy.pdf (大小: 0.34 MB, ID: file-fe-62b89197dfa2409baad9d116)
+2026-03-23 15:31:42,325 - __main__ - INFO - 开始处理公司: 600299-2026-03-07
+2026-03-23 15:31:43,399 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:31:43,402 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\600388-2026-03-21-龙净环保-2025年年度报告.pdf (文件ID: file-fe-d17454960a1f47e8b5946b63)
+2026-03-23 15:31:43,403 - __main___file_only - INFO - 上传文件: 600388-2026-03-21-龙净环保-2025年年度报告.pdf (大小: 0.34 MB, ID: file-fe-d17454960a1f47e8b5946b63)
+2026-03-23 15:31:43,850 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:31:43,851 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\净资产收益率和每股收益\600388-2026-03-21-龙净环保-2025年年度报告_mgsy.pdf (文件ID: file-fe-c1e6a8f5a1ca4f8a8fb9bf89)
+2026-03-23 15:31:43,851 - __main___file_only - INFO - 上传文件: 600388-2026-03-21-龙净环保-2025年年度报告_mgsy.pdf (大小: 0.30 MB, ID: file-fe-c1e6a8f5a1ca4f8a8fb9bf89)
+2026-03-23 15:31:43,911 - __main__ - INFO - 开始处理公司: 600388-2026-03-21
+2026-03-23 15:31:44,571 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 15:31:45,776 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:31:45,776 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\600433-2026-03-11-冠豪高新-冠豪高新2025年年度报告.pdf (文件ID: file-fe-009e41fe70954963a4d42a08)
+2026-03-23 15:31:45,776 - __main___file_only - INFO - 上传文件: 600433-2026-03-11-冠豪高新-冠豪高新2025年年度报告.pdf (大小: 0.30 MB, ID: file-fe-009e41fe70954963a4d42a08)
+2026-03-23 15:31:46,094 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 15:31:46,309 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:31:46,310 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\净资产收益率和每股收益\600433-2026-03-11-冠豪高新-冠豪高新2025年年度报告_mgsy.pdf (文件ID: file-fe-7f2115ce2ff14b39b0081bf6)
+2026-03-23 15:31:46,310 - __main___file_only - INFO - 上传文件: 600433-2026-03-11-冠豪高新-冠豪高新2025年年度报告_mgsy.pdf (大小: 0.28 MB, ID: file-fe-7f2115ce2ff14b39b0081bf6)
+2026-03-23 15:31:46,548 - __main__ - INFO - 开始处理公司: 600433-2026-03-11
+2026-03-23 15:31:47,649 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 15:31:48,092 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:31:48,093 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\688535-2026-03-18-华海诚科-江苏华海诚科新材料股份有限公司2025年年度报告.pdf (文件ID: file-fe-709b6e6613954b8f923e2d40)
+2026-03-23 15:31:48,093 - __main___file_only - INFO - 上传文件: 688535-2026-03-18-华海诚科-江苏华海诚科新材料股份有限公司2025年年度报告.pdf (大小: 0.29 MB, ID: file-fe-709b6e6613954b8f923e2d40)
+2026-03-23 15:31:48,120 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:31:48,121 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\净资产收益率和每股收益\688535-2026-03-18-华海诚科-江苏华海诚科新材料股份有限公司2025年年度报告_mgsy.pdf (文件ID: file-fe-f1f2c18b2d83427da4f46970)
+2026-03-23 15:31:48,121 - __main___file_only - INFO - 上传文件: 688535-2026-03-18-华海诚科-江苏华海诚科新材料股份有限公司2025年年度报告_mgsy.pdf (大小: 0.26 MB, ID: file-fe-f1f2c18b2d83427da4f46970)
+2026-03-23 15:31:48,122 - __main__ - INFO - 开始处理公司: 688535-2026-03-18
+2026-03-23 15:31:49,685 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 15:31:50,227 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:31:50,228 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\920116-2026-03-20-星图测控-2025年年度报告.pdf (文件ID: file-fe-4afa93904ba244eda29a651a)
+2026-03-23 15:31:50,228 - __main___file_only - INFO - 上传文件: 920116-2026-03-20-星图测控-2025年年度报告.pdf (大小: 0.49 MB, ID: file-fe-4afa93904ba244eda29a651a)
+2026-03-23 15:31:50,613 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-03-23 15:31:50,613 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\2026-03-23\主要指标\净资产收益率和每股收益\920116-2026-03-20-星图测控-2025年年度报告_mgsy.pdf (文件ID: file-fe-d41bc38075264f69877ce487)
+2026-03-23 15:31:50,614 - __main___file_only - INFO - 上传文件: 920116-2026-03-20-星图测控-2025年年度报告_mgsy.pdf (大小: 0.71 MB, ID: file-fe-d41bc38075264f69877ce487)
+2026-03-23 15:31:50,657 - __main__ - INFO - 开始处理公司: 920116-2026-03-20
+2026-03-23 15:31:53,183 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 15:31:54,335 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 15:31:57,134 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 15:32:14,548 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 15:32:14,828 - __main___file_only - INFO - 找到数据: 600282 2026-03-17 (3条)
+2026-03-23 15:32:14,828 - __main__ - INFO - 处理成功: 600282-2026-03-17
+2026-03-23 15:32:14,828 - __main___file_only - INFO - 公司处理成功: 600282-2026-03-17 (耗时: 33.55秒)
+2026-03-23 15:32:15,538 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-8feba296b98d47a09d494d5c "HTTP/1.1 200 OK"
+2026-03-23 15:32:16,009 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 15:32:16,076 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 15:32:16,079 - __main___file_only - INFO - 找到数据: 301536 2026-03-10 (3条)
+2026-03-23 15:32:16,079 - __main__ - INFO - 处理成功: 301536-2026-03-10
+2026-03-23 15:32:16,079 - __main___file_only - INFO - 公司处理成功: 301536-2026-03-10 (耗时: 36.40秒)
+2026-03-23 15:32:16,142 - __main___file_only - INFO - 找到数据: 000014 2026-03-18 (3条)
+2026-03-23 15:32:16,142 - __main__ - INFO - 处理成功: 000014-2026-03-18
+2026-03-23 15:32:16,143 - __main___file_only - INFO - 公司处理成功: 000014-2026-03-18 (耗时: 38.06秒)
+2026-03-23 15:32:16,174 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-090eeed41fc747ceb6957ecd "HTTP/1.1 200 OK"
+2026-03-23 15:32:16,742 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-7b7851cda5c0449c99b40928 "HTTP/1.1 200 OK"
+2026-03-23 15:32:16,841 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-e2d6a5fef24a4ccdab95170a "HTTP/1.1 200 OK"
+2026-03-23 15:32:17,336 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-d158b7752a724fc1aef2349e "HTTP/1.1 200 OK"
+2026-03-23 15:32:17,610 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-20534d0e69de47eda32479c4 "HTTP/1.1 200 OK"
+2026-03-23 15:32:19,386 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 15:32:19,456 - __main___file_only - INFO - 找到数据: 600388 2026-03-21 (3条)
+2026-03-23 15:32:19,456 - __main__ - INFO - 处理成功: 600388-2026-03-21
+2026-03-23 15:32:19,456 - __main___file_only - INFO - 公司处理成功: 600388-2026-03-21 (耗时: 35.55秒)
+2026-03-23 15:32:19,594 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 15:32:19,667 - __main___file_only - INFO - 找到数据: 688535 2026-03-18 (3条)
+2026-03-23 15:32:19,667 - __main__ - INFO - 处理成功: 688535-2026-03-18
+2026-03-23 15:32:19,667 - __main___file_only - INFO - 公司处理成功: 688535-2026-03-18 (耗时: 31.55秒)
+2026-03-23 15:32:20,199 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-d17454960a1f47e8b5946b63 "HTTP/1.1 200 OK"
+2026-03-23 15:32:20,253 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-709b6e6613954b8f923e2d40 "HTTP/1.1 200 OK"
+2026-03-23 15:32:20,295 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 15:32:20,370 - __main___file_only - INFO - 找到数据: 600433 2026-03-11 (3条)
+2026-03-23 15:32:20,371 - __main__ - INFO - 处理成功: 600433-2026-03-11
+2026-03-23 15:32:20,371 - __main___file_only - INFO - 公司处理成功: 600433-2026-03-11 (耗时: 33.82秒)
+2026-03-23 15:32:20,872 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-f1f2c18b2d83427da4f46970 "HTTP/1.1 200 OK"
+2026-03-23 15:32:20,913 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-c1e6a8f5a1ca4f8a8fb9bf89 "HTTP/1.1 200 OK"
+2026-03-23 15:32:21,089 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-009e41fe70954963a4d42a08 "HTTP/1.1 200 OK"
+2026-03-23 15:32:21,813 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-7f2115ce2ff14b39b0081bf6 "HTTP/1.1 200 OK"
+2026-03-23 15:32:22,319 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 15:32:22,432 - __main___file_only - INFO - 找到数据: 920116 2026-03-20 (3条)
+2026-03-23 15:32:22,432 - __main__ - INFO - 处理成功: 920116-2026-03-20
+2026-03-23 15:32:22,432 - __main___file_only - INFO - 公司处理成功: 920116-2026-03-20 (耗时: 31.78秒)
+2026-03-23 15:32:23,149 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-4afa93904ba244eda29a651a "HTTP/1.1 200 OK"
+2026-03-23 15:32:23,794 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-d41bc38075264f69877ce487 "HTTP/1.1 200 OK"
+2026-03-23 15:32:24,947 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-03-23 15:32:25,016 - __main___file_only - INFO - 找到数据: 600299 2026-03-07 (3条)
+2026-03-23 15:32:25,016 - __main__ - INFO - 处理成功: 600299-2026-03-07
+2026-03-23 15:32:25,016 - __main___file_only - INFO - 公司处理成功: 600299-2026-03-07 (耗时: 42.69秒)
+2026-03-23 15:32:25,677 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-7520dd8112af4d7b91c0097c "HTTP/1.1 200 OK"
+2026-03-23 15:32:26,244 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-62b89197dfa2409baad9d116 "HTTP/1.1 200 OK"
+2026-03-23 15:32:26,297 - __main__ - INFO - 开始关闭线程池...
+2026-03-23 15:32:26,308 - __main__ - INFO - 所有线程池已关闭
+2026-03-23 15:32:26,551 - __main__ - INFO - 程序执行完成 - 总耗时: 0:00:50.120930

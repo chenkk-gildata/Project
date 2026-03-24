@@ -4,6 +4,7 @@
 import concurrent.futures
 import json
 import os
+import sys
 import threading
 import time
 from datetime import datetime
@@ -675,6 +676,17 @@ class EnhancedDataProcessor:
 
         return results
 
+    VALUE_TBZZ_MAPPING = {
+        "YYZSR": "YYZSRTBZZ",
+        "YYSR": "YYSRTBZZ",
+        "KCHYYSR": "KCHYYSRTBZZ",
+        "JLRHJ": "JLRHJTBZZ",
+        "JLR": "JLRTBZZ",
+        "KCFJYXSYHDJLR": "KCFJYXSYHDJLRTBZZ",
+        "PTGJLR": "PTGJLRTBZZ",
+        "KCFJCXSYHPTGJLR": "KCFJCXSYHPTGJLRTBZZ",
+    }
+
     def _compare_fields_with_format(self, ai_data: Dict[str, Any], sql_data: Dict[str, Any]) -> str:
         """
         比较AI数据和SQL数据的字段，并返回格式化的比对结果
@@ -688,7 +700,18 @@ class EnhancedDataProcessor:
         """
         error_messages = []
 
-        # 定义需要比对的字段列表（由于AI字段名和SQL字段名相同，直接使用字段列表）
+        ai_data_processed = ai_data.copy()
+        sql_data_processed = sql_data.copy()
+
+        for value_field, tbzz_field in self.VALUE_TBZZ_MAPPING.items():
+            ai_value = self._preprocess_value(ai_data.get(value_field, ""))
+            if ai_value == "" or ai_value is None:
+                ai_data_processed[tbzz_field] = ""
+
+            sql_value = self._preprocess_value(sql_data.get(value_field, ""))
+            if sql_value == "" or sql_value is None:
+                sql_data_processed[tbzz_field] = ""
+
         fields_to_compare = [
             "YYZSR", "YYSR", "YYSRKCJE", "KCHYYSR", "JLRHJ", "JLR", "KCFJYXSYHDJLR",
             "YYZSRTBZZ", "YYSRTBZZ", "KCHYYSRTBZZ", "JLRHJTBZZ", "JLRTBZZ", "KCFJYXSYHDJLRTBZZ",
@@ -698,24 +721,19 @@ class EnhancedDataProcessor:
             "ZCZE", "GDQY", "FJCXSY", "MGJZCPL", "PTGMGJZC", "MGJYXJLLJE", "GJKJZEJLR", "GJKJZZJZC"
         ]
 
-        # 对每个字段进行比对
         for field_name in fields_to_compare:
-            ai_value = ai_data.get(field_name, "")
-            sql_value = sql_data.get(field_name, "")
+            ai_value = ai_data_processed.get(field_name, "")
+            sql_value = sql_data_processed.get(field_name, "")
 
-            # 预处理AI值和SQL值
             processed_ai_value = self._preprocess_value(ai_value)
             processed_sql_value = self._preprocess_value(sql_value)
 
-            # 比较值
             if not self._compare_values(processed_ai_value, processed_sql_value):
                 error_messages.append(f"{field_name}错误【正式库：{sql_value}，AI：{ai_value}】")
 
-        # 如果没有错误，返回"数据一致"
         if not error_messages:
             return "数据一致"
 
-        # 返回拼接的错误信息
         return "；".join(error_messages)
 
     def _preprocess_value(self, value: Any) -> Any:
@@ -771,7 +789,7 @@ class EnhancedDataProcessor:
 
         return has_digit and (has_numeric_char or value.isdigit())
 
-    def load_prompt_from_md(self, md_file_path: str = "主要指标年度报告test.md") -> str:
+    def load_prompt_from_md(self, md_file_path: str) -> str:
         """从MD文件加载提示词"""
         try:
             base_dir = get_base_path()

@@ -8,7 +8,7 @@ import time
 import requests
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from typing import Optional, Callable
+from typing import Optional
 from datetime import datetime
 
 from config import DOWNLOAD_CONFIG, RAW_DIR
@@ -269,33 +269,38 @@ class Downloader:
                 
                 # 创建线程池执行任务
                 with ThreadPoolExecutor(max_workers=workers) as executor:
-                    futures = []
+                    future_to_task = {}
                     
                     # 提交任务
                     for _ in range(min(workers, queue_size)):
                         task = download_queue.get(block=False)
                         if task:
                             future = executor.submit(self._download_file, task)
-                            futures.append((future, task))
+                            future_to_task[future] = task
                     
                     # 等待任务完成
-                    for future, task in futures:
+                    for future in as_completed(future_to_task):
+                        task = future_to_task[future]
                         try:
-                            success = future.result(timeout=self.timeout + 30)
+                            success = future.result()
                             if success:
                                 # 下载成功,将任务添加到处理队列
                                 from config import PROCESS_CONFIG
-                                from queues import ProcessTask
                                 
                                 process_queue = queue_manager.get_process_queue()
                                 process_queue.batch_put(
                                     task.announcement, 
                                     PROCESS_CONFIG["modules"]
                                 )
+                            elif task.announcement.download_retry_count < self.retry_times:
+                                # 可重试失败任务立即回队列，避免等待恢复周期造成下载停滞
+                                download_queue.put(task, block=False)
                         except Exception as e:
-                            logger.error(f"下载任务执行异常: {e}")
+                            logger.error(f"下载任务执行异常: {type(e).__name__}: {e}")
+                            if task.announcement.download_retry_count < self.retry_times:
+                                download_queue.put(task, block=False)
                         finally:
-                            download_queue.task_done()
+                            download_queue.task_done(task)
                 
                 current_time = time.time()
                 if current_time - last_recovery_time > recovery_interval:

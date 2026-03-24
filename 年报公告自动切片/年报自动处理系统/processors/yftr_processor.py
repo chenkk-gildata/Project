@@ -30,7 +30,7 @@ class YftrProcessor(BaseProcessor):
             start_keyword = ["研发人员", "研发投入"]
             end_keyword = ["发生重大变化的原因", "现金流"]
         elif exchange_code == "shs":
-            start_pattern = re.compile(r'[\d三四五][）)]?[、.．]?\s*研发投入|研发支出', re.IGNORECASE | re.MULTILINE)
+            start_pattern = re.compile(r'^[\d三四五][）)]?[、.．]?\s*研发投入\s*$|研发支出', re.IGNORECASE | re.MULTILINE)
             end_pattern = re.compile(r'[\d四五六][）)]?[、.．]?\s*现金流', re.IGNORECASE | re.MULTILINE)
             start_keyword = ["研发投入", "研发支出"]
             end_keyword = ["现金流"]
@@ -84,7 +84,7 @@ class YftrProcessor(BaseProcessor):
                 page_rect = page.rect
 
                 # 搜索开始关键词
-                if not start_info:
+                if not end_info:
                     for keyword in start_keyword:
                         instances = page.search_for(keyword)
                         for inst in instances:
