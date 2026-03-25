@@ -73,10 +73,6 @@ class Monitor:
                           AND A.XXBT NOT LIKE '%网页已%'
                           AND A.XXBT NOT LIKE '%延期%'
                           AND A.XXBT NOT LIKE '%披露%'
-                          AND A.XXBT NOT LIKE '%修正%'
-                          AND A.XXBT NOT LIKE '%修订%'
-                          AND A.XXBT NOT LIKE '%更正%'
-                          AND A.XXBT NOT LIKE '%更新%'
                           {incremental_condition}
                         ORDER BY A.FBSJ DESC
                     """

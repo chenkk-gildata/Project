@@ -5,20 +5,22 @@
 import os
 import time
 import threading
+import importlib
+import glob
 from concurrent.futures import ThreadPoolExecutor
 from typing import Dict, Optional
 
-from config import PROCESS_CONFIG
+from config import PROCESS_CONFIG, BASE_DIR
 from models import ProcessTask, ProcessStatus, DownloadStatus
-from queues import queue_manager
 from database import db
 from logger import logger
+from queues import queue_manager
 
-# 导入所有处理器
-from processors import (
-    ZyzbProcessor, LdrjsProcessor, YftrProcessor,
-    ZggcProcessor, LdrcgProcessor
-)
+from processors.zyzb_processor import ZyzbProcessor
+from processors.ldrjs_processor import LdrjsProcessor
+from processors.yftr_processor import YftrProcessor
+from processors.zggc_processor import ZggcProcessor
+from processors.ldrcg_processor import LdrcgProcessor
 
 
 class TaskDispatcher:
@@ -44,6 +46,73 @@ class TaskDispatcher:
         self._announcement_status: Dict[str, dict] = {}
         self._file_names: Dict[str, str] = {}
         self._no_recovery_consecutive = 0
+        
+        # 热更新相关属性
+        self._processor_files: Dict[str, float] = {}
+        self._processors_dir = os.path.join(BASE_DIR, "processors")
+        self._init_file_timestamps()
+    
+    def _init_file_timestamps(self):
+        """初始化处理器文件的时间戳"""
+        pattern = os.path.join(self._processors_dir, "*.py")
+        for file_path in glob.glob(pattern):
+            if "__" not in file_path:
+                self._processor_files[file_path] = os.path.getmtime(file_path)
+    
+    def _check_files_changed(self) -> bool:
+        """检查处理器文件是否有变化"""
+        pattern = os.path.join(self._processors_dir, "*.py")
+        current_files = set(glob.glob(pattern))
+        
+        for file_path in current_files:
+            if "__" in file_path:
+                continue
+            current_mtime = os.path.getmtime(file_path)
+            if file_path not in self._processor_files:
+                self._processor_files[file_path] = current_mtime
+                return True
+            elif self._processor_files[file_path] < current_mtime:
+                self._processor_files[file_path] = current_mtime
+                return True
+        
+        return False
+    
+    def _reload_processors(self):
+        """热重载所有处理器模块"""
+        try:
+            logger.info("检测到处理器文件变化，开始热重载...")
+            
+            import processors.zyzb_processor
+            import processors.ldrjs_processor
+            import processors.yftr_processor
+            import processors.zggc_processor
+            import processors.ldrcg_processor
+            
+            importlib.reload(processors.zyzb_processor)
+            importlib.reload(processors.ldrjs_processor)
+            importlib.reload(processors.yftr_processor)
+            importlib.reload(processors.zggc_processor)
+            importlib.reload(processors.ldrcg_processor)
+            
+            from processors.zyzb_processor import ZyzbProcessor
+            from processors.ldrjs_processor import LdrjsProcessor
+            from processors.yftr_processor import YftrProcessor
+            from processors.zggc_processor import ZggcProcessor
+            from processors.ldrcg_processor import LdrcgProcessor
+            
+            self.processors = {
+                "主要指标": ZyzbProcessor(),
+                "领导人介绍": LdrjsProcessor(),
+                "研发投入": YftrProcessor(),
+                "职工构成": ZggcProcessor(),
+                "领导人持股": LdrcgProcessor()
+            }
+            
+            logger.info("处理器模块热重载完成")
+            return True
+        except Exception as e:
+            logger.error(f"处理器模块热重载失败: {e}")
+            return False
     
     def _recover_pending_tasks(self):
         """恢复待处理的任务"""
@@ -224,7 +293,9 @@ class TaskDispatcher:
         self._recover_pending_tasks()
         
         last_recovery_time = time.time()
+        last_check_time = time.time()
         recovery_interval = 300
+        check_interval = 10
         
         with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
             self._executor = executor
@@ -239,9 +310,18 @@ class TaskDispatcher:
                         executor.submit(self._process_task, task)
                     
                     current_time = time.time()
+                    
                     if current_time - last_recovery_time > recovery_interval:
                         self._recover_pending_tasks()
                         last_recovery_time = current_time
+                    
+                    if current_time - last_check_time >= check_interval:
+                        with self._lock:
+                            active_tasks = self._active_tasks
+                        if process_queue.empty() and active_tasks == 0:
+                            if self._check_files_changed():
+                                self._reload_processors()
+                        last_check_time = current_time
                     
                 except Exception as e:
                     if not self._stop_event.is_set():

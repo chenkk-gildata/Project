@@ -333,7 +333,6 @@ class Application:
         self._stop_event = threading.Event()
         self._stats_thread: threading.Thread = None
         self._last_stats = None
-        self._stats_unchanged_count = 0
         
         # 注册信号处理
         signal.signal(signal.SIGINT, self._signal_handler)
@@ -368,8 +367,8 @@ class Application:
         """打印统计信息"""
         while self._running and not self._stop_event.is_set():
             try:
-                # 等待60秒
-                for _ in range(60):
+                # 等待5分钟（300秒）
+                for _ in range(300):
                     if not self._running or self._stop_event.is_set():
                         break
                     time.sleep(1)
@@ -382,45 +381,36 @@ class Application:
                 queue_stats = queue_manager.get_all_stats()
                 
                 # 打印统计信息
+                total = db_stats.get('total', 0)
+                dl_success = db_stats.get('download_success', 0)
+                dl_failed = db_stats.get('download_failed', 0)
+                proc_success = db_stats.get('process_success', 0)
+                proc_failed = db_stats.get('process_failed', 0)
+                dl_queue = queue_stats['download_queue']['current_size']
+                proc_queue = queue_stats['process_queue']['current_size']
+                active_dl = downloader.get_active_count()
+                active_proc = task_dispatcher.get_active_count()
+                
+                # 构建当前状态
                 current_stats = {
-                    'total': db_stats.get('total', 0),
-                    'pending_download': db_stats.get('pending_download', 0),
-                    'downloading': db_stats.get('downloading', 0),
-                    'download_success': db_stats.get('download_success', 0),
-                    'download_failed': db_stats.get('download_failed', 0),
-                    'pending_process': db_stats.get('pending_process', 0),
-                    'processing': db_stats.get('processing', 0),
-                    'process_success': db_stats.get('process_success', 0),
-                    'process_failed': db_stats.get('process_failed', 0),
-                    'download_queue': queue_stats['download_queue']['current_size'],
-                    'process_queue': queue_stats['process_queue']['current_size'],
-                    'active_download': downloader.get_active_count(),
-                    'active_process': task_dispatcher.get_active_count(),
+                    'total': total,
+                    'dl_success': dl_success,
+                    'dl_failed': dl_failed,
+                    'proc_success': proc_success,
+                    'proc_failed': proc_failed,
+                    'dl_queue': dl_queue,
+                    'proc_queue': proc_queue,
+                    'active_dl': active_dl,
+                    'active_proc': active_proc
                 }
                 
+                # 如果状态没有变化，跳过打印
                 if self._last_stats == current_stats:
-                    self._stats_unchanged_count += 1
                     continue
                 
+                # 状态有变化，打印并更新
                 self._last_stats = current_stats
-                self._stats_unchanged_count = 0
-                
-                logger.info("=" * 60)
-                logger.info("系统运行统计:")
-                logger.info(f"  数据库记录总数: {db_stats.get('total', 0)}")
-                logger.info(f"  下载状态 - 等待: {db_stats.get('pending_download', 0)}, "
-                          f"下载中: {db_stats.get('downloading', 0)}, "
-                          f"成功: {db_stats.get('download_success', 0)}, "
-                          f"失败: {db_stats.get('download_failed', 0)}")
-                logger.info(f"  处理状态 - 等待: {db_stats.get('pending_process', 0)}, "
-                          f"处理中: {db_stats.get('processing', 0)}, "
-                          f"成功: {db_stats.get('process_success', 0)}, "
-                          f"失败: {db_stats.get('process_failed', 0)}")
-                logger.info(f"  下载队列: {queue_stats['download_queue']['current_size']}, "
-                          f"处理队列: {queue_stats['process_queue']['current_size']}")
-                logger.info(f"  活跃下载: {downloader.get_active_count()}, "
-                          f"活跃处理: {task_dispatcher.get_active_count()}")
-                logger.info("=" * 60)
+                logger.info(f"[状态] 总:{total} | 下载: ✓ {dl_success} × {dl_failed} | 处理: ✓ {proc_success} × {proc_failed} | 队列 ↓ {dl_queue} ↑ {proc_queue} | 活跃 ↓ {active_dl} ↑ {active_proc}")
                 
             except Exception as e:
                 logger.error(f"打印统计信息时出错: {e}")

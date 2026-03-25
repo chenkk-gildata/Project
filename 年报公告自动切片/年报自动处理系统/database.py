@@ -28,12 +28,12 @@ class Database:
     def __init__(self, db_path: str = DB_PATH):
         self.db_path = db_path
         
-        self._write_queue = queue.Queue(maxsize=10000)
+        self._write_queue = queue.Queue(maxsize=20000)
         self._write_thread = None
         self._write_conn = None
         self._running = True
         
-        self._read_pool_size = 5
+        self._read_pool_size = 10
         self._read_pool = queue.Queue(maxsize=self._read_pool_size)
         self._read_pool_lock = threading.Lock()
         

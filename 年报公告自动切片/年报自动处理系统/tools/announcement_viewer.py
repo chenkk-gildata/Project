@@ -29,16 +29,16 @@ def _get_announcements_data(date_filter=""):
     if date_filter:
         like_pattern = f"{date_filter}%"
         cursor.execute("""
-            SELECT gpdm, zqjc, publish_date, download_status, process_status 
+            SELECT gpdm, zqjc, publish_date, title, download_status, process_status 
             FROM announcements 
-            WHERE publish_date LIKE ?
-            ORDER BY publish_date DESC
+            WHERE fbsj LIKE ?
+            ORDER BY fbsj DESC
         """, (like_pattern,))
     else:
         cursor.execute("""
-            SELECT gpdm, zqjc, publish_date, download_status, process_status 
+            SELECT gpdm, zqjc, publish_date, title, download_status, process_status 
             FROM announcements 
-            ORDER BY publish_date DESC
+            ORDER BY fbsj DESC
         """)
     
     rows = cursor.fetchall()
@@ -50,7 +50,6 @@ def _display_announcements_results(date_filter, rows):
     """显示公告列表结果"""
     from prettytable import PrettyTable
     
-    # 清屏
     os.system('cls')
     
     print("=" * 60)
@@ -64,11 +63,12 @@ def _display_announcements_results(date_filter, rows):
     
     if rows:
         table = PrettyTable()
-        table.field_names = ["序号", "股票代码", "证券简称", "发布日期", "下载状态", "处理状态"]
+        table.field_names = ["序号", "股票代码", "证券简称", "发布日期", "公告标题", "下载状态", "处理状态"]
         table.align["序号"] = "r"
         table.align["股票代码"] = "l"
         table.align["证券简称"] = "l"
         table.align["发布日期"] = "l"
+        table.align["公告标题"] = "l"
         table.align["下载状态"] = "l"
         table.align["处理状态"] = "l"
         
@@ -76,9 +76,10 @@ def _display_announcements_results(date_filter, rows):
             gpdm = row[0] or "N/A"
             zqjc = row[1] or "N/A"
             pub_date = row[2] or "N/A"
-            dl_status = row[3] or "N/A"
-            proc_status = row[4] or "N/A"
-            table.add_row([idx, gpdm, zqjc, pub_date, dl_status, proc_status])
+            title = row[3] or "N/A"
+            dl_status = row[4] or "N/A"
+            proc_status = row[5] or "N/A"
+            table.add_row([idx, gpdm, zqjc, pub_date, title, dl_status, proc_status])
         
         print(table)
         print(f"\n共 {len(rows)} 条记录")

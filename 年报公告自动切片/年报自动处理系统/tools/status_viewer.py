@@ -34,7 +34,7 @@ def _get_status_data(date_filter=""):
     # 公告统计
     if date_filter:
         like_pattern = f"{date_filter}%"
-        cursor.execute("SELECT COUNT(*) FROM announcements WHERE publish_date LIKE ?", (like_pattern,))
+        cursor.execute("SELECT COUNT(*) FROM announcements WHERE fbsj LIKE ?", (like_pattern,))
     else:
         cursor.execute("SELECT COUNT(*) FROM announcements")
     result['total_announcements'] = cursor.fetchone()[0]
@@ -42,7 +42,7 @@ def _get_status_data(date_filter=""):
     # 下载状态
     if date_filter:
         like_pattern = f"{date_filter}%"
-        cursor.execute("SELECT download_status, COUNT(*) FROM announcements WHERE publish_date LIKE ? GROUP BY download_status", (like_pattern,))
+        cursor.execute("SELECT download_status, COUNT(*) FROM announcements WHERE fbsj LIKE ? GROUP BY download_status", (like_pattern,))
     else:
         cursor.execute("SELECT download_status, COUNT(*) FROM announcements GROUP BY download_status")
     result['download_status'] = cursor.fetchall()
@@ -50,7 +50,7 @@ def _get_status_data(date_filter=""):
     # 处理状态
     if date_filter:
         like_pattern = f"{date_filter}%"
-        cursor.execute("SELECT process_status, COUNT(*) FROM announcements WHERE publish_date LIKE ? GROUP BY process_status", (like_pattern,))
+        cursor.execute("SELECT process_status, COUNT(*) FROM announcements WHERE fbsj LIKE ? GROUP BY process_status", (like_pattern,))
     else:
         cursor.execute("SELECT process_status, COUNT(*) FROM announcements GROUP BY process_status")
     result['process_status'] = cursor.fetchall()
@@ -62,7 +62,7 @@ def _get_status_data(date_filter=""):
             SELECT m.module_name, m.status, COUNT(*) 
             FROM module_records m
             JOIN announcements a ON m.hashcode = a.hashcode
-            WHERE a.publish_date LIKE ?
+            WHERE a.fbsj LIKE ?
             GROUP BY m.module_name, m.status
         """, (like_pattern,))
     else:
@@ -158,18 +158,20 @@ def _display_status_results(date_filter, data):
             module_stats[module_name][status] = count
         
         table = PrettyTable()
-        table.field_names = ["模块名", "成功", "无输出", "失败", "跳过", "总计"]
+        table.field_names = ["模块名", "等待处理", "处理中", "成功", "无输出", "失败", "跳过", "总计"]
         table.align["模块名"] = "l"
-        for field in ["成功", "无输出", "失败", "跳过", "总计"]:
+        for field in ["等待处理", "处理中", "成功", "无输出", "失败", "跳过", "总计"]:
             table.align[field] = "r"
         
         for module_name, stats in module_stats.items():
+            pending = stats.get('pending', 0)
+            processing = stats.get('processing', 0)
             success = stats.get('success', 0)
             no_output = stats.get('no_output', 0)
             failed = stats.get('failed', 0)
             skipped = stats.get('skipped', 0)
-            total = success + no_output + failed + skipped
-            table.add_row([module_name, success, no_output, failed, skipped, total])
+            total = pending + processing + success + no_output + failed + skipped
+            table.add_row([module_name, pending, processing, success, no_output, failed, skipped, total])
         
         print(table)
     else:
@@ -236,8 +238,8 @@ def _get_failed_data(date_filter=""):
                 m.module_name, m.status
             FROM module_records m
             JOIN announcements a ON m.hashcode = a.hashcode
-            WHERE m.status != 'success' AND a.publish_date LIKE ?
-            ORDER BY a.publish_date DESC, a.gpdm
+            WHERE m.status != 'success' AND a.fbsj LIKE ?
+            ORDER BY a.fbsj DESC, a.gpdm
         """, (like_pattern,))
     else:
         cursor.execute("""
@@ -247,7 +249,7 @@ def _get_failed_data(date_filter=""):
             FROM module_records m
             JOIN announcements a ON m.hashcode = a.hashcode
             WHERE m.status != 'success'
-            ORDER BY a.publish_date DESC, a.gpdm
+            ORDER BY a.fbsj DESC, a.gpdm
         """)
     
     failed_records = cursor.fetchall()
@@ -259,7 +261,7 @@ def _get_failed_data(date_filter=""):
             SELECT module_name, status, COUNT(*) 
             FROM module_records m
             JOIN announcements a ON m.hashcode = a.hashcode
-            WHERE m.status != 'success' AND a.publish_date LIKE ?
+            WHERE m.status != 'success' AND a.fbsj LIKE ?
             GROUP BY module_name, status
         """, (like_pattern,))
     else:
@@ -350,13 +352,197 @@ def _display_failed_results(date_filter, failed_records, module_stats):
     print("\n状态说明: 无输出=模块执行完成但无结果 | 失败=执行出错 | 跳过=被跳过处理")
 
 
-def show_failed_modules():
-    """显示失败模块列表（支持实时日期筛选）"""
+MODULE_NAMES = ["主要指标", "领导人介绍", "研发投入", "职工构成", "领导人持股"]
+
+
+def _get_failed_by_module(module_name: str, date_filter=""):
+    """按模块获取失败记录（按 fbsj 筛选）"""
+    conn = get_connection()
+    if not conn:
+        return []
+    
+    cursor = conn.cursor()
+    
+    if date_filter:
+        like_pattern = f"{date_filter}%"
+        cursor.execute("""
+            SELECT 
+                a.gpdm, a.zqjc, a.publish_date, 
+                m.module_name, m.status, a.fbsj
+            FROM module_records m
+            JOIN announcements a ON m.hashcode = a.hashcode
+            WHERE m.module_name = ? AND m.status != 'success' AND a.fbsj LIKE ?
+            ORDER BY a.fbsj DESC, a.gpdm
+        """, (module_name, like_pattern))
+    else:
+        cursor.execute("""
+            SELECT 
+                a.gpdm, a.zqjc, a.publish_date, 
+                m.module_name, m.status, a.fbsj
+            FROM module_records m
+            JOIN announcements a ON m.hashcode = a.hashcode
+            WHERE m.module_name = ? AND m.status != 'success'
+            ORDER BY a.fbsj DESC, a.gpdm
+        """, (module_name,))
+    
+    records = cursor.fetchall()
+    conn.close()
+    
+    return records
+
+
+def _display_module_failed_detail(module_name: str, date_filter, records):
+    """显示模块失败详情"""
+    from prettytable import PrettyTable
+    
+    os.system('cls')
+    
+    print("=" * 60)
+    print(f"失败模块详情 - {module_name}")
+    print("=" * 60)
+    print(f"\n请输入日期进行筛选 (格式: YYYY-MM-DD，按 fbsj 筛选，按 ESC 返回):")
+    print(f"> {date_filter}")
+    
+    date_display = date_filter if date_filter else "全部日期"
+    print(f"\n筛选结果 ({date_display}):")
+    
+    if records:
+        no_output_records = [r for r in records if r[4] == 'no_output']
+        failed_records = [r for r in records if r[4] == 'failed']
+        skipped_records = [r for r in records if r[4] == 'skipped']
+        
+        status_map = {
+            'no_output': '无输出',
+            'failed': '失败',
+            'skipped': '跳过'
+        }
+        
+        if no_output_records:
+            print(f"\n--- 无输出 ({len(no_output_records)}条) ---")
+            table = PrettyTable()
+            table.field_names = ["股票代码", "证券简称", "发布日期", "信息时间"]
+            for r in no_output_records:
+                fbsj = r[5][:19].replace('T', ' ') if r[5] else "N/A"
+                table.add_row([r[0] or "N/A", r[1] or "N/A", r[2] or "N/A", fbsj])
+            print(table)
+        
+        if failed_records:
+            print(f"\n--- 失败 ({len(failed_records)}条) ---")
+            table = PrettyTable()
+            table.field_names = ["股票代码", "证券简称", "发布日期", "信息时间"]
+            for r in failed_records:
+                fbsj = r[5][:19].replace('T', ' ') if r[5] else "N/A"
+                table.add_row([r[0] or "N/A", r[1] or "N/A", r[2] or "N/A", fbsj])
+            print(table)
+        
+        if skipped_records:
+            print(f"\n--- 跳过 ({len(skipped_records)}条) ---")
+            table = PrettyTable()
+            table.field_names = ["股票代码", "证券简称", "发布日期", "信息时间"]
+            for r in skipped_records:
+                fbsj = r[5][:19].replace('T', ' ') if r[5] else "N/A"
+                table.add_row([r[0] or "N/A", r[1] or "N/A", r[2] or "N/A", fbsj])
+            print(table)
+        
+        print(f"\n总计: {len(records)} 条记录")
+    else:
+        print("  (无失败记录)")
+    
+    print("\n状态说明: 无输出=模块执行完成但无结果 | 失败=执行出错 | 跳过=被跳过处理")
+
+
+def _show_module_failed_detail(module_name: str):
+    """显示模块失败详情（支持动态日期筛选）"""
     import readchar
     
     date_filter = ""
     
-    # 初始显示
+    records = _get_failed_by_module(module_name, date_filter)
+    _display_module_failed_detail(module_name, date_filter, records)
+    
+    while True:
+        try:
+            ch = readchar.readchar()
+            
+            if ch == readchar.key.ESC:
+                print("\n\n返回模块选择")
+                break
+            
+            elif ch == readchar.key.BACKSPACE or ch == '\x08':
+                date_filter = date_filter[:-1]
+            
+            elif ch == '\r' or ch == '\n':
+                continue
+            
+            elif ch.isdigit() or ch == '-':
+                if len(date_filter) < 10:
+                    date_filter += ch
+            
+            records = _get_failed_by_module(module_name, date_filter)
+            _display_module_failed_detail(module_name, date_filter, records)
+            
+        except KeyboardInterrupt:
+            print("\n\n返回模块选择")
+            break
+
+
+def _show_failed_by_module():
+    """按模块查看失败记录"""
+    while True:
+        os.system('cls')
+        print("=" * 60)
+        print("按模块查看失败记录")
+        print("=" * 60)
+        print("\n请选择模块:")
+        for i, name in enumerate(MODULE_NAMES, 1):
+            print(f"  {i}. {name}")
+        print("  0. 返回上级")
+        print("-" * 60)
+        
+        choice = input("请选择 (0-5): ").strip()
+        
+        if choice == "0":
+            break
+        elif choice.isdigit() and 1 <= int(choice) <= 5:
+            module_name = MODULE_NAMES[int(choice) - 1]
+            _show_module_failed_detail(module_name)
+        else:
+            print("\n[错误] 无效选项，请重新选择")
+            input("按回车继续...")
+
+
+def show_failed_modules():
+    """显示失败模块列表入口"""
+    while True:
+        os.system('cls')
+        print("=" * 60)
+        print("查看失败模块列表")
+        print("=" * 60)
+        print("\n请选择查看模式:")
+        print("  1. 按时间查看")
+        print("  2. 按模块查看")
+        print("  0. 返回上级")
+        print("-" * 60)
+        
+        choice = input("请选择 (0-2): ").strip()
+        
+        if choice == "0":
+            break
+        elif choice == "1":
+            _show_failed_by_time()
+        elif choice == "2":
+            _show_failed_by_module()
+        else:
+            print("\n[错误] 无效选项，请重新选择")
+            input("按回车继续...")
+
+
+def _show_failed_by_time():
+    """按时间查看失败模块列表（原有逻辑）"""
+    import readchar
+    
+    date_filter = ""
+    
     failed_records, module_stats = _get_failed_data(date_filter)
     _display_failed_results(date_filter, failed_records, module_stats)
     
@@ -364,30 +550,25 @@ def show_failed_modules():
         try:
             ch = readchar.readchar()
             
-            # ESC 键退出
             if ch == readchar.key.ESC:
-                print("\n\n已退出失败模块列表")
+                print("\n\n返回上级菜单")
                 break
             
-            # 退格键删除
             elif ch == readchar.key.BACKSPACE or ch == '\x08':
                 date_filter = date_filter[:-1]
             
-            # 回车键忽略
             elif ch == '\r' or ch == '\n':
                 continue
             
-            # 普通字符输入（只允许数字和横杠）
             elif ch.isdigit() or ch == '-':
-                if len(date_filter) < 10:  # 限制日期格式长度
+                if len(date_filter) < 10:
                     date_filter += ch
             
-            # 更新显示
             failed_records, module_stats = _get_failed_data(date_filter)
             _display_failed_results(date_filter, failed_records, module_stats)
             
         except KeyboardInterrupt:
-            print("\n\n已退出失败模块列表")
+            print("\n\n返回上级菜单")
             break
 
 

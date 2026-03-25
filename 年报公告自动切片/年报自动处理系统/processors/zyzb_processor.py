@@ -32,7 +32,7 @@ class ZyzbProcessor(BaseProcessor):
             remove_end_pattern = re.compile(r'非经常性损益项目和金额', re.IGNORECASE | re.MULTILINE)
         else:
             # 沪深关键词
-            start_pattern = re.compile(r'主要(?:会计|财务|财务会计)数据[及和与]?财务指标?', re.IGNORECASE | re.MULTILINE)
+            start_pattern = re.compile(r'(?:近三年)?主要(?:会计|财务|财务会计)数据[及和与]?(?:财务指标)?', re.IGNORECASE | re.MULTILINE)
             end_pattern = re.compile(r'第?[一二三四五六七八九十]?[节章]?[、.．]?\s*(?:其他符合非经常性损益定义的损益项目的具体情况|《公开发行证券的公司信息披露解释性公告.*非经常性损益》|董事会报告)', re.IGNORECASE | re.MULTILINE)
             remove_start_pattern = None
             remove_end_pattern = None
