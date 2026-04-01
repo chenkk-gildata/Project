@@ -65,16 +65,22 @@ def setup_file_logging():
     file_handler.setFormatter(formatter)
     file_handler.setLevel(getattr(logging, logging_config.level.upper()))
     
-    # 控制台处理器
-    console_handler = logging.StreamHandler()
-    console_handler.setFormatter(formatter)
-    console_handler.setLevel(logging.WARNING)  # 控制台只显示WARNING及以上级别的日志
-    
     # 配置根日志器
     root_logger = logging.getLogger()
     root_logger.setLevel(logging.DEBUG)
+    
+    # 检查是否已有控制台handler，避免重复添加
+    has_console_handler = any(isinstance(h, logging.StreamHandler) and not isinstance(h, logging.FileHandler) 
+                              for h in root_logger.handlers)
+    
+    if not has_console_handler:
+        # 控制台处理器
+        console_handler = logging.StreamHandler()
+        console_handler.setFormatter(formatter)
+        console_handler.setLevel(logging.WARNING)
+        root_logger.addHandler(console_handler)
+    
     root_logger.addHandler(file_handler)
-    root_logger.addHandler(console_handler)
     
     # 为httpx创建专门的文件处理器，只将httpx的INFO日志输出到文件
     httpx_logger = logging.getLogger('httpx')

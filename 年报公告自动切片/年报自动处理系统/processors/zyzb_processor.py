@@ -54,14 +54,53 @@ class ZyzbProcessor(BaseProcessor):
             page_rotation = page.rotation
 
             if keyword_type in ['会计数据', '财务指标', '具体情况', '解释性公告', '董事会报告', '财务数据差异', '非经常性损益']:
-                # 处理旋转页面
                 if page_rotation == 90:
                     return fitz.Rect(inst.x0 - 30, 0, inst.x1 + 50, page_width)
                 else:
                     return fitz.Rect(0, inst.y0 - 30, page_width, inst.y1 + 50)
             else:
-                # 默认搜索区域
                 return fitz.Rect(0, inst.y0 - 20, inst.x1 + 400, inst.y1 + 50)
+
+        def collect_and_sort_instances(page, keywords, pattern, get_search_rect):
+            """
+            收集所有keyword实例，按位置从上到下排序后匹配pattern，返回第一个匹配结果
+            
+            PyMuPDF坐标系：原点在左上角，Y轴向下递增
+            因此 y0 值越小，位置越靠上
+            """
+            candidates = []
+            
+            for keyword in keywords:
+                instances = page.search_for(keyword)
+                for inst in instances:
+                    candidates.append({
+                        'keyword': keyword,
+                        'inst': inst,
+                        'y0': inst.y0,
+                        'x0': inst.x0
+                    })
+            
+            if not candidates:
+                return None
+            
+            page_rotation = page.rotation
+            if page_rotation == 90:
+                candidates.sort(key=lambda c: c['x0'])
+            else:
+                candidates.sort(key=lambda c: c['y0'])
+            
+            for candidate in candidates:
+                keyword = candidate['keyword']
+                inst = candidate['inst']
+                rect = get_search_rect(page, inst, keyword)
+                text = page.get_text("text", clip=rect)
+                if pattern.search(text):
+                    return {
+                        'inst': inst,
+                        'keyword': keyword
+                    }
+            
+            return None
 
         found = False
         skip_directory_check = False
@@ -80,66 +119,46 @@ class ZyzbProcessor(BaseProcessor):
                         continue
 
                 if not start_info:
-                    for keyword in ['会计数据', '财务指标']:
-                        instances = page.search_for(keyword)
-                        for inst in instances:
-                            rect = get_search_rect(page, inst, keyword)
-                            text = page.get_text("text", clip=rect)
-                            if start_pattern.search(text):
-                                start_info = {
-                                    'page_number': page_num + 1,
-                                    'keyword_box': (inst.x0, inst.y0, inst.x1, inst.y1),
-                                    'page_dimensions': (page_rect.width, page_rect.height)
-                                }
-                                break
-                        if start_info:
-                            break
+                    result = collect_and_sort_instances(page, ['会计数据', '财务指标'], start_pattern, get_search_rect)
+                    if result:
+                        inst = result['inst']
+                        start_info = {
+                            'page_number': page_num + 1,
+                            'keyword_box': (inst.x0, inst.y0, inst.x1, inst.y1),
+                            'page_dimensions': (page_rect.width, page_rect.height)
+                        }
 
-                # 搜索结束关键词
                 if start_info and not end_info:
                     end_keywords = ["具体情况", "解释性公告", "董事会报告"] if not is_bse else ["财务指标"]
-                    for keyword in end_keywords:
-                        instances = page.search_for(keyword)
-                        for inst in instances:
-                            rect = get_search_rect(page, inst, keyword)
-                            text = page.get_text("text", clip=rect)
-                            if end_pattern.search(text):
-                                end_info = {
-                                    'page_number': page_num + 1,
-                                    'keyword_box': (inst.x0, inst.y0, inst.x1, inst.y1),
-                                    'page_dimensions': (page_rect.width, page_rect.height)
-                                }
-                                break
-                        if end_info:
-                            break
+                    result = collect_and_sort_instances(page, end_keywords, end_pattern, get_search_rect)
+                    if result:
+                        inst = result['inst']
+                        end_info = {
+                            'page_number': page_num + 1,
+                            'keyword_box': (inst.x0, inst.y0, inst.x1, inst.y1),
+                            'page_dimensions': (page_rect.width, page_rect.height)
+                        }
 
-                # 北交所特殊处理
                 if is_bse:
                     if not remove_start_info:
-                        instances = page.search_for("财务数据差异")
-                        for inst in instances:
-                            rect = get_search_rect(page, inst, "财务数据差异")
-                            text = page.get_text("text", clip=rect)
-                            if remove_start_pattern.search(text):
-                                remove_start_info = {
-                                    'page_number': page_num + 1,
-                                    'keyword_box': (inst.x0, inst.y0, inst.x1, inst.y1),
-                                    'page_dimensions': (page_rect.width, page_rect.height)
-                                }
-                                break
+                        result = collect_and_sort_instances(page, ["财务数据差异"], remove_start_pattern, get_search_rect)
+                        if result:
+                            inst = result['inst']
+                            remove_start_info = {
+                                'page_number': page_num + 1,
+                                'keyword_box': (inst.x0, inst.y0, inst.x1, inst.y1),
+                                'page_dimensions': (page_rect.width, page_rect.height)
+                            }
 
                     if remove_start_info and not remove_end_info:
-                        instances = page.search_for("非经常性损益")
-                        for inst in instances:
-                            rect = get_search_rect(page, inst, "非经常性损益")
-                            text = page.get_text("text", clip=rect)
-                            if remove_end_pattern.search(text):
-                                remove_end_info = {
-                                    'page_number': page_num + 1,
-                                    'keyword_box': (inst.x0, inst.y0, inst.x1, inst.y1),
-                                    'page_dimensions': (page_rect.width, page_rect.height)
-                                }
-                                break
+                        result = collect_and_sort_instances(page, ["非经常性损益"], remove_end_pattern, get_search_rect)
+                        if result:
+                            inst = result['inst']
+                            remove_end_info = {
+                                'page_number': page_num + 1,
+                                'keyword_box': (inst.x0, inst.y0, inst.x1, inst.y1),
+                                'page_dimensions': (page_rect.width, page_rect.height)
+                            }
                 
                 # 检查是否找到所有关键词
                 if is_bse:
@@ -158,7 +177,7 @@ class ZyzbProcessor(BaseProcessor):
         append_end_info = None
         
         append_start_pattern = re.compile(r'净资产收益率[及和]每股收益', re.IGNORECASE | re.MULTILINE)
-        append_start_keyword = "每股收益"
+        append_start_keyword = ["每股收益"]
         append_end_pattern = re.compile(r'境内外会计准则下会计数据差异\s*$|资产收益率.*计算过程', re.IGNORECASE | re.MULTILINE)
         append_end_keywords = ["计算", "会计准则"]
         
@@ -168,34 +187,25 @@ class ZyzbProcessor(BaseProcessor):
             page = doc.load_page(page_num)
             page_rect = page.rect
             
-            if not append_start_info:
-                for append_end_keyword in append_end_keywords:
-                    instances = page.search_for(append_end_keyword)
-                    for inst in instances:
-                        rect = get_search_rect(page, inst, append_end_keyword)
-                        text = page.get_text("text", clip=rect)
-                        if append_end_pattern.search(text):
-                            append_end_info = {
-                                'page_number': page_num + 1,
-                                'keyword_box': (inst.x0, inst.y0, inst.x1, inst.y1),
-                                'page_dimensions': (page_rect.width, page_rect.height)
-                            }
-                            break
-                    if append_end_info:
-                        break
+            if not append_end_info:
+                result = collect_and_sort_instances(page, append_end_keywords, append_end_pattern, get_search_rect)
+                if result:
+                    inst = result['inst']
+                    append_end_info = {
+                        'page_number': page_num + 1,
+                        'keyword_box': (inst.x0, inst.y0, inst.x1, inst.y1),
+                        'page_dimensions': (page_rect.width, page_rect.height)
+                    }
             
             if not append_start_info:
-                instances = page.search_for(append_start_keyword)
-                for inst in instances:
-                    rect = get_search_rect(page, inst, append_start_keyword)
-                    text = page.get_text("text", clip=rect)
-                    if append_start_pattern.search(text):
-                        append_start_info = {
-                            'page_number': page_num + 1,
-                            'keyword_box': (inst.x0, inst.y0, inst.x1, inst.y1),
-                            'page_dimensions': (page_rect.width, page_rect.height)
-                        }
-                        break
+                result = collect_and_sort_instances(page, append_start_keyword, append_start_pattern, get_search_rect)
+                if result:
+                    inst = result['inst']
+                    append_start_info = {
+                        'page_number': page_num + 1,
+                        'keyword_box': (inst.x0, inst.y0, inst.x1, inst.y1),
+                        'page_dimensions': (page_rect.width, page_rect.height)
+                    }
             
             if append_start_info and append_end_info:
                 break
@@ -358,8 +368,7 @@ class ZyzbProcessor(BaseProcessor):
                 return None
 
             mgsy_dir = os.path.join(self.output_dir, "净资产收益率和每股收益")
-            if not os.path.exists(mgsy_dir):
-                os.makedirs(mgsy_dir)
+            os.makedirs(mgsy_dir, exist_ok=True)
 
             base_name = os.path.splitext(os.path.basename(pdf_path))[0]
             output_path = os.path.join(mgsy_dir, f"{base_name}_mgsy.pdf")

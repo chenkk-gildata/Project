@@ -46,7 +46,7 @@ FROM [10.101.0.212].JYPRIME.dbo.usrGDDHCX A
     FULL JOIN [10.101.0.212].JYPRIME.dbo.usrGDDHCX_SL B ON A.ID=B.ID
     LEFT JOIN [10.101.0.212].JYPRIME.dbo.usrXTCLB F ON B.DM=F.DM AND F.LB=1182
     JOIN [10.101.0.212].JYPRIME.dbo.usrZQZB C ON A.INBBM=C.INBBM AND C.ZQSC IN (18,83,90) AND C.ZQLB IN (1,2,41)
-    FULL JOIN [10.101.0.212].JYPRIME.dbo.usrGDDHHBBJQKB D ON A.INBBM=D.INBBM AND A.SCXXFBRQ=D.SCXXFBRQ AND A.GDDHLB=D.GDDHLB AND A.JC=D.JC
+    FULL JOIN [10.101.0.212].JYPRIME.dbo.usrGDDHHBBJQKB D ON A.INBBM=D.INBBM AND A.SCXXFBRQ=D.SCXXFBRQ AND A.GDDHLB=D.GDDHLB AND ISNULL(A.JC,'')=ISNULL(D.JC,'')
     FULL JOIN [10.101.0.212].JYPRIME.dbo.usrGDDHHBBJQKB_SL E ON D.ID=E.ID
 WHERE A.GDCXLB=1 AND A.SFYX=1
   AND C.GPDM = ? AND A.GDDHGGR = ? AND A.GDDHLB = ? AND A.JC = ?
@@ -301,7 +301,22 @@ class EnhancedDataProcessor:
             except Exception as e:
                 logger.warning(f"保存AI提取数据到日志文件失败: {filename} - {e}")
 
-            # AI返回的数据结构是 {"extracted_data": [表决数据数组]}
+            # AI返回的数据结构是 {"届次": "1", "extracted_data": [表决数据数组]}
+            # 从AI结果中提取届次，结合会议类型判断届次是否有效
+            ai_jc = extracted_data.get("届次", "")
+            meeting_type = basic_data.get("meeting_type", "")
+            
+            if ai_jc and str(ai_jc).strip():
+                # AI届次有值，直接使用
+                basic_data["meeting_session"] = str(ai_jc).strip()
+            elif meeting_type == "1":
+                # 年度股东大会，届次为空是正常的
+                basic_data["meeting_session"] = ""
+            else:
+                # 临时股东大会但AI届次为空，说明AI提取异常，使用文件名解析值备用
+                logger.warning(f"临时股东大会AI届次为空，使用文件名解析值: {basic_data.get('meeting_session')}")
+                # 保持basic_data中的meeting_session（文件名解析值）
+            
             # 需要获取实际的表决数据数组
             proposal_voting_data = []
             if "extracted_data" in extracted_data and isinstance(extracted_data["extracted_data"], list):
@@ -361,9 +376,27 @@ class EnhancedDataProcessor:
             except Exception as e:
                 logger.warning(f"保存AI提取数据到日志文件失败: {filename} - {e}")
 
+            # AI返回的数据结构是 {"extracted_data": {"届次": "1", "basic_data": {...}, "avoid_data": [...]}}
             # 需要获取实际的表决数据数组
             if "extracted_data" in hbbj_data:
                 extracted_data = hbbj_data["extracted_data"]
+                
+                # 从AI结果中提取届次，结合会议类型判断届次是否有效
+                if isinstance(extracted_data, dict):
+                    ai_jc = extracted_data.get("届次", "")
+                    meeting_type = basic_data.get("meeting_type", "")
+                    
+                    if ai_jc and str(ai_jc).strip():
+                        # AI届次有值，直接使用
+                        basic_data["meeting_session"] = str(ai_jc).strip()
+                    elif meeting_type == "1":
+                        # 年度股东大会，届次为空是正常的
+                        basic_data["meeting_session"] = ""
+                    else:
+                        # 临时股东大会但AI届次为空，说明AI提取异常，使用文件名解析值备用
+                        logger.warning(f"临时股东大会AI届次为空，使用文件名解析值: {basic_data.get('meeting_session')}")
+                        # 保持basic_data中的meeting_session（文件名解析值）
+                
                 if isinstance(extracted_data, list):
                     # 直接是数组的情况
                     proposal_voting_data = extracted_data
@@ -411,24 +444,29 @@ class EnhancedDataProcessor:
 
     def get_data_from_db_bj(self, stock_code: str, info_date: str, meeting_type: str, meeting_session: str) -> Optional[
         List[Dict[str, Any]]]:
-        """从数据库获取数据"""
+        """从数据库获取数据，动态处理届次查询条件"""
         try:
-            return db_manager.execute_query(
-                SQL_QUERY_BJ,
-                (stock_code, info_date, meeting_type, meeting_session)
-            )
+            if meeting_session and str(meeting_session).strip():
+                sql = SQL_QUERY_BJ
+                params = (stock_code, info_date, meeting_type, meeting_session)
+            else:
+                sql = SQL_QUERY_BJ.replace("AND A.JC = ?", "AND A.JC IS NULL")
+                params = (stock_code, info_date, meeting_type)
+            return db_manager.execute_query(sql, params)
         except Exception as e:
             return None
 
     def get_data_from_db_hb(self, stock_code: str, info_date: str, meeting_type: str, meeting_session: str) -> Optional[
         List[Dict[str, Any]]]:
-        """从数据库获取数据"""
+        """从数据库获取数据，动态处理届次查询条件"""
         try:
-            raw_data = db_manager.execute_query(
-                SQL_QUERY_CX_HB,
-                (stock_code, info_date, meeting_type, meeting_session)
-            )
-            # 对数据库数据进行预处理
+            if meeting_session and str(meeting_session).strip():
+                sql = SQL_QUERY_CX_HB
+                params = (stock_code, info_date, meeting_type, meeting_session)
+            else:
+                sql = SQL_QUERY_CX_HB.replace("AND A.JC = ?", "AND A.JC IS NULL")
+                params = (stock_code, info_date, meeting_type)
+            raw_data = db_manager.execute_query(sql, params)
             return self._preprocess_sql_data_hb(raw_data)
         except Exception as e:
             return None
@@ -968,21 +1006,30 @@ class EnhancedDataProcessor:
         return os.path.join(base_path, relative_path)
 
     def load_prompt_from_md_bjqk(self, md_file_path: str = "prompt_GDDHBJ.md") -> str:
-        """从MD文件加载提示词（支持打包后的exe环境，包含内置备用方案）"""
+        """从MD文件加载提示词（优先从exe目录读取，便于用户修改）"""
         try:
-            # 首先尝试从打包后的资源路径读取
-            resource_path = self.get_resource_path(md_file_path)
-            if os.path.exists(resource_path):
-                with open(resource_path, 'r', encoding='utf-8') as f:
-                    content = f.read()
-                    return content
+            # 1. 优先从exe所在目录读取（打包后用户可修改）
+            try:
+                exe_dir = os.path.dirname(sys.executable)
+                exe_path = os.path.join(exe_dir, md_file_path)
+                if os.path.exists(exe_path):
+                    with open(exe_path, 'r', encoding='utf-8') as f:
+                        return f.read()
+            except:
+                pass
             
-            # 如果资源路径不存在，尝试当前目录
+            # 2. 尝试当前工作目录
             if os.path.exists(md_file_path):
                 with open(md_file_path, 'r', encoding='utf-8') as f:
-                    content = f.read()
-                    return content
-
+                    return f.read()
+            
+            # 3. 尝试脚本所在目录（开发环境）
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            script_path = os.path.join(script_dir, md_file_path)
+            if os.path.exists(script_path):
+                with open(script_path, 'r', encoding='utf-8') as f:
+                    return f.read()
+            
             print(f"警告: 无法找到提示词文件: {md_file_path}")
             return ""
         except Exception as e:
@@ -990,20 +1037,29 @@ class EnhancedDataProcessor:
             return ""
 
     def load_prompt_from_md_hbbj(self, md_file_path: str = "prompt_GDDHCX_HBBJ.md") -> str:
-        """从MD文件加载提示词（支持打包后的exe环境，包含内置备用方案）"""
+        """从MD文件加载提示词（优先从exe目录读取，便于用户修改）"""
         try:
-            # 首先尝试从打包后的资源路径读取
-            resource_path = self.get_resource_path(md_file_path)
-            if os.path.exists(resource_path):
-                with open(resource_path, 'r', encoding='utf-8') as f:
-                    content = f.read()
-                    return content
+            # 1. 优先从exe所在目录读取（打包后用户可修改）
+            try:
+                exe_dir = os.path.dirname(sys.executable)
+                exe_path = os.path.join(exe_dir, md_file_path)
+                if os.path.exists(exe_path):
+                    with open(exe_path, 'r', encoding='utf-8') as f:
+                        return f.read()
+            except:
+                pass
             
-            # 如果资源路径不存在，尝试当前目录
+            # 2. 尝试当前工作目录
             if os.path.exists(md_file_path):
                 with open(md_file_path, 'r', encoding='utf-8') as f:
-                    content = f.read()
-                    return content
+                    return f.read()
+            
+            # 3. 尝试脚本所在目录（开发环境）
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            script_path = os.path.join(script_dir, md_file_path)
+            if os.path.exists(script_path):
+                with open(script_path, 'r', encoding='utf-8') as f:
+                    return f.read()
             
             print(f"警告: 无法找到提示词文件: {md_file_path}")
             return ""

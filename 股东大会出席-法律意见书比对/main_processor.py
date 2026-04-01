@@ -184,23 +184,42 @@ class DataProcessor:
                 print(f"文件名格式异常: {filename}")
                 return None
 
-            # 从文件名中提取年度和届次
+            # 从文件名中提取年度和届次（备用）
             stock_nd, stock_jc = self._extract_year_and_session(stock_filename)
-            if not all([stock_nd, stock_jc]):
-                print(f"无法从文件名中提取年度和届次: {filename}")
+            if not stock_nd:
+                print(f"无法从文件名中提取年度: {filename}")
                 return None
+
+            # 判断会议类型（用于届次验证）
+            meeting_type = self._get_meeting_type(stock_filename)
 
             # 调用AI提取数据
             extracted_data = self.extract_data_with_ai(file_path)
             if not extracted_data:
                 return None
 
-            # 获取数据库数据
+            # 从AI结果中提取届次，结合会议类型判断届次是否有效
+            extracted_inner = extracted_data.get("extracted_data", {})
+            ai_jc = extracted_inner.get("届次", "")
+            
+            if ai_jc and str(ai_jc).strip():
+                # AI届次有值，直接使用
+                stock_jc = str(ai_jc).strip()
+            elif meeting_type == "1":
+                # 年度股东大会，届次为空是正常的
+                stock_jc = ""
+            else:
+                # 临时股东大会但AI届次为空，使用文件名解析值备用
+                if stock_jc == '0':
+                    print(f"临时股东大会AI届次为空且文件名解析失败: {filename}")
+                # 保持stock_jc（文件名解析值）
+
+            # 获取数据库数据（使用动态SQL）
             sql_data = self.get_data_from_db(stock_code, stock_date, stock_nd, stock_jc)
 
             # 进行数据比对
             comparison_results = self.compare_data(
-                extracted_data.get("extracted_data", {}),
+                extracted_inner,
                 sql_data
             )
 
@@ -210,7 +229,7 @@ class DataProcessor:
                 "stock_name": stock_name,
                 "meeting_date": stock_date,
                 "filename": filename,
-                "extracted_data": extracted_data.get("extracted_data", {}),
+                "extracted_data": extracted_inner,
                 "sql_data": sql_data,
                 "comparison_results": comparison_results,
                 "processing_time": datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -221,6 +240,15 @@ class DataProcessor:
         except Exception as e:
             print(f"处理文件时出错: {e}")
             return None
+
+    def _get_meeting_type(self, filename: str) -> str:
+        """从文件名判断会议类型"""
+        if "年度" in filename and "临时" not in filename:
+            return "1"  # 年度股东大会
+        elif "出资人组" in filename:
+            return "5"  # 出资人组会议
+        else:
+            return "3"  # 临时股东大会（默认）
 
     def _extract_year_and_session(self, filename: str):
         """从文件名中提取年度和届次"""
@@ -342,19 +370,30 @@ class DataProcessor:
         return os.path.join(base_path, relative_path)
 
     def load_prompt_from_md(self, md_file_path="prompt_GDDHCX.md"):
-        """从MD文件加载提示词（支持打包后的exe环境）"""
+        """从MD文件加载提示词（优先从exe目录读取，便于用户修改）"""
         try:
-            # 首先尝试从打包后的资源路径读取
-            resource_path = self.get_resource_path(md_file_path)
-            if os.path.exists(resource_path):
-                with open(resource_path, 'r', encoding='utf-8') as f:
-                    return f.read()
+            # 1. 优先从exe所在目录读取（打包后用户可修改）
+            try:
+                exe_dir = os.path.dirname(sys.executable)
+                exe_path = os.path.join(exe_dir, md_file_path)
+                if os.path.exists(exe_path):
+                    with open(exe_path, 'r', encoding='utf-8') as f:
+                        return f.read()
+            except:
+                pass
             
-            # 如果资源路径不存在，尝试当前目录
+            # 2. 尝试当前工作目录
             if os.path.exists(md_file_path):
                 with open(md_file_path, 'r', encoding='utf-8') as f:
                     return f.read()
-
+            
+            # 3. 尝试脚本所在目录（开发环境）
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            script_path = os.path.join(script_dir, md_file_path)
+            if os.path.exists(script_path):
+                with open(script_path, 'r', encoding='utf-8') as f:
+                    return f.read()
+            
             print(f"提示词文件 {md_file_path} 不存在，请检查")
             return ""
         except Exception as e:
@@ -387,12 +426,21 @@ class DataProcessor:
     # ==================== 数据库操作相关方法 ====================
 
     def get_data_from_db(self, stock_code, stock_date, stock_nd, stock_jc):
-        """从正式数据库获取数据"""
+        """从正式数据库获取数据，动态处理届次查询条件"""
         try:
             conn = pyodbc.connect(SERVER=SERVER, UID=USERNAME, PWD=PASSWORD, DRIVER=DRIVER)
             cursor = conn.cursor()
 
-            cursor.execute(SQL_QUERY, (stock_code, stock_date, stock_nd, stock_jc))
+            # 动态构建SQL和参数
+            if stock_jc and str(stock_jc).strip():
+                sql = SQL_QUERY
+                params = (stock_code, stock_date, stock_nd, stock_jc)
+            else:
+                # 年度股东大会：JC为空，使用IS NULL
+                sql = SQL_QUERY.replace("AND A.JC = ?", "AND A.JC IS NULL")
+                params = (stock_code, stock_date, stock_nd)
+
+            cursor.execute(sql, params)
             columns = [column[0] for column in cursor.description]
             sql_data = []
 

@@ -30,7 +30,7 @@ class YftrProcessor(BaseProcessor):
             start_keyword = ["研发人员", "研发投入"]
             end_keyword = ["发生重大变化的原因", "现金流"]
         elif exchange_code == "shs":
-            start_pattern = re.compile(r'^[\d三四五六][）)]?[、.．]?\s*(研发投入\s*$|研发支出)', re.IGNORECASE | re.MULTILINE)
+            start_pattern = re.compile(r'^[\d三四五六][）)]?[、.．]?\s*(?:研发投入|研发支出)\s*$', re.IGNORECASE | re.MULTILINE)
             end_pattern = re.compile(r'[\d四五六七][）)]?[、.．]?\s*现金流', re.IGNORECASE | re.MULTILINE)
             start_keyword = ["研发投入", "研发支出"]
             end_keyword = ["现金流"]
@@ -65,14 +65,53 @@ class YftrProcessor(BaseProcessor):
             page_rotation = page.rotation
 
             if keyword_type in ['研发投入', '研发人员', '核心技术', '研发进展', '研发项目', '研发成果', '研发机构']:
-                # 处理旋转页面
                 if page_rotation == 90:
                     return fitz.Rect(inst.x0 - 30, 0, inst.x1 + 50, page_width)
                 else:
                     return fitz.Rect(0, inst.y0 - 30, page_width, inst.y1 + 50)
             else:
-                # 默认搜索区域
                 return fitz.Rect(0, inst.y0 - 20, inst.x1 + 400, inst.y1 + 50)
+
+        def collect_and_sort_instances(page, keywords, pattern, get_search_rect):
+            """
+            收集所有keyword实例，按位置从上到下排序后匹配pattern，返回第一个匹配结果
+            
+            PyMuPDF坐标系：原点在左上角，Y轴向下递增
+            因此 y0 值越小，位置越靠上
+            """
+            candidates = []
+            
+            for keyword in keywords:
+                instances = page.search_for(keyword)
+                for inst in instances:
+                    candidates.append({
+                        'keyword': keyword,
+                        'inst': inst,
+                        'y0': inst.y0,
+                        'x0': inst.x0
+                    })
+            
+            if not candidates:
+                return None
+            
+            page_rotation = page.rotation
+            if page_rotation == 90:
+                candidates.sort(key=lambda c: c['x0'])
+            else:
+                candidates.sort(key=lambda c: c['y0'])
+            
+            for candidate in candidates:
+                keyword = candidate['keyword']
+                inst = candidate['inst']
+                rect = get_search_rect(page, inst, keyword)
+                text = page.get_text("text", clip=rect)
+                if pattern.search(text):
+                    return {
+                        'inst': inst,
+                        'keyword': keyword
+                    }
+            
+            return None
 
         found = False
         for start_range, end_range in search_ranges:
@@ -83,73 +122,46 @@ class YftrProcessor(BaseProcessor):
                 page = doc.load_page(page_num)
                 page_rect = page.rect
 
-                # 搜索开始关键词
                 if not end_info:
-                    for keyword in start_keyword:
-                        instances = page.search_for(keyword)
-                        for inst in instances:
-                            rect = get_search_rect(page, inst, keyword)
-                            text = page.get_text("text", clip=rect)
-                            if start_pattern.search(text):
-                                start_info = {
-                                    'page_number': page_num + 1,
-                                    'keyword_box': (inst.x0, inst.y0, inst.x1, inst.y1),
-                                    'page_dimensions': (page_rect.width, page_rect.height)
-                                }
-                                break
-                        if start_info:
-                            break
+                    result = collect_and_sort_instances(page, start_keyword, start_pattern, get_search_rect)
+                    if result:
+                        inst = result['inst']
+                        start_info = {
+                            'page_number': page_num + 1,
+                            'keyword_box': (inst.x0, inst.y0, inst.x1, inst.y1),
+                            'page_dimensions': (page_rect.width, page_rect.height)
+                        }
 
-                # 搜索结束关键词
                 if start_info and not end_info:
-                    for keyword in end_keyword:
-                        instances = page.search_for(keyword)
-                        for inst in instances:
-                            rect = get_search_rect(page, inst, keyword)
-                            text = page.get_text("text", clip=rect)
-                            if end_pattern.search(text):
-                                end_info = {
-                                    'page_number': page_num + 1,
-                                    'keyword_box': (inst.x0, inst.y0, inst.x1, inst.y1),
-                                    'page_dimensions': (page_rect.width, page_rect.height)
-                                }
-                                break
-                        if end_info:
-                            break
+                    result = collect_and_sort_instances(page, end_keyword, end_pattern, get_search_rect)
+                    if result:
+                        inst = result['inst']
+                        end_info = {
+                            'page_number': page_num + 1,
+                            'keyword_box': (inst.x0, inst.y0, inst.x1, inst.y1),
+                            'page_dimensions': (page_rect.width, page_rect.height)
+                        }
 
-                # 科创板特殊处理
                 if exchange_code == 'kcb':
                     if not remove_start_info:
-                        for keyword in remove_start_keyword:
-                            instances = page.search_for(keyword)
-                            for inst in instances:
-                                rect = get_search_rect(page, inst, keyword)
-                                text = page.get_text("text", clip=rect)
-                                if remove_start_pattern.search(text):
-                                    remove_start_info = {
-                                        'page_number': page_num + 1,
-                                        'keyword_box': (inst.x0, inst.y0, inst.x1, inst.y1),
-                                        'page_dimensions': (page_rect.width, page_rect.height)
-                                    }
-                                    break
-                            if remove_start_info:
-                                break
+                        result = collect_and_sort_instances(page, remove_start_keyword, remove_start_pattern, get_search_rect)
+                        if result:
+                            inst = result['inst']
+                            remove_start_info = {
+                                'page_number': page_num + 1,
+                                'keyword_box': (inst.x0, inst.y0, inst.x1, inst.y1),
+                                'page_dimensions': (page_rect.width, page_rect.height)
+                            }
 
                     if remove_start_info and not remove_end_info:
-                        for keyword in remove_end_keyword:
-                            instances = page.search_for(keyword)
-                            for inst in instances:
-                                rect = get_search_rect(page, inst, keyword)
-                                text = page.get_text("text", clip=rect)
-                                if remove_end_pattern.search(text):
-                                    remove_end_info = {
-                                        'page_number': page_num + 1,
-                                        'keyword_box': (inst.x0, inst.y0, inst.x1, inst.y1),
-                                        'page_dimensions': (page_rect.width, page_rect.height)
-                                    }
-                                    break
-                            if remove_end_info:
-                                break
+                        result = collect_and_sort_instances(page, remove_end_keyword, remove_end_pattern, get_search_rect)
+                        if result:
+                            inst = result['inst']
+                            remove_end_info = {
+                                'page_number': page_num + 1,
+                                'keyword_box': (inst.x0, inst.y0, inst.x1, inst.y1),
+                                'page_dimensions': (page_rect.width, page_rect.height)
+                            }
                 
                 # 检查是否完成
                 if exchange_code == 'kcb':

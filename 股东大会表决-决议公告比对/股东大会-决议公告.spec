@@ -14,9 +14,7 @@ a = Analysis(
         ('cninfo_Crawling_usrGDDHBJ.py', '.'),
         ('ai_service_enhanced.py', '.'),
         ('database_manager.py', '.'),
-        ('mappings_voting.py', '.'),
-        ('prompt_GDDHBJ.md', '.'),
-        ('prompt_GDDHCX_HBBJ.md', '.')
+        ('mappings_voting.py', '.')
     ],
     hiddenimports=[
         # 核心模块
@@ -121,7 +119,7 @@ exe = EXE(
     a.zipfiles,
     a.datas,
     [],
-    name='股东大会-决议公告比对V2.1',
+    name='股东大会-决议公告比对V2.2',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,

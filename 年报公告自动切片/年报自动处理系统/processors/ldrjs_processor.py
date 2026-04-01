@@ -56,7 +56,48 @@ class LdrjsProcessor(BaseProcessor):
                     return fitz.Rect(0, inst.y0 - 30, page_width, inst.y1 + 30)
             else:
                 return fitz.Rect(0, inst.y0 - 30, page_width, inst.y1 + 30)
-        
+
+        def collect_and_sort_instances(page, keywords, pattern, get_search_rect):
+            """
+            收集所有keyword实例，按位置从上到下排序后匹配pattern，返回第一个匹配结果
+            
+            PyMuPDF坐标系：原点在左上角，Y轴向下递增
+            因此 y0 值越小，位置越靠上
+            """
+            candidates = []
+            
+            for keyword in keywords:
+                instances = page.search_for(keyword)
+                for inst in instances:
+                    candidates.append({
+                        'keyword': keyword,
+                        'inst': inst,
+                        'y0': inst.y0,
+                        'x0': inst.x0
+                    })
+            
+            if not candidates:
+                return None
+            
+            page_rotation = page.rotation
+            if page_rotation == 90:
+                candidates.sort(key=lambda c: c['x0'])
+            else:
+                candidates.sort(key=lambda c: c['y0'])
+            
+            for candidate in candidates:
+                keyword = candidate['keyword']
+                inst = candidate['inst']
+                rect = get_search_rect(page, inst, keyword)
+                text = page.get_text("text", clip=rect)
+                if pattern.search(text):
+                    return {
+                        'inst': inst,
+                        'keyword': keyword
+                    }
+            
+            return None
+
         found = False
         skip_directory_check = False
         
@@ -75,37 +116,24 @@ class LdrjsProcessor(BaseProcessor):
                         continue
                 
                 if not end_info:
-                    for keyword in ["联系人"]:
-                        instances = page.search_for(keyword)
-                        for inst in instances:
-                            rect = get_search_rect(page, inst, keyword)
-                            text = page.get_text("text", clip=rect)
-                            if start_pattern.search(text):
-                                start_info = {
-                                    'page_number': page_num + 1,
-                                    'keyword_box': (inst.x0, inst.y0, inst.x1, inst.y1),
-                                    'page_dimensions': (page_rect.width, page_rect.height)
-                                }
-                                break
-                        if start_info:
-                            break
-                
+                    result = collect_and_sort_instances(page, ["联系人"], start_pattern, get_search_rect)
+                    if result:
+                        inst = result['inst']
+                        start_info = {
+                            'page_number': page_num + 1,
+                            'keyword_box': (inst.x0, inst.y0, inst.x1, inst.y1),
+                            'page_dimensions': (page_rect.width, page_rect.height)
+                        }
+
                 if start_info and not end_info:
-                    end_keywords = ["基本情况", "备置地点"]
-                    for keyword in end_keywords:
-                        instances = page.search_for(keyword)
-                        for inst in instances:
-                            rect = get_search_rect(page, inst, keyword)
-                            text = page.get_text("text", clip=rect)
-                            if end_pattern.search(text):
-                                end_info = {
-                                    'page_number': page_num + 1,
-                                    'keyword_box': (inst.x0, inst.y0, inst.x1, inst.y1),
-                                    'page_dimensions': (page_rect.width, page_rect.height)
-                                }
-                                break
-                        if end_info:
-                            break
+                    result = collect_and_sort_instances(page, ["基本情况", "备置地点"], end_pattern, get_search_rect)
+                    if result:
+                        inst = result['inst']
+                        end_info = {
+                            'page_number': page_num + 1,
+                            'keyword_box': (inst.x0, inst.y0, inst.x1, inst.y1),
+                            'page_dimensions': (page_rect.width, page_rect.height)
+                        }
                 
                 if start_info and end_info:
                     found = True
@@ -165,6 +193,47 @@ class LdrjsProcessor(BaseProcessor):
             else:
                 return fitz.Rect(0, inst.y0 - 30, page_width, inst.y1 + 30)
 
+        def collect_and_sort_instances(page, keywords, pattern, get_search_rect):
+            """
+            收集所有keyword实例，按位置从上到下排序后匹配pattern，返回第一个匹配结果
+            
+            PyMuPDF坐标系：原点在左上角，Y轴向下递增
+            因此 y0 值越小，位置越靠上
+            """
+            candidates = []
+            
+            for keyword in keywords:
+                instances = page.search_for(keyword)
+                for inst in instances:
+                    candidates.append({
+                        'keyword': keyword,
+                        'inst': inst,
+                        'y0': inst.y0,
+                        'x0': inst.x0
+                    })
+            
+            if not candidates:
+                return None
+            
+            page_rotation = page.rotation
+            if page_rotation == 90:
+                candidates.sort(key=lambda c: c['x0'])
+            else:
+                candidates.sort(key=lambda c: c['y0'])
+            
+            for candidate in candidates:
+                keyword = candidate['keyword']
+                inst = candidate['inst']
+                rect = get_search_rect(page, inst, keyword)
+                text = page.get_text("text", clip=rect)
+                if pattern.search(text):
+                    return {
+                        'inst': inst,
+                        'keyword': keyword
+                    }
+            
+            return None
+
         found = False
         for start_range, end_range in search_ranges:
             actual_start = max(1, start_range)
@@ -175,37 +244,25 @@ class LdrjsProcessor(BaseProcessor):
                 page_rect = page.rect
 
                 if not end_info:
-                    for keyword in ["高级管理人员"]:
-                        instances = page.search_for(keyword)
-                        for inst in instances:
-                            rect = get_search_rect(page, inst, keyword)
-                            text = page.get_text("text", clip=rect)
-                            if start_pattern.search(text):
-                                start_info = {
-                                    'page_number': page_num + 1,
-                                    'keyword_box': (inst.x0, inst.y0, inst.x1, inst.y1),
-                                    'page_dimensions': (page_rect.width, page_rect.height)
-                                }
-                                break
-                        if start_info:
-                            break
+                    result = collect_and_sort_instances(page, ["高级管理人员"], start_pattern, get_search_rect)
+                    if result:
+                        inst = result['inst']
+                        start_info = {
+                            'page_number': page_num + 1,
+                            'keyword_box': (inst.x0, inst.y0, inst.x1, inst.y1),
+                            'page_dimensions': (page_rect.width, page_rect.height)
+                        }
 
                 if start_info and not end_info:
                     end_keywords = ["股东单位", "任职情况"] if exchange_code != "bjs" else ["决策程序", "报酬确定", "支付情况"]
-                    for keyword in end_keywords:
-                        instances = page.search_for(keyword)
-                        for inst in instances:
-                            rect = get_search_rect(page, inst, keyword)
-                            text = page.get_text("text", clip=rect)
-                            if end_pattern.search(text):
-                                end_info = {
-                                    'page_number': page_num + 1,
-                                    'keyword_box': (inst.x0, inst.y0, inst.x1, inst.y1),
-                                    'page_dimensions': (page_rect.width, page_rect.height)
-                                }
-                                break
-                        if end_info:
-                            break
+                    result = collect_and_sort_instances(page, end_keywords, end_pattern, get_search_rect)
+                    if result:
+                        inst = result['inst']
+                        end_info = {
+                            'page_number': page_num + 1,
+                            'keyword_box': (inst.x0, inst.y0, inst.x1, inst.y1),
+                            'page_dimensions': (page_rect.width, page_rect.height)
+                        }
 
                 if start_info and end_info:
                     found = True
@@ -238,8 +295,7 @@ class LdrjsProcessor(BaseProcessor):
     
     def _crop_lxr_start_only(self, pdf_path: str, start_info: Dict) -> Optional[str]:
         """只找到开始关键词：当前页裁剪 + 下一页完整"""
-        if not os.path.exists(self.output_dir):
-            os.makedirs(self.output_dir)
+        os.makedirs(self.output_dir, exist_ok=True)
         
         reader = PdfReader(pdf_path)
         writer = PdfWriter()
@@ -276,8 +332,7 @@ class LdrjsProcessor(BaseProcessor):
     
     def _crop_lxr_end_only(self, pdf_path: str, end_info: Dict) -> Optional[str]:
         """只找到结束关键词：上一页完整 + 当前页裁剪"""
-        if not os.path.exists(self.output_dir):
-            os.makedirs(self.output_dir)
+        os.makedirs(self.output_dir, exist_ok=True)
         
         reader = PdfReader(pdf_path)
         writer = PdfWriter()
@@ -317,8 +372,7 @@ class LdrjsProcessor(BaseProcessor):
     
     def _crop_lxr_two_pages(self, pdf_path: str, start_info: Dict, end_info: Dict) -> Optional[str]:
         """联系人两页裁剪：开始页裁剪 + 结束页裁剪"""
-        if not os.path.exists(self.output_dir):
-            os.makedirs(self.output_dir)
+        os.makedirs(self.output_dir, exist_ok=True)
         
         reader = PdfReader(pdf_path)
         writer = PdfWriter()

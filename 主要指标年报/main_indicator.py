@@ -117,6 +117,36 @@ class EnhancedDataProcessor:
             logger.error(f"提取公司标识异常: {filename} - {e}")
             return None
 
+    def _extract_announcement_title(self, filename: str) -> str:
+        """
+        从模块一文件名中提取公告标题
+        去除前面的"股票代码-发布日期-证券简称"部分，只保留后面的原始文件名
+        
+        文件名格式示例：000001-2024-03-30-平安银行-2023年年度报告.pdf
+        提取结果：2023年年度报告
+        
+        Args:
+            filename: 模块一文件名（不含路径）
+            
+        Returns:
+            公告标题
+        """
+        try:
+            base_name = os.path.splitext(filename)[0]
+            
+            parts = base_name.split('-')
+            
+            if len(parts) >= 5:
+                title_parts = parts[4:]
+                announcement_title = '-'.join(title_parts)
+                return announcement_title
+            else:
+                return base_name
+                
+        except Exception as e:
+            logger.error(f"提取公告标题异常: {filename} - {e}")
+            return filename
+
     def _find_paired_files(self, base_dir: Path) -> Dict[str, Dict[str, Optional[Path]]]:
         """
         查找并配对模块一和模块二的文件
@@ -466,6 +496,8 @@ class EnhancedDataProcessor:
 
             merged_data = self._merge_extracted_data(module1_data, module2_data)
 
+            merged_data = self._preprocess_ai_data(merged_data)
+
             sql_data = None
             try:
                 sql_data = self._query_database(stock_code, publish_date)
@@ -474,7 +506,10 @@ class EnhancedDataProcessor:
 
             comparison_result = self._compare_data_with_keys(merged_data, sql_data, stock_code, publish_date)
 
+            announcement_title = self._extract_announcement_title(module1_info["filename"])
+
             result = {
+                "announcement_title": announcement_title,
                 "stock_code": stock_code,
                 "publish_date": publish_date,
                 "ai_datas": merged_data,
@@ -687,12 +722,59 @@ class EnhancedDataProcessor:
         "KCFJCXSYHPTGJLR": "KCFJCXSYHPTGJLRTBZZ",
     }
 
+    def _preprocess_ai_data(self, data_list: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """
+        预处理AI提取的数据，统一数据格式
+        
+        处理内容：
+        1. 对所有字段值进行预处理（去逗号、处理负数、百分号等）
+        2. 处理同比字段：如果金额字段为空，对应的同比字段也置空
+        3. 按JZRQ倒序排列
+        4. 国际会计准则字段处理：如果第一条数据的GJKJZEJLR或GJKJZZJZC不为空，则后面每条数据的这两个字段都置空
+        
+        Args:
+            data_list: AI提取的数据列表
+            
+        Returns:
+            预处理后的数据列表
+        """
+        if not data_list:
+            return data_list
+        
+        processed_list = []
+        for record in data_list:
+            processed_record = {}
+            
+            for key, value in record.items():
+                processed_record[key] = self._preprocess_value(value)
+            
+            for value_field, tbzz_field in self.VALUE_TBZZ_MAPPING.items():
+                value = processed_record.get(value_field, "")
+                if value == "" or value is None:
+                    processed_record[tbzz_field] = ""
+            
+            processed_list.append(processed_record)
+        
+        processed_list.sort(key=lambda x: x.get("JZRQ", ""), reverse=True)
+        
+        if processed_list:
+            first_record = processed_list[0]
+            gjkjzejlr = first_record.get("GJKJZEJLR", "")
+            gjkjzzjzc = first_record.get("GJKJZZJZC", "")
+            
+            if gjkjzejlr or gjkjzzjzc:
+                for i in range(1, len(processed_list)):
+                    processed_list[i]["GJKJZEJLR"] = ""
+                    processed_list[i]["GJKJZZJZC"] = ""
+        
+        return processed_list
+
     def _compare_fields_with_format(self, ai_data: Dict[str, Any], sql_data: Dict[str, Any]) -> str:
         """
         比较AI数据和SQL数据的字段，并返回格式化的比对结果
         
         Args:
-            ai_data: AI提取的数据
+            ai_data: AI提取的数据（已预处理）
             sql_data: SQL查询的数据
             
         Returns:
@@ -700,14 +782,9 @@ class EnhancedDataProcessor:
         """
         error_messages = []
 
-        ai_data_processed = ai_data.copy()
         sql_data_processed = sql_data.copy()
 
         for value_field, tbzz_field in self.VALUE_TBZZ_MAPPING.items():
-            ai_value = self._preprocess_value(ai_data.get(value_field, ""))
-            if ai_value == "" or ai_value is None:
-                ai_data_processed[tbzz_field] = ""
-
             sql_value = self._preprocess_value(sql_data.get(value_field, ""))
             if sql_value == "" or sql_value is None:
                 sql_data_processed[tbzz_field] = ""
@@ -722,14 +799,13 @@ class EnhancedDataProcessor:
         ]
 
         for field_name in fields_to_compare:
-            ai_value = ai_data_processed.get(field_name, "")
+            ai_value = ai_data.get(field_name, "")
             sql_value = sql_data_processed.get(field_name, "")
 
-            processed_ai_value = self._preprocess_value(ai_value)
             processed_sql_value = self._preprocess_value(sql_value)
 
-            if not self._compare_values(processed_ai_value, processed_sql_value):
-                error_messages.append(f"{field_name}错误【正式库：{sql_value}，AI：{ai_value}】")
+            if not self._compare_values(ai_value, processed_sql_value):
+                error_messages.append(f"{field_name}【正式库：{sql_value}，AI：{ai_value}】")
 
         if not error_messages:
             return "数据一致"
@@ -881,7 +957,7 @@ class EnhancedDataProcessor:
         if str_value in ("不适用", "-", "--"):
             return 0
         
-        str_value = str_value.replace(',', '').replace('%', '')
+        str_value = str_value.replace(',', '').replace('，', '').replace('%', '')
         
         if '(' in str_value and ')' in str_value:
             str_value = str_value.replace('(', '').replace(')', '')
@@ -1035,25 +1111,88 @@ class EnhancedDataProcessor:
             print(f"生成报告失败: {e}")
             return ""
 
+    FIELD_NAME_MAPPING = {
+        "YYZSR": "营业总收入",
+        "YYSR": "营业收入",
+        "YYSRKCJE": "营业收入扣除金额",
+        "KCHYYSR": "扣除后营业收入",
+        "JLRHJ": "净利润",
+        "JLR": "归母净利润",
+        "KCFJYXSYHDJLR": "扣非后净利润",
+        "YYZSRTBZZ": "营业总收入同比",
+        "YYSRTBZZ": "营业收入同比",
+        "KCHYYSRTBZZ": "扣除后营业收入同比",
+        "JLRHJTBZZ": "净利润同比",
+        "JLRTBZZ": "归母净利润同比",
+        "KCFJYXSYHDJLRTBZZ": "扣非后净利润同比",
+        "PTGJLR": "普通股净利润",
+        "PTGJLRTBZZ": "普通股净利润同比",
+        "KCFJCXSYHPTGJLR": "扣非后普通股净利润",
+        "KCFJCXSYHPTGJLRTBZZ": "扣非后普通股净利润同比",
+        "JYXJLLJE": "经营现金流量金额",
+        "JBMGSY": "基本每股收益",
+        "XSMGSY": "稀释每股收益",
+        "JBMGSYKC": "基本每股收益扣除",
+        "XSMGSYKC": "稀释每股收益扣除",
+        "JLRJZCSYLJQ": "净利润净资产收益率加权",
+        "KCHJLRJZCSYLJQ": "扣除后净资产收益率加权",
+        "PTGJZCSYLJQ": "普通股净资产收益率加权",
+        "KCPTGJZCSYLJQ": "扣除后普通股净资产收益率加权",
+        "ZCZE": "资产总额",
+        "GDQY": "归母股东权益",
+        "FJCXSY": "非经常性损益",
+        "MGJZCPL": "每股净资产披露",
+        "PTGMGJZC": "普通股每股净资产",
+        "MGJYXJLLJE": "每股经营现金流金额",
+        "GJKJZEJLR": "国际会计准则净利润",
+        "GJKJZZJZC": "国际会计准则净资产",
+    }
+
     def _create_comparison_sheet(self, results: List[Dict[str, Any]], writer: pd.ExcelWriter):
         comparison_data = []
 
         for result in results:
             comparison_results = result.get("comparison_result", [])
+            announcement_title = result.get("announcement_title", "")
 
             if not comparison_results:
                 continue
 
             for comparison in comparison_results:
                 comparison_data.append({
+                    "公告标题": announcement_title,
                     "股票代码": comparison.get("股票代码", ""),
                     "信息发布日期": comparison.get("信息发布日期", ""),
                     "截止日期": comparison.get("截止日期", ""),
-                    "比对结果": comparison.get("比对结果", "")
+                    "比对结果": self._translate_comparison_result(comparison.get("比对结果", ""))
                 })
 
         df = pd.DataFrame(comparison_data)
         df.to_excel(writer, sheet_name="比对结果", index=False)
+
+    def _translate_comparison_result(self, result: str) -> str:
+        """
+        将比对结果中的英文字段名翻译为中文（全字匹配）
+        
+        Args:
+            result: 原始比对结果字符串
+            
+        Returns:
+            翻译后的比对结果字符串
+        """
+        if result in ["数据一致", "正式库无对应记录", "正式库无对应主键的记录", "AI无对应记录"]:
+            return result
+        
+        import re
+        translated_result = result
+        
+        sorted_fields = sorted(self.FIELD_NAME_MAPPING.items(), key=lambda x: len(x[0]), reverse=True)
+        
+        for eng_name, chn_name in sorted_fields:
+            pattern = r'(?<![A-Za-z0-9_])' + re.escape(eng_name) + r'(?![A-Za-z0-9_])'
+            translated_result = re.sub(pattern, chn_name, translated_result)
+        
+        return translated_result
 
 
 def main():

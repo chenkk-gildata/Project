@@ -135,8 +135,3 @@ class BaseProcessor(ABC):
                 status, error_msg, retry_count
             )
             return False, error_msg, status
-    
-    def _get_search_rect(self, inst, keyword_type: str, page_width: float) -> fitz.Rect:
-        """获取搜索区域"""
-        # 默认搜索区域
-        return fitz.Rect(0, inst.y0 - 50, page_width, inst.y1 + 50)

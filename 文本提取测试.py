@@ -5,7 +5,7 @@ from pathlib import Path
 from openai import OpenAI
 
 
-def load_prompt_from_md1(md_file_path: Path = r"职工构成比对/prompt_Staff.md"):
+def load_prompt_from_md1(md_file_path: Path = r"主要指标年报/主要指标年度报告.md"):
     """从MD文件加载提示词"""
     try:
         if os.path.exists(md_file_path):
@@ -15,15 +15,15 @@ def load_prompt_from_md1(md_file_path: Path = r"职工构成比对/prompt_Staff.
     except Exception as e:
         return ""
 
-def load_prompt_from_md2(md_file_path: Path = r"主要指标年报/主要指标年度报告test2.md"):
-    """从MD文件加载提示词"""
-    try:
-        if os.path.exists(md_file_path):
-            with open(md_file_path, 'r', encoding='utf-8') as f:
-                return f.read()
-        return ""
-    except Exception as e:
-        return ""
+# def load_prompt_from_md2(md_file_path: Path = r"主要指标年报/主要指标年度报告_每股收益.md"):
+#     """从MD文件加载提示词"""
+#     try:
+#         if os.path.exists(md_file_path):
+#             with open(md_file_path, 'r', encoding='utf-8') as f:
+#                 return f.read()
+#         return ""
+#     except Exception as e:
+#         return ""
 
 start_time = time.time()
 
@@ -33,7 +33,7 @@ client = OpenAI(
 )
 
 file_object1 = client.files.create(file=Path(
-    r"C:/Users/chenkk\Desktop/新建文件夹/600358-2026-03-20-ST联合-国旅文化投资集团股份有限公司2025年年度报告.pdf"),
+    r"C:/Users/chenkk/Desktop/新建文件夹/600458-2026-03-28-时代新材-2025年年度报告.pdf"),
     purpose = "file-extract")
 #
 # file_object2 = client.files.create(file=Path(
@@ -52,12 +52,12 @@ completion1 = client.chat.completions.create(
         {
             "role": "system",
             "content": f"fileid://{file_object1.id}"},
-        # {
-        #     "role": "user",
-        #     "content": f"{load_prompt_from_md1()}"},
         {
             "role": "user",
-            "content": f"解析并提取公告里的内容，原样输出"},
+            "content": f"{load_prompt_from_md1()}"},
+        # {
+        #     "role": "user",
+        #     "content": f"解析并提取公告里的内容，原样输出"},
     ],
     # response_format={"type": "json_object"},
     temperature=0.3,

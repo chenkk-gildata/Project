@@ -21,13 +21,14 @@ from processors.ldrjs_processor import LdrjsProcessor
 from processors.yftr_processor import YftrProcessor
 from processors.zggc_processor import ZggcProcessor
 from processors.ldrcg_processor import LdrcgProcessor
+from processors.bjjs_processor import BjjsProcessor
 
 
 class TaskDispatcher:
     """任务分发器"""
     
     def __init__(self):
-        self.max_workers = len(PROCESS_CONFIG["modules"])
+        self.max_workers = 8 # len(PROCESS_CONFIG["modules"])
         self._running = False
         self._stop_event = threading.Event()
         self._executor: Optional[ThreadPoolExecutor] = None
@@ -38,7 +39,8 @@ class TaskDispatcher:
             "领导人介绍": LdrjsProcessor(),
             "研发投入": YftrProcessor(),
             "职工构成": ZggcProcessor(),
-            "领导人持股": LdrcgProcessor()
+            "领导人持股": LdrcgProcessor(),
+            "股东背景介绍": BjjsProcessor()
         }
         
         self._active_tasks = 0
@@ -87,25 +89,29 @@ class TaskDispatcher:
             import processors.yftr_processor
             import processors.zggc_processor
             import processors.ldrcg_processor
+            import processors.bjjs_processor
             
             importlib.reload(processors.zyzb_processor)
             importlib.reload(processors.ldrjs_processor)
             importlib.reload(processors.yftr_processor)
             importlib.reload(processors.zggc_processor)
             importlib.reload(processors.ldrcg_processor)
+            importlib.reload(processors.bjjs_processor)
             
             from processors.zyzb_processor import ZyzbProcessor
             from processors.ldrjs_processor import LdrjsProcessor
             from processors.yftr_processor import YftrProcessor
             from processors.zggc_processor import ZggcProcessor
             from processors.ldrcg_processor import LdrcgProcessor
+            from processors.bjjs_processor import BjjsProcessor
             
             self.processors = {
                 "主要指标": ZyzbProcessor(),
                 "领导人介绍": LdrjsProcessor(),
                 "研发投入": YftrProcessor(),
                 "职工构成": ZggcProcessor(),
-                "领导人持股": LdrcgProcessor()
+                "领导人持股": LdrcgProcessor(),
+                "股东背景介绍": BjjsProcessor()
             }
             
             logger.info("处理器模块热重载完成")

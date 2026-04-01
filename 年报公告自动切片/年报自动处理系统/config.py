@@ -34,7 +34,7 @@ DOWNLOAD_CONFIG = {
     "url_template": "http://10.6.1.131/rfApi/file/downloadWithAppId/{hashcode}?appId=rc-as",
     "max_workers": 5,  # 最大并发下载线程数
     "retry_times": 3,  # 下载失败重试次数
-    "timeout": 60,     # 下载超时时间(秒)
+    "timeout": 30,     # 下载超时时间(秒)
     "chunk_size": 8192 # 下载块大小
 }
 
@@ -52,13 +52,28 @@ PROCESS_CONFIG = {
         "领导人介绍",
         "研发投入",
         "职工构成",
-        "领导人持股"
+        "领导人持股",
+        "股东背景介绍"
     ]
 }
 
 MODULE_NAMES = PROCESS_CONFIG["modules"]
 
 CUSTOM_OUTPUT_DIR_KEY = "custom_output_dir"
+
+def get_raw_dir(custom_dir: str = None) -> str:
+    """
+    获取原始公告存放目录
+    
+    Args:
+        custom_dir: 自定义输出根目录，如果为None则使用默认目录
+        
+    Returns:
+        str: raw目录路径
+    """
+    if custom_dir:
+        return os.path.join(custom_dir, "raw")
+    return os.path.join(REPORTS_DIR, "raw")
 
 def get_module_output_dir(module_name: str, custom_dir: str = None) -> str:
     """

@@ -11,8 +11,8 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Optional
 from datetime import datetime
 
-from config import DOWNLOAD_CONFIG, RAW_DIR
-from models import DownloadTask, DownloadStatus, Announcement
+from config import DOWNLOAD_CONFIG, get_raw_dir, MODULE_NAMES
+from models import DownloadTask, DownloadStatus, Announcement, ProcessStatus
 from database import db
 from queues import queue_manager
 from logger import logger
@@ -33,9 +33,11 @@ class Downloader:
         self._lock = threading.Lock()
         self._active_downloads = 0
         self._stop_event = threading.Event()
-        
-        # 确保下载目录存在
-        os.makedirs(RAW_DIR, exist_ok=True)
+    
+    def _get_raw_dir(self) -> str:
+        """获取当前raw目录（支持自定义输出目录）"""
+        custom_dir = db.get_system_status("custom_output_dir")
+        return get_raw_dir(custom_dir if custom_dir else None)
     
     def _get_filename(self, announcement: Announcement) -> str:
         """生成文件名"""
@@ -76,11 +78,11 @@ class Downloader:
         db.update_download_status(hashcode, DownloadStatus.DOWNLOADING)
         
         filename = self._get_filename(announcement)
-        file_path = os.path.join(RAW_DIR, filename)
+        raw_dir = self._get_raw_dir()
+        file_path = os.path.join(raw_dir, filename)
         
-        # 确保下载目录存在
         try:
-            os.makedirs(RAW_DIR, exist_ok=True)
+            os.makedirs(raw_dir, exist_ok=True)
         except Exception as e:
             error_msg = f"创建下载目录失败: {str(e)}"
             logger.error(f"下载异常 {hashcode}: {error_msg}")
@@ -142,7 +144,11 @@ class Downloader:
             announcement.download_status = DownloadStatus.SUCCESS
             announcement.download_time = datetime.now()
             
-            logger.info(f"下载成功: {file_path}")
+            # 为每个模块创建pending状态的记录
+            for module_name in MODULE_NAMES:
+                db.update_module_status(hashcode, module_name, ProcessStatus.PENDING)
+            
+            logger.info(f"下载成功: {filename}")
             return True
             
         except requests.exceptions.RequestException as e:

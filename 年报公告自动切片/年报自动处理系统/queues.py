@@ -133,8 +133,6 @@ class DownloadQueue(TaskQueue):
             task = DownloadTask(announcement=announcement)
             if self.put(task, block=False):
                 count += 1
-        if count > 0:
-            logger.info(f"批量添加 {count} 个下载任务")
         return count
 
 
