@@ -16,10 +16,13 @@ class BaseProcessor(ABC):
     """业务处理器基类"""
     
     MODULE_NAME: str = ""
+    SUB_MODULES: list = []
     
     def __init__(self):
         if not self.MODULE_NAME:
             raise ValueError("子类必须定义 MODULE_NAME")
+        self._current_hashcode = None
+        self._current_retry_count = 0
     
     @property
     def output_dir(self) -> str:
@@ -64,6 +67,18 @@ class BaseProcessor(ABC):
         base_name = os.path.splitext(os.path.basename(pdf_path))[0]
         return os.path.join(self.output_dir, f"{base_name}.pdf")
     
+    def update_sub_module_status(self, sub_module_name: str, status: ProcessStatus, error: str = None):
+        """更新子模块状态"""
+        if not self._current_hashcode:
+            return
+        db.update_module_status(
+            self._current_hashcode,
+            sub_module_name,
+            status,
+            error,
+            self._current_retry_count
+        )
+    
     def execute(self, task: ProcessTask) -> Tuple[bool, str, ProcessStatus]:
         """
         执行处理任务
@@ -73,6 +88,9 @@ class BaseProcessor(ABC):
         """
         hashcode = task.hashcode
         pdf_path = task.file_path
+        
+        self._current_hashcode = hashcode
+        self._current_retry_count = task.retry_count
         
         if self.check_already_processed(hashcode):
             logger.debug(f"{self.MODULE_NAME}: {hashcode} 已处理过,跳过")

@@ -33,7 +33,7 @@ client = OpenAI(
 )
 
 file_object1 = client.files.create(file=Path(
-    r"C:/Users/chenkk/Desktop/新建文件夹/600458-2026-03-28-时代新材-2025年年度报告.pdf"),
+    r"C:/Users/chenkk/Desktop/主要指标test/净资产收益率和每股收益/601607-2026-03-31-上海医药-上海医药2025年年度报告_mgsy.pdf"),
     purpose = "file-extract")
 #
 # file_object2 = client.files.create(file=Path(
@@ -52,12 +52,12 @@ completion1 = client.chat.completions.create(
         {
             "role": "system",
             "content": f"fileid://{file_object1.id}"},
-        {
-            "role": "user",
-            "content": f"{load_prompt_from_md1()}"},
         # {
         #     "role": "user",
-        #     "content": f"解析并提取公告里的内容，原样输出"},
+        #     "content": f"{load_prompt_from_md1()}"},
+        {
+            "role": "user",
+            "content": "请以markdown格式原样提取公告文本"},
     ],
     # response_format={"type": "json_object"},
     temperature=0.3,

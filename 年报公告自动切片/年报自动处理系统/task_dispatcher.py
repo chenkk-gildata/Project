@@ -27,6 +27,12 @@ from processors.bjjs_processor import BjjsProcessor
 class TaskDispatcher:
     """任务分发器"""
     
+    MODULE_SKIP_KEYWORDS = {
+        "股东背景介绍": ["更正", "更新", "修订", "修正", "2024", "2023", "2022", "2021"],
+        "研发投入": ["更正", "更新", "修订", "修正", "2024", "2023", "2022", "2021"],
+        "职工构成": ["更正", "更新", "修订", "修正", "2024", "2023", "2022", "2021"]
+    }
+    
     def __init__(self):
         self.max_workers = 8 # len(PROCESS_CONFIG["modules"])
         self._running = False
@@ -60,6 +66,29 @@ class TaskDispatcher:
         for file_path in glob.glob(pattern):
             if "__" not in file_path:
                 self._processor_files[file_path] = os.path.getmtime(file_path)
+    
+    def _should_skip_module(self, file_path: str, module_name: str) -> bool:
+        """
+        检查文件是否应该跳过指定模块的处理
+        
+        Args:
+            file_path: 文件路径
+            module_name: 模块名称
+            
+        Returns:
+            bool: True表示应该跳过，False表示不跳过
+        """
+        if module_name not in self.MODULE_SKIP_KEYWORDS:
+            return False
+        
+        file_name = os.path.basename(file_path)
+        skip_keywords = self.MODULE_SKIP_KEYWORDS[module_name]
+        
+        for keyword in skip_keywords:
+            if keyword in file_name:
+                return True
+        
+        return False
     
     def _check_files_changed(self) -> bool:
         """检查处理器文件是否有变化"""
@@ -163,6 +192,16 @@ class TaskDispatcher:
                     # 正在处理中的任务，不重复入队
                     if module_status == ProcessStatus.PROCESSING:
                         all_modules_finished = False
+                        continue
+
+                    # 检查文件名是否应该跳过该模块
+                    if self._should_skip_module(announcement.file_path, module_name):
+                        if module_status in (None, ProcessStatus.PENDING):
+                            db.update_module_status(
+                                announcement.hashcode, module_name,
+                                ProcessStatus.SKIPPED, 
+                                f"文件名包含跳过关键词"
+                            )
                         continue
 
                     # 待处理/失败/无状态，恢复入队

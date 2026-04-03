@@ -64,7 +64,7 @@ exe = EXE(
     a.zipfiles,
     a.datas,
     [],
-    name='主要指标年报AI比对系统 V1.2',
+    name='主要指标年报AI比对系统 V1.4',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,

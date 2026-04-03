@@ -124,7 +124,7 @@ class BjjsProcessor(BaseProcessor):
                 page = doc.load_page(page_num)
                 page_rect = page.rect
                 
-                if not end_info:
+                if not start_info:
                     result = collect_and_sort_instances(page, start_keyword, start_pattern, get_search_rect)
                     if result:
                         inst = result['inst']

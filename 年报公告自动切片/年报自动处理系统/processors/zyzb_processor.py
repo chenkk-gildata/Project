@@ -19,6 +19,9 @@ class ZyzbProcessor(BaseProcessor):
     """主要指标处理器"""
     
     MODULE_NAME = "主要指标"
+    SUB_MODULES = ["主要指标-补充"]
+    
+    SUB_MODULE_SUPPLEMENT = "主要指标-补充"
     
     def find_keywords(self, pdf_path: str) -> Dict:
         """查找主要指标关键词"""
@@ -176,7 +179,7 @@ class ZyzbProcessor(BaseProcessor):
         append_start_info = None
         append_end_info = None
         
-        append_start_pattern = re.compile(r'净资产收益率[及和]每股收益', re.IGNORECASE | re.MULTILINE)
+        append_start_pattern = re.compile(r'资产收益率[及和]每股收益', re.IGNORECASE | re.MULTILINE)
         append_start_keyword = ["每股收益"]
         append_end_pattern = re.compile(r'境内外会计准则下会计数据差异\s*$|资产收益率.*计算过程', re.IGNORECASE | re.MULTILINE)
         append_end_keywords = ["计算", "会计准则"]
@@ -389,6 +392,7 @@ class ZyzbProcessor(BaseProcessor):
     def process_pdf(self, pdf_path: str, keywords: Dict) -> Optional[str]:
         """处理主要指标PDF"""
         from PyPDF2 import PdfReader, PdfWriter
+        from models import ProcessStatus
         
         start_info = keywords.get('start')
         end_info = keywords.get('end')
@@ -400,33 +404,62 @@ class ZyzbProcessor(BaseProcessor):
         
         if not start_info and not end_info:
             logger.debug(f"主要指标未找到任何关键词,跳过处理: {os.path.basename(pdf_path)}")
+            self.update_sub_module_status(self.SUB_MODULE_SUPPLEMENT, ProcessStatus.NO_OUTPUT)
             return None
         
         if not start_info and end_info:
             logger.debug(f"主要指标只找到结束关键词: {os.path.basename(pdf_path)}")
             output_path = crop_page_before_keyword(pdf_path, end_info, self.output_dir, pre_pages=4)
-            if output_path and (append_start_info or append_end_info):
-                self._save_append_content_pdf(pdf_path, append_start_info, append_end_info)
+            
+            if append_start_info or append_end_info:
+                supplement_output = self._save_append_content_pdf(pdf_path, append_start_info, append_end_info)
+                if supplement_output:
+                    self.update_sub_module_status(self.SUB_MODULE_SUPPLEMENT, ProcessStatus.SUCCESS)
+                else:
+                    self.update_sub_module_status(self.SUB_MODULE_SUPPLEMENT, ProcessStatus.NO_OUTPUT)
+            else:
+                self.update_sub_module_status(self.SUB_MODULE_SUPPLEMENT, ProcessStatus.NO_OUTPUT)
             return output_path
 
         if start_info and not end_info:
             logger.debug(f"主要指标只找到开始关键词: {os.path.basename(pdf_path)}")
             output_path = crop_page_after_keyword(pdf_path, start_info, self.output_dir, post_pages=4)
-            if output_path and (append_start_info or append_end_info):
-                self._save_append_content_pdf(pdf_path, append_start_info, append_end_info)
+            
+            if append_start_info or append_end_info:
+                supplement_output = self._save_append_content_pdf(pdf_path, append_start_info, append_end_info)
+                if supplement_output:
+                    self.update_sub_module_status(self.SUB_MODULE_SUPPLEMENT, ProcessStatus.SUCCESS)
+                else:
+                    self.update_sub_module_status(self.SUB_MODULE_SUPPLEMENT, ProcessStatus.NO_OUTPUT)
+            else:
+                self.update_sub_module_status(self.SUB_MODULE_SUPPLEMENT, ProcessStatus.NO_OUTPUT)
             return output_path
 
         if start_info and end_info:
             if start_info['page_number'] > end_info['page_number']:
                 output_path = crop_page_before_keyword(pdf_path, end_info, self.output_dir, pre_pages=4)
-                if output_path and (append_start_info or append_end_info):
-                    self._save_append_content_pdf(pdf_path, append_start_info, append_end_info)
+                
+                if append_start_info or append_end_info:
+                    supplement_output = self._save_append_content_pdf(pdf_path, append_start_info, append_end_info)
+                    if supplement_output:
+                        self.update_sub_module_status(self.SUB_MODULE_SUPPLEMENT, ProcessStatus.SUCCESS)
+                    else:
+                        self.update_sub_module_status(self.SUB_MODULE_SUPPLEMENT, ProcessStatus.NO_OUTPUT)
+                else:
+                    self.update_sub_module_status(self.SUB_MODULE_SUPPLEMENT, ProcessStatus.NO_OUTPUT)
                 return output_path
 
             if start_info['page_number'] == end_info['page_number']:
                 output_path = crop_same_page(pdf_path, start_info, end_info, self.output_dir)
-                if output_path and (append_start_info or append_end_info):
-                    self._save_append_content_pdf(pdf_path, append_start_info, append_end_info)
+                
+                if append_start_info or append_end_info:
+                    supplement_output = self._save_append_content_pdf(pdf_path, append_start_info, append_end_info)
+                    if supplement_output:
+                        self.update_sub_module_status(self.SUB_MODULE_SUPPLEMENT, ProcessStatus.SUCCESS)
+                    else:
+                        self.update_sub_module_status(self.SUB_MODULE_SUPPLEMENT, ProcessStatus.NO_OUTPUT)
+                else:
+                    self.update_sub_module_status(self.SUB_MODULE_SUPPLEMENT, ProcessStatus.NO_OUTPUT)
                 return output_path
             
             # 情况4.3: 正常情况
@@ -582,7 +615,13 @@ class ZyzbProcessor(BaseProcessor):
                     writer.add_page(cropped_end_page)
 
                 if append_start_info or append_end_info:
-                    self._save_append_content_pdf(pdf_path, append_start_info, append_end_info)
+                    supplement_output = self._save_append_content_pdf(pdf_path, append_start_info, append_end_info)
+                    if supplement_output:
+                        self.update_sub_module_status(self.SUB_MODULE_SUPPLEMENT, ProcessStatus.SUCCESS)
+                    else:
+                        self.update_sub_module_status(self.SUB_MODULE_SUPPLEMENT, ProcessStatus.NO_OUTPUT)
+                else:
+                    self.update_sub_module_status(self.SUB_MODULE_SUPPLEMENT, ProcessStatus.NO_OUTPUT)
 
                 base_name = os.path.splitext(os.path.basename(pdf_path))[0]
                 os.makedirs(self.output_dir, exist_ok=True)

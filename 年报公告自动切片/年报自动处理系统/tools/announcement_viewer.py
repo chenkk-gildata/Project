@@ -11,6 +11,24 @@ import sqlite3
 from config import DB_PATH
 
 
+def _extract_title(title: str) -> str:
+    """
+    从标题中提取实际标题内容
+    
+    标题格式通常为"简称：标题"或"简称:标题"
+    以第一个":"或"："为分割，只返回后面的标题部分
+    """
+    if not title:
+        return "N/A"
+    
+    for sep in ['：', ':']:
+        idx = title.find(sep)
+        if idx != -1:
+            return title[idx + 1:].strip()
+    
+    return title
+
+
 def get_connection():
     if not os.path.exists(DB_PATH):
         print(f"数据库文件不存在: {DB_PATH}")
@@ -32,13 +50,13 @@ def _get_announcements_data(date_filter=""):
             SELECT gpdm, zqjc, publish_date, title, download_status, process_status 
             FROM announcements 
             WHERE fbsj LIKE ?
-            ORDER BY fbsj DESC
+            ORDER BY fbsj ASC
         """, (like_pattern,))
     else:
         cursor.execute("""
             SELECT gpdm, zqjc, publish_date, title, download_status, process_status 
             FROM announcements 
-            ORDER BY fbsj DESC
+            ORDER BY fbsj ASC
         """)
     
     rows = cursor.fetchall()
@@ -76,7 +94,7 @@ def _display_announcements_results(date_filter, rows):
             gpdm = row[0] or "N/A"
             zqjc = row[1] or "N/A"
             pub_date = row[2] or "N/A"
-            title = row[3] or "N/A"
+            title = _extract_title(row[3])
             dl_status = row[4] or "N/A"
             proc_status = row[5] or "N/A"
             table.add_row([idx, gpdm, zqjc, pub_date, title, dl_status, proc_status])

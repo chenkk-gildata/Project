@@ -157,9 +157,10 @@ class EnhancedDataProcessor:
         Returns:
             配对文件字典，结构为：
             {
-                "company_key": {
+                "unique_key": {  # 使用完整路径作为唯一键
                     "module1_file": Path,  # 模块一文件路径
-                    "module2_file": Path   # 模块二文件路径（可能为None）
+                    "module2_file": Path,  # 模块二文件路径（可能为None）
+                    "company_key": str     # 公司标识（用于数据库查询等）
                 }
             }
         """
@@ -176,14 +177,29 @@ class EnhancedDataProcessor:
         for m2_file in module2_files:
             key = self._get_company_key(m2_file.name)
             if key:
-                module2_map[key] = m2_file
+                if key not in module2_map:
+                    module2_map[key] = []
+                module2_map[key].append(m2_file)
+        
+        used_module2_files = set()
         
         for m1_file in module1_files:
-            key = self._get_company_key(m1_file.name)
-            if key:
-                paired_files[key] = {
+            company_key = self._get_company_key(m1_file.name)
+            if company_key:
+                unique_key = str(m1_file)
+                
+                module2_file = None
+                if company_key in module2_map:
+                    for m2_file in module2_map[company_key]:
+                        if str(m2_file) not in used_module2_files:
+                            module2_file = m2_file
+                            used_module2_files.add(str(m2_file))
+                            break
+                
+                paired_files[unique_key] = {
                     "module1_file": m1_file,
-                    "module2_file": module2_map.get(key)
+                    "module2_file": module2_file,
+                    "company_key": company_key
                 }
         
         logger.info(f"文件配对完成: 模块一文件 {len(module1_files)} 个, 模块二文件 {len(module2_files)} 个, 配对结果 {len(paired_files)} 组")
@@ -210,8 +226,8 @@ class EnhancedDataProcessor:
         处理单元从"单个文件"变为"公司文件对"
         """
         all_results = []
-        company_keys = list(paired_files.keys())
-        total_companies = len(company_keys)
+        unique_keys = list(paired_files.keys())
+        total_companies = len(unique_keys)
         
         upload_workers = 2
         process_workers = 16
@@ -229,11 +245,12 @@ class EnhancedDataProcessor:
         process_futures = {}
         
         upload_queue = []
-        for company_key in company_keys:
-            file_pair = paired_files[company_key]
-            upload_queue.append(("module1", company_key, file_pair["module1_file"]))
+        for unique_key in unique_keys:
+            file_pair = paired_files[unique_key]
+            company_key = file_pair.get("company_key", unique_key)
+            upload_queue.append(("module1", unique_key, company_key, file_pair["module1_file"]))
             if file_pair["module2_file"]:
-                upload_queue.append(("module2", company_key, file_pair["module2_file"]))
+                upload_queue.append(("module2", unique_key, company_key, file_pair["module2_file"]))
 
         upload_count = 0
         completed_count = 0
@@ -242,18 +259,18 @@ class EnhancedDataProcessor:
         upload_success_printed = set()
 
         print(f"任务流配置: {upload_workers}个上传线程, {process_workers}个处理线程")
-        print(f"共 {total_companies} 家公司待处理")
+        print(f"共 {total_companies} 个文件待处理")
 
         try:
             while upload_queue or upload_futures or process_futures:
                 while len(upload_futures) < upload_workers and upload_queue:
-                    module_type, company_key, pdf_file = upload_queue.pop(0)
+                    module_type, unique_key, company_key, pdf_file = upload_queue.pop(0)
                     
                     future = upload_executor.submit(
                         self._upload_single_file_with_timeout,
                         pdf_file
                     )
-                    upload_futures[future] = (module_type, company_key, pdf_file)
+                    upload_futures[future] = (module_type, unique_key, company_key, pdf_file)
                     logger.debug(f"提交上传任务: {module_type} - {pdf_file.name}")
 
                 if upload_futures:
@@ -265,53 +282,54 @@ class EnhancedDataProcessor:
                         pass
                     
                     for future in completed_uploads:
-                        module_type, company_key, pdf_file = upload_futures.pop(future)
+                        module_type, unique_key, company_key, pdf_file = upload_futures.pop(future)
 
                         try:
                             file_id = future.result()
 
                             if file_id:
-                                if company_key not in company_file_ids:
-                                    company_file_ids[company_key] = {}
-                                company_file_ids[company_key][module_type] = {
+                                if unique_key not in company_file_ids:
+                                    company_file_ids[unique_key] = {}
+                                company_file_ids[unique_key][module_type] = {
                                     "file_id": file_id,
                                     "filename": pdf_file.name,
                                     "file_path": pdf_file
                                 }
 
-                                file_pair = paired_files[company_key]
-                                has_module1 = "module1" in company_file_ids[company_key]
-                                has_module2 = "module2" in company_file_ids[company_key] or file_pair["module2_file"] is None
+                                file_pair = paired_files[unique_key]
+                                has_module1 = "module1" in company_file_ids[unique_key]
+                                has_module2 = "module2" in company_file_ids[unique_key] or file_pair["module2_file"] is None
                                 
-                                if has_module1 and has_module2 and company_key not in upload_success_printed:
-                                    upload_success_printed.add(company_key)
+                                if has_module1 and has_module2 and unique_key not in upload_success_printed:
+                                    upload_success_printed.add(unique_key)
                                     upload_count += 1
-                                    module1_filename = company_file_ids[company_key]["module1"]["filename"]
+                                    module1_filename = company_file_ids[unique_key]["module1"]["filename"]
                                     print(f"↑ 上传成功({upload_count}): {module1_filename}")
                                 
                                 if has_module1 and has_module2:
                                     process_future = process_executor.submit(
                                         self._process_and_cleanup_company_files,
+                                        unique_key,
                                         company_key,
-                                        company_file_ids[company_key],
+                                        company_file_ids[unique_key],
                                         file_pair
                                     )
-                                    process_futures[process_future] = company_key
-                                    logger.debug(f"提交处理任务: {company_key}")
+                                    process_futures[process_future] = unique_key
+                                    logger.debug(f"提交处理任务: {unique_key}")
                             else:
-                                if company_key not in failed_uploads:
-                                    failed_uploads[company_key] = []
-                                failed_uploads[company_key].append(module_type)
+                                if unique_key not in failed_uploads:
+                                    failed_uploads[unique_key] = []
+                                failed_uploads[unique_key].append(module_type)
                                 print(f"✗ 上传失败: {module_type} - {pdf_file.name}")
                                 
                                 if module_type == "module1":
-                                    print(f"✗ 公司 {company_key} 模块一上传失败，跳过该公司")
+                                    print(f"✗ 文件 {unique_key} 模块一上传失败，跳过该文件")
                                     completed_count += 1
 
                         except Exception as e:
-                            if company_key not in failed_uploads:
-                                failed_uploads[company_key] = []
-                            failed_uploads[company_key].append(module_type)
+                            if unique_key not in failed_uploads:
+                                failed_uploads[unique_key] = []
+                            failed_uploads[unique_key].append(module_type)
                             print(f"✗ 上传异常: {module_type} - {pdf_file.name} - {e}")
 
                 if process_futures:
@@ -323,7 +341,7 @@ class EnhancedDataProcessor:
                         pass
                     
                     for future in completed_processes:
-                        company_key = process_futures.pop(future)
+                        unique_key = process_futures.pop(future)
 
                         try:
                             result = future.result()
@@ -335,11 +353,11 @@ class EnhancedDataProcessor:
                                 status = "失败"
 
                             completed_count += 1
-                            print(f"{'✓' if result else '✗'} 处理{status}({completed_count}/{total_companies}): {company_key}")
+                            print(f"{'✓' if result else '✗'} 处理{status}({completed_count}/{total_companies}): {unique_key}")
 
                         except Exception as e:
                             completed_count += 1
-                            print(f"✗ 处理异常({completed_count}/{total_companies}): {company_key} - {e}")
+                            print(f"✗ 处理异常({completed_count}/{total_companies}): {unique_key} - {e}")
 
                 time.sleep(0.05)
 
@@ -370,14 +388,16 @@ class EnhancedDataProcessor:
 
         return all_results
 
-    def _process_and_cleanup_company_files(self, company_key: str, 
+    def _process_and_cleanup_company_files(self, unique_key: str,
+                                             company_key: str,
                                              file_ids: Dict[str, Dict],
                                              file_pair: Dict[str, Optional[Path]]) -> Optional[Dict[str, Any]]:
         """
         处理单家公司的模块一和模块二文件并清理资源
         
         Args:
-            company_key: 公司标识
+            unique_key: 唯一标识（文件名）
+            company_key: 公司标识（股票代码-发布日期）
             file_ids: 文件ID字典 {"module1": {...}, "module2": {...}}
             file_pair: 文件路径对
             
@@ -385,7 +405,7 @@ class EnhancedDataProcessor:
             处理结果
         """
         process_start_time = time.time()
-        logger.info(f"开始处理公司: {company_key}")
+        logger.info(f"开始处理: {unique_key}")
         result = None
 
         try:
@@ -393,14 +413,14 @@ class EnhancedDataProcessor:
 
             process_duration = time.time() - process_start_time
             if result:
-                file_only_logger.info(f"公司处理成功: {company_key} (耗时: {process_duration:.2f}秒)")
+                file_only_logger.info(f"处理成功: {unique_key} (耗时: {process_duration:.2f}秒)")
                 with self.lock:
                     if file_pair.get("module1_file"):
                         self.file_status[file_pair["module1_file"]] = "completed"
                     if file_pair.get("module2_file"):
                         self.file_status[file_pair["module2_file"]] = "completed"
             else:
-                logger.warning(f"公司处理失败: {company_key} (耗时: {process_duration:.2f}秒)")
+                logger.warning(f"处理失败: {unique_key} (耗时: {process_duration:.2f}秒)")
                 with self.lock:
                     if file_pair.get("module1_file"):
                         self.file_status[file_pair["module1_file"]] = "failed"
@@ -411,7 +431,7 @@ class EnhancedDataProcessor:
 
         except Exception as e:
             process_duration = time.time() - process_start_time
-            logger.error(f"处理公司异常: {company_key} (耗时: {process_duration:.2f}秒) - 错误: {str(e)}", exc_info=True)
+            logger.error(f"处理异常: {unique_key} (耗时: {process_duration:.2f}秒) - 错误: {str(e)}", exc_info=True)
             with self.lock:
                 if file_pair.get("module1_file"):
                     self.file_status[file_pair["module1_file"]] = "error"
@@ -775,19 +795,12 @@ class EnhancedDataProcessor:
         
         Args:
             ai_data: AI提取的数据（已预处理）
-            sql_data: SQL查询的数据
+            sql_data: SQL查询的数据（保持原始状态）
             
         Returns:
             格式化的比对结果字符串
         """
         error_messages = []
-
-        sql_data_processed = sql_data.copy()
-
-        for value_field, tbzz_field in self.VALUE_TBZZ_MAPPING.items():
-            sql_value = self._preprocess_value(sql_data.get(value_field, ""))
-            if sql_value == "" or sql_value is None:
-                sql_data_processed[tbzz_field] = ""
 
         fields_to_compare = [
             "YYZSR", "YYSR", "YYSRKCJE", "KCHYYSR", "JLRHJ", "JLR", "KCFJYXSYHDJLR",
@@ -800,7 +813,7 @@ class EnhancedDataProcessor:
 
         for field_name in fields_to_compare:
             ai_value = ai_data.get(field_name, "")
-            sql_value = sql_data_processed.get(field_name, "")
+            sql_value = sql_data.get(field_name, "")
 
             processed_sql_value = self._preprocess_value(sql_value)
 
@@ -1051,6 +1064,29 @@ class EnhancedDataProcessor:
         
         return merged
 
+    FIELD_NAME_CORRECTIONS = {
+        "KCPTGJJZCSYLJQ": "KCPTGJZCSYLJQ",
+        "PTGJJZCSYLJQ": "PTGJZCSYLJQ",
+        "KCHJLRJZCSYLJQQ": "KCHJLRJZCSYLJQ",
+        "JLRJZCSYLJQQ": "JLRJZCSYLJQ",
+    }
+
+    def _correct_field_names(self, record: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        纠正AI提取的字段名拼写错误
+        
+        Args:
+            record: 原始记录
+            
+        Returns:
+            纠正后的记录
+        """
+        corrected = {}
+        for key, value in record.items():
+            correct_key = self.FIELD_NAME_CORRECTIONS.get(key, key)
+            corrected[correct_key] = value
+        return corrected
+
     def _merge_extracted_data(self, module1_data: List[Dict[str, Any]], 
                                module2_data: Optional[List[Dict[str, Any]]]) -> List[Dict[str, Any]]:
         """
@@ -1069,9 +1105,10 @@ class EnhancedDataProcessor:
         
         module2_map = {}
         for record in module2_data:
-            jzrq = str(record.get("JZRQ", "")).strip()
+            corrected_record = self._correct_field_names(record)
+            jzrq = str(corrected_record.get("JZRQ", "")).strip()
             if jzrq:
-                module2_map[jzrq] = record
+                module2_map[jzrq] = corrected_record
         
         merged_data = []
         for record1 in module1_data:
@@ -1095,8 +1132,8 @@ class EnhancedDataProcessor:
             print(f"创建报告目录: {report_dir}")
 
         if not report_file:
-            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-            report_file = os.path.join(report_dir, f"主要指标年报比对报告_{timestamp}.xlsx")
+            session_id = get_session_id()
+            report_file = os.path.join(report_dir, f"主要指标年报比对报告_{session_id}.xlsx")
 
         try:
             # 创建Excel工作簿
@@ -1125,8 +1162,8 @@ class EnhancedDataProcessor:
         "JLRHJTBZZ": "净利润同比",
         "JLRTBZZ": "归母净利润同比",
         "KCFJYXSYHDJLRTBZZ": "扣非后净利润同比",
-        "PTGJLR": "普通股净利润",
-        "PTGJLRTBZZ": "普通股净利润同比",
+        "PTGJLR": "归属于普通股净利润",
+        "PTGJLRTBZZ": "归属于普通股净利润同比",
         "KCFJCXSYHPTGJLR": "扣非后普通股净利润",
         "KCFJCXSYHPTGJLRTBZZ": "扣非后普通股净利润同比",
         "JYXJLLJE": "经营现金流量金额",
@@ -1169,6 +1206,10 @@ class EnhancedDataProcessor:
 
         df = pd.DataFrame(comparison_data)
         df.to_excel(writer, sheet_name="比对结果", index=False)
+        
+        worksheet = writer.sheets["比对结果"]
+        worksheet.column_dimensions['C'].width = 12
+        worksheet.column_dimensions['D'].width = 12
 
     def _translate_comparison_result(self, result: str) -> str:
         """
@@ -1257,15 +1298,7 @@ def main():
                 # 生成报告
                 if results:
                     print("\n生成处理报告...")
-                    base_dir = get_base_path()
-                    report_dir = os.path.join(base_dir, "report")
-                    if not os.path.exists(report_dir):
-                        os.makedirs(report_dir)
-                        print(f"创建报告目录: {report_dir}")
-
-                    report_file = os.path.join(report_dir,
-                                               f"主要指标年报比对报告_{datetime.now().strftime('%Y%m%d_%H%M%S')}.xlsx")
-                    processor.generate_report(results, report_file)
+                    processor.generate_report(results)
 
                     # 记录程序执行结束时间和总耗时
                     program_end_time = datetime.now()
