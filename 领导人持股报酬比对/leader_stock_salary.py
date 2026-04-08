@@ -333,7 +333,8 @@ class LeaderStockSalaryProcessor:
         for keyword in ["离任", "前任", "前", "原"]:
             value = value.replace(keyword, "")
         value = value.replace("（", "(").replace("）", ")")
-        value = value.replace("兼", "、")
+        value = re.sub(r'\(.*?\)', '', value)
+        value = value.replace("兼", "、").replace("及", "、")
         value = value.replace("董秘", "董事会秘书")
         value = value.replace("高管", "高级管理人员")
         value = re.sub(r'副总(?!经理|裁|监)', '副总经理', value)
@@ -441,6 +442,14 @@ class LeaderStockSalaryProcessor:
                                     pass
                         elif field in ["从公司获得年度报酬总额", "补贴津贴"]:
                             value = value.replace(" ", "").replace(",", "").replace("，", "")
+                            if value:
+                                try:
+                                    num_value = float(value)
+                                    if num_value <= 1000:
+                                        num_value = num_value * 10000
+                                        value = str(int(num_value))
+                                except ValueError:
+                                    pass
                         else:
                             value = value.replace(" ", "")
                         processed_record[field] = value
@@ -620,12 +629,37 @@ class LeaderStockSalaryProcessor:
             print(f"解析文件名异常: {e}")
             return None, None
 
+    def _is_zero_value(self, value: Any) -> bool:
+        """判断值是否为零值（0或"0"）"""
+        if value is None:
+            return False
+        if isinstance(value, (int, float)):
+            return value == 0
+        str_value = str(value).strip()
+        if not str_value:
+            return False
+        try:
+            return float(str_value) == 0
+        except (ValueError, TypeError):
+            return False
+
+    def _is_empty_value(self, value: Any) -> bool:
+        """判断值是否为空值（None或空字符串）"""
+        if value is None:
+            return True
+        if isinstance(value, str):
+            return value.strip() == ""
+        return False
+
     def _compare_values(self, value1: Any, value2: Any) -> bool:
         """比较两个值是否相等"""
         try:
-            if not value1 and not value2:
+            if self._is_empty_value(value1) and self._is_empty_value(value2):
                 return True
-            if not value1 or not value2:
+            if self._is_empty_value(value1) or self._is_empty_value(value2):
+                return False
+
+            if self._is_zero_value(value1) != self._is_zero_value(value2):
                 return False
 
             str_value1 = str(value1).strip()
@@ -673,6 +707,26 @@ class LeaderStockSalaryProcessor:
         
         return results
 
+    def _is_salary_data_empty(self, salary_data: Optional[Dict[str, Any]]) -> bool:
+        """
+        判断报酬数据是否所有字段都为空值
+        
+        Args:
+            salary_data: 报酬数据字典
+            
+        Returns:
+            如果所有字段都为空值返回True，否则返回False
+        """
+        if not salary_data:
+            return True
+        
+        for field_name in SALARY_FIELDS_TO_COMPARE:
+            value = str(salary_data.get(field_name, "")).strip()
+            if value:
+                return False
+        
+        return True
+
     def _compare_salary_data(self, ai_salary_data: Optional[Dict[str, Any]],
                              sql_salary_data: Optional[Dict[str, Any]],
                              stock_code: str, publish_date: str) -> Optional[Dict[str, Any]]:
@@ -688,23 +742,31 @@ class LeaderStockSalaryProcessor:
         Returns:
             比对结果
         """
-        if not ai_salary_data and not sql_salary_data:
-            return None
+        ai_empty = self._is_salary_data_empty(ai_salary_data)
+        sql_empty = self._is_salary_data_empty(sql_salary_data)
         
-        if not sql_salary_data:
+        if ai_empty and sql_empty:
             return {
                 "GPDM": stock_code,
                 "XXFBRQ": publish_date,
                 "领导人姓名": "报酬比对",
-                "比对结果": "正式库无报酬数据"
+                "比对结果": "数据一致"
             }
         
-        if not ai_salary_data:
+        if ai_empty and not sql_empty:
             return {
                 "GPDM": stock_code,
                 "XXFBRQ": publish_date,
                 "领导人姓名": "报酬比对",
                 "比对结果": "AI无报酬数据"
+            }
+        
+        if not ai_empty and sql_empty:
+            return {
+                "GPDM": stock_code,
+                "XXFBRQ": publish_date,
+                "领导人姓名": "报酬比对",
+                "比对结果": "正式库无报酬数据"
             }
         
         error_messages = []
@@ -717,7 +779,7 @@ class LeaderStockSalaryProcessor:
             sql_processed = self._preprocess_value(sql_value)
             
             if not self._compare_values(ai_processed, sql_processed):
-                error_messages.append(f"{field_name}错误【正式库：{sql_value}，AI：{ai_value}】")
+                error_messages.append(f"{field_name}错误【正式库：{sql_value}；AI：{ai_value}】")
         
         comparison_result = "数据一致" if not error_messages else "\n".join(error_messages)
         
@@ -952,7 +1014,7 @@ class LeaderStockSalaryProcessor:
             print(f"创建报告目录: {report_dir}")
 
         if not report_file:
-            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            timestamp = get_session_id()
             report_file = os.path.join(report_dir, f"领导人持股报酬比对报告_{timestamp}.xlsx")
 
         try:
@@ -1148,7 +1210,7 @@ def main():
                         print(f"创建报告目录: {report_dir}")
 
                     report_file = os.path.join(report_dir,
-                                               f"领导人持股报酬比对报告_{datetime.now().strftime('%Y%m%d_%H%M%S')}.xlsx")
+                                               f"领导人持股报酬比对报告_{get_session_id()}.xlsx")
                     processor.generate_report(results, report_file)
 
                     program_end_time = datetime.now()

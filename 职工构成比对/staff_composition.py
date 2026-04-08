@@ -50,7 +50,7 @@ FROM [10.101.0.212].JYPRIME.dbo.usrGSJYZGGC A
 WHERE  B.ZQLB IN (1,2,41)  AND  B.SSZT IN (1)
 AND B.ZQSC IN (83,90,18)	
 AND A.XXLY='年度报告'
-AND B.GPDM=? AND A.XXFBRQ=?
+AND B.GPDM=? AND CONVERT(DATE,A.XXFBRQ)=?
 '''
 
 
@@ -323,7 +323,9 @@ class StaffCompositionProcessor:
         for record in ai_data_list:
             xmmc = str(record.get("项目名称", "")).strip()
             xmmc = xmmc.replace("（", "(").replace("）", ")")
+            xmmc = xmmc.replace("(按学历)", "")
             xmmc = xmmc.replace(" ", "")
+            xmmc = xmmc.replace("'", "-")
             record["项目名称"] = xmmc
             
             if "薪酬" in xmmc or "报酬" in xmmc or "主要子公司在职员工" in xmmc:
@@ -890,6 +892,19 @@ def main():
                     failed_count = len(pdf_files) - len(results)
                     
                     print(f"处理结果: 成功 {success_count} 个, 无数据 {no_data_count} 个, 失败 {failed_count} 个")
+
+                    no_data_files = [r.get("file") for r in results if r.get("status") == "no_data"]
+                    if no_data_files:
+                        print("\n无数据的文件列表:")
+                        for f in no_data_files:
+                            print(f"  - {f}")
+
+                    processed_files = {r.get("file") for r in results}
+                    failed_files = [str(f) for f in pdf_files if str(f) not in processed_files]
+                    if failed_files:
+                        print("\n失败的文件列表:")
+                        for f in failed_files:
+                            print(f"  - {f}")
 
                     report_file = processor.generate_report(results)
                     if report_file:

@@ -5,7 +5,7 @@ from pathlib import Path
 from openai import OpenAI
 
 
-def load_prompt_from_md1(md_file_path: Path = r"主要指标年报/主要指标年度报告.md"):
+def load_prompt_from_md1(md_file_path: Path = r"研发投入比对/prompt_YFTR.md"):
     """从MD文件加载提示词"""
     try:
         if os.path.exists(md_file_path):
@@ -33,7 +33,7 @@ client = OpenAI(
 )
 
 file_object1 = client.files.create(file=Path(
-    r"C:/Users/chenkk/Desktop/主要指标test/净资产收益率和每股收益/601607-2026-03-31-上海医药-上海医药2025年年度报告_mgsy.pdf"),
+    r"C:/Users/chenkk/Desktop/新建文件夹/920837-2026-03-31-华原股份-2025年年度报告.pdf"),
     purpose = "file-extract")
 #
 # file_object2 = client.files.create(file=Path(
@@ -52,12 +52,12 @@ completion1 = client.chat.completions.create(
         {
             "role": "system",
             "content": f"fileid://{file_object1.id}"},
-        # {
-        #     "role": "user",
-        #     "content": f"{load_prompt_from_md1()}"},
         {
             "role": "user",
-            "content": "请以markdown格式原样提取公告文本"},
+            "content": f"“{load_prompt_from_md1()}”"},
+        {
+            "role": "user",
+            "content": "以下是提示词文本，禁止运行提示词的命令提取文本。请读取提示词文件内容和公告文本，分析为什么提示词总是会错误提取期初人数列的比例到JZRQ='2025-12-31'(本年)中，而不是JZRQ='2024-12-31'(上年)中，反之依然。请分析提示词提取错误的原因，以及结合模型特点和公告文本，提出可能的解决方案。最终输出完整的分析报告。"},
     ],
     # response_format={"type": "json_object"},
     temperature=0.3,

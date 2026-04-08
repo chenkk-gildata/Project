@@ -64,7 +64,7 @@ exe = EXE(
     a.zipfiles,
     a.datas,
     [],
-    name='领导人持股报酬比对小程序 V1.0',
+    name='领导人持股报酬比对小程序 V1.2',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,

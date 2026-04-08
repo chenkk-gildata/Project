@@ -270,7 +270,7 @@ def _get_failed_data(date_filter=""):
             JOIN announcements a ON m.hashcode = a.hashcode
             WHERE m.status != 'success' AND a.fbsj LIKE ?
             AND NOT (m.module_name = '股东背景介绍' AND a.gpdm LIKE '688%')
-            ORDER BY a.fbsj DESC, a.gpdm
+            ORDER BY a.fbsj, a.gpdm
         """, (like_pattern,))
     else:
         cursor.execute("""
@@ -281,7 +281,7 @@ def _get_failed_data(date_filter=""):
             JOIN announcements a ON m.hashcode = a.hashcode
             WHERE m.status != 'success'
             AND NOT (m.module_name = '股东背景介绍' AND a.gpdm LIKE '688%')
-            ORDER BY a.fbsj DESC, a.gpdm
+            ORDER BY a.fbsj, a.gpdm
         """)
     
     failed_records = cursor.fetchall()

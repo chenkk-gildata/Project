@@ -22,7 +22,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='股东大会法律意见书比对工具 V1.2',
+    name='股东大会法律意见书比对工具 V1.3',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,

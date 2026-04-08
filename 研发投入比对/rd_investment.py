@@ -715,7 +715,7 @@ class RDInvestmentProcessor:
             print(f"创建报告目录: {report_dir}")
 
         if not report_file:
-            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            timestamp = get_session_id()
             report_file = os.path.join(report_dir, f"研发投入比对报告_{timestamp}.xlsx")
 
         try:
@@ -796,8 +796,8 @@ class RDInvestmentProcessor:
         wrap_alignment = Alignment(wrap_text=True, vertical='top')
         
         for idx, row in enumerate(dataframe_to_rows(df, index=False, header=False), start=2):
-            pdf_path = row[5] if len(row) > 5 else ""
-            comparison_result = row[4] if len(row) > 4 else ""
+            pdf_path = row[6] if len(row) > 6 else ""
+            comparison_result = row[5] if len(row) > 5 else ""
             
             if pdf_path:
                 cell = worksheet.cell(row=idx, column=1)
@@ -876,18 +876,15 @@ def main():
                             failed_files.append((file_path.name, status))
                 
                 print(f"成功处理: {success_count} 个文件")
-                print(f"无披露数据: {no_data_count} 个文件")
+
                 if no_data_files:
-                    for file_name in no_data_files[:5]:
+                    print(f"无披露数据: {no_data_count} 个文件")
+                    for file_name in no_data_files:
                         print(f"  - {file_name}")
-                    if len(no_data_files) > 5:
-                        print(f"  ... 还有 {len(no_data_files) - 5} 个文件无披露数据")
                 if failed_files:
                     print(f"处理失败: {len(failed_files)} 个文件")
-                    for file_name, status in failed_files[:5]:
+                    for file_name, status in failed_files:
                         print(f"  - {file_name}: {status}")
-                    if len(failed_files) > 5:
-                        print(f"  ... 还有 {len(failed_files) - 5} 个文件处理失败")
 
                 if results:
                     print("\n生成处理报告...")
@@ -898,7 +895,7 @@ def main():
                         print(f"创建报告目录: {report_dir}")
 
                     report_file = os.path.join(report_dir,
-                                               f"研发投入比对报告_{datetime.now().strftime('%Y%m%d_%H%M%S')}.xlsx")
+                                               f"研发投入比对报告_{get_session_id()}.xlsx")
                     processor.generate_report(results, report_file)
 
                     program_end_time = datetime.now()
