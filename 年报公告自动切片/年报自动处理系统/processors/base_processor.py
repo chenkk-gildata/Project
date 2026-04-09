@@ -68,16 +68,19 @@ class BaseProcessor(ABC):
         return os.path.join(self.output_dir, f"{base_name}.pdf")
     
     def update_sub_module_status(self, sub_module_name: str, status: ProcessStatus, error: str = None):
-        """更新子模块状态"""
+        """更新子模块状态（同步写入，确保数据一致性）"""
         if not self._current_hashcode:
             return
-        db.update_module_status(
+        success = db.update_module_status(
             self._current_hashcode,
             sub_module_name,
             status,
             error,
-            self._current_retry_count
+            self._current_retry_count,
+            sync=True
         )
+        if not success:
+            logger.error(f"更新子模块状态失败: {sub_module_name} - {status.value}")
     
     def execute(self, task: ProcessTask) -> Tuple[bool, str, ProcessStatus]:
         """

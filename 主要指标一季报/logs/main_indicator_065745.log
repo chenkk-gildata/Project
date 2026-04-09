@@ -1,0 +1,46 @@
+2026-04-09 06:57:45,746 - __main__ - INFO - 程序启动，会话ID: 065745
+2026-04-09 06:57:48,535 - __main__ - INFO - 用户选择: 完整流程
+2026-04-09 06:57:53,884 - __main__ - INFO - 用户选择的日期范围: 2026-04-08 ~ 2026-04-08
+2026-04-09 06:57:54,506 - downloader - INFO - 查询到 2 条公告记录
+2026-04-09 06:57:54,506 - __main__ - INFO - 查询到 2 条公告
+2026-04-09 06:57:54,507 - downloader - INFO - 创建下载文件夹: e:\Project\主要指标一季报\files\20260408_065745
+2026-04-09 06:57:54,507 - __main__ - INFO - 下载文件夹: e:\Project\主要指标一季报\files\20260408_065745
+2026-04-09 06:57:54,508 - downloader - INFO - 开始批量下载 2 个公告，使用 2 个并发线程
+2026-04-09 06:57:54,925 - downloader - INFO - 下载成功: 002072-2026-04-09-凯瑞德2026年一季度报告.PDF
+2026-04-09 06:57:55,041 - downloader - INFO - 下载成功: 688252-2026-04-09-天德钰深圳天德钰科技股份有限公司2026年第一季度报告.PDF
+2026-04-09 06:57:55,056 - __main__ - INFO - 下载完成! 成功: 2, 失败: 0
+2026-04-09 06:57:55,057 - __main__ - INFO - 找到 2 个PDF文件
+2026-04-09 06:57:55,058 - pdf_processor - INFO - 开始批量处理 2 个PDF文件，使用 2 个并发线程
+2026-04-09 06:57:55,081 - pdf_processor - INFO - 开始关键词和结束关键词在同一页，直接裁剪该页面
+2026-04-09 06:57:55,098 - pdf_processor - INFO - 已处理并保存到: e:\Project\主要指标一季报\files\20260408_065745\688252-2026-04-09-天德钰深圳天德钰科技股份有限公司2026年第一季度报告.PDF.temp
+2026-04-09 06:57:55,099 - pdf_processor - INFO - 已裁剪页面并保存到: e:\Project\主要指标一季报\files\20260408_065745\002072-2026-04-09-凯瑞德2026年一季度报告.PDF.temp
+2026-04-09 06:57:55,100 - pdf_processor - INFO - 处理成功: 688252-2026-04-09-天德钰深圳天德钰科技股份有限公司2026年第一季度报告.PDF
+2026-04-09 06:57:55,100 - pdf_processor - INFO - 处理成功: 002072-2026-04-09-凯瑞德2026年一季度报告.PDF
+2026-04-09 06:57:55,101 - __main__ - INFO - PDF处理完成! 成功: 2, 失败: 0
+2026-04-09 06:57:55,102 - __main__ - INFO - 找到 2 个处理后的PDF文件
+2026-04-09 06:57:55,102 - __main__ - INFO - 开始AI比对处理...
+2026-04-09 06:57:56,257 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-09 06:57:56,258 - ai_service_enhanced - INFO - 文件上传成功: e:\Project\主要指标一季报\files\20260408_065745\002072-2026-04-09-凯瑞德2026年一季度报告.PDF (文件ID: file-fe-9195056455c94872808d6a83)
+2026-04-09 06:57:56,258 - comparison_processor_file_only - INFO - 上传文件: 002072-2026-04-09-凯瑞德2026年一季度报告.PDF (大小: 0.13 MB, ID: file-fe-9195056455c94872808d6a83)
+2026-04-09 06:57:56,305 - comparison_processor - INFO - 开始处理文件: 002072-2026-04-09-凯瑞德2026年一季度报告.PDF (文件ID: file-fe-9195056455c94872808d6a83)
+2026-04-09 06:57:56,327 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-09 06:57:56,328 - ai_service_enhanced - INFO - 文件上传成功: e:\Project\主要指标一季报\files\20260408_065745\688252-2026-04-09-天德钰深圳天德钰科技股份有限公司2026年第一季度报告.PDF (文件ID: file-fe-5a5670f5eb774e0eaaccdca1)
+2026-04-09 06:57:56,328 - comparison_processor_file_only - INFO - 上传文件: 688252-2026-04-09-天德钰深圳天德钰科技股份有限公司2026年第一季度报告.PDF (大小: 0.12 MB, ID: file-fe-5a5670f5eb774e0eaaccdca1)
+2026-04-09 06:57:56,464 - comparison_processor - INFO - 开始处理文件: 688252-2026-04-09-天德钰深圳天德钰科技股份有限公司2026年第一季度报告.PDF (文件ID: file-fe-5a5670f5eb774e0eaaccdca1)
+2026-04-09 06:58:07,686 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-09 06:58:07,873 - comparison_processor_file_only - INFO - 找到数据: 688252 2026-04-09 (2条)
+2026-04-09 06:58:07,873 - comparison_processor - INFO - 处理成功: 688252-2026-04-09-天德钰深圳天德钰科技股份有限公司2026年第一季度报告.PDF
+2026-04-09 06:58:07,874 - comparison_processor_file_only - INFO - 文件处理成功: 688252-2026-04-09-天德钰深圳天德钰科技股份有限公司2026年第一季度报告.PDF (耗时: 11.41秒)
+2026-04-09 06:58:08,511 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-5a5670f5eb774e0eaaccdca1 "HTTP/1.1 200 OK"
+2026-04-09 06:58:11,087 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-09 06:58:11,168 - comparison_processor_file_only - INFO - 找到数据: 002072 2026-04-09 (2条)
+2026-04-09 06:58:11,168 - comparison_processor - INFO - 处理成功: 002072-2026-04-09-凯瑞德2026年一季度报告.PDF
+2026-04-09 06:58:11,168 - comparison_processor_file_only - INFO - 文件处理成功: 002072-2026-04-09-凯瑞德2026年一季度报告.PDF (耗时: 14.86秒)
+2026-04-09 06:58:12,067 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-9195056455c94872808d6a83 "HTTP/1.1 200 OK"
+2026-04-09 06:58:12,130 - comparison_processor - INFO - 开始关闭线程池...
+2026-04-09 06:58:12,130 - comparison_processor - INFO - 等待 0 个上传任务完成...
+2026-04-09 06:58:12,130 - comparison_processor - INFO - 等待 0 个处理任务完成...
+2026-04-09 06:58:12,152 - comparison_processor - INFO - 所有线程池已关闭
+2026-04-09 06:58:12,152 - __main__ - INFO - 比对处理完成! 共处理 2/2 个文件，耗时: 0:00:17.049610
+2026-04-09 06:58:12,269 - __main__ - INFO - 报告已生成: e:\Project\主要指标一季报\reports\主要指标一季报比对报告_065745.xlsx
+2026-04-09 06:58:12,270 - __main__ - INFO - 程序执行完成

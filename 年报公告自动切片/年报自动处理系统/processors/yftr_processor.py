@@ -25,7 +25,7 @@ class YftrProcessor(BaseProcessor):
         
         # 定义不同交易所的关键词模式
         if exchange_code == "szs":
-            start_pattern = re.compile(r'公司研发人员情况|^([\d][、.．]?)+\s*研发投入\s*$', re.IGNORECASE | re.MULTILINE)
+            start_pattern = re.compile(r'公司研发人员情况|^([\d三四五][、.．]?)+\s*研发投入\s*$', re.IGNORECASE | re.MULTILINE)
             end_pattern = re.compile(r'研发人员构成发生重大变化的原因及影响|([\d四五六][）)]?[、.．]?)+\s*现金流', re.IGNORECASE | re.MULTILINE)
             start_keyword = ["研发人员", "研发投入"]
             end_keyword = ["发生重大变化的原因", "现金流"]

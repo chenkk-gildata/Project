@@ -5,6 +5,7 @@ import logging
 import os
 from datetime import datetime
 from config import logging_config
+from path_utils import get_logs_dir
 
 _session_id = None
 
@@ -27,10 +28,7 @@ def get_session_id():
 
 def setup_logging():
     """设置日志配置"""
-    main_dir = os.path.dirname(os.path.abspath(__file__))
-    log_dir = os.path.join(main_dir, "logs")
-    if not os.path.exists(log_dir):
-        os.makedirs(log_dir)
+    log_dir = get_logs_dir()
 
     if logging_config.file_path:
         log_file = logging_config.file_path
@@ -68,10 +66,7 @@ def get_file_only_logger(name: str) -> logging.Logger:
 
     logger.setLevel(logging.DEBUG)
 
-    main_dir = os.path.dirname(os.path.abspath(__file__))
-    log_dir = os.path.join(main_dir, "logs")
-    if not os.path.exists(log_dir):
-        os.makedirs(log_dir)
+    log_dir = get_logs_dir()
 
     if logging_config.file_path:
         log_file = logging_config.file_path

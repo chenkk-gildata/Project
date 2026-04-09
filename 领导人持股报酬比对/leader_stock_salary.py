@@ -374,7 +374,7 @@ class LeaderStockSalaryProcessor:
 
     def _get_compare_key(self, name: str) -> str:
         """
-        获取用于比对的键（统一小写+去空格）
+        获取用于比对的键（统一小写+去除所有空格）
         
         Args:
             name: 姓名
@@ -382,7 +382,7 @@ class LeaderStockSalaryProcessor:
         Returns:
             比对用的键
         """
-        return self._preprocess_leader_name(name).lower()
+        return name.strip().replace("（", "(").replace("）", ")").replace(" ", "").lower()
 
     def _preprocess_ai_data(self, ai_data: Dict[str, Any]) -> Dict[str, Any]:
         """

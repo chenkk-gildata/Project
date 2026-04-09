@@ -15,6 +15,7 @@ from config import validate_config
 from database_manager import db_manager
 from ai_service_enhanced import enhanced_ai_service
 from logger_config import get_logger, get_file_only_logger, get_session_id
+from path_utils import get_prompt_path, get_logs_dir, get_reports_dir
 
 logger = get_logger(__name__)
 file_only_logger = get_file_only_logger(__name__)
@@ -30,7 +31,7 @@ SELECT A.ID,B.GPDM,CONVERT(DATE,A.XXFBRQ) XXFBRQ,CONVERT(DATE,A.JZRQ) JZRQ,
        A.JYXJLLJE,A.MGJYXJLLJE,A.ZCZE,A.GDQYHJ,A.GDQY,A.MGJZCPL
 FROM [10.101.0.212].JYPRIME.dbo.usrGSCWZYZB A JOIN [10.101.0.212].JYPRIME.dbo.usrZQZB B
     ON A.INBBM=B.INBBM AND B.ZQSC IN (18,83,90) AND B.ZQLB IN (1,2,41)
-WHERE A.XXLYBM IN (110104,120105) AND A.GGLB = 20 AND
+WHERE A.XXLYBM IN (110103,120104) AND A.GGLB = 20 AND
       B.GPDM = ? AND A.XXFBRQ = ?
 '''
 
@@ -192,7 +193,7 @@ class ComparisonProcessor:
         result = None
 
         try:
-            result = self.process_file_with_uploaded_id(file_id, filename)
+            result = self.process_file_with_uploaded_id(file_id, filename, str(pdf_file))
 
             process_duration = time.time() - process_start_time
             if result:
@@ -254,7 +255,7 @@ class ComparisonProcessor:
                 
                 time.sleep(1)
 
-    def process_file_with_uploaded_id(self, file_id: str, filename: str) -> Optional[Dict[str, Any]]:
+    def process_file_with_uploaded_id(self, file_id: str, filename: str, file_path: str = "") -> Optional[Dict[str, Any]]:
         """处理单个PDF文件 - 简化错误处理和恢复机制"""
         stock_code = None
         publish_date = None
@@ -288,10 +289,7 @@ class ComparisonProcessor:
             ai_datas = ai_data_results.get('extracted_data')
 
             try:
-                script_dir = os.path.dirname(os.path.abspath(__file__))
-                log_dir = os.path.join(script_dir, "logs")
-                if not os.path.exists(log_dir):
-                    os.makedirs(log_dir)
+                log_dir = get_logs_dir()
                 session_id = get_session_id()
                 with open(os.path.join(log_dir, f"ai_extraction_data_{session_id}.log"), "a", encoding="utf-8") as f:
                     f.write(f"\n=== {filename} ===\n")
@@ -308,6 +306,8 @@ class ComparisonProcessor:
             comparison_result = self._compare_data_with_keys(ai_datas, sql_data, stock_code, publish_date)
 
             result = {
+                "filename": filename,
+                "file_path": file_path,
                 "stock_code": stock_code,
                 "publish_date": publish_date,
                 "ai_datas": ai_datas,
@@ -388,14 +388,13 @@ class ComparisonProcessor:
     def _compare_data_with_keys(self, ai_datas: Union[Dict[str, Any], List[Dict[str, Any]]],
                                 sql_data: List[Dict[str, Any]],
                                 stock_code: str, publish_date: str) -> List[Dict[str, Any]]:
-        """使用股票代码、信息发布日期、截止日期和日期标志作为主键进行数据比对"""
+        """使用股票代码、信息发布日期、截止日期作为主键进行数据比对"""
         results = []
 
         ai_data_list = ai_datas if isinstance(ai_datas, list) else [ai_datas]
 
         if not sql_data:
             for ai_data in ai_data_list:
-                ai_date_flag = str(ai_data.get("RQBZ", "")).strip()
                 ai_date_jzrq = str(ai_data.get("JZRQ", "")).strip()
                 ai_data_mgjzc = str(ai_data.get("MGJZCPL", "")).strip()
                 ai_data_mgjyxjllje = str(ai_data.get("MGJYXJLLJE", "")).strip()
@@ -403,57 +402,52 @@ class ComparisonProcessor:
                     "股票代码": stock_code,
                     "信息发布日期": publish_date,
                     "截止日期": ai_date_jzrq,
-                    "日期标志": ai_date_flag,
                     "每股净资产": ai_data_mgjzc,
                     "每股经营活动现金流量净额": ai_data_mgjyxjllje,
                     "比对结果": "正式库无对应记录"
                 })
             return results
 
-        sql_data_by_flag_jzrq = {}
+        sql_data_by_jzrq = {}
         for record in sql_data:
-            sql_date_flag = str(record.get("RQBZ", "")).strip()
             sql_date_jzrq = str(record.get("JZRQ", "")).strip()
-            if (sql_date_flag, sql_date_jzrq) not in sql_data_by_flag_jzrq:
-                sql_data_by_flag_jzrq[(sql_date_flag, sql_date_jzrq)] = []
-            sql_data_by_flag_jzrq[(sql_date_flag, sql_date_jzrq)].append(record)
+            if sql_date_jzrq not in sql_data_by_jzrq:
+                sql_data_by_jzrq[sql_date_jzrq] = []
+            sql_data_by_jzrq[sql_date_jzrq].append(record)
 
         matched_sql_keys = set()
 
         for ai_data in ai_data_list:
-            ai_date_flag = str(ai_data.get("RQBZ", "")).strip()
             ai_date_jzrq = str(ai_data.get("JZRQ", "")).strip()
             ai_data_mgjzc = str(ai_data.get("MGJZCPL", "")).strip()
             ai_data_mgjyxjllje = str(ai_data.get("MGJYXJLLJE", "")).strip()
 
-            if (ai_date_flag, ai_date_jzrq) not in sql_data_by_flag_jzrq.keys():
+            if ai_date_jzrq not in sql_data_by_jzrq.keys():
                 results.append({
                     "股票代码": stock_code,
                     "信息发布日期": publish_date,
                     "截止日期": ai_date_jzrq,
-                    "日期标志": ai_date_flag,
                     "每股净资产": ai_data_mgjzc,
                     "每股经营活动现金流量净额": ai_data_mgjyxjllje,
                     "比对结果": "正式库无对应主键的记录"
                 })
             else:
-                matched_sql_keys.add((ai_date_flag, ai_date_jzrq))
+                matched_sql_keys.add(ai_date_jzrq)
 
-                for sql_record in sql_data_by_flag_jzrq[(ai_date_flag, ai_date_jzrq)]:
+                for sql_record in sql_data_by_jzrq[ai_date_jzrq]:
                     comparison_result = self._compare_fields_with_format(ai_data, sql_record)
 
                     results.append({
                         "股票代码": stock_code,
                         "信息发布日期": publish_date,
                         "截止日期": ai_date_jzrq,
-                        "日期标志": ai_date_flag,
                         "每股净资产": ai_data_mgjzc,
                         "每股经营活动现金流量净额": ai_data_mgjyxjllje,
                         "比对结果": comparison_result
                     })
 
-        for (sql_date_flag, sql_date_jzrq), sql_records in sql_data_by_flag_jzrq.items():
-            if (sql_date_flag, sql_date_jzrq) not in matched_sql_keys:
+        for sql_date_jzrq, sql_records in sql_data_by_jzrq.items():
+            if sql_date_jzrq not in matched_sql_keys:
                 for sql_record in sql_records:
                     sql_data_mgjzc = str(sql_record.get("MGJZCPL", "")).strip()
                     sql_data_mgjyxjllje = str(sql_record.get("MGJYXJLLJE", "")).strip()
@@ -461,7 +455,6 @@ class ComparisonProcessor:
                         "股票代码": stock_code,
                         "信息发布日期": publish_date,
                         "截止日期": sql_date_jzrq,
-                        "日期标志": sql_date_flag,
                         "每股净资产": sql_data_mgjzc,
                         "每股经营活动现金流量净额": sql_data_mgjyxjllje,
                         "比对结果": "AI无对应记录"
@@ -488,7 +481,7 @@ class ComparisonProcessor:
             processed_sql_value = self._preprocess_value(sql_value)
 
             if not self._compare_values(processed_ai_value, processed_sql_value):
-                error_messages.append(f"{field_name}错误【正式库：{sql_value}，AI：{ai_value}】")
+                error_messages.append(f"{field_name}【正式库：{sql_value}；AI：{ai_value}】")
 
         if not error_messages:
             return "数据一致"
@@ -533,8 +526,7 @@ class ComparisonProcessor:
     def load_prompt_from_md(self, md_file_path: str = "主要指标季度报告.md") -> str:
         """从MD文件加载提示词"""
         try:
-            script_dir = os.path.dirname(os.path.abspath(__file__))
-            abs_md_path = os.path.join(script_dir, md_file_path)
+            abs_md_path = get_prompt_path(md_file_path)
 
             if os.path.exists(abs_md_path):
                 with open(abs_md_path, 'r', encoding='utf-8') as f:
@@ -552,11 +544,7 @@ class ComparisonProcessor:
             print("没有可生成报告的数据")
             return ""
 
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        report_dir = os.path.join(script_dir, "reports")
-        if not os.path.exists(report_dir):
-            os.makedirs(report_dir)
-            print(f"创建报告目录: {report_dir}")
+        report_dir = get_reports_dir()
 
         if not report_file:
             session_id = get_session_id()
@@ -575,24 +563,48 @@ class ComparisonProcessor:
 
     def _create_comparison_sheet(self, results: List[Dict[str, Any]], writer: pd.ExcelWriter):
         """创建比对结果表"""
+        from openpyxl.styles import Font
+        
         comparison_data = []
+        file_info_list = []
 
         for result in results:
             comparison_results = result.get("comparison_result", [])
+            filename = result.get("filename", "")
+            file_path = result.get("file_path", "")
+            
+            base_name = os.path.splitext(filename)[0]
+            parts = base_name.split('-')
+            if len(parts) >= 5:
+                announcement_title = '-'.join(parts[4:])
+            else:
+                announcement_title = base_name
 
             if not comparison_results:
                 continue
 
             for comparison in comparison_results:
                 comparison_data.append({
+                    "公告标题": announcement_title,
                     "股票代码": comparison.get("股票代码", ""),
                     "信息发布日期": comparison.get("信息发布日期", ""),
                     "截止日期": comparison.get("截止日期", ""),
-                    "日期标志": comparison.get("日期标志", ""),
                     "每股净资产": comparison.get("每股净资产", ""),
                     "每股经营活动现金流量净额": comparison.get("每股经营活动现金流量净额", ""),
                     "比对结果": comparison.get("比对结果", "")
                 })
+                file_info_list.append((announcement_title, file_path))
 
         df = pd.DataFrame(comparison_data)
         df.to_excel(writer, sheet_name="比对结果", index=False)
+
+        worksheet = writer.sheets["比对结果"]
+        
+        worksheet.column_dimensions['C'].width = 12
+        worksheet.column_dimensions['D'].width = 12
+        
+        for idx, (announcement_title, file_path) in enumerate(file_info_list, start=2):
+            if file_path:
+                cell = worksheet.cell(row=idx, column=1)
+                cell.hyperlink = file_path
+                cell.font = Font(color="0563C1", underline="single")

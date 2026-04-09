@@ -289,6 +289,67 @@ class Database:
             return True
         return False
     
+    def fix_sub_module_consistency(self) -> int:
+        """修复子模块记录一致性（主模块有记录但子模块缺失的情况）
+        
+        Returns:
+            int: 修复的记录数
+        """
+        try:
+            with self._get_read_conn() as conn:
+                cursor = conn.cursor()
+                
+                cursor.execute("""
+                    SELECT m1.hashcode, m1.status, m1.process_time, m1.module_name
+                    FROM module_records m1
+                    WHERE m1.module_name = '主要指标'
+                    AND m1.status IN ('success', 'no_output')
+                    AND m1.hashcode NOT IN (
+                        SELECT m2.hashcode FROM module_records m2 
+                        WHERE m2.module_name = '主要指标-补充'
+                    )
+                """)
+                
+                missing_records = cursor.fetchall()
+                
+                if not missing_records:
+                    return 0
+                
+                fixed_count = 0
+                now = datetime.now().isoformat()
+                
+                for record in missing_records:
+                    hashcode = record[0]
+                    main_status = record[1]
+                    process_time = record[2]
+                    
+                    sub_status = 'success' if main_status == 'success' else 'no_output'
+                    
+                    sql = """
+                        INSERT INTO module_records (
+                            hashcode, module_name, status, process_time, 
+                            created_at, updated_at
+                        )
+                        VALUES (?, '主要指标-补充', ?, ?, ?, ?)
+                    """
+                    params = (hashcode, sub_status, process_time, now, now)
+                    
+                    success, result, _ = self._execute_write_sync(sql, params)
+                    if success:
+                        fixed_count += 1
+                        logger.info(f"修复子模块记录: {hashcode} -> 主要指标-补充 ({sub_status})")
+                    else:
+                        logger.error(f"修复子模块记录失败: {hashcode} -> {result}")
+                
+                if fixed_count > 0:
+                    logger.info(f"子模块一致性检查: 修复了 {fixed_count} 条缺失记录")
+                
+                return fixed_count
+                
+        except Exception as e:
+            logger.error(f"子模块一致性检查失败: {e}")
+            return 0
+    
     def save_announcement(self, announcement: Announcement) -> bool:
         """保存或更新公告记录"""
         data = announcement.to_db_dict()
@@ -444,9 +505,22 @@ class Database:
         module_name: str,
         status: ProcessStatus,
         error: Optional[str] = None,
-        retry_count: Optional[int] = None
+        retry_count: Optional[int] = None,
+        sync: bool = False
     ) -> bool:
-        """更新模块处理状态"""
+        """更新模块处理状态
+        
+        Args:
+            hashcode: 公告哈希值
+            module_name: 模块名称
+            status: 处理状态
+            error: 错误信息
+            retry_count: 重试次数
+            sync: 是否同步写入（默认异步，子模块建议使用同步）
+        
+        Returns:
+            bool: 写入是否成功
+        """
         now = datetime.now().isoformat()
         process_time = now if status == ProcessStatus.SUCCESS else None
         insert_retry_count = retry_count if retry_count is not None else 0
@@ -487,7 +561,13 @@ class Database:
             retry_count
         )
         
-        return self._execute_write(sql, params)
+        if sync:
+            success, result, rowcount = self._execute_write_sync(sql, params)
+            if not success:
+                logger.error(f"同步更新模块状态失败 {hashcode}/{module_name}: {result}")
+            return success
+        else:
+            return self._execute_write(sql, params)
     
     def get_module_status(self, hashcode: str, module_name: str) -> Optional[ProcessStatus]:
         """获取模块处理状态"""

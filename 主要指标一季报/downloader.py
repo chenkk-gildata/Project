@@ -13,6 +13,7 @@ from pathlib import Path
 
 from config import download_config
 from database_manager import db_manager
+from path_utils import get_files_dir
 
 logger = logging.getLogger(__name__)
 
@@ -28,20 +29,26 @@ class AnnouncementDownloader:
         self.failed_files = []
 
     def get_date_choice(self) -> Tuple[datetime, datetime]:
-        """获取用户选择的日期范围"""
+        """获取用户选择的日期范围，返回None表示返回上一级"""
         print("\n请选择下载方式:")
         print("1. 下载当天的公告")
         print("2. 自定义下载日期范围")
+        print("0. 返回上一级")
 
         while True:
-            choice = input("\n请输入选项 (1-2): ").strip()
+            choice = input("\n请输入选项 (0-2): ").strip()
             
-            if choice == "1":
+            if choice == "0":
+                return None, None
+            elif choice == "1":
                 today = datetime.now().date()
                 return today, today
             elif choice == "2":
                 while True:
-                    date_input = input("请输入日期范围 (格式: YYYY-MM-DD~YYYY-MM-DD 或 YYYY-MM-DD): ").strip()
+                    date_input = input("请输入日期范围 (格式: YYYY-MM-DD~YYYY-MM-DD 或 YYYY-MM-DD，输入0返回): ").strip()
+                    
+                    if date_input == "0":
+                        break
                     
                     if '~' in date_input:
                         try:
@@ -107,6 +114,8 @@ class AnnouncementDownloader:
           AND A.XXBT NOT LIKE '%延期%' AND A.XXBT NOT LIKE '%披露%' 
           AND A.XXBT NOT LIKE '%附件%' AND A.XXBT NOT LIKE '%审计%'
           AND A.XXBT NOT LIKE '%办法%' AND A.XXBT NOT LIKE '%H%'
+          AND A.XXBT NOT LIKE '%更正%' AND A.XXBT NOT LIKE '%修订%'
+          AND A.XXBT NOT LIKE '%更新%' AND A.XXBT NOT LIKE '%修正%'
           AND B.GPDM NOT LIKE '%X%'
         '''
         
@@ -120,11 +129,7 @@ class AnnouncementDownloader:
 
     def create_download_folder(self, start_date, end_date, session_id: str = None) -> str:
         """创建下载文件夹"""
-        main_dir = os.path.dirname(os.path.abspath(__file__))
-        files_dir = os.path.join(main_dir, "files")
-        
-        if not os.path.exists(files_dir):
-            os.makedirs(files_dir)
+        files_dir = get_files_dir()
         
         if session_id is None:
             timestamp = datetime.now().strftime('%H%M%S')

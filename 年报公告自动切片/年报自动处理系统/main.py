@@ -436,6 +436,9 @@ class Application:
         self._stop_event.clear()
         
         try:
+            # 修复子模块记录一致性
+            db.fix_sub_module_consistency()
+            
             # 启动监控器
             monitor.start()
             
