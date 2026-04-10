@@ -337,6 +337,7 @@ class LeaderStockSalaryProcessor:
         value = value.replace("兼", "、").replace("及", "、")
         value = value.replace("董秘", "董事会秘书")
         value = value.replace("高管", "高级管理人员")
+        value = value.replace("核心技术员", "核心技术人员")
         value = re.sub(r'副总(?!经理|裁|监)', '副总经理', value)
         return value
 

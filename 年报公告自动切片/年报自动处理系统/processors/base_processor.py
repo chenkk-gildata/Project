@@ -2,6 +2,7 @@
 处理器基类 - 年报公告自动处理系统
 """
 import os
+import threading
 import fitz
 from abc import ABC, abstractmethod
 from typing import Optional, Dict, Tuple
@@ -21,8 +22,23 @@ class BaseProcessor(ABC):
     def __init__(self):
         if not self.MODULE_NAME:
             raise ValueError("子类必须定义 MODULE_NAME")
-        self._current_hashcode = None
-        self._current_retry_count = 0
+        self._local = threading.local()
+    
+    @property
+    def _current_hashcode(self):
+        return getattr(self._local, 'hashcode', None)
+    
+    @_current_hashcode.setter
+    def _current_hashcode(self, value):
+        self._local.hashcode = value
+    
+    @property
+    def _current_retry_count(self):
+        return getattr(self._local, 'retry_count', 0)
+    
+    @_current_retry_count.setter
+    def _current_retry_count(self, value):
+        self._local.retry_count = value
     
     @property
     def output_dir(self) -> str:

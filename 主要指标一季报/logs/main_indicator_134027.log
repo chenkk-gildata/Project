@@ -1,0 +1,42 @@
+2026-04-10 13:40:27,789 - __main__ - INFO - 程序启动，会话ID: 134027
+2026-04-10 13:40:30,064 - __main__ - INFO - 用户选择: 完整流程
+2026-04-10 13:40:35,632 - __main__ - INFO - 用户选择的日期范围: 2026-04-09 ~ 2026-04-09
+2026-04-10 13:40:35,934 - downloader - INFO - 查询到 4 条公告记录
+2026-04-10 13:40:35,935 - __main__ - INFO - 查询到 4 条公告
+2026-04-10 13:40:35,936 - downloader - INFO - 创建下载文件夹: e:\Project\主要指标一季报\files\20260409_134027
+2026-04-10 13:40:35,936 - __main__ - INFO - 下载文件夹: e:\Project\主要指标一季报\files\20260409_134027
+2026-04-10 13:40:35,936 - downloader - INFO - 开始批量下载 4 个公告，使用 3 个并发线程
+2026-04-10 13:40:36,292 - downloader - INFO - 下载成功: 603588-2026-04-10-高能环境高能环境2026年第一季度报告.PDF
+2026-04-10 13:40:36,349 - downloader - INFO - 下载成功: 300610-2026-04-10-晨化股份2026年一季度报告.PDF
+2026-04-10 13:40:36,378 - downloader - INFO - 下载成功: 300442-2026-04-10-润泽科技2026年一季度报告.PDF
+2026-04-10 13:40:36,487 - downloader - INFO - 下载成功: 002865-2026-04-10-钧达股份2026年一季度报告.PDF
+2026-04-10 13:40:36,506 - __main__ - INFO - 下载完成! 成功: 4, 失败: 0
+2026-04-10 13:40:36,507 - __main__ - INFO - 找到 4 个PDF文件
+2026-04-10 13:40:36,508 - pdf_processor - INFO - 开始批量处理 4 个PDF文件，使用 4 个并发线程
+2026-04-10 13:40:36,669 - pdf_processor - INFO - 已处理并保存到: e:\Project\主要指标一季报\files\20260409_134027\300442-2026-04-10-润泽科技2026年一季度报告.PDF.temp
+2026-04-10 13:40:36,670 - pdf_processor - INFO - 已处理并保存到: e:\Project\主要指标一季报\files\20260409_134027\603588-2026-04-10-高能环境高能环境2026年第一季度报告.PDF.temp
+2026-04-10 13:40:36,671 - pdf_processor - ERROR - 处理文件异常 300442-2026-04-10-润泽科技2026年一季度报告.PDF: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: 'e:\\Project\\主要指标一季报\\files\\20260409_134027\\300442-2026-04-10-润泽科技2026年一季度报告.PDF'
+2026-04-10 13:40:36,672 - pdf_processor - INFO - 已处理并保存到: e:\Project\主要指标一季报\files\20260409_134027\300610-2026-04-10-晨化股份2026年一季度报告.PDF.temp
+2026-04-10 13:40:36,672 - pdf_processor - ERROR - 处理文件异常 603588-2026-04-10-高能环境高能环境2026年第一季度报告.PDF: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: 'e:\\Project\\主要指标一季报\\files\\20260409_134027\\603588-2026-04-10-高能环境高能环境2026年第一季度报告.PDF'
+2026-04-10 13:40:36,672 - pdf_processor - INFO - 已处理并保存到: e:\Project\主要指标一季报\files\20260409_134027\002865-2026-04-10-钧达股份2026年一季度报告.PDF.temp
+2026-04-10 13:40:36,673 - pdf_processor - ERROR - 处理文件异常 300610-2026-04-10-晨化股份2026年一季度报告.PDF: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: 'e:\\Project\\主要指标一季报\\files\\20260409_134027\\300610-2026-04-10-晨化股份2026年一季度报告.PDF'
+2026-04-10 13:40:36,673 - pdf_processor - ERROR - 处理文件异常 002865-2026-04-10-钧达股份2026年一季度报告.PDF: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: 'e:\\Project\\主要指标一季报\\files\\20260409_134027\\002865-2026-04-10-钧达股份2026年一季度报告.PDF'
+2026-04-10 13:40:36,676 - __main__ - INFO - PDF处理完成! 成功: 0, 失败: 4
+2026-04-10 13:40:36,676 - __main__ - INFO - 找到 4 个处理后的PDF文件
+2026-04-10 13:40:36,677 - __main__ - INFO - 开始AI比对处理...
+2026-04-10 13:40:38,633 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-10 13:40:38,639 - ai_service_enhanced - INFO - 文件上传成功: e:\Project\主要指标一季报\files\20260409_134027\002865-2026-04-10-钧达股份2026年一季度报告.PDF (文件ID: file-fe-6d986d44f9154be1a73c0107)
+2026-04-10 13:40:38,639 - comparison_processor_file_only - INFO - 上传文件: 002865-2026-04-10-钧达股份2026年一季度报告.PDF (大小: 0.17 MB, ID: file-fe-6d986d44f9154be1a73c0107)
+2026-04-10 13:40:38,681 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-10 13:40:38,682 - ai_service_enhanced - INFO - 文件上传成功: e:\Project\主要指标一季报\files\20260409_134027\300442-2026-04-10-润泽科技2026年一季度报告.PDF (文件ID: file-fe-6273903671ce4d6f8c59e777)
+2026-04-10 13:40:38,682 - comparison_processor_file_only - INFO - 上传文件: 300442-2026-04-10-润泽科技2026年一季度报告.PDF (大小: 0.20 MB, ID: file-fe-6273903671ce4d6f8c59e777)
+2026-04-10 13:40:38,683 - comparison_processor - INFO - 开始处理文件: 002865-2026-04-10-钧达股份2026年一季度报告.PDF (文件ID: file-fe-6d986d44f9154be1a73c0107)
+2026-04-10 13:40:38,684 - comparison_processor - INFO - 开始处理文件: 300442-2026-04-10-润泽科技2026年一季度报告.PDF (文件ID: file-fe-6273903671ce4d6f8c59e777)
+2026-04-10 13:40:40,115 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-10 13:40:40,116 - ai_service_enhanced - INFO - 文件上传成功: e:\Project\主要指标一季报\files\20260409_134027\300610-2026-04-10-晨化股份2026年一季度报告.PDF (文件ID: file-fe-f9402ccf9fba4898840669f8)
+2026-04-10 13:40:40,116 - comparison_processor_file_only - INFO - 上传文件: 300610-2026-04-10-晨化股份2026年一季度报告.PDF (大小: 0.43 MB, ID: file-fe-f9402ccf9fba4898840669f8)
+2026-04-10 13:40:40,117 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-10 13:40:40,118 - ai_service_enhanced - INFO - 文件上传成功: e:\Project\主要指标一季报\files\20260409_134027\603588-2026-04-10-高能环境高能环境2026年第一季度报告.PDF (文件ID: file-fe-3e8e5e3c85c148928d4e83ee)
+2026-04-10 13:40:40,118 - comparison_processor_file_only - INFO - 上传文件: 603588-2026-04-10-高能环境高能环境2026年第一季度报告.PDF (大小: 0.15 MB, ID: file-fe-3e8e5e3c85c148928d4e83ee)
+2026-04-10 13:40:40,153 - comparison_processor - INFO - 开始处理文件: 300610-2026-04-10-晨化股份2026年一季度报告.PDF (文件ID: file-fe-f9402ccf9fba4898840669f8)
+2026-04-10 13:40:40,154 - comparison_processor - INFO - 开始处理文件: 603588-2026-04-10-高能环境高能环境2026年第一季度报告.PDF (文件ID: file-fe-3e8e5e3c85c148928d4e83ee)

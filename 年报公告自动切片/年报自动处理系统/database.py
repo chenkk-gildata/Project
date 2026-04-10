@@ -438,6 +438,53 @@ class Database:
             logger.error(f"获取待处理列表失败: {e}")
             return []
     
+    def get_incomplete_module_announcements(self, module_names: list, limit: int = 100) -> List[Announcement]:
+        """获取下载成功且整体处理成功，但某些模块缺少处理记录的公告
+        
+        这种情况发生在：模块配置新增后，旧公告已标记为process_status=success，
+        但新模块没有对应的module_records记录。
+        
+        Args:
+            module_names: 需要检查的模块名称列表
+            limit: 最大返回数量
+            
+        Returns:
+            List[Announcement]: 缺少模块记录的公告列表
+        """
+        try:
+            with self._get_read_conn() as conn:
+                cursor = conn.cursor()
+                
+                cursor.execute("""
+                    SELECT a.*, 
+                           COUNT(DISTINCT m.module_name) as completed_module_count
+                    FROM announcements a
+                    LEFT JOIN module_records m ON a.hashcode = m.hashcode
+                        AND m.module_name IN ({placeholders})
+                        AND m.status IN ('success', 'no_output', 'skipped')
+                    WHERE a.download_status = 'success'
+                    AND a.process_status = 'success'
+                    AND a.file_path IS NOT NULL
+                    GROUP BY a.hashcode
+                    HAVING completed_module_count < ?
+                    ORDER BY a.download_time DESC
+                    LIMIT ?
+                """.format(placeholders=','.join(['?' for _ in module_names])),
+                    module_names + [len(module_names), limit])
+                
+                rows = cursor.fetchall()
+                result = []
+                for row in rows:
+                    data = dict(row)
+                    data.pop('completed_module_count', None)
+                    announcement = Announcement.from_db_dict(data)
+                    result.append(announcement)
+                
+                return result
+        except Exception as e:
+            logger.error(f"获取缺失模块记录的公告失败: {e}")
+            return []
+    
     def update_download_status(
         self, 
         hashcode: str, 

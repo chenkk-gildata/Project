@@ -158,9 +158,8 @@ class TaskDispatcher:
                 if self._no_recovery_consecutive == 0:
                     logger.info("没有需要恢复的处理任务")
                 self._no_recovery_consecutive += 1
-                return
-            
-            self._no_recovery_consecutive = 0
+            else:
+                self._no_recovery_consecutive = 0
             
             process_queue = queue_manager.get_process_queue()
             recovered_announcements = 0
@@ -185,16 +184,13 @@ class TaskDispatcher:
                 for module_name in PROCESS_CONFIG["modules"]:
                     module_status = db.get_module_status(announcement.hashcode, module_name)
 
-                    # 终态: 不再入队
                     if module_status in (ProcessStatus.SUCCESS, ProcessStatus.NO_OUTPUT, ProcessStatus.SKIPPED):
                         continue
 
-                    # 正在处理中的任务，不重复入队
                     if module_status == ProcessStatus.PROCESSING:
                         all_modules_finished = False
                         continue
 
-                    # 检查文件名是否应该跳过该模块
                     if self._should_skip_module(announcement.file_path, module_name):
                         if module_status in (None, ProcessStatus.PENDING):
                             db.update_module_status(
@@ -204,7 +200,6 @@ class TaskDispatcher:
                             )
                         continue
 
-                    # 待处理/失败/无状态，恢复入队
                     all_modules_finished = False
                     announcement_has_recoverable = True
                     task = ProcessTask(
@@ -229,8 +224,62 @@ class TaskDispatcher:
             if skipped_all_success > 0:
                 logger.info(f"更新 {skipped_all_success} 个所有模块已完成的公告状态")
             
+            self._recover_incomplete_module_announcements()
+            
         except Exception as e:
             logger.error(f"恢复待处理任务时出错: {e}")
+    
+    def _recover_incomplete_module_announcements(self):
+        """恢复整体处理成功但缺少某些模块记录的公告（模块配置新增的场景）"""
+        try:
+            incomplete_announcements = db.get_incomplete_module_announcements(
+                PROCESS_CONFIG["modules"], limit=200
+            )
+            
+            if not incomplete_announcements:
+                return
+            
+            process_queue = queue_manager.get_process_queue()
+            recovered_announcements = 0
+            recovered_modules = 0
+            
+            for announcement in incomplete_announcements:
+                if not announcement.file_path or not os.path.exists(announcement.file_path):
+                    continue
+                
+                for module_name in PROCESS_CONFIG["modules"]:
+                    module_status = db.get_module_status(announcement.hashcode, module_name)
+                    
+                    if module_status in (ProcessStatus.SUCCESS, ProcessStatus.NO_OUTPUT, ProcessStatus.SKIPPED):
+                        continue
+                    
+                    if module_status == ProcessStatus.PROCESSING:
+                        continue
+                    
+                    if self._should_skip_module(announcement.file_path, module_name):
+                        if module_status in (None, ProcessStatus.PENDING):
+                            db.update_module_status(
+                                announcement.hashcode, module_name,
+                                ProcessStatus.SKIPPED,
+                                f"文件名包含跳过关键词"
+                            )
+                        continue
+                    
+                    task = ProcessTask(
+                        hashcode=announcement.hashcode,
+                        file_path=announcement.file_path,
+                        module_name=module_name
+                    )
+                    if process_queue.put(task, block=False):
+                        recovered_modules += 1
+                
+                recovered_announcements += 1
+            
+            if recovered_announcements > 0:
+                logger.info(f"恢复了 {recovered_announcements} 个缺失模块记录的公告，共 {recovered_modules} 个模块任务")
+            
+        except Exception as e:
+            logger.error(f"恢复缺失模块记录的公告时出错: {e}")
     
     def _check_and_update_announcement_status(self, hashcode: str):
         """检查公告的所有模块处理状态，如果全部完成则更新公告整体状态并输出汇总信息"""
@@ -338,8 +387,10 @@ class TaskDispatcher:
         self._recover_pending_tasks()
         
         last_recovery_time = time.time()
+        last_consistency_check_time = time.time()
         last_check_time = time.time()
         recovery_interval = 300
+        consistency_check_interval = 1800
         check_interval = 10
         
         with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
@@ -359,6 +410,10 @@ class TaskDispatcher:
                     if current_time - last_recovery_time > recovery_interval:
                         self._recover_pending_tasks()
                         last_recovery_time = current_time
+                    
+                    if current_time - last_consistency_check_time > consistency_check_interval:
+                        db.fix_sub_module_consistency()
+                        last_consistency_check_time = current_time
                     
                     if current_time - last_check_time >= check_interval:
                         with self._lock:
