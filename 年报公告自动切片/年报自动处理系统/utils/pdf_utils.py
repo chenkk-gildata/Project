@@ -33,6 +33,76 @@ def is_bse_pdf(pdf_path: str) -> bool:
     return get_exchange_code(pdf_path) == "bjs"
 
 
+def crop_page_with_rotation(page, keyword_info, crop_type='top'):
+    """
+    根据页面旋转角度裁剪页面
+    
+    参数:
+        page: PyPDF2页面对象
+        keyword_info: 关键词信息字典
+        crop_type: 裁剪类型
+            - 'top': 保留关键词及上方内容（裁剪下方）
+            - 'bottom': 保留关键词及下方内容（裁剪上方）
+    
+    返回:
+        裁剪后的页面对象
+    """
+    page_rotation = page.rotation
+    page_width, page_height = keyword_info['page_dimensions']
+    min_x, min_y, max_x, max_y = keyword_info['keyword_box']
+    
+    if crop_type == 'top':
+        if page_rotation == 90:
+            page.cropbox.lower_left = (0, 0)
+            page.cropbox.upper_right = (max_x, page_width)
+        else:
+            pydf2_min_y = page_height - max_y
+            page.cropbox.lower_left = (0, pydf2_min_y)
+            page.cropbox.upper_right = (page_width, page_height)
+    elif crop_type == 'bottom':
+        if page_rotation == 90:
+            page.cropbox.lower_left = (min_x, 0)
+            page.cropbox.upper_right = (page_height, page_width)
+        else:
+            pydf2_max_y = page_height - min_y
+            page.cropbox.lower_left = (0, 0)
+            page.cropbox.upper_right = (page_width, pydf2_max_y)
+    
+    return page
+
+
+def crop_page_between_keywords(page, top_keyword_info, bottom_keyword_info):
+    """
+    裁剪页面，保留两个关键词之间的内容
+    
+    参数:
+        page: PyPDF2页面对象
+        top_keyword_info: 上方关键词信息（保留其下方）
+        bottom_keyword_info: 下方关键词信息（保留其上方）
+    
+    返回:
+        裁剪后的页面对象
+    """
+    page_rotation = page.rotation
+    page_width, page_height = top_keyword_info['page_dimensions']
+    
+    _, top_min_y, _, _ = top_keyword_info['keyword_box']
+    _, _, _, bottom_max_y = bottom_keyword_info['keyword_box']
+    
+    if page_rotation == 90:
+        top_min_x = top_keyword_info['keyword_box'][0]
+        bottom_max_x = bottom_keyword_info['keyword_box'][2]
+        page.cropbox.lower_left = (top_min_x, 0)
+        page.cropbox.upper_right = (bottom_max_x, page_width)
+    else:
+        pydf2_max_y = page_height - top_min_y
+        pydf2_min_y = page_height - bottom_max_y
+        page.cropbox.lower_left = (0, pydf2_min_y)
+        page.cropbox.upper_right = (page_width, pydf2_max_y)
+    
+    return page
+
+
 def crop_page_before_keyword(pdf_path: str, keyword_info: dict, output_dir: str,
                              pre_pages: int = 5) -> str:
     """

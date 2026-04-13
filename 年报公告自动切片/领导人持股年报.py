@@ -81,7 +81,7 @@ def find_keywords(pdf_path):
     remove_start_info = None
     remove_end_info = None
     
-    search_ranges = [(15, 50), (45, 70), (65, 120)]
+    search_ranges = [(30, 50), (45, 70), (65, 120)]
 
     def get_search_rect(page, inst, keyword_type):
         """根据关键词类型和页面旋转角度智能调整搜索区域"""
@@ -220,14 +220,23 @@ def crop_page_before_keyword(pdf_path, keyword_info, output_dir):
 
         reader = PdfReader(pdf_path)
         page = reader.pages[keyword_info['page_number'] - 1]
+        
+        page_rotation = page.rotation
         page_width, page_height = keyword_info['page_dimensions']
         min_x, min_y, max_x, max_y = keyword_info['keyword_box']
 
-        pydf2_min_y = page_height - max_y
+        if page_rotation == 90:
+            pydf2_min_y = page_height - max_x
+        else:
+            pydf2_min_y = page_height - max_y
 
         cropped_page = page
-        cropped_page.cropbox.lower_left = (0, pydf2_min_y)
-        cropped_page.cropbox.upper_right = (page_width, page_height)
+        if page_rotation == 90:
+            cropped_page.cropbox.lower_left = (0, 0)
+            cropped_page.cropbox.upper_right = (max_x, page_width)
+        else:
+            cropped_page.cropbox.lower_left = (0, pydf2_min_y)
+            cropped_page.cropbox.upper_right = (page_width, page_height)
 
         writer = PdfWriter()
 
@@ -257,14 +266,20 @@ def crop_page_after_keyword(pdf_path, keyword_info, output_dir, pagenum=4):
 
         reader = PdfReader(pdf_path)
         page = reader.pages[keyword_info['page_number'] - 1]
+        
+        page_rotation = page.rotation
         page_width, page_height = keyword_info['page_dimensions']
         min_x, min_y, max_x, max_y = keyword_info['keyword_box']
 
         pydf2_max_y = page_height - min_y
 
         cropped_page = page
-        cropped_page.cropbox.lower_left = (0, 0)
-        cropped_page.cropbox.upper_right = (page_width, pydf2_max_y)
+        if page_rotation == 90:
+            cropped_page.cropbox.lower_left = (min_x, 0)
+            cropped_page.cropbox.upper_right = (page_height, page_width)
+        else:
+            cropped_page.cropbox.lower_left = (0, 0)
+            cropped_page.cropbox.upper_right = (page_width, pydf2_max_y)
 
         writer = PdfWriter()
         writer.add_page(cropped_page)
@@ -299,12 +314,22 @@ def crop_same_page(pdf_path, start_info, end_info, output_dir):
         start_min_x, start_min_y, start_max_x, start_max_y = start_info['keyword_box']
         end_min_x, end_min_y, end_max_x, end_max_y = end_info['keyword_box']
 
-        start_pydf2_max_y = page_height - start_min_y
-        end_pydf2_min_y = page_height - end_max_y
+        page_rotation = page.get('/Rotate', 0)
+        
+        if page_rotation == 90:
+            start_pydf2_min_x = start_min_x
+            end_pydf2_max_x = end_max_x
+            
+            cropped_page = page
+            cropped_page.cropbox.lower_left = (end_pydf2_max_x, 0)
+            cropped_page.cropbox.upper_right = (start_pydf2_min_x, page_height)
+        else:
+            start_pydf2_max_y = page_height - start_min_y
+            end_pydf2_min_y = page_height - end_max_y
 
-        cropped_page = page
-        cropped_page.cropbox.lower_left = (0, end_pydf2_min_y)
-        cropped_page.cropbox.upper_right = (page_width, start_pydf2_max_y)
+            cropped_page = page
+            cropped_page.cropbox.lower_left = (0, end_pydf2_min_y)
+            cropped_page.cropbox.upper_right = (page_width, start_pydf2_max_y)
 
         writer = PdfWriter()
         writer.add_page(cropped_page)
@@ -320,6 +345,77 @@ def crop_same_page(pdf_path, start_info, end_info, output_dir):
     except Exception as e:
         print(f"裁剪页面时出错: {str(e)}")
         return None
+
+
+def crop_page_with_rotation(page, keyword_info, crop_type='top'):
+    """
+    根据页面旋转角度裁剪页面
+    
+    参数:
+        page: PyPDF2页面对象
+        keyword_info: 关键词信息字典
+        crop_type: 裁剪类型
+            - 'top': 保留关键词及上方内容（裁剪下方）
+            - 'bottom': 保留关键词及下方内容（裁剪上方）
+            - 'middle': 保留两个关键词之间的内容
+    
+    返回:
+        裁剪后的页面对象
+    """
+    page_rotation = page.rotation
+    page_width, page_height = keyword_info['page_dimensions']
+    min_x, min_y, max_x, max_y = keyword_info['keyword_box']
+    
+    if crop_type == 'top':
+        if page_rotation == 90:
+            page.cropbox.lower_left = (0, 0)
+            page.cropbox.upper_right = (max_x, page_width)
+        else:
+            pydf2_min_y = page_height - max_y
+            page.cropbox.lower_left = (0, pydf2_min_y)
+            page.cropbox.upper_right = (page_width, page_height)
+    elif crop_type == 'bottom':
+        if page_rotation == 90:
+            page.cropbox.lower_left = (min_x, 0)
+            page.cropbox.upper_right = (page_height, page_width)
+        else:
+            pydf2_max_y = page_height - min_y
+            page.cropbox.lower_left = (0, 0)
+            page.cropbox.upper_right = (page_width, pydf2_max_y)
+    
+    return page
+
+
+def crop_page_between_keywords(page, top_keyword_info, bottom_keyword_info):
+    """
+    裁剪页面，保留两个关键词之间的内容
+    
+    参数:
+        page: PyPDF2页面对象
+        top_keyword_info: 上方关键词信息（保留其下方）
+        bottom_keyword_info: 下方关键词信息（保留其上方）
+    
+    返回:
+        裁剪后的页面对象
+    """
+    page_rotation = page.rotation
+    page_width, page_height = top_keyword_info['page_dimensions']
+    
+    _, top_min_y, _, _ = top_keyword_info['keyword_box']
+    _, _, _, bottom_max_y = bottom_keyword_info['keyword_box']
+    
+    if page_rotation == 90:
+        top_min_x = top_keyword_info['keyword_box'][0]
+        bottom_max_x = bottom_keyword_info['keyword_box'][2]
+        page.cropbox.lower_left = (top_min_x, 0)
+        page.cropbox.upper_right = (bottom_max_x, page_width)
+    else:
+        pydf2_max_y = page_height - top_min_y
+        pydf2_min_y = page_height - bottom_max_y
+        page.cropbox.lower_left = (0, pydf2_min_y)
+        page.cropbox.upper_right = (page_width, pydf2_max_y)
+    
+    return page
 
 
 def process_pdf(pdf_path, keywords, output_dir):
@@ -361,25 +457,12 @@ def process_pdf(pdf_path, keywords, output_dir):
                     min_x, min_y, max_x, max_y = start_info['keyword_box']
                     
                     if page_num == start_info['page_number'] - 1 and page_num != remove_start_info['page_number'] - 1:
-                        pydf2_max_y = page_height - min_y
-
-                        cropped_start_page = page
-                        cropped_start_page.cropbox.lower_left = (0, 0)
-                        cropped_start_page.cropbox.upper_right = (page_width, pydf2_max_y)
-
+                        cropped_start_page = crop_page_with_rotation(page, start_info, 'bottom')
                         writer.add_page(cropped_start_page)
                         continue
 
                     if page_num + 1 == start_info['page_number'] == remove_start_info['page_number']:
-                        rs_min_x, rs_min_y, rs_max_x, rs_max_y = remove_start_info['keyword_box']
-
-                        pydf2_max_y = page_height - min_y
-                        pydf2_min_y = page_height - rs_max_y
-
-                        cropped_start_page = page
-                        cropped_start_page.cropbox.lower_left = (0, pydf2_min_y)
-                        cropped_start_page.cropbox.upper_right = (page_width, pydf2_max_y)
-
+                        cropped_start_page = crop_page_between_keywords(page, start_info, remove_start_info)
                         writer.add_page(cropped_start_page)
                         continue
 
@@ -387,65 +470,33 @@ def process_pdf(pdf_path, keywords, output_dir):
                             remove_start_info['page_number'] <= page_num + 1 <= remove_end_info['page_number']):
                         
                         if page_num + 1 == remove_start_info['page_number'] and page_num + 1 != start_info['page_number']:
-                            page_width, page_height = remove_start_info['page_dimensions']
-                            rs_min_x, rs_min_y, rs_max_x, rs_max_y = remove_start_info['keyword_box']
-                            re_min_x, re_min_y, re_max_x, re_max_y = remove_end_info['keyword_box']
-
-                            pydf2_min_y = page_height - rs_max_y
-                            pydf2_max_y = page_height - re_min_y
+                            page_rotation = page.rotation
                             
-                            cropped_page = page
-
                             if page_num + 1 == remove_end_info['page_number']:
-                                cropped_page.cropbox.lower_left = (0, pydf2_min_y)
-                                cropped_page.cropbox.upper_right = (page_width, page_height)
+                                cropped_page = crop_page_with_rotation(page, remove_start_info, 'top')
                                 writer.add_page(cropped_page)
                                 
-                                cropped_page2 = page
-                                cropped_page2.cropbox.lower_left = (0, 0)
-                                cropped_page2.cropbox.upper_right = (page_width, pydf2_max_y)
+                                cropped_page2 = crop_page_with_rotation(page, remove_end_info, 'bottom')
                                 writer.add_page(cropped_page2)
                                 continue
-                            
                             else:
-                                cropped_page.cropbox.lower_left = (0, pydf2_min_y)
-                                cropped_page.cropbox.upper_right = (page_width, page_height)
-                                
+                                cropped_page = crop_page_with_rotation(page, remove_start_info, 'top')
                                 writer.add_page(cropped_page)
                             
                         elif page_num + 1 == remove_end_info['page_number']:
-                            page_width, page_height = remove_end_info['page_dimensions']
-                            remove_min_x, remove_min_y, remove_max_x, remove_max_y = remove_end_info['keyword_box']
-                            min_x, min_y, max_x, max_y = end_info['keyword_box']
-
-                            pydf2_max_y = page_height - max_y
-                            pydf2_min_y = page_height - remove_min_y
-
-                            cropped_page = page
-
                             if page_num + 1 == end_info['page_number']:
-                                cropped_page.cropbox.lower_left = (0, pydf2_max_y)
-                                cropped_page.cropbox.upper_right = (page_width, pydf2_min_y)
+                                cropped_page = crop_page_between_keywords(page, remove_end_info, end_info)
                                 writer.add_page(cropped_page)
                                 break
                             else:
-                                cropped_page.cropbox.lower_left = (0, 0)
-                                cropped_page.cropbox.upper_right = (page_width, pydf2_min_y)
+                                cropped_page = crop_page_with_rotation(page, remove_end_info, 'bottom')
                                 writer.add_page(cropped_page)
                         
                         else:
                             continue
 
                     elif page_num + 1 == end_info['page_number']:
-                        page_width, page_height = end_info['page_dimensions']
-                        min_x, min_y, max_x, max_y = end_info['keyword_box']
-
-                        pydf2_max_y = page_height - max_y
-
-                        cropped_page = page
-                        cropped_page.cropbox.lower_left = (0, pydf2_max_y)
-                        cropped_page.cropbox.upper_right = (page_width, page_height)
-
+                        cropped_page = crop_page_with_rotation(page, end_info, 'top')
                         writer.add_page(cropped_page)
 
                     else:

@@ -429,7 +429,8 @@ class LeaderStockSalaryProcessor:
                         if field == "职位描述":
                             value = self._preprocess_position(value)
                         elif field == "变动原因说明":
-                            if value in ("不适用", "-", "—", "/", "无", "不涉及", "无变化"):
+                            value = value.strip().replace(" ", "").replace("（", "(").replace("）", ")").replace("；", ";").replace("：", ":").replace("，", ",")
+                            if value in ("不适用", "-", "--", "—", "——", "/", "无", "不涉及", "无变化", "无变动"):
                                 value = ""
                             else:
                                 value = value.replace(" ", "")
@@ -780,7 +781,7 @@ class LeaderStockSalaryProcessor:
             sql_processed = self._preprocess_value(sql_value)
             
             if not self._compare_values(ai_processed, sql_processed):
-                error_messages.append(f"{field_name}错误【正式库：{sql_value}；AI：{ai_value}】")
+                error_messages.append(f"{field_name}【正式库：{sql_value}；AI：{ai_value}】")
         
         comparison_result = "数据一致" if not error_messages else "\n".join(error_messages)
         
@@ -901,13 +902,21 @@ class LeaderStockSalaryProcessor:
 
             if field_name == "职位描述":
                 if not self._compare_position_values(str(ai_value), str(sql_value)):
-                    error_messages.append(f"{field_name}错误【正式库：{sql_value}，AI：{ai_value}】")
+                    error_messages.append(f"{field_name}【正式库：{sql_value}；AI：{ai_value}】")
+            elif field_name == "补贴津贴":
+                if self._is_empty_value(ai_value) and not self._is_empty_value(sql_value):
+                    pass
+                else:
+                    processed_ai_value = self._preprocess_value(ai_value)
+                    processed_sql_value = self._preprocess_value(sql_value)
+                    if not self._compare_values(processed_ai_value, processed_sql_value):
+                        error_messages.append(f"{field_name}【正式库：{sql_value}；AI：{ai_value}】")
             else:
                 processed_ai_value = self._preprocess_value(ai_value)
                 processed_sql_value = self._preprocess_value(sql_value)
 
                 if not self._compare_values(processed_ai_value, processed_sql_value):
-                    error_messages.append(f"{field_name}错误【正式库：{sql_value}，AI：{ai_value}】")
+                    error_messages.append(f"{field_name}【正式库：{sql_value}；AI：{ai_value}】")
 
         if not error_messages:
             return "数据一致"

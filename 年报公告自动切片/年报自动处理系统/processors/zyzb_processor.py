@@ -10,7 +10,7 @@ from typing import Dict, Optional
 from processors.base_processor import BaseProcessor
 from utils.pdf_utils import (
     is_bse_pdf, crop_page_before_keyword, crop_page_after_keyword,
-    crop_same_page
+    crop_same_page, crop_page_with_rotation, crop_page_between_keywords
 )
 from logger import logger
 
@@ -29,13 +29,13 @@ class ZyzbProcessor(BaseProcessor):
         
         if is_bse:
             # 北交所关键词
-            start_pattern = re.compile(r'第三节\s*会计数据和财务指标', re.IGNORECASE | re.MULTILINE)
+            start_pattern = re.compile(r'第三节\s*会计数据和财务指标\s*$', re.IGNORECASE | re.MULTILINE)
             end_pattern = re.compile(r'补充财务指标', re.IGNORECASE | re.MULTILINE)
             remove_start_pattern = re.compile(r'业绩快报.*财务数据差异', re.IGNORECASE | re.MULTILINE)
             remove_end_pattern = re.compile(r'非经常性损益项目和金额', re.IGNORECASE | re.MULTILINE)
         else:
             # 沪深关键词
-            start_pattern = re.compile(r'(?:近三年)?主要(?:会计|财务|财务会计)数据[及和与]?(?:财务指标)?', re.IGNORECASE | re.MULTILINE)
+            start_pattern = re.compile(r'(?:近三年)?主要(?:会计|财务|财务会计)数据[及和与]?(?:财务指标)?\s*$', re.IGNORECASE | re.MULTILINE)
             end_pattern = re.compile(r'第?[一二三四五六七八九十]?[节章]?[、.．]?\s*(?:其他符合非经常性损益定义的损益项目的具体情况|《公开发行证券的公司信息披露解释性公告.*非经常性损益》|董事会报告)', re.IGNORECASE | re.MULTILINE)
             remove_start_pattern = None
             remove_end_pattern = None
@@ -250,11 +250,7 @@ class ZyzbProcessor(BaseProcessor):
             for i in range(start_page - 1, end_page):
                 page = reader.pages[i]
                 if i == end_page - 1:
-                    page_width, page_height = append_end_info['page_dimensions']
-                    _, _, _, max_y = append_end_info['keyword_box']
-                    pydf2_max_y = page_height - max_y
-                    page.cropbox.lower_left = (0, pydf2_max_y)
-                    page.cropbox.upper_right = (page_width, page_height)
+                    page = crop_page_with_rotation(page, append_end_info, 'top')
                 append_pages.append(page)
         
         elif append_start_info and not append_end_info:
@@ -263,11 +259,7 @@ class ZyzbProcessor(BaseProcessor):
             for i in range(start_page - 1, end_page):
                 page = reader.pages[i]
                 if i == start_page - 1:
-                    page_width, page_height = append_start_info['page_dimensions']
-                    _, min_y, _, _ = append_start_info['keyword_box']
-                    pydf2_max_y = page_height - min_y
-                    page.cropbox.lower_left = (0, 0)
-                    page.cropbox.upper_right = (page_width, pydf2_max_y)
+                    page = crop_page_with_rotation(page, append_start_info, 'bottom')
                 append_pages.append(page)
         
         elif append_start_info and append_end_info:
@@ -280,15 +272,7 @@ class ZyzbProcessor(BaseProcessor):
             
             elif start_page == end_page:
                 page = reader.pages[start_page - 1]
-                page_width, page_height = append_start_info['page_dimensions']
-                _, start_min_y, _, _ = append_start_info['keyword_box']
-                _, _, _, end_max_y = append_end_info['keyword_box']
-                
-                pydf2_start_max_y = page_height - start_min_y
-                pydf2_end_max_y = page_height - end_max_y
-                
-                page.cropbox.lower_left = (0, pydf2_end_max_y)
-                page.cropbox.upper_right = (page_width, pydf2_start_max_y)
+                page = crop_page_between_keywords(page, append_start_info, append_end_info)
                 append_pages.append(page)
             
             else:
@@ -296,18 +280,10 @@ class ZyzbProcessor(BaseProcessor):
                     page = reader.pages[i]
                     
                     if i == start_page - 1:
-                        page_width, page_height = append_start_info['page_dimensions']
-                        _, min_y, _, _ = append_start_info['keyword_box']
-                        pydf2_max_y = page_height - min_y
-                        page.cropbox.lower_left = (0, 0)
-                        page.cropbox.upper_right = (page_width, pydf2_max_y)
+                        page = crop_page_with_rotation(page, append_start_info, 'bottom')
                     
                     elif i == end_page - 1:
-                        page_width, page_height = append_end_info['page_dimensions']
-                        _, _, _, max_y = append_end_info['keyword_box']
-                        pydf2_max_y = page_height - max_y
-                        page.cropbox.lower_left = (0, pydf2_max_y)
-                        page.cropbox.upper_right = (page_width, page_height)
+                        page = crop_page_with_rotation(page, append_end_info, 'top')
                     
                     append_pages.append(page)
         
@@ -475,18 +451,7 @@ class ZyzbProcessor(BaseProcessor):
 
                         # 处理开始关键词页的裁剪
                         if page_num == start_info['page_number'] - 1 and page_num != remove_start_info['page_number'] - 1:
-                            page_width, page_height = start_info['page_dimensions']
-                            min_x, min_y, max_x, max_y = start_info['keyword_box']
-
-                            # 转换y坐标
-                            pydf2_max_y = page_height - min_y
-
-                            # 创建裁剪后的页面
-                            cropped_start_page = page
-                            cropped_start_page.cropbox.lower_left = (0, 0)
-                            cropped_start_page.cropbox.upper_right = (page_width, pydf2_max_y)
-
-                            # 添加裁剪后的开始关键词页
+                            cropped_start_page = crop_page_with_rotation(page, start_info, 'bottom')
                             writer.add_page(cropped_start_page)
                             continue
 
@@ -495,62 +460,31 @@ class ZyzbProcessor(BaseProcessor):
                                 remove_start_info['page_number'] <= page_num + 1 <= remove_end_info['page_number']):
                             
                             # 如果是移除开始页，只保留移除开始关键词之前的内容
-                            if page_num + 1 == remove_start_info['page_number']:
-                                page_width, page_height = remove_start_info['page_dimensions']
-                                rs_min_x, rs_min_y, rs_max_x, rs_max_y = remove_start_info['keyword_box']
-                                re_min_x, re_min_y, re_max_x, re_max_y = remove_end_info['keyword_box']
-
-                                # 转换y坐标
-                                pydf2_min_y = page_height - rs_max_y
-                                pydf2_max_y = page_height - re_min_y
+                            if page_num + 1 == remove_start_info['page_number'] and page_num + 1 != start_info['page_number']:
+                                page_rotation = page.rotation
                                 
-                                # 创建裁剪后的页面
-                                cropped_page = page
-
                                 # 如果移除开始页和移除结束页在同一页，保留移除开始关键词之前和移除结束关键词之后的内容
                                 if page_num + 1 == remove_end_info['page_number']:
-                                    # 移除开始关键词之前的内容
-                                    cropped_page.cropbox.lower_left = (0, pydf2_min_y)
-                                    cropped_page.cropbox.upper_right = (page_width, page_height)
+                                    cropped_page = crop_page_with_rotation(page, remove_start_info, 'top')
                                     writer.add_page(cropped_page)
                                     
-                                    # 移除移除结束关键词之后的内容
-                                    cropped_page2 = page
-                                    cropped_page2.cropbox.lower_left = (0, 0)
-                                    cropped_page2.cropbox.upper_right = (page_width, pydf2_max_y)
+                                    cropped_page2 = crop_page_with_rotation(page, remove_end_info, 'bottom')
                                     writer.add_page(cropped_page2)
                                     continue
-                                
                                 else:
-                                    cropped_page.cropbox.lower_left = (0, pydf2_min_y)
-                                    cropped_page.cropbox.upper_right = (page_width, page_height)
-                                    
+                                    cropped_page = crop_page_with_rotation(page, remove_start_info, 'top')
                                     writer.add_page(cropped_page)
-                                
+                            
                             # 如果是移除结束页，判断是否和结束关键词一页
                             elif page_num + 1 == remove_end_info['page_number']:
-                                page_width, page_height = remove_end_info['page_dimensions']
-                                remove_min_x, remove_min_y, remove_max_x, remove_max_y = remove_end_info['keyword_box']
-                                min_x, min_y, max_x, max_y = end_info['keyword_box']
-
-                                # 转换y坐标
-                                pydf2_max_y = page_height - max_y
-                                pydf2_min_y = page_height - remove_min_y
-
-                                # 创建裁剪后的页面
-                                cropped_page = page
-
                                 # 和结束关键词一页，保留移除结束关键词之后和结束关键词之前的内容
                                 if page_num + 1 == end_info['page_number']:
-                                    cropped_page.cropbox.lower_left = (0, pydf2_max_y)
-                                    cropped_page.cropbox.upper_right = (page_width, pydf2_min_y)
+                                    cropped_page = crop_page_between_keywords(page, remove_end_info, end_info)
                                     writer.add_page(cropped_page)
                                     break
                                 # 不和结束关键词是一页，只保留结束关键词之后的内容
                                 else:
-                                    # 创建裁剪后的页面
-                                    cropped_page.cropbox.lower_left = (0, 0)
-                                    cropped_page.cropbox.upper_right = (page_width, pydf2_min_y)
+                                    cropped_page = crop_page_with_rotation(page, remove_end_info, 'bottom')
                                     writer.add_page(cropped_page)
                             
                             # 如果是移除区域中间的页面，完全跳过
@@ -559,18 +493,7 @@ class ZyzbProcessor(BaseProcessor):
 
                         # 结束关键词页，只保留结束关键词之前的内容
                         elif page_num + 1 == end_info['page_number']:
-                            page_width, page_height = end_info['page_dimensions']
-                            min_x, min_y, max_x, max_y = end_info['keyword_box']
-
-                            # 转换y坐标
-                            pydf2_max_y = page_height - max_y
-
-                            # 创建裁剪后的页面
-                            cropped_page = page
-                            cropped_page.cropbox.lower_left = (0, pydf2_max_y)
-                            cropped_page.cropbox.upper_right = (page_width, page_height)
-
-                            # 添加裁剪后的结束关键词页
+                            cropped_page = crop_page_with_rotation(page, end_info, 'top')
                             writer.add_page(cropped_page)
 
                         else:
@@ -580,18 +503,7 @@ class ZyzbProcessor(BaseProcessor):
                     # 沪深PDF处理逻辑，不需要处理中间内容移除
                     # 处理开始关键词页的裁剪
                     start_page = reader.pages[start_info['page_number'] - 1]
-                    page_width, page_height = start_info['page_dimensions']
-                    min_x, min_y, max_x, max_y = start_info['keyword_box']
-
-                    # 转换y坐标
-                    pydf2_max_y = page_height - min_y
-
-                    # 创建裁剪后的页面
-                    cropped_start_page = start_page
-                    cropped_start_page.cropbox.lower_left = (0, 0)
-                    cropped_start_page.cropbox.upper_right = (page_width, pydf2_max_y)
-
-                    # 添加裁剪后的开始关键词页
+                    cropped_start_page = crop_page_with_rotation(start_page, start_info, 'bottom')
                     writer.add_page(cropped_start_page)
 
                     # 只添加从开始关键词页到结束关键词前一页的所有完整页面
@@ -600,18 +512,7 @@ class ZyzbProcessor(BaseProcessor):
                     
                     # 处理结束关键词页的裁剪
                     end_page = reader.pages[end_info['page_number'] - 1]
-                    page_width, page_height = end_info['page_dimensions']
-                    min_x, min_y, max_x, max_y = end_info['keyword_box']
-                    
-                    # 转换y坐标
-                    pydf2_min_y = page_height - max_y
-                    
-                    # 创建裁剪后的页面
-                    cropped_end_page = end_page
-                    cropped_end_page.cropbox.lower_left = (0, pydf2_min_y)
-                    cropped_end_page.cropbox.upper_right = (page_width, page_height)
-                    
-                    # 添加裁剪后的结束关键词页
+                    cropped_end_page = crop_page_with_rotation(end_page, end_info, 'top')
                     writer.add_page(cropped_end_page)
 
                 if append_start_info or append_end_info:

@@ -9,7 +9,7 @@ from typing import Dict, Optional
 from processors.base_processor import BaseProcessor
 from utils.pdf_utils import (
     get_exchange_code, crop_page_before_keyword, crop_page_after_keyword,
-    crop_same_page, process_standard_pdf
+    crop_same_page, process_standard_pdf, crop_page_with_rotation, crop_page_between_keywords
 )
 from logger import logger
 
@@ -232,28 +232,13 @@ class LdrcgProcessor(BaseProcessor):
                     for page_num in range(start_info['page_number'] - 1, end_info['page_number']):
                         page = reader.pages[page_num]
 
-                        page_width, page_height = start_info['page_dimensions']
-                        min_x, min_y, max_x, max_y = start_info['keyword_box']
                         if page_num == start_info['page_number'] - 1 and page_num != remove_start_info['page_number'] - 1:
-                            pydf2_max_y = page_height - min_y
-
-                            cropped_start_page = page
-                            cropped_start_page.cropbox.lower_left = (0, 0)
-                            cropped_start_page.cropbox.upper_right = (page_width, pydf2_max_y)
-
+                            cropped_start_page = crop_page_with_rotation(page, start_info, 'bottom')
                             writer.add_page(cropped_start_page)
                             continue
 
                         if page_num + 1 == start_info['page_number'] == remove_start_info['page_number']:
-                            rs_min_x, rs_min_y, rs_max_x, rs_max_y = remove_start_info['keyword_box']
-
-                            pydf2_max_y = page_height - min_y
-                            pydf2_min_y = page_height - rs_max_y
-
-                            cropped_start_page = page
-                            cropped_start_page.cropbox.lower_left = (0, pydf2_min_y)
-                            cropped_start_page.cropbox.upper_right = (page_width, pydf2_max_y)
-
+                            cropped_start_page = crop_page_between_keywords(page, start_info, remove_start_info)
                             writer.add_page(cropped_start_page)
                             continue
 
@@ -261,65 +246,33 @@ class LdrcgProcessor(BaseProcessor):
                                 remove_start_info['page_number'] <= page_num + 1 <= remove_end_info['page_number']):
                             
                             if page_num + 1 == remove_start_info['page_number'] and page_num + 1 != start_info['page_number']:
-                                page_width, page_height = remove_start_info['page_dimensions']
-                                rs_min_x, rs_min_y, rs_max_x, rs_max_y = remove_start_info['keyword_box']
-                                re_min_x, re_min_y, re_max_x, re_max_y = remove_end_info['keyword_box']
-
-                                pydf2_min_y = page_height - rs_max_y
-                                pydf2_max_y = page_height - re_min_y
+                                page_rotation = page.rotation
                                 
-                                cropped_page = page
-
                                 if page_num + 1 == remove_end_info['page_number']:
-                                    cropped_page.cropbox.lower_left = (0, pydf2_min_y)
-                                    cropped_page.cropbox.upper_right = (page_width, page_height)
+                                    cropped_page = crop_page_with_rotation(page, remove_start_info, 'top')
                                     writer.add_page(cropped_page)
                                     
-                                    cropped_page2 = page
-                                    cropped_page2.cropbox.lower_left = (0, 0)
-                                    cropped_page2.cropbox.upper_right = (page_width, pydf2_max_y)
+                                    cropped_page2 = crop_page_with_rotation(page, remove_end_info, 'bottom')
                                     writer.add_page(cropped_page2)
                                     continue
-                                
                                 else:
-                                    cropped_page.cropbox.lower_left = (0, pydf2_min_y)
-                                    cropped_page.cropbox.upper_right = (page_width, page_height)
-                                    
+                                    cropped_page = crop_page_with_rotation(page, remove_start_info, 'top')
                                     writer.add_page(cropped_page)
-                                
+                            
                             elif page_num + 1 == remove_end_info['page_number']:
-                                page_width, page_height = remove_end_info['page_dimensions']
-                                remove_min_x, remove_min_y, remove_max_x, remove_max_y = remove_end_info['keyword_box']
-                                min_x, min_y, max_x, max_y = end_info['keyword_box']
-
-                                pydf2_max_y = page_height - max_y
-                                pydf2_min_y = page_height - remove_min_y
-
-                                cropped_page = page
-
                                 if page_num + 1 == end_info['page_number']:
-                                    cropped_page.cropbox.lower_left = (0, pydf2_max_y)
-                                    cropped_page.cropbox.upper_right = (page_width, pydf2_min_y)
+                                    cropped_page = crop_page_between_keywords(page, remove_end_info, end_info)
                                     writer.add_page(cropped_page)
                                     break
                                 else:
-                                    cropped_page.cropbox.lower_left = (0, 0)
-                                    cropped_page.cropbox.upper_right = (page_width, pydf2_min_y)
+                                    cropped_page = crop_page_with_rotation(page, remove_end_info, 'bottom')
                                     writer.add_page(cropped_page)
                             
                             else:
                                 continue
 
                         elif page_num + 1 == end_info['page_number']:
-                            page_width, page_height = end_info['page_dimensions']
-                            min_x, min_y, max_x, max_y = end_info['keyword_box']
-
-                            pydf2_max_y = page_height - max_y
-
-                            cropped_page = page
-                            cropped_page.cropbox.lower_left = (0, pydf2_max_y)
-                            cropped_page.cropbox.upper_right = (page_width, page_height)
-
+                            cropped_page = crop_page_with_rotation(page, end_info, 'top')
                             writer.add_page(cropped_page)
 
                         else:

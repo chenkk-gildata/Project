@@ -1171,7 +1171,7 @@ class EnhancedDataProcessor:
         "XSMGSY": "稀释每股收益",
         "JBMGSYKC": "基本每股收益扣除",
         "XSMGSYKC": "稀释每股收益扣除",
-        "JLRJZCSYLJQ": "净利润净资产收益率加权",
+        "JLRJZCSYLJQ": "净资产收益率加权",
         "KCHJLRJZCSYLJQ": "扣除后净资产收益率加权",
         "PTGJZCSYLJQ": "普通股净资产收益率加权",
         "KCPTGJZCSYLJQ": "扣除后普通股净资产收益率加权",
