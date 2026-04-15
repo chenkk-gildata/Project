@@ -334,23 +334,7 @@ def main():
                 elif choice == "3":
                     logger.info("用户选择: 仅运行比对")
                     run_comparison_only()
-                
-                print("\n" + "=" * 60)
-                print("程序执行完成!")
-                print("=" * 60)
-                logger.info("程序执行完成")
-                
-                while True:
-                    continue_choice = input("\n是否继续运行其他任务？(y/n): ").strip().lower()
-                    if continue_choice == 'y':
-                        print("\n重新开始...")
-                        break
-                    elif continue_choice == 'n':
-                        print("\n感谢使用，再见!")
-                        return
-                    else:
-                        print("请输入 y 或 n")
-                
+
             except Exception as e:
                 logger.error(f"处理过程中发生错误: {e}", exc_info=True)
                 print(f"\n处理出错: {e}")

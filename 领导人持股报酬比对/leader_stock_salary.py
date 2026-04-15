@@ -429,11 +429,15 @@ class LeaderStockSalaryProcessor:
                         if field == "职位描述":
                             value = self._preprocess_position(value)
                         elif field == "变动原因说明":
-                            value = value.strip().replace(" ", "").replace("（", "(").replace("）", ")").replace("；", ";").replace("：", ":").replace("，", ",")
-                            if value in ("不适用", "-", "--", "—", "——", "/", "无", "不涉及", "无变化", "无变动"):
+                            if value in ("不适用", "-", "--", "—", "——", "/", "无", "不涉及", "无变化", "无变动", "股份未变动"):
                                 value = ""
                             else:
                                 value = value.replace(" ", "")
+                                try:
+                                    float(value)
+                                    value = ""
+                                except ValueError:
+                                    pass
                         elif field in ["期初持股数", "期末持股数", "间接持股数"]:
                             value = value.replace(" ", "").replace(",", "").replace("，", "")
                             if "." in value:
@@ -911,6 +915,11 @@ class LeaderStockSalaryProcessor:
                     processed_sql_value = self._preprocess_value(sql_value)
                     if not self._compare_values(processed_ai_value, processed_sql_value):
                         error_messages.append(f"{field_name}【正式库：{sql_value}；AI：{ai_value}】")
+            elif field_name == "变动原因说明":
+                processed_ai_value = self._normalize_reason_text(ai_value)
+                processed_sql_value = self._normalize_reason_text(sql_value)
+                if not self._compare_values(processed_ai_value, processed_sql_value):
+                    error_messages.append(f"{field_name}【正式库：{sql_value}；AI：{ai_value}】")
             else:
                 processed_ai_value = self._preprocess_value(ai_value)
                 processed_sql_value = self._preprocess_value(sql_value)
@@ -922,6 +931,23 @@ class LeaderStockSalaryProcessor:
             return "数据一致"
 
         return "\n".join(error_messages)
+
+    def _normalize_reason_text(self, value: Any) -> str:
+        """
+        标准化变动原因说明文本，将中文符号转换为英文符号并去除空格
+        
+        Args:
+            value: 原始值
+            
+        Returns:
+            标准化后的字符串
+        """
+        if value is None:
+            return ""
+        
+        str_value = str(value).strip().replace(" ", "").replace("（", "(").replace("）", ")").replace("；", ";").replace("：", ":").replace("，", ",")
+        
+        return str_value
 
     def _preprocess_value(self, value: Any) -> Any:
         """预处理值，统一格式"""

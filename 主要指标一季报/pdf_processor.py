@@ -517,12 +517,12 @@ class PDFProcessor:
                 for pdf_file in pdf_files
             }
 
+            completed = 0
             for future in as_completed(futures):
                 if not self.is_processing:
                     break
                 
-                if self.processed_count % 10 == 0:
-                    print(f"处理进度: {self.processed_count}/{total_count} (成功: {self.success_count}, 失败: {self.failed_count})")
+                completed += 1
 
         except Exception as e:
             logger.error(f"批量处理过程中发生错误: {e}")

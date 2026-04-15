@@ -409,7 +409,8 @@ class EnhancedDataProcessor:
         result = None
 
         try:
-            result = self._process_company_files(company_key, file_ids)
+            module1_file_path = str(file_pair.get("module1_file", "")) if file_pair.get("module1_file") else ""
+            result = self._process_company_files(company_key, file_ids, module1_file_path)
 
             process_duration = time.time() - process_start_time
             if result:
@@ -447,13 +448,15 @@ class EnhancedDataProcessor:
                 except Exception as e:
                     logger.error(f"清理上传文件失败: {module_type} - {file_info['filename']} - 错误: {str(e)}")
 
-    def _process_company_files(self, company_key: str, file_ids: Dict[str, Dict]) -> Optional[Dict[str, Any]]:
+    def _process_company_files(self, company_key: str, file_ids: Dict[str, Dict], 
+                                module1_file_path: str = "") -> Optional[Dict[str, Any]]:
         """
         并发处理同一公司的模块一和模块二文件，合并结果后进行比对
         
         Args:
             company_key: 公司标识（股票代码-发布日期）
             file_ids: 文件ID字典 {"module1": {...}, "module2": {...}}
+            module1_file_path: 模块一文件路径
             
         Returns:
             处理结果字典
@@ -530,6 +533,7 @@ class EnhancedDataProcessor:
 
             result = {
                 "announcement_title": announcement_title,
+                "module1_file_path": module1_file_path,
                 "stock_code": stock_code,
                 "publish_date": publish_date,
                 "ai_datas": merged_data,
@@ -1186,11 +1190,16 @@ class EnhancedDataProcessor:
     }
 
     def _create_comparison_sheet(self, results: List[Dict[str, Any]], writer: pd.ExcelWriter):
+        from openpyxl.styles import Font
+        
         comparison_data = []
+        hyperlink_map = {}
+        row_index = 2
 
         for result in results:
             comparison_results = result.get("comparison_result", [])
             announcement_title = result.get("announcement_title", "")
+            module1_file_path = result.get("module1_file_path", "")
 
             if not comparison_results:
                 continue
@@ -1203,6 +1212,10 @@ class EnhancedDataProcessor:
                     "截止日期": comparison.get("截止日期", ""),
                     "比对结果": self._translate_comparison_result(comparison.get("比对结果", ""))
                 })
+                
+                if module1_file_path:
+                    hyperlink_map[row_index] = module1_file_path
+                row_index += 1
 
         df = pd.DataFrame(comparison_data)
         df.to_excel(writer, sheet_name="比对结果", index=False)
@@ -1210,6 +1223,12 @@ class EnhancedDataProcessor:
         worksheet = writer.sheets["比对结果"]
         worksheet.column_dimensions['C'].width = 12
         worksheet.column_dimensions['D'].width = 12
+        
+        hyperlink_font = Font(color="0563C1", underline="single")
+        for row_idx, file_path in hyperlink_map.items():
+            cell = worksheet.cell(row=row_idx, column=1)
+            cell.hyperlink = file_path
+            cell.font = hyperlink_font
 
     def _translate_comparison_result(self, result: str) -> str:
         """
@@ -1268,9 +1287,52 @@ def main():
                     print(f"在目录 {custom_dir} 中未找到PDF文件")
                     continue
 
+                module2_dir = base_dir / MODULE2_SUBDIR
+                module2_files = []
+                if module2_dir.exists():
+                    module2_files = list(module2_dir.glob(f"*{MODULE2_FILE_SUFFIX}"))
+
+                print(f"\n模块一文件数量: {len(module1_files)}")
+                print(f"模块二文件数量: {len(module2_files)}")
+
+                if len(module1_files) != len(module2_files):
+                    print("\n⚠️ 警告：模块一和模块二文件数量不一致！")
+                    
+                    module1_keys = set()
+                    for m1_file in module1_files:
+                        key = processor._get_company_key(m1_file.name)
+                        if key:
+                            module1_keys.add(key)
+                    
+                    module2_keys = set()
+                    for m2_file in module2_files:
+                        key = processor._get_company_key(m2_file.name)
+                        if key:
+                            module2_keys.add(key)
+                    
+                    only_in_module1 = module1_keys - module2_keys
+                    if only_in_module1:
+                        print(f"\n仅在模块一中存在的文件 ({len(only_in_module1)} 个):")
+                        for key in sorted(only_in_module1):
+                            parts = key.split('-')
+                            if len(parts) >= 4:
+                                code = parts[0]
+                                date = '-'.join(parts[1:4])
+                                print(f"  - 股票代码: {code}, 信息发布日期: {date}")
+                    
+                    only_in_module2 = module2_keys - module1_keys
+                    if only_in_module2:
+                        print(f"\n仅在模块二中存在的文件 ({len(only_in_module2)} 个):")
+                        for key in sorted(only_in_module2):
+                            parts = key.split('-')
+                            if len(parts) >= 4:
+                                code = parts[0]
+                                date = '-'.join(parts[1:4])
+                                print(f"  - 股票代码: {code}, 信息发布日期: {date}")
+
                 program_start_time = datetime.now()
-                logger.info(f"程序开始执行 - 目录: {custom_dir}, 模块一文件数量: {len(module1_files)}")
-                print(f"\n开始处理，模块一文件数量: {len(module1_files)}...")
+                logger.info(f"程序开始执行 - 目录: {custom_dir}, 模块一文件数量: {len(module1_files)}, 模块二文件数量: {len(module2_files)}")
+                print(f"\n开始处理...")
 
                 start_time = datetime.now()
                 results = processor.process_all_files(base_dir)
@@ -1290,10 +1352,8 @@ def main():
                 print(f"成功处理: {success_count} 个文件")
                 if failed_files:
                     print(f"处理失败: {len(failed_files)} 个文件")
-                    for file_name, status in failed_files[:5]:
+                    for file_name, status in failed_files:
                         print(f"  - {file_name}: {status}")
-                    if len(failed_files) > 5:
-                        print(f"  ... 还有 {len(failed_files) - 5} 个文件处理失败")
 
                 # 生成报告
                 if results:

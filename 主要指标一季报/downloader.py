@@ -257,8 +257,6 @@ class AnnouncementDownloader:
                     break
                 
                 completed += 1
-                if completed % 10 == 0 or completed == total_count:
-                    print(f"下载进度: {completed}/{total_count} (成功: {self.downloaded_count}, 失败: {self.failed_count})")
 
         except Exception as e:
             logger.error(f"批量下载过程中发生错误: {e}")

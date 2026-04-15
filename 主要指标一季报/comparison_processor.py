@@ -466,6 +466,29 @@ class ComparisonProcessor:
         """比较AI数据和SQL数据的字段，并返回格式化的比对结果"""
         error_messages = []
 
+        field_name_map = {
+            "YYZSR": "营业总收入",
+            "YYSR": "营业收入",
+            "JLRHJ": "净利润",
+            "JLR": "归母净利润",
+            "KCFJYXSYHDJLR": "扣非后净利润",
+            "YYZSRTBZZ": "营业总收入同比",
+            "YYSRTBZZ": "营业收入同比",
+            "JLRHJTBZZ": "净利润同比",
+            "JLRTBZZ": "归母净利润同比",
+            "KCFJYXSYHDJLRTBZZ": "扣非后净利润同比",
+            "JYXJLLJE": "经营活动现金流量净额",
+            "JBMGSY": "基本每股收益",
+            "XSMGSY": "稀释每股收益",
+            "JBMGSYKC": "基本每股收益扣除",
+            "XSMGSYKC": "稀释每股收益扣除",
+            "JLRJZCSYLJQ": "净资产收益率加权",
+            "KCHJLRJZCSYLJQ": "净资产收益率加权扣除",
+            "ZCZE": "资产总额",
+            "GDQY": "归母股东权益",
+            "FJCXSY": "非经常性损益"
+        }
+
         fields_to_compare = [
             "YYZSR", "YYSR", "JLRHJ", "JLR", "KCFJYXSYHDJLR",
             "YYZSRTBZZ", "YYSRTBZZ", "JLRHJTBZZ", "JLRTBZZ", "KCFJYXSYHDJLRTBZZ",
@@ -481,7 +504,8 @@ class ComparisonProcessor:
             processed_sql_value = self._preprocess_value(sql_value)
 
             if not self._compare_values(processed_ai_value, processed_sql_value):
-                error_messages.append(f"{field_name}【正式库：{sql_value}；AI：{ai_value}】")
+                chinese_name = field_name_map.get(field_name, field_name)
+                error_messages.append(f"{chinese_name}【正式库：{sql_value}；AI：{ai_value}】")
 
         if not error_messages:
             return "数据一致"
