@@ -1,0 +1,824 @@
+2026-04-16 07:08:32,227 - __main__ - INFO - 程序开始执行 - 目录: C:\Users\chenkk\Desktop\新建文件夹 (2), 文件数量: 82
+2026-04-16 07:08:33,304 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:33,305 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\000533-2026-04-16-顺钠股份-2025年年度报告.pdf (文件ID: file-fe-b7fcea26ed1e4a4bb1c32217)
+2026-04-16 07:08:33,305 - __main___file_only - INFO - 上传文件: 000533-2026-04-16-顺钠股份-2025年年度报告.pdf (大小: 0.39 MB, ID: file-fe-b7fcea26ed1e4a4bb1c32217)
+2026-04-16 07:08:33,418 - __main__ - INFO - 开始处理文件: 000533-2026-04-16-顺钠股份-2025年年度报告.pdf
+2026-04-16 07:08:33,492 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:33,493 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\002001-2026-04-16-新和成-2025年年度报告.pdf (文件ID: file-fe-689205883f0d4d3c86b3de70)
+2026-04-16 07:08:33,493 - __main___file_only - INFO - 上传文件: 002001-2026-04-16-新和成-2025年年度报告.pdf (大小: 0.42 MB, ID: file-fe-689205883f0d4d3c86b3de70)
+2026-04-16 07:08:33,682 - __main__ - INFO - 开始处理文件: 002001-2026-04-16-新和成-2025年年度报告.pdf
+2026-04-16 07:08:34,408 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:34,409 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\002180-2026-04-15-纳思达-2025年年度报告.pdf (文件ID: file-fe-726fc1ebe9364dcb808f852a)
+2026-04-16 07:08:34,409 - __main___file_only - INFO - 上传文件: 002180-2026-04-15-纳思达-2025年年度报告.pdf (大小: 0.26 MB, ID: file-fe-726fc1ebe9364dcb808f852a)
+2026-04-16 07:08:34,466 - __main__ - INFO - 开始处理文件: 002180-2026-04-15-纳思达-2025年年度报告.pdf
+2026-04-16 07:08:34,832 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:34,833 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\002344-2026-04-16-海宁皮城-2025年年度报告.pdf (文件ID: file-fe-efbae3ffbff84c7d992769c1)
+2026-04-16 07:08:34,833 - __main___file_only - INFO - 上传文件: 002344-2026-04-16-海宁皮城-2025年年度报告.pdf (大小: 0.34 MB, ID: file-fe-efbae3ffbff84c7d992769c1)
+2026-04-16 07:08:34,996 - __main__ - INFO - 开始处理文件: 002344-2026-04-16-海宁皮城-2025年年度报告.pdf
+2026-04-16 07:08:35,456 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:35,456 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\002407-2026-04-16-多氟多-2025年年度报告.pdf (文件ID: file-fe-0926b0665c424a8d9555ebe1)
+2026-04-16 07:08:35,456 - __main___file_only - INFO - 上传文件: 002407-2026-04-16-多氟多-2025年年度报告.pdf (大小: 0.42 MB, ID: file-fe-0926b0665c424a8d9555ebe1)
+2026-04-16 07:08:35,527 - __main__ - INFO - 开始处理文件: 002407-2026-04-16-多氟多-2025年年度报告.pdf
+2026-04-16 07:08:35,977 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:35,978 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\002628-2026-04-16-成都路桥-2025年年度报告.pdf (文件ID: file-fe-6b5906ce9de54f148ff04533)
+2026-04-16 07:08:35,978 - __main___file_only - INFO - 上传文件: 002628-2026-04-16-成都路桥-2025年年度报告.pdf (大小: 0.35 MB, ID: file-fe-6b5906ce9de54f148ff04533)
+2026-04-16 07:08:36,067 - __main__ - INFO - 开始处理文件: 002628-2026-04-16-成都路桥-2025年年度报告.pdf
+2026-04-16 07:08:37,243 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:37,243 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\002629-2026-04-16-仁智股份-2025年年度报告.pdf (文件ID: file-fe-0c8735531bf54c64a2342b6c)
+2026-04-16 07:08:37,243 - __main___file_only - INFO - 上传文件: 002629-2026-04-16-仁智股份-2025年年度报告.pdf (大小: 0.27 MB, ID: file-fe-0c8735531bf54c64a2342b6c)
+2026-04-16 07:08:37,383 - __main__ - INFO - 开始处理文件: 002629-2026-04-16-仁智股份-2025年年度报告.pdf
+2026-04-16 07:08:37,539 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:37,540 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\002762-2026-04-16-ST金比-2025年年度报告.pdf (文件ID: file-fe-955b2f734e164be6bbfbb9e4)
+2026-04-16 07:08:37,540 - __main___file_only - INFO - 上传文件: 002762-2026-04-16-ST金比-2025年年度报告.pdf (大小: 0.74 MB, ID: file-fe-955b2f734e164be6bbfbb9e4)
+2026-04-16 07:08:37,649 - __main__ - INFO - 开始处理文件: 002762-2026-04-16-ST金比-2025年年度报告.pdf
+2026-04-16 07:08:38,573 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:38,573 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\002823-2026-04-16-凯中精密-2025年年度报告.pdf (文件ID: file-fe-d681b2ab2ac742608d9eaf2d)
+2026-04-16 07:08:38,574 - __main___file_only - INFO - 上传文件: 002823-2026-04-16-凯中精密-2025年年度报告.pdf (大小: 0.34 MB, ID: file-fe-d681b2ab2ac742608d9eaf2d)
+2026-04-16 07:08:38,701 - __main__ - INFO - 开始处理文件: 002823-2026-04-16-凯中精密-2025年年度报告.pdf
+2026-04-16 07:08:39,182 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:39,183 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\002896-2026-04-16-中大力德-2025年年度报告.pdf (文件ID: file-fe-91bf8e518ebe409aa7be3090)
+2026-04-16 07:08:39,183 - __main___file_only - INFO - 上传文件: 002896-2026-04-16-中大力德-2025年年度报告.pdf (大小: 0.33 MB, ID: file-fe-91bf8e518ebe409aa7be3090)
+2026-04-16 07:08:39,228 - __main__ - INFO - 开始处理文件: 002896-2026-04-16-中大力德-2025年年度报告.pdf
+2026-04-16 07:08:40,826 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:40,827 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\002949-2026-04-16-华阳国际-2025年年度报告.pdf (文件ID: file-fe-d7040cafee464f4a804eb411)
+2026-04-16 07:08:40,827 - __main___file_only - INFO - 上传文件: 002949-2026-04-16-华阳国际-2025年年度报告.pdf (大小: 0.35 MB, ID: file-fe-d7040cafee464f4a804eb411)
+2026-04-16 07:08:41,087 - __main__ - INFO - 开始处理文件: 002949-2026-04-16-华阳国际-2025年年度报告.pdf
+2026-04-16 07:08:41,243 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:41,244 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\002971-2026-04-16-和远气体-2025年年度报告.pdf (文件ID: file-fe-335db87e4f314707ab715c18)
+2026-04-16 07:08:41,244 - __main___file_only - INFO - 上传文件: 002971-2026-04-16-和远气体-2025年年度报告.pdf (大小: 0.35 MB, ID: file-fe-335db87e4f314707ab715c18)
+2026-04-16 07:08:41,353 - __main__ - INFO - 开始处理文件: 002971-2026-04-16-和远气体-2025年年度报告.pdf
+2026-04-16 07:08:43,012 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:43,012 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\003027-2026-04-16-同兴科技-2025年年度报告.pdf (文件ID: file-fe-e5c65a0a32e2424d9bfa6b2c)
+2026-04-16 07:08:43,013 - __main___file_only - INFO - 上传文件: 003027-2026-04-16-同兴科技-2025年年度报告.pdf (大小: 0.37 MB, ID: file-fe-e5c65a0a32e2424d9bfa6b2c)
+2026-04-16 07:08:43,203 - __main__ - INFO - 开始处理文件: 003027-2026-04-16-同兴科技-2025年年度报告.pdf
+2026-04-16 07:08:43,513 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:43,514 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\300058-2026-04-16-蓝色光标-2025年年度报告.pdf (文件ID: file-fe-c70c8598a9a94cca817ca18b)
+2026-04-16 07:08:43,514 - __main___file_only - INFO - 上传文件: 300058-2026-04-16-蓝色光标-2025年年度报告.pdf (大小: 0.68 MB, ID: file-fe-c70c8598a9a94cca817ca18b)
+2026-04-16 07:08:43,731 - __main__ - INFO - 开始处理文件: 300058-2026-04-16-蓝色光标-2025年年度报告.pdf
+2026-04-16 07:08:45,198 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:45,199 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\300075-2026-04-16-数字政通-2025年年度报告.pdf (文件ID: file-fe-c5c5566121234bb2862172ba)
+2026-04-16 07:08:45,199 - __main___file_only - INFO - 上传文件: 300075-2026-04-16-数字政通-2025年年度报告.pdf (大小: 0.31 MB, ID: file-fe-c5c5566121234bb2862172ba)
+2026-04-16 07:08:45,318 - __main__ - INFO - 开始处理文件: 300075-2026-04-16-数字政通-2025年年度报告.pdf
+2026-04-16 07:08:45,469 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:45,470 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\300174-2026-04-16-元力股份-2025年年度报告.pdf (文件ID: file-fe-31511f36565446c3b13bf8df)
+2026-04-16 07:08:45,470 - __main___file_only - INFO - 上传文件: 300174-2026-04-16-元力股份-2025年年度报告.pdf (大小: 0.27 MB, ID: file-fe-31511f36565446c3b13bf8df)
+2026-04-16 07:08:45,583 - __main__ - INFO - 开始处理文件: 300174-2026-04-16-元力股份-2025年年度报告.pdf
+2026-04-16 07:08:47,299 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:47,300 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\300281-2026-04-16-金明精机-2025年年度报告.pdf (文件ID: file-fe-8a3a185c985946f697acd314)
+2026-04-16 07:08:47,300 - __main___file_only - INFO - 上传文件: 300281-2026-04-16-金明精机-2025年年度报告.pdf (大小: 0.38 MB, ID: file-fe-8a3a185c985946f697acd314)
+2026-04-16 07:08:47,641 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:47,642 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\300296-2026-04-16-利亚德-2025年年度报告.pdf (文件ID: file-fe-01bcaa5c975d42be96cd7163)
+2026-04-16 07:08:47,642 - __main___file_only - INFO - 上传文件: 300296-2026-04-16-利亚德-2025年年度报告.pdf (大小: 0.39 MB, ID: file-fe-01bcaa5c975d42be96cd7163)
+2026-04-16 07:08:49,356 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:49,357 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\300440-2026-04-16-运达科技-2025年年度报告.pdf (文件ID: file-fe-9f95d24cf78c4a4cb3e0b36c)
+2026-04-16 07:08:49,357 - __main___file_only - INFO - 上传文件: 300440-2026-04-16-运达科技-2025年年度报告.pdf (大小: 0.70 MB, ID: file-fe-9f95d24cf78c4a4cb3e0b36c)
+2026-04-16 07:08:49,407 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:49,408 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\300305-2026-04-16-裕兴股份-2025年年度报告.pdf (文件ID: file-fe-e3da189fecf246818c9b7f16)
+2026-04-16 07:08:49,408 - __main___file_only - INFO - 上传文件: 300305-2026-04-16-裕兴股份-2025年年度报告.pdf (大小: 0.32 MB, ID: file-fe-e3da189fecf246818c9b7f16)
+2026-04-16 07:08:51,452 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:51,453 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\300623-2026-04-16-捷捷微电-2025年年度报告.pdf (文件ID: file-fe-8845f0002cc247679fd7207e)
+2026-04-16 07:08:51,453 - __main___file_only - INFO - 上传文件: 300623-2026-04-16-捷捷微电-2025年年度报告.pdf (大小: 0.35 MB, ID: file-fe-8845f0002cc247679fd7207e)
+2026-04-16 07:08:51,530 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:51,531 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\300618-2026-04-16-寒锐钴业-2025年年度报告.pdf (文件ID: file-fe-161e495c926847bc947fdcd8)
+2026-04-16 07:08:51,531 - __main___file_only - INFO - 上传文件: 300618-2026-04-16-寒锐钴业-2025年年度报告.pdf (大小: 0.39 MB, ID: file-fe-161e495c926847bc947fdcd8)
+2026-04-16 07:08:51,865 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:52,498 - __main___file_only - INFO - 找到持股数据: 000533 2026-04-16 (9条)
+2026-04-16 07:08:52,658 - __main___file_only - INFO - 找到报酬数据: 000533 2026-04-16
+2026-04-16 07:08:52,659 - __main__ - INFO - 处理成功: 000533-2026-04-16-顺钠股份-2025年年度报告.pdf
+2026-04-16 07:08:52,659 - __main___file_only - INFO - 文件处理成功: 000533-2026-04-16-顺钠股份-2025年年度报告.pdf (耗时: 19.24秒)
+2026-04-16 07:08:53,325 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-b7fcea26ed1e4a4bb1c32217 "HTTP/1.1 200 OK"
+2026-04-16 07:08:53,326 - __main__ - INFO - 开始处理文件: 300281-2026-04-16-金明精机-2025年年度报告.pdf
+2026-04-16 07:08:53,720 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:53,720 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\300666-2026-04-16-江丰电子-2025年年度报告.pdf (文件ID: file-fe-868231481c3d4875ac273d1d)
+2026-04-16 07:08:53,720 - __main___file_only - INFO - 上传文件: 300666-2026-04-16-江丰电子-2025年年度报告.pdf (大小: 0.44 MB, ID: file-fe-868231481c3d4875ac273d1d)
+2026-04-16 07:08:53,770 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:53,771 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\300685-2026-04-16-艾德生物-2025年年度报告.pdf (文件ID: file-fe-f9f56c1d3cd942d8a55b901c)
+2026-04-16 07:08:53,771 - __main___file_only - INFO - 上传文件: 300685-2026-04-16-艾德生物-2025年年度报告.pdf (大小: 0.52 MB, ID: file-fe-f9f56c1d3cd942d8a55b901c)
+2026-04-16 07:08:55,792 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:55,793 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\300732-2026-04-16-设研院-2025年年度报告.pdf (文件ID: file-fe-98383877099446328665bfaa)
+2026-04-16 07:08:55,793 - __main___file_only - INFO - 上传文件: 300732-2026-04-16-设研院-2025年年度报告.pdf (大小: 0.78 MB, ID: file-fe-98383877099446328665bfaa)
+2026-04-16 07:08:55,898 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:55,899 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\300717-2026-04-16-华信新材-2025年年度报告.pdf (文件ID: file-fe-9c4be259a431432b9058bfb8)
+2026-04-16 07:08:55,899 - __main___file_only - INFO - 上传文件: 300717-2026-04-16-华信新材-2025年年度报告.pdf (大小: 0.27 MB, ID: file-fe-9c4be259a431432b9058bfb8)
+2026-04-16 07:08:56,663 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:56,805 - __main___file_only - INFO - 找到持股数据: 002629 2026-04-16 (8条)
+2026-04-16 07:08:56,849 - __main___file_only - INFO - 未找到报酬数据: 002629 2026-04-16
+2026-04-16 07:08:56,850 - __main__ - INFO - 处理成功: 002629-2026-04-16-仁智股份-2025年年度报告.pdf
+2026-04-16 07:08:56,850 - __main___file_only - INFO - 文件处理成功: 002629-2026-04-16-仁智股份-2025年年度报告.pdf (耗时: 19.47秒)
+2026-04-16 07:08:57,032 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:57,164 - __main___file_only - INFO - 找到持股数据: 002001 2026-04-16 (12条)
+2026-04-16 07:08:57,213 - __main___file_only - INFO - 未找到报酬数据: 002001 2026-04-16
+2026-04-16 07:08:57,213 - __main__ - INFO - 处理成功: 002001-2026-04-16-新和成-2025年年度报告.pdf
+2026-04-16 07:08:57,214 - __main___file_only - INFO - 文件处理成功: 002001-2026-04-16-新和成-2025年年度报告.pdf (耗时: 23.53秒)
+2026-04-16 07:08:57,399 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-0c8735531bf54c64a2342b6c "HTTP/1.1 200 OK"
+2026-04-16 07:08:57,399 - __main__ - INFO - 开始处理文件: 300296-2026-04-16-利亚德-2025年年度报告.pdf
+2026-04-16 07:08:57,868 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-689205883f0d4d3c86b3de70 "HTTP/1.1 200 OK"
+2026-04-16 07:08:57,868 - __main__ - INFO - 开始处理文件: 300440-2026-04-16-运达科技-2025年年度报告.pdf
+2026-04-16 07:08:58,059 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:58,060 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\300886-2026-04-16-华业香料-2025年年度报告.pdf (文件ID: file-fe-0c5058fe562e4164b3047f02)
+2026-04-16 07:08:58,060 - __main___file_only - INFO - 上传文件: 300886-2026-04-16-华业香料-2025年年度报告.pdf (大小: 0.33 MB, ID: file-fe-0c5058fe562e4164b3047f02)
+2026-04-16 07:08:58,210 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:58,211 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\300918-2026-04-16-南山智尚-2025年年度报告.pdf (文件ID: file-fe-1c2223c65101489b9911dd30)
+2026-04-16 07:08:58,211 - __main___file_only - INFO - 上传文件: 300918-2026-04-16-南山智尚-2025年年度报告.pdf (大小: 1.25 MB, ID: file-fe-1c2223c65101489b9911dd30)
+2026-04-16 07:09:00,075 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:00,075 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\301128-2026-04-16-强瑞技术-2025年年度报告.pdf (文件ID: file-fe-9ef9071c6962421bae98c87a)
+2026-04-16 07:09:00,075 - __main___file_only - INFO - 上传文件: 301128-2026-04-16-强瑞技术-2025年年度报告.pdf (大小: 0.39 MB, ID: file-fe-9ef9071c6962421bae98c87a)
+2026-04-16 07:09:00,155 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:00,155 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\300967-2026-04-16-晓鸣股份-2025年年度报告.pdf (文件ID: file-fe-8481d6b65bb5424c86031787)
+2026-04-16 07:09:00,156 - __main___file_only - INFO - 上传文件: 300967-2026-04-16-晓鸣股份-2025年年度报告.pdf (大小: 0.35 MB, ID: file-fe-8481d6b65bb5424c86031787)
+2026-04-16 07:09:00,465 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:00,601 - __main___file_only - INFO - 找到持股数据: 002762 2026-04-16 (13条)
+2026-04-16 07:09:00,651 - __main___file_only - INFO - 未找到报酬数据: 002762 2026-04-16
+2026-04-16 07:09:00,651 - __main__ - INFO - 处理成功: 002762-2026-04-16-ST金比-2025年年度报告.pdf
+2026-04-16 07:09:00,651 - __main___file_only - INFO - 文件处理成功: 002762-2026-04-16-ST金比-2025年年度报告.pdf (耗时: 23.00秒)
+2026-04-16 07:09:01,249 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-955b2f734e164be6bbfbb9e4 "HTTP/1.1 200 OK"
+2026-04-16 07:09:01,250 - __main__ - INFO - 开始处理文件: 300305-2026-04-16-裕兴股份-2025年年度报告.pdf
+2026-04-16 07:09:01,347 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:01,477 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:01,579 - __main___file_only - INFO - 找到持股数据: 002628 2026-04-16 (13条)
+2026-04-16 07:09:01,625 - __main___file_only - INFO - 找到报酬数据: 002628 2026-04-16
+2026-04-16 07:09:01,625 - __main__ - INFO - 处理成功: 002628-2026-04-16-成都路桥-2025年年度报告.pdf
+2026-04-16 07:09:01,626 - __main___file_only - INFO - 文件处理成功: 002628-2026-04-16-成都路桥-2025年年度报告.pdf (耗时: 25.56秒)
+2026-04-16 07:09:01,705 - __main___file_only - INFO - 找到持股数据: 002180 2026-04-15 (15条)
+2026-04-16 07:09:01,752 - __main___file_only - INFO - 找到报酬数据: 002180 2026-04-15
+2026-04-16 07:09:01,753 - __main__ - INFO - 处理成功: 002180-2026-04-15-纳思达-2025年年度报告.pdf
+2026-04-16 07:09:01,753 - __main___file_only - INFO - 文件处理成功: 002180-2026-04-15-纳思达-2025年年度报告.pdf (耗时: 27.29秒)
+2026-04-16 07:09:02,197 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-6b5906ce9de54f148ff04533 "HTTP/1.1 200 OK"
+2026-04-16 07:09:02,198 - __main__ - INFO - 开始处理文件: 300623-2026-04-16-捷捷微电-2025年年度报告.pdf
+2026-04-16 07:09:02,273 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:02,274 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:02,275 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\301281-2026-04-16-科源制药-2025年年度报告.pdf (文件ID: file-fe-eb5f18b8dc8b42fba239c8d7)
+2026-04-16 07:09:02,275 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\301283-2026-04-16-聚胶股份-2025年年度报告.pdf (文件ID: file-fe-59241ae44a134149a75d7707)
+2026-04-16 07:09:02,275 - __main___file_only - INFO - 上传文件: 301281-2026-04-16-科源制药-2025年年度报告.pdf (大小: 0.40 MB, ID: file-fe-eb5f18b8dc8b42fba239c8d7)
+2026-04-16 07:09:02,275 - __main___file_only - INFO - 上传文件: 301283-2026-04-16-聚胶股份-2025年年度报告.pdf (大小: 0.49 MB, ID: file-fe-59241ae44a134149a75d7707)
+2026-04-16 07:09:02,358 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-726fc1ebe9364dcb808f852a "HTTP/1.1 200 OK"
+2026-04-16 07:09:02,359 - __main__ - INFO - 开始处理文件: 300618-2026-04-16-寒锐钴业-2025年年度报告.pdf
+2026-04-16 07:09:02,702 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:02,838 - __main___file_only - INFO - 找到持股数据: 002949 2026-04-16 (11条)
+2026-04-16 07:09:02,887 - __main___file_only - INFO - 找到报酬数据: 002949 2026-04-16
+2026-04-16 07:09:02,888 - __main__ - INFO - 处理成功: 002949-2026-04-16-华阳国际-2025年年度报告.pdf
+2026-04-16 07:09:02,888 - __main___file_only - INFO - 文件处理成功: 002949-2026-04-16-华阳国际-2025年年度报告.pdf (耗时: 21.80秒)
+2026-04-16 07:09:03,553 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-d7040cafee464f4a804eb411 "HTTP/1.1 200 OK"
+2026-04-16 07:09:03,554 - __main__ - INFO - 开始处理文件: 300685-2026-04-16-艾德生物-2025年年度报告.pdf
+2026-04-16 07:09:04,059 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:04,192 - __main___file_only - INFO - 找到持股数据: 002896 2026-04-16 (15条)
+2026-04-16 07:09:04,238 - __main___file_only - INFO - 未找到报酬数据: 002896 2026-04-16
+2026-04-16 07:09:04,239 - __main__ - INFO - 处理成功: 002896-2026-04-16-中大力德-2025年年度报告.pdf
+2026-04-16 07:09:04,239 - __main___file_only - INFO - 文件处理成功: 002896-2026-04-16-中大力德-2025年年度报告.pdf (耗时: 25.01秒)
+2026-04-16 07:09:04,403 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:04,404 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\301366-2026-04-16-一博科技-2025年年度报告.pdf (文件ID: file-fe-7ca1b03e9b4d411f9265aa64)
+2026-04-16 07:09:04,404 - __main___file_only - INFO - 上传文件: 301366-2026-04-16-一博科技-2025年年度报告.pdf (大小: 0.37 MB, ID: file-fe-7ca1b03e9b4d411f9265aa64)
+2026-04-16 07:09:04,442 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:04,443 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\301286-2026-04-16-侨源股份-2025年年度报告.pdf (文件ID: file-fe-7e60935825da4651aa8433c4)
+2026-04-16 07:09:04,443 - __main___file_only - INFO - 上传文件: 301286-2026-04-16-侨源股份-2025年年度报告.pdf (大小: 0.31 MB, ID: file-fe-7e60935825da4651aa8433c4)
+2026-04-16 07:09:04,870 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-91bf8e518ebe409aa7be3090 "HTTP/1.1 200 OK"
+2026-04-16 07:09:04,871 - __main__ - INFO - 开始处理文件: 300666-2026-04-16-江丰电子-2025年年度报告.pdf
+2026-04-16 07:09:05,514 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:05,655 - __main___file_only - INFO - 找到持股数据: 300075 2026-04-16 (9条)
+2026-04-16 07:09:05,699 - __main___file_only - INFO - 未找到报酬数据: 300075 2026-04-16
+2026-04-16 07:09:05,700 - __main__ - INFO - 处理成功: 300075-2026-04-16-数字政通-2025年年度报告.pdf
+2026-04-16 07:09:05,700 - __main___file_only - INFO - 文件处理成功: 300075-2026-04-16-数字政通-2025年年度报告.pdf (耗时: 20.38秒)
+2026-04-16 07:09:06,435 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-c5c5566121234bb2862172ba "HTTP/1.1 200 OK"
+2026-04-16 07:09:06,435 - __main__ - INFO - 开始处理文件: 300732-2026-04-16-设研院-2025年年度报告.pdf
+2026-04-16 07:09:06,440 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:06,575 - __main___file_only - INFO - 找到持股数据: 300058 2026-04-16 (11条)
+2026-04-16 07:09:06,579 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:06,579 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\301373-2026-04-16-凌玮科技-2025年年度报告.pdf (文件ID: file-fe-7d2619ec7bad4f23a68fc3da)
+2026-04-16 07:09:06,579 - __main___file_only - INFO - 上传文件: 301373-2026-04-16-凌玮科技-2025年年度报告.pdf (大小: 0.31 MB, ID: file-fe-7d2619ec7bad4f23a68fc3da)
+2026-04-16 07:09:06,590 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:06,591 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\600089-2026-04-16-特变电工-特变电工股份有限公司2025年年度报告.pdf (文件ID: file-fe-cc7805295bb144ce84d9da4e)
+2026-04-16 07:09:06,591 - __main___file_only - INFO - 上传文件: 600089-2026-04-16-特变电工-特变电工股份有限公司2025年年度报告.pdf (大小: 0.30 MB, ID: file-fe-cc7805295bb144ce84d9da4e)
+2026-04-16 07:09:06,619 - __main___file_only - INFO - 未找到报酬数据: 300058 2026-04-16
+2026-04-16 07:09:06,620 - __main__ - INFO - 处理成功: 300058-2026-04-16-蓝色光标-2025年年度报告.pdf
+2026-04-16 07:09:06,620 - __main___file_only - INFO - 文件处理成功: 300058-2026-04-16-蓝色光标-2025年年度报告.pdf (耗时: 22.89秒)
+2026-04-16 07:09:07,394 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-c70c8598a9a94cca817ca18b "HTTP/1.1 200 OK"
+2026-04-16 07:09:07,394 - __main__ - INFO - 开始处理文件: 300717-2026-04-16-华信新材-2025年年度报告.pdf
+2026-04-16 07:09:08,355 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:08,496 - __main___file_only - INFO - 找到持股数据: 002344 2026-04-16 (22条)
+2026-04-16 07:09:08,545 - __main___file_only - INFO - 未找到报酬数据: 002344 2026-04-16
+2026-04-16 07:09:08,546 - __main__ - INFO - 处理成功: 002344-2026-04-16-海宁皮城-2025年年度报告.pdf
+2026-04-16 07:09:08,546 - __main___file_only - INFO - 文件处理成功: 002344-2026-04-16-海宁皮城-2025年年度报告.pdf (耗时: 33.55秒)
+2026-04-16 07:09:08,595 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:08,595 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\600283-2026-04-16-钱江水利-钱江水利2025年年度报告.pdf (文件ID: file-fe-7f6b9fa22de3497c8870f6df)
+2026-04-16 07:09:08,596 - __main___file_only - INFO - 上传文件: 600283-2026-04-16-钱江水利-钱江水利2025年年度报告.pdf (大小: 0.28 MB, ID: file-fe-7f6b9fa22de3497c8870f6df)
+2026-04-16 07:09:08,804 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:08,804 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\600371-2026-04-16-万向德农-万向德农股份有限公司2025年年度报告.pdf (文件ID: file-fe-03e086f93ce04b64b2a654d7)
+2026-04-16 07:09:08,805 - __main___file_only - INFO - 上传文件: 600371-2026-04-16-万向德农-万向德农股份有限公司2025年年度报告.pdf (大小: 0.57 MB, ID: file-fe-03e086f93ce04b64b2a654d7)
+2026-04-16 07:09:08,845 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:09,000 - __main___file_only - INFO - 找到持股数据: 002971 2026-04-16 (16条)
+2026-04-16 07:09:09,045 - __main___file_only - INFO - 找到报酬数据: 002971 2026-04-16
+2026-04-16 07:09:09,046 - __main__ - INFO - 处理成功: 002971-2026-04-16-和远气体-2025年年度报告.pdf
+2026-04-16 07:09:09,046 - __main___file_only - INFO - 文件处理成功: 002971-2026-04-16-和远气体-2025年年度报告.pdf (耗时: 27.69秒)
+2026-04-16 07:09:09,190 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-efbae3ffbff84c7d992769c1 "HTTP/1.1 200 OK"
+2026-04-16 07:09:09,191 - __main__ - INFO - 开始处理文件: 300886-2026-04-16-华业香料-2025年年度报告.pdf
+2026-04-16 07:09:09,503 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:09,604 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:09,647 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-335db87e4f314707ab715c18 "HTTP/1.1 200 OK"
+2026-04-16 07:09:09,647 - __main__ - INFO - 开始处理文件: 300918-2026-04-16-南山智尚-2025年年度报告.pdf
+2026-04-16 07:09:09,655 - __main___file_only - INFO - 找到持股数据: 003027 2026-04-16 (17条)
+2026-04-16 07:09:09,701 - __main___file_only - INFO - 未找到报酬数据: 003027 2026-04-16
+2026-04-16 07:09:09,702 - __main__ - INFO - 处理成功: 003027-2026-04-16-同兴科技-2025年年度报告.pdf
+2026-04-16 07:09:09,702 - __main___file_only - INFO - 文件处理成功: 003027-2026-04-16-同兴科技-2025年年度报告.pdf (耗时: 26.50秒)
+2026-04-16 07:09:09,746 - __main___file_only - INFO - 找到持股数据: 002823 2026-04-16 (14条)
+2026-04-16 07:09:09,800 - __main___file_only - INFO - 未找到报酬数据: 002823 2026-04-16
+2026-04-16 07:09:09,800 - __main__ - INFO - 处理成功: 002823-2026-04-16-凯中精密-2025年年度报告.pdf
+2026-04-16 07:09:09,800 - __main___file_only - INFO - 文件处理成功: 002823-2026-04-16-凯中精密-2025年年度报告.pdf (耗时: 31.10秒)
+2026-04-16 07:09:10,337 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-e5c65a0a32e2424d9bfa6b2c "HTTP/1.1 200 OK"
+2026-04-16 07:09:10,337 - __main__ - INFO - 开始处理文件: 301128-2026-04-16-强瑞技术-2025年年度报告.pdf
+2026-04-16 07:09:10,573 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-d681b2ab2ac742608d9eaf2d "HTTP/1.1 200 OK"
+2026-04-16 07:09:10,573 - __main__ - INFO - 开始处理文件: 300967-2026-04-16-晓鸣股份-2025年年度报告.pdf
+2026-04-16 07:09:10,804 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:10,805 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\600386-2026-04-16-北巴传媒-北京巴士传媒股份有限公司2025年年度报告.pdf (文件ID: file-fe-57c2449f19704261a7c8cced)
+2026-04-16 07:09:10,805 - __main___file_only - INFO - 上传文件: 600386-2026-04-16-北巴传媒-北京巴士传媒股份有限公司2025年年度报告.pdf (大小: 0.27 MB, ID: file-fe-57c2449f19704261a7c8cced)
+2026-04-16 07:09:10,919 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:10,919 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\600461-2026-04-16-洪城环境-江西洪城环境股份有限公司2025年年度报告.pdf (文件ID: file-fe-6b0aabb699da4e34bce6a0c5)
+2026-04-16 07:09:10,920 - __main___file_only - INFO - 上传文件: 600461-2026-04-16-洪城环境-江西洪城环境股份有限公司2025年年度报告.pdf (大小: 0.25 MB, ID: file-fe-6b0aabb699da4e34bce6a0c5)
+2026-04-16 07:09:11,101 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:11,420 - __main___file_only - INFO - 找到持股数据: 300281 2026-04-16 (11条)
+2026-04-16 07:09:11,465 - __main___file_only - INFO - 未找到报酬数据: 300281 2026-04-16
+2026-04-16 07:09:11,465 - __main__ - INFO - 处理成功: 300281-2026-04-16-金明精机-2025年年度报告.pdf
+2026-04-16 07:09:11,465 - __main___file_only - INFO - 文件处理成功: 300281-2026-04-16-金明精机-2025年年度报告.pdf (耗时: 18.14秒)
+2026-04-16 07:09:12,072 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-8a3a185c985946f697acd314 "HTTP/1.1 200 OK"
+2026-04-16 07:09:12,073 - __main__ - INFO - 开始处理文件: 301281-2026-04-16-科源制药-2025年年度报告.pdf
+2026-04-16 07:09:12,618 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:12,751 - __main___file_only - INFO - 找到持股数据: 002407 2026-04-16 (20条)
+2026-04-16 07:09:12,795 - __main___file_only - INFO - 未找到报酬数据: 002407 2026-04-16
+2026-04-16 07:09:12,796 - __main__ - INFO - 处理成功: 002407-2026-04-16-多氟多-2025年年度报告.pdf
+2026-04-16 07:09:12,796 - __main___file_only - INFO - 文件处理成功: 002407-2026-04-16-多氟多-2025年年度报告.pdf (耗时: 37.27秒)
+2026-04-16 07:09:12,825 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:12,913 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:12,913 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\600707-2026-04-16-彩虹股份-彩虹股份2025年年度报告.pdf (文件ID: file-fe-d7c28e46a44e4bcda7e24ffc)
+2026-04-16 07:09:12,914 - __main___file_only - INFO - 上传文件: 600707-2026-04-16-彩虹股份-彩虹股份2025年年度报告.pdf (大小: 0.35 MB, ID: file-fe-d7c28e46a44e4bcda7e24ffc)
+2026-04-16 07:09:12,945 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:12,946 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\600666-2026-04-16-奥瑞德-奥瑞德2025年年度报告.pdf (文件ID: file-fe-3c211b30062948ac98b1f5ed)
+2026-04-16 07:09:12,946 - __main___file_only - INFO - 上传文件: 600666-2026-04-16-奥瑞德-奥瑞德2025年年度报告.pdf (大小: 0.27 MB, ID: file-fe-3c211b30062948ac98b1f5ed)
+2026-04-16 07:09:12,955 - __main___file_only - INFO - 找到持股数据: 300174 2026-04-16 (11条)
+2026-04-16 07:09:13,000 - __main___file_only - INFO - 未找到报酬数据: 300174 2026-04-16
+2026-04-16 07:09:13,001 - __main__ - INFO - 处理成功: 300174-2026-04-16-元力股份-2025年年度报告.pdf
+2026-04-16 07:09:13,001 - __main___file_only - INFO - 文件处理成功: 300174-2026-04-16-元力股份-2025年年度报告.pdf (耗时: 27.42秒)
+2026-04-16 07:09:13,708 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-0926b0665c424a8d9555ebe1 "HTTP/1.1 200 OK"
+2026-04-16 07:09:13,709 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-31511f36565446c3b13bf8df "HTTP/1.1 200 OK"
+2026-04-16 07:09:13,710 - __main__ - INFO - 开始处理文件: 301283-2026-04-16-聚胶股份-2025年年度报告.pdf
+2026-04-16 07:09:13,710 - __main__ - INFO - 开始处理文件: 301366-2026-04-16-一博科技-2025年年度报告.pdf
+2026-04-16 07:09:14,427 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:14,569 - __main___file_only - INFO - 找到持股数据: 300296 2026-04-16 (9条)
+2026-04-16 07:09:14,614 - __main___file_only - INFO - 未找到报酬数据: 300296 2026-04-16
+2026-04-16 07:09:14,614 - __main__ - INFO - 处理成功: 300296-2026-04-16-利亚德-2025年年度报告.pdf
+2026-04-16 07:09:14,614 - __main___file_only - INFO - 文件处理成功: 300296-2026-04-16-利亚德-2025年年度报告.pdf (耗时: 17.21秒)
+2026-04-16 07:09:15,015 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:15,015 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\600854-2026-04-16-春兰股份-600854_春兰股份_2025年_年度报告.pdf (文件ID: file-fe-4c017951335f4b4882066023)
+2026-04-16 07:09:15,016 - __main___file_only - INFO - 上传文件: 600854-2026-04-16-春兰股份-600854_春兰股份_2025年_年度报告.pdf (大小: 0.25 MB, ID: file-fe-4c017951335f4b4882066023)
+2026-04-16 07:09:15,053 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:15,054 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\600757-2026-04-16-长江传媒-长江传媒2025年年度报告.pdf (文件ID: file-fe-fd98c5b48d1e464c8d4f254b)
+2026-04-16 07:09:15,054 - __main___file_only - INFO - 上传文件: 600757-2026-04-16-长江传媒-长江传媒2025年年度报告.pdf (大小: 0.28 MB, ID: file-fe-fd98c5b48d1e464c8d4f254b)
+2026-04-16 07:09:15,236 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-01bcaa5c975d42be96cd7163 "HTTP/1.1 200 OK"
+2026-04-16 07:09:15,236 - __main__ - INFO - 开始处理文件: 301286-2026-04-16-侨源股份-2025年年度报告.pdf
+2026-04-16 07:09:17,261 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:17,261 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\601339-2026-04-16-百隆东方-百隆东方2025年度报告.pdf (文件ID: file-fe-a2938fc3c7fe4560ba3268ac)
+2026-04-16 07:09:17,262 - __main___file_only - INFO - 上传文件: 601339-2026-04-16-百隆东方-百隆东方2025年度报告.pdf (大小: 0.27 MB, ID: file-fe-a2938fc3c7fe4560ba3268ac)
+2026-04-16 07:09:17,278 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:17,279 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\600935-2026-04-16-华塑股份-安徽华塑股份有限公司2025年年度报告.pdf (文件ID: file-fe-7d5c3565df5f43559da3ab11)
+2026-04-16 07:09:17,279 - __main___file_only - INFO - 上传文件: 600935-2026-04-16-华塑股份-安徽华塑股份有限公司2025年年度报告.pdf (大小: 0.29 MB, ID: file-fe-7d5c3565df5f43559da3ab11)
+2026-04-16 07:09:19,359 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:19,359 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\601877-2026-04-16-正泰电器-正泰电器2025年年度报告.pdf (文件ID: file-fe-64c50ed70d7b417584cf815a)
+2026-04-16 07:09:19,359 - __main___file_only - INFO - 上传文件: 601877-2026-04-16-正泰电器-正泰电器2025年年度报告.pdf (大小: 0.33 MB, ID: file-fe-64c50ed70d7b417584cf815a)
+2026-04-16 07:09:19,382 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:19,382 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\603075-2026-04-16-热威股份-2025年年度报告.pdf (文件ID: file-fe-2dd64ee6202f40bcbb3ace0a)
+2026-04-16 07:09:19,383 - __main___file_only - INFO - 上传文件: 603075-2026-04-16-热威股份-2025年年度报告.pdf (大小: 0.27 MB, ID: file-fe-2dd64ee6202f40bcbb3ace0a)
+2026-04-16 07:09:19,421 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:19,565 - __main___file_only - INFO - 找到持股数据: 300618 2026-04-16 (9条)
+2026-04-16 07:09:19,615 - __main___file_only - INFO - 找到报酬数据: 300618 2026-04-16
+2026-04-16 07:09:19,615 - __main__ - INFO - 处理成功: 300618-2026-04-16-寒锐钴业-2025年年度报告.pdf
+2026-04-16 07:09:19,615 - __main___file_only - INFO - 文件处理成功: 300618-2026-04-16-寒锐钴业-2025年年度报告.pdf (耗时: 17.26秒)
+2026-04-16 07:09:19,823 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:19,985 - __main___file_only - INFO - 找到持股数据: 300305 2026-04-16 (11条)
+2026-04-16 07:09:20,037 - __main___file_only - INFO - 未找到报酬数据: 300305 2026-04-16
+2026-04-16 07:09:20,038 - __main__ - INFO - 处理成功: 300305-2026-04-16-裕兴股份-2025年年度报告.pdf
+2026-04-16 07:09:20,038 - __main___file_only - INFO - 文件处理成功: 300305-2026-04-16-裕兴股份-2025年年度报告.pdf (耗时: 18.79秒)
+2026-04-16 07:09:20,404 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-161e495c926847bc947fdcd8 "HTTP/1.1 200 OK"
+2026-04-16 07:09:20,405 - __main__ - INFO - 开始处理文件: 301373-2026-04-16-凌玮科技-2025年年度报告.pdf
+2026-04-16 07:09:20,706 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-e3da189fecf246818c9b7f16 "HTTP/1.1 200 OK"
+2026-04-16 07:09:20,707 - __main__ - INFO - 开始处理文件: 600089-2026-04-16-特变电工-特变电工股份有限公司2025年年度报告.pdf
+2026-04-16 07:09:21,378 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:21,379 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\603129-2026-04-16-春风动力-春风动力2025年年度报告.pdf (文件ID: file-fe-ade2fde163854f83ab68f898)
+2026-04-16 07:09:21,379 - __main___file_only - INFO - 上传文件: 603129-2026-04-16-春风动力-春风动力2025年年度报告.pdf (大小: 0.31 MB, ID: file-fe-ade2fde163854f83ab68f898)
+2026-04-16 07:09:21,503 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:21,504 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\603102-2026-04-16-百合股份-威海百合生物技术股份有限公司2025年年度报告.pdf (文件ID: file-fe-34cdcb068eba4d5bad4cbbfe)
+2026-04-16 07:09:21,504 - __main___file_only - INFO - 上传文件: 603102-2026-04-16-百合股份-威海百合生物技术股份有限公司2025年年度报告.pdf (大小: 0.31 MB, ID: file-fe-34cdcb068eba4d5bad4cbbfe)
+2026-04-16 07:09:22,814 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:23,246 - __main___file_only - INFO - 找到持股数据: 300685 2026-04-16 (12条)
+2026-04-16 07:09:23,313 - __main___file_only - INFO - 未找到报酬数据: 300685 2026-04-16
+2026-04-16 07:09:23,313 - __main__ - INFO - 处理成功: 300685-2026-04-16-艾德生物-2025年年度报告.pdf
+2026-04-16 07:09:23,313 - __main___file_only - INFO - 文件处理成功: 300685-2026-04-16-艾德生物-2025年年度报告.pdf (耗时: 19.76秒)
+2026-04-16 07:09:23,565 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:23,585 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:23,585 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\603213-2026-04-16-镇洋发展-浙江镇洋发展股份有限公司2025年年度报告.pdf (文件ID: file-fe-3d587550bb10445b84e9867b)
+2026-04-16 07:09:23,586 - __main___file_only - INFO - 上传文件: 603213-2026-04-16-镇洋发展-浙江镇洋发展股份有限公司2025年年度报告.pdf (大小: 0.29 MB, ID: file-fe-3d587550bb10445b84e9867b)
+2026-04-16 07:09:23,592 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:23,593 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\603186-2026-04-16-华正新材-浙江华正新材料股份有限公司2025年年度报告（修订版）.pdf (文件ID: file-fe-e646a8e95f234d8e9e623d27)
+2026-04-16 07:09:23,593 - __main___file_only - INFO - 上传文件: 603186-2026-04-16-华正新材-浙江华正新材料股份有限公司2025年年度报告（修订版）.pdf (大小: 0.29 MB, ID: file-fe-e646a8e95f234d8e9e623d27)
+2026-04-16 07:09:23,881 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-f9f56c1d3cd942d8a55b901c "HTTP/1.1 200 OK"
+2026-04-16 07:09:23,882 - __main__ - INFO - 开始处理文件: 600283-2026-04-16-钱江水利-钱江水利2025年年度报告.pdf
+2026-04-16 07:09:24,504 - __main___file_only - INFO - 找到持股数据: 300440 2026-04-16 (16条)
+2026-04-16 07:09:24,551 - __main___file_only - INFO - 未找到报酬数据: 300440 2026-04-16
+2026-04-16 07:09:24,552 - __main__ - INFO - 处理成功: 300440-2026-04-16-运达科技-2025年年度报告.pdf
+2026-04-16 07:09:24,552 - __main___file_only - INFO - 文件处理成功: 300440-2026-04-16-运达科技-2025年年度报告.pdf (耗时: 26.68秒)
+2026-04-16 07:09:25,185 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-9f95d24cf78c4a4cb3e0b36c "HTTP/1.1 200 OK"
+2026-04-16 07:09:25,185 - __main__ - INFO - 开始处理文件: 600371-2026-04-16-万向德农-万向德农股份有限公司2025年年度报告.pdf
+2026-04-16 07:09:25,249 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:25,409 - __main___file_only - INFO - 找到持股数据: 300623 2026-04-16 (14条)
+2026-04-16 07:09:25,462 - __main___file_only - INFO - 找到报酬数据: 300623 2026-04-16
+2026-04-16 07:09:25,462 - __main__ - INFO - 处理成功: 300623-2026-04-16-捷捷微电-2025年年度报告.pdf
+2026-04-16 07:09:25,462 - __main___file_only - INFO - 文件处理成功: 300623-2026-04-16-捷捷微电-2025年年度报告.pdf (耗时: 23.26秒)
+2026-04-16 07:09:25,635 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:25,635 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\603383-2026-04-16-顶点软件-顶点软件2025年年度报告.pdf (文件ID: file-fe-cdc75e8c84c94e2bb9f2e566)
+2026-04-16 07:09:25,635 - __main___file_only - INFO - 上传文件: 603383-2026-04-16-顶点软件-顶点软件2025年年度报告.pdf (大小: 0.25 MB, ID: file-fe-cdc75e8c84c94e2bb9f2e566)
+2026-04-16 07:09:25,733 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:25,733 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\603355-2026-04-16-莱克电气-莱克电气2025年年度报告.pdf (文件ID: file-fe-4e1ae04503ea4edab0643359)
+2026-04-16 07:09:25,734 - __main___file_only - INFO - 上传文件: 603355-2026-04-16-莱克电气-莱克电气2025年年度报告.pdf (大小: 0.29 MB, ID: file-fe-4e1ae04503ea4edab0643359)
+2026-04-16 07:09:26,072 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-8845f0002cc247679fd7207e "HTTP/1.1 200 OK"
+2026-04-16 07:09:26,072 - __main__ - INFO - 开始处理文件: 600386-2026-04-16-北巴传媒-北京巴士传媒股份有限公司2025年年度报告.pdf
+2026-04-16 07:09:26,549 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:26,692 - __main___file_only - INFO - 找到持股数据: 300918 2026-04-16 (11条)
+2026-04-16 07:09:26,741 - __main___file_only - INFO - 未找到报酬数据: 300918 2026-04-16
+2026-04-16 07:09:26,741 - __main__ - INFO - 处理成功: 300918-2026-04-16-南山智尚-2025年年度报告.pdf
+2026-04-16 07:09:26,742 - __main___file_only - INFO - 文件处理成功: 300918-2026-04-16-南山智尚-2025年年度报告.pdf (耗时: 17.09秒)
+2026-04-16 07:09:27,285 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-1c2223c65101489b9911dd30 "HTTP/1.1 200 OK"
+2026-04-16 07:09:27,285 - __main__ - INFO - 开始处理文件: 600461-2026-04-16-洪城环境-江西洪城环境股份有限公司2025年年度报告.pdf
+2026-04-16 07:09:27,710 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:27,711 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\603536-2026-04-16-惠发食品-惠发食品2025年年度报告.pdf (文件ID: file-fe-1be7f88e88a848f79e52c423)
+2026-04-16 07:09:27,711 - __main___file_only - INFO - 上传文件: 603536-2026-04-16-惠发食品-惠发食品2025年年度报告.pdf (大小: 0.28 MB, ID: file-fe-1be7f88e88a848f79e52c423)
+2026-04-16 07:09:27,729 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:27,730 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\603916-2026-04-16-苏博特-2025年年度报告.pdf (文件ID: file-fe-2a9b09bf3c1646bfb6fdc384)
+2026-04-16 07:09:27,730 - __main___file_only - INFO - 上传文件: 603916-2026-04-16-苏博特-2025年年度报告.pdf (大小: 0.27 MB, ID: file-fe-2a9b09bf3c1646bfb6fdc384)
+2026-04-16 07:09:28,565 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:28,715 - __main___file_only - INFO - 找到持股数据: 300666 2026-04-16 (15条)
+2026-04-16 07:09:28,782 - __main___file_only - INFO - 找到报酬数据: 300666 2026-04-16
+2026-04-16 07:09:28,782 - __main__ - INFO - 处理成功: 300666-2026-04-16-江丰电子-2025年年度报告.pdf
+2026-04-16 07:09:28,782 - __main___file_only - INFO - 文件处理成功: 300666-2026-04-16-江丰电子-2025年年度报告.pdf (耗时: 23.91秒)
+2026-04-16 07:09:29,560 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-868231481c3d4875ac273d1d "HTTP/1.1 200 OK"
+2026-04-16 07:09:29,561 - __main__ - INFO - 开始处理文件: 600707-2026-04-16-彩虹股份-彩虹股份2025年年度报告.pdf
+2026-04-16 07:09:29,845 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:29,846 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\603977-2026-04-16-国泰集团-江西国泰集团股份有限公司2025年年度报告.pdf (文件ID: file-fe-1cfbe37b1e7244c5a61ec7ef)
+2026-04-16 07:09:29,846 - __main___file_only - INFO - 上传文件: 603977-2026-04-16-国泰集团-江西国泰集团股份有限公司2025年年度报告.pdf (大小: 0.28 MB, ID: file-fe-1cfbe37b1e7244c5a61ec7ef)
+2026-04-16 07:09:29,951 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:29,952 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\603938-2026-04-16-三孚股份-2025年年度报告.pdf (文件ID: file-fe-86b9a88140e947bbb416c96f)
+2026-04-16 07:09:29,953 - __main___file_only - INFO - 上传文件: 603938-2026-04-16-三孚股份-2025年年度报告.pdf (大小: 0.26 MB, ID: file-fe-86b9a88140e947bbb416c96f)
+2026-04-16 07:09:30,384 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:30,859 - __main___file_only - INFO - 找到持股数据: 300717 2026-04-16 (16条)
+2026-04-16 07:09:30,926 - __main___file_only - INFO - 找到报酬数据: 300717 2026-04-16
+2026-04-16 07:09:30,927 - __main__ - INFO - 处理成功: 300717-2026-04-16-华信新材-2025年年度报告.pdf
+2026-04-16 07:09:30,927 - __main___file_only - INFO - 文件处理成功: 300717-2026-04-16-华信新材-2025年年度报告.pdf (耗时: 23.53秒)
+2026-04-16 07:09:31,560 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-9c4be259a431432b9058bfb8 "HTTP/1.1 200 OK"
+2026-04-16 07:09:31,560 - __main__ - INFO - 开始处理文件: 600666-2026-04-16-奥瑞德-奥瑞德2025年年度报告.pdf
+2026-04-16 07:09:32,073 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:32,074 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\605058-2026-04-16-澳弘电子-澳弘电子2025年年度报告.pdf (文件ID: file-fe-d287e7b781f94110b3f78c49)
+2026-04-16 07:09:32,074 - __main___file_only - INFO - 上传文件: 605058-2026-04-16-澳弘电子-澳弘电子2025年年度报告.pdf (大小: 0.28 MB, ID: file-fe-d287e7b781f94110b3f78c49)
+2026-04-16 07:09:32,134 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:32,135 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\605166-2026-04-16-聚合顺-聚合顺新材料股份有限公司2025年年度报告.pdf (文件ID: file-fe-eca9418861b345fcbb13b393)
+2026-04-16 07:09:32,135 - __main___file_only - INFO - 上传文件: 605166-2026-04-16-聚合顺-聚合顺新材料股份有限公司2025年年度报告.pdf (大小: 0.30 MB, ID: file-fe-eca9418861b345fcbb13b393)
+2026-04-16 07:09:32,529 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:32,674 - __main___file_only - INFO - 找到持股数据: 301286 2026-04-16 (9条)
+2026-04-16 07:09:32,725 - __main___file_only - INFO - 找到报酬数据: 301286 2026-04-16
+2026-04-16 07:09:32,726 - __main__ - INFO - 处理成功: 301286-2026-04-16-侨源股份-2025年年度报告.pdf
+2026-04-16 07:09:32,726 - __main___file_only - INFO - 文件处理成功: 301286-2026-04-16-侨源股份-2025年年度报告.pdf (耗时: 17.49秒)
+2026-04-16 07:09:33,514 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-7e60935825da4651aa8433c4 "HTTP/1.1 200 OK"
+2026-04-16 07:09:33,515 - __main__ - INFO - 开始处理文件: 600854-2026-04-16-春兰股份-600854_春兰股份_2025年_年度报告.pdf
+2026-04-16 07:09:34,166 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:34,166 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\605580-2026-04-16-恒盛能源-恒盛能源股份有限公司2025年年度报告全文.pdf (文件ID: file-fe-7f9cc6736b0c40dbacc98a0a)
+2026-04-16 07:09:34,166 - __main___file_only - INFO - 上传文件: 605580-2026-04-16-恒盛能源-恒盛能源股份有限公司2025年年度报告全文.pdf (大小: 0.27 MB, ID: file-fe-7f9cc6736b0c40dbacc98a0a)
+2026-04-16 07:09:34,208 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:34,208 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\688019-2026-04-16-安集科技-2025年年度报告.pdf (文件ID: file-fe-162a6c655a6d43689e7ca485)
+2026-04-16 07:09:34,208 - __main___file_only - INFO - 上传文件: 688019-2026-04-16-安集科技-2025年年度报告.pdf (大小: 0.29 MB, ID: file-fe-162a6c655a6d43689e7ca485)
+2026-04-16 07:09:35,575 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:35,717 - __main___file_only - INFO - 找到持股数据: 300886 2026-04-16 (16条)
+2026-04-16 07:09:35,762 - __main___file_only - INFO - 未找到报酬数据: 300886 2026-04-16
+2026-04-16 07:09:35,763 - __main__ - INFO - 处理成功: 300886-2026-04-16-华业香料-2025年年度报告.pdf
+2026-04-16 07:09:35,763 - __main___file_only - INFO - 文件处理成功: 300886-2026-04-16-华业香料-2025年年度报告.pdf (耗时: 26.57秒)
+2026-04-16 07:09:36,271 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:36,272 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\688273-2026-04-16-麦澜德-2025年年度报告.pdf (文件ID: file-fe-38f4b1a08d37440ca77ea074)
+2026-04-16 07:09:36,272 - __main___file_only - INFO - 上传文件: 688273-2026-04-16-麦澜德-2025年年度报告.pdf (大小: 0.31 MB, ID: file-fe-38f4b1a08d37440ca77ea074)
+2026-04-16 07:09:36,278 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:36,333 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:36,333 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\688206-2026-04-16-概伦电子-2025年年度报告.pdf (文件ID: file-fe-2fe5b708bede4c95a00e990b)
+2026-04-16 07:09:36,334 - __main___file_only - INFO - 上传文件: 688206-2026-04-16-概伦电子-2025年年度报告.pdf (大小: 0.31 MB, ID: file-fe-2fe5b708bede4c95a00e990b)
+2026-04-16 07:09:36,343 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-0c5058fe562e4164b3047f02 "HTTP/1.1 200 OK"
+2026-04-16 07:09:36,343 - __main__ - INFO - 开始处理文件: 600757-2026-04-16-长江传媒-长江传媒2025年年度报告.pdf
+2026-04-16 07:09:36,550 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:36,692 - __main___file_only - INFO - 找到持股数据: 301283 2026-04-16 (12条)
+2026-04-16 07:09:36,739 - __main___file_only - INFO - 未找到报酬数据: 301283 2026-04-16
+2026-04-16 07:09:36,739 - __main__ - INFO - 处理成功: 301283-2026-04-16-聚胶股份-2025年年度报告.pdf
+2026-04-16 07:09:36,739 - __main___file_only - INFO - 文件处理成功: 301283-2026-04-16-聚胶股份-2025年年度报告.pdf (耗时: 23.03秒)
+2026-04-16 07:09:36,831 - __main___file_only - INFO - 找到持股数据: 301128 2026-04-16 (15条)
+2026-04-16 07:09:36,878 - __main___file_only - INFO - 未找到报酬数据: 301128 2026-04-16
+2026-04-16 07:09:36,878 - __main__ - INFO - 处理成功: 301128-2026-04-16-强瑞技术-2025年年度报告.pdf
+2026-04-16 07:09:36,878 - __main___file_only - INFO - 文件处理成功: 301128-2026-04-16-强瑞技术-2025年年度报告.pdf (耗时: 26.54秒)
+2026-04-16 07:09:37,364 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-59241ae44a134149a75d7707 "HTTP/1.1 200 OK"
+2026-04-16 07:09:37,365 - __main__ - INFO - 开始处理文件: 601339-2026-04-16-百隆东方-百隆东方2025年度报告.pdf
+2026-04-16 07:09:37,640 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-9ef9071c6962421bae98c87a "HTTP/1.1 200 OK"
+2026-04-16 07:09:37,640 - __main__ - INFO - 开始处理文件: 600935-2026-04-16-华塑股份-安徽华塑股份有限公司2025年年度报告.pdf
+2026-04-16 07:09:37,914 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:37,968 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:38,048 - __main___file_only - INFO - 找到持股数据: 301373 2026-04-16 (11条)
+2026-04-16 07:09:38,095 - __main___file_only - INFO - 找到报酬数据: 301373 2026-04-16
+2026-04-16 07:09:38,095 - __main__ - INFO - 处理成功: 301373-2026-04-16-凌玮科技-2025年年度报告.pdf
+2026-04-16 07:09:38,095 - __main___file_only - INFO - 文件处理成功: 301373-2026-04-16-凌玮科技-2025年年度报告.pdf (耗时: 17.69秒)
+2026-04-16 07:09:38,108 - __main___file_only - INFO - 找到持股数据: 301281 2026-04-16 (18条)
+2026-04-16 07:09:38,159 - __main___file_only - INFO - 未找到报酬数据: 301281 2026-04-16
+2026-04-16 07:09:38,159 - __main__ - INFO - 处理成功: 301281-2026-04-16-科源制药-2025年年度报告.pdf
+2026-04-16 07:09:38,159 - __main___file_only - INFO - 文件处理成功: 301281-2026-04-16-科源制药-2025年年度报告.pdf (耗时: 26.09秒)
+2026-04-16 07:09:38,486 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:38,486 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\688612-2026-04-16-威迈斯-2025年年度报告.pdf (文件ID: file-fe-1ecf3884e2064afa816268cd)
+2026-04-16 07:09:38,487 - __main___file_only - INFO - 上传文件: 688612-2026-04-16-威迈斯-2025年年度报告.pdf (大小: 0.30 MB, ID: file-fe-1ecf3884e2064afa816268cd)
+2026-04-16 07:09:38,656 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-7d2619ec7bad4f23a68fc3da "HTTP/1.1 200 OK"
+2026-04-16 07:09:38,656 - __main__ - INFO - 开始处理文件: 601877-2026-04-16-正泰电器-正泰电器2025年年度报告.pdf
+2026-04-16 07:09:38,760 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:38,760 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\688499-2026-04-16-利元亨-广东利元亨智能装备股份有限公司2025年年度报告.pdf (文件ID: file-fe-fa23924219cd40488aa19573)
+2026-04-16 07:09:38,760 - __main___file_only - INFO - 上传文件: 688499-2026-04-16-利元亨-广东利元亨智能装备股份有限公司2025年年度报告.pdf (大小: 0.33 MB, ID: file-fe-fa23924219cd40488aa19573)
+2026-04-16 07:09:38,798 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-eb5f18b8dc8b42fba239c8d7 "HTTP/1.1 200 OK"
+2026-04-16 07:09:38,798 - __main__ - INFO - 开始处理文件: 603075-2026-04-16-热威股份-2025年年度报告.pdf
+2026-04-16 07:09:40,559 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:40,560 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\688681-2026-04-16-科汇股份-2025年年度报告.pdf (文件ID: file-fe-fe0ea7e1a9fc466f954bd938)
+2026-04-16 07:09:40,560 - __main___file_only - INFO - 上传文件: 688681-2026-04-16-科汇股份-2025年年度报告.pdf (大小: 0.58 MB, ID: file-fe-fe0ea7e1a9fc466f954bd938)
+2026-04-16 07:09:40,587 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:40,588 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\688690-2026-04-16-纳微科技-苏州纳微科技股份有限公司2025年年度报告.pdf (文件ID: file-fe-9954562717fc4c15ba5a2f42)
+2026-04-16 07:09:40,588 - __main___file_only - INFO - 上传文件: 688690-2026-04-16-纳微科技-苏州纳微科技股份有限公司2025年年度报告.pdf (大小: 0.33 MB, ID: file-fe-9954562717fc4c15ba5a2f42)
+2026-04-16 07:09:41,176 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:41,311 - __main___file_only - INFO - 找到持股数据: 600371 2026-04-16 (11条)
+2026-04-16 07:09:41,358 - __main___file_only - INFO - 找到报酬数据: 600371 2026-04-16
+2026-04-16 07:09:41,358 - __main__ - INFO - 处理成功: 600371-2026-04-16-万向德农-万向德农股份有限公司2025年年度报告.pdf
+2026-04-16 07:09:41,359 - __main___file_only - INFO - 文件处理成功: 600371-2026-04-16-万向德农-万向德农股份有限公司2025年年度报告.pdf (耗时: 16.17秒)
+2026-04-16 07:09:41,966 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:41,978 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-03e086f93ce04b64b2a654d7 "HTTP/1.1 200 OK"
+2026-04-16 07:09:41,978 - __main__ - INFO - 开始处理文件: 603129-2026-04-16-春风动力-春风动力2025年年度报告.pdf
+2026-04-16 07:09:42,110 - __main___file_only - INFO - 找到持股数据: 301366 2026-04-16 (15条)
+2026-04-16 07:09:42,163 - __main___file_only - INFO - 找到报酬数据: 301366 2026-04-16
+2026-04-16 07:09:42,164 - __main__ - INFO - 处理成功: 301366-2026-04-16-一博科技-2025年年度报告.pdf
+2026-04-16 07:09:42,164 - __main___file_only - INFO - 文件处理成功: 301366-2026-04-16-一博科技-2025年年度报告.pdf (耗时: 28.45秒)
+2026-04-16 07:09:42,627 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:42,698 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:42,699 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\688698-2026-04-16-伟创电气-2025年年度报告.pdf (文件ID: file-fe-2a9ed0f44654415189297d55)
+2026-04-16 07:09:42,699 - __main___file_only - INFO - 上传文件: 688698-2026-04-16-伟创电气-2025年年度报告.pdf (大小: 0.32 MB, ID: file-fe-2a9ed0f44654415189297d55)
+2026-04-16 07:09:42,778 - __main___file_only - INFO - 找到持股数据: 300967 2026-04-16 (21条)
+2026-04-16 07:09:42,904 - __main___file_only - INFO - 未找到报酬数据: 300967 2026-04-16
+2026-04-16 07:09:42,905 - __main__ - INFO - 处理成功: 300967-2026-04-16-晓鸣股份-2025年年度报告.pdf
+2026-04-16 07:09:42,905 - __main___file_only - INFO - 文件处理成功: 300967-2026-04-16-晓鸣股份-2025年年度报告.pdf (耗时: 32.33秒)
+2026-04-16 07:09:42,906 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:42,907 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\920007-2026-04-15-酉立智能-2025年年度报告.pdf (文件ID: file-fe-fbefc98b95cb4d139e54a03c)
+2026-04-16 07:09:42,907 - __main___file_only - INFO - 上传文件: 920007-2026-04-15-酉立智能-2025年年度报告.pdf (大小: 0.45 MB, ID: file-fe-fbefc98b95cb4d139e54a03c)
+2026-04-16 07:09:42,909 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-7ca1b03e9b4d411f9265aa64 "HTTP/1.1 200 OK"
+2026-04-16 07:09:42,910 - __main__ - INFO - 开始处理文件: 603102-2026-04-16-百合股份-威海百合生物技术股份有限公司2025年年度报告.pdf
+2026-04-16 07:09:43,560 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-8481d6b65bb5424c86031787 "HTTP/1.1 200 OK"
+2026-04-16 07:09:43,560 - __main__ - INFO - 开始处理文件: 603213-2026-04-16-镇洋发展-浙江镇洋发展股份有限公司2025年年度报告.pdf
+2026-04-16 07:09:44,873 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:44,874 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\920020-2026-04-15-泰凯英-2025年年度报告.pdf (文件ID: file-fe-1f98e8131d7f42f8aa84ab42)
+2026-04-16 07:09:44,874 - __main___file_only - INFO - 上传文件: 920020-2026-04-15-泰凯英-2025年年度报告.pdf (大小: 0.43 MB, ID: file-fe-1f98e8131d7f42f8aa84ab42)
+2026-04-16 07:09:44,927 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:44,927 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\920149-2026-04-15-旭杰科技-2025年年度报告.pdf (文件ID: file-fe-fdc170045eda41cdb16f815f)
+2026-04-16 07:09:44,927 - __main___file_only - INFO - 上传文件: 920149-2026-04-15-旭杰科技-2025年年度报告.pdf (大小: 0.87 MB, ID: file-fe-fdc170045eda41cdb16f815f)
+2026-04-16 07:09:46,076 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:46,212 - __main___file_only - INFO - 找到持股数据: 300732 2026-04-16 (24条)
+2026-04-16 07:09:46,259 - __main___file_only - INFO - 找到报酬数据: 300732 2026-04-16
+2026-04-16 07:09:46,260 - __main__ - INFO - 处理成功: 300732-2026-04-16-设研院-2025年年度报告.pdf
+2026-04-16 07:09:46,260 - __main___file_only - INFO - 文件处理成功: 300732-2026-04-16-设研院-2025年年度报告.pdf (耗时: 39.82秒)
+2026-04-16 07:09:46,382 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:46,516 - __main___file_only - INFO - 找到持股数据: 600666 2026-04-16 (9条)
+2026-04-16 07:09:46,567 - __main___file_only - INFO - 找到报酬数据: 600666 2026-04-16
+2026-04-16 07:09:46,567 - __main__ - INFO - 处理成功: 600666-2026-04-16-奥瑞德-奥瑞德2025年年度报告.pdf
+2026-04-16 07:09:46,568 - __main___file_only - INFO - 文件处理成功: 600666-2026-04-16-奥瑞德-奥瑞德2025年年度报告.pdf (耗时: 15.01秒)
+2026-04-16 07:09:47,004 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:47,004 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\920199-2026-04-15-倍益康-2025年年度报告.pdf (文件ID: file-fe-e7aef30c8dd9488b9f034412)
+2026-04-16 07:09:47,005 - __main___file_only - INFO - 上传文件: 920199-2026-04-15-倍益康-2025年年度报告.pdf (大小: 0.55 MB, ID: file-fe-e7aef30c8dd9488b9f034412)
+2026-04-16 07:09:47,034 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-98383877099446328665bfaa "HTTP/1.1 200 OK"
+2026-04-16 07:09:47,035 - __main__ - INFO - 开始处理文件: 603186-2026-04-16-华正新材-浙江华正新材料股份有限公司2025年年度报告（修订版）.pdf
+2026-04-16 07:09:47,080 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:47,081 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\920223-2026-04-15-荣亿精密-2025年年度报告.pdf (文件ID: file-fe-267fc0e15b7545d2a116dca9)
+2026-04-16 07:09:47,081 - __main___file_only - INFO - 上传文件: 920223-2026-04-15-荣亿精密-2025年年度报告.pdf (大小: 0.52 MB, ID: file-fe-267fc0e15b7545d2a116dca9)
+2026-04-16 07:09:47,313 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-3c211b30062948ac98b1f5ed "HTTP/1.1 200 OK"
+2026-04-16 07:09:47,314 - __main__ - INFO - 开始处理文件: 603383-2026-04-16-顶点软件-顶点软件2025年年度报告.pdf
+2026-04-16 07:09:48,998 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:49,030 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:49,118 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:49,119 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\920230-2026-04-15-欧康医药-2025年年度报告.pdf (文件ID: file-fe-5f1179715b424c90ab75c49d)
+2026-04-16 07:09:49,119 - __main___file_only - INFO - 上传文件: 920230-2026-04-15-欧康医药-2025年年度报告.pdf (大小: 0.51 MB, ID: file-fe-5f1179715b424c90ab75c49d)
+2026-04-16 07:09:49,142 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:49,143 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\920249-2026-04-15-利尔达-2025年年度报告.pdf (文件ID: file-fe-5d36abb77baa4d95a7c2121a)
+2026-04-16 07:09:49,143 - __main___file_only - INFO - 上传文件: 920249-2026-04-15-利尔达-2025年年度报告.pdf (大小: 0.69 MB, ID: file-fe-5d36abb77baa4d95a7c2121a)
+2026-04-16 07:09:49,145 - __main___file_only - INFO - 找到持股数据: 600854 2026-04-16 (11条)
+2026-04-16 07:09:49,178 - __main___file_only - INFO - 找到持股数据: 600283 2026-04-16 (17条)
+2026-04-16 07:09:49,192 - __main___file_only - INFO - 找到报酬数据: 600854 2026-04-16
+2026-04-16 07:09:49,193 - __main__ - INFO - 处理成功: 600854-2026-04-16-春兰股份-600854_春兰股份_2025年_年度报告.pdf
+2026-04-16 07:09:49,193 - __main___file_only - INFO - 文件处理成功: 600854-2026-04-16-春兰股份-600854_春兰股份_2025年_年度报告.pdf (耗时: 15.68秒)
+2026-04-16 07:09:49,237 - __main___file_only - INFO - 找到报酬数据: 600283 2026-04-16
+2026-04-16 07:09:49,238 - __main__ - INFO - 处理成功: 600283-2026-04-16-钱江水利-钱江水利2025年年度报告.pdf
+2026-04-16 07:09:49,238 - __main___file_only - INFO - 文件处理成功: 600283-2026-04-16-钱江水利-钱江水利2025年年度报告.pdf (耗时: 25.36秒)
+2026-04-16 07:09:49,806 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-7f6b9fa22de3497c8870f6df "HTTP/1.1 200 OK"
+2026-04-16 07:09:49,807 - __main__ - INFO - 开始处理文件: 603355-2026-04-16-莱克电气-莱克电气2025年年度报告.pdf
+2026-04-16 07:09:49,847 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-4c017951335f4b4882066023 "HTTP/1.1 200 OK"
+2026-04-16 07:09:49,847 - __main__ - INFO - 开始处理文件: 603536-2026-04-16-惠发食品-惠发食品2025年年度报告.pdf
+2026-04-16 07:09:50,573 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:50,718 - __main___file_only - INFO - 找到持股数据: 600089 2026-04-16 (18条)
+2026-04-16 07:09:50,762 - __main___file_only - INFO - 找到报酬数据: 600089 2026-04-16
+2026-04-16 07:09:50,763 - __main__ - INFO - 处理成功: 600089-2026-04-16-特变电工-特变电工股份有限公司2025年年度报告.pdf
+2026-04-16 07:09:50,763 - __main___file_only - INFO - 文件处理成功: 600089-2026-04-16-特变电工-特变电工股份有限公司2025年年度报告.pdf (耗时: 30.06秒)
+2026-04-16 07:09:51,237 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:51,238 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\920357-2026-04-15-雅葆轩-2025年年度报告.pdf (文件ID: file-fe-efcec82a76584f34b5b9bd17)
+2026-04-16 07:09:51,238 - __main___file_only - INFO - 上传文件: 920357-2026-04-15-雅葆轩-2025年年度报告.pdf (大小: 0.39 MB, ID: file-fe-efcec82a76584f34b5b9bd17)
+2026-04-16 07:09:51,344 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:51,344 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\920367-2026-04-15-新赣江-2025年年度报告.pdf (文件ID: file-fe-8b679cef097940d7b429a289)
+2026-04-16 07:09:51,344 - __main___file_only - INFO - 上传文件: 920367-2026-04-15-新赣江-2025年年度报告.pdf (大小: 0.90 MB, ID: file-fe-8b679cef097940d7b429a289)
+2026-04-16 07:09:51,404 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-cc7805295bb144ce84d9da4e "HTTP/1.1 200 OK"
+2026-04-16 07:09:51,404 - __main__ - INFO - 开始处理文件: 603916-2026-04-16-苏博特-2025年年度报告.pdf
+2026-04-16 07:09:52,638 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:52,794 - __main___file_only - INFO - 找到持股数据: 600707 2026-04-16 (15条)
+2026-04-16 07:09:52,845 - __main___file_only - INFO - 未找到报酬数据: 600707 2026-04-16
+2026-04-16 07:09:52,845 - __main__ - INFO - 处理成功: 600707-2026-04-16-彩虹股份-彩虹股份2025年年度报告.pdf
+2026-04-16 07:09:52,845 - __main___file_only - INFO - 文件处理成功: 600707-2026-04-16-彩虹股份-彩虹股份2025年年度报告.pdf (耗时: 23.28秒)
+2026-04-16 07:09:53,375 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:53,375 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\920689-2026-04-15-克莱特-2025年年度报告.pdf (文件ID: file-fe-1f931970783a48b385b0fc99)
+2026-04-16 07:09:53,376 - __main___file_only - INFO - 上传文件: 920689-2026-04-15-克莱特-2025年年度报告.pdf (大小: 0.34 MB, ID: file-fe-1f931970783a48b385b0fc99)
+2026-04-16 07:09:53,386 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-d7c28e46a44e4bcda7e24ffc "HTTP/1.1 200 OK"
+2026-04-16 07:09:53,386 - __main__ - INFO - 开始处理文件: 603977-2026-04-16-国泰集团-江西国泰集团股份有限公司2025年年度报告.pdf
+2026-04-16 07:09:53,396 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:53,396 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\920526-2026-04-15-凯华材料-2025年年度报告.pdf (文件ID: file-fe-d6b7eb885c6d40a581c0ce87)
+2026-04-16 07:09:53,396 - __main___file_only - INFO - 上传文件: 920526-2026-04-15-凯华材料-2025年年度报告.pdf (大小: 0.82 MB, ID: file-fe-d6b7eb885c6d40a581c0ce87)
+2026-04-16 07:09:54,435 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:54,575 - __main___file_only - INFO - 找到持股数据: 600386 2026-04-16 (21条)
+2026-04-16 07:09:54,622 - __main___file_only - INFO - 未找到报酬数据: 600386 2026-04-16
+2026-04-16 07:09:54,623 - __main__ - INFO - 处理成功: 600386-2026-04-16-北巴传媒-北京巴士传媒股份有限公司2025年年度报告.pdf
+2026-04-16 07:09:54,623 - __main___file_only - INFO - 文件处理成功: 600386-2026-04-16-北巴传媒-北京巴士传媒股份有限公司2025年年度报告.pdf (耗时: 28.55秒)
+2026-04-16 07:09:55,226 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-57c2449f19704261a7c8cced "HTTP/1.1 200 OK"
+2026-04-16 07:09:55,227 - __main__ - INFO - 开始处理文件: 603938-2026-04-16-三孚股份-2025年年度报告.pdf
+2026-04-16 07:09:55,396 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:55,470 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:55,471 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\920768-2026-04-15-拾比佰-2025年年度报告.pdf (文件ID: file-fe-7d2714330bf94a89b69abc35)
+2026-04-16 07:09:55,471 - __main___file_only - INFO - 上传文件: 920768-2026-04-15-拾比佰-2025年年度报告.pdf (大小: 0.55 MB, ID: file-fe-7d2714330bf94a89b69abc35)
+2026-04-16 07:09:55,511 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:55,512 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹 (2)\920693-2026-04-15-阿为特-2025年年度报告.pdf (文件ID: file-fe-a9d3a62a657f4ab394747276)
+2026-04-16 07:09:55,512 - __main___file_only - INFO - 上传文件: 920693-2026-04-15-阿为特-2025年年度报告.pdf (大小: 0.71 MB, ID: file-fe-a9d3a62a657f4ab394747276)
+2026-04-16 07:09:55,542 - __main___file_only - INFO - 找到持股数据: 600461 2026-04-16 (19条)
+2026-04-16 07:09:55,589 - __main___file_only - INFO - 找到报酬数据: 600461 2026-04-16
+2026-04-16 07:09:55,590 - __main__ - INFO - 处理成功: 600461-2026-04-16-洪城环境-江西洪城环境股份有限公司2025年年度报告.pdf
+2026-04-16 07:09:55,590 - __main___file_only - INFO - 文件处理成功: 600461-2026-04-16-洪城环境-江西洪城环境股份有限公司2025年年度报告.pdf (耗时: 28.30秒)
+2026-04-16 07:09:56,245 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-6b0aabb699da4e34bce6a0c5 "HTTP/1.1 200 OK"
+2026-04-16 07:09:56,245 - __main__ - INFO - 开始处理文件: 605058-2026-04-16-澳弘电子-澳弘电子2025年年度报告.pdf
+2026-04-16 07:09:58,152 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:58,282 - __main___file_only - INFO - 找到持股数据: 603075 2026-04-16 (12条)
+2026-04-16 07:09:58,333 - __main___file_only - INFO - 找到报酬数据: 603075 2026-04-16
+2026-04-16 07:09:58,333 - __main__ - INFO - 处理成功: 603075-2026-04-16-热威股份-2025年年度报告.pdf
+2026-04-16 07:09:58,333 - __main___file_only - INFO - 文件处理成功: 603075-2026-04-16-热威股份-2025年年度报告.pdf (耗时: 19.54秒)
+2026-04-16 07:09:58,771 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:58,917 - __main___file_only - INFO - 找到持股数据: 600757 2026-04-16 (15条)
+2026-04-16 07:09:58,964 - __main___file_only - INFO - 找到报酬数据: 600757 2026-04-16
+2026-04-16 07:09:58,964 - __main__ - INFO - 处理成功: 600757-2026-04-16-长江传媒-长江传媒2025年年度报告.pdf
+2026-04-16 07:09:58,964 - __main___file_only - INFO - 文件处理成功: 600757-2026-04-16-长江传媒-长江传媒2025年年度报告.pdf (耗时: 22.62秒)
+2026-04-16 07:09:59,154 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-2dd64ee6202f40bcbb3ace0a "HTTP/1.1 200 OK"
+2026-04-16 07:09:59,154 - __main__ - INFO - 开始处理文件: 605166-2026-04-16-聚合顺-聚合顺新材料股份有限公司2025年年度报告.pdf
+2026-04-16 07:09:59,547 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-fd98c5b48d1e464c8d4f254b "HTTP/1.1 200 OK"
+2026-04-16 07:09:59,547 - __main__ - INFO - 开始处理文件: 605580-2026-04-16-恒盛能源-恒盛能源股份有限公司2025年年度报告全文.pdf
+2026-04-16 07:10:02,290 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:02,566 - __main___file_only - INFO - 找到持股数据: 603102 2026-04-16 (11条)
+2026-04-16 07:10:02,666 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:02,738 - __main___file_only - INFO - 找到报酬数据: 603102 2026-04-16
+2026-04-16 07:10:02,739 - __main__ - INFO - 处理成功: 603102-2026-04-16-百合股份-威海百合生物技术股份有限公司2025年年度报告.pdf
+2026-04-16 07:10:02,739 - __main___file_only - INFO - 文件处理成功: 603102-2026-04-16-百合股份-威海百合生物技术股份有限公司2025年年度报告.pdf (耗时: 19.83秒)
+2026-04-16 07:10:02,812 - __main___file_only - INFO - 找到持股数据: 601339 2026-04-16 (16条)
+2026-04-16 07:10:02,858 - __main___file_only - INFO - 未找到报酬数据: 601339 2026-04-16
+2026-04-16 07:10:02,859 - __main__ - INFO - 处理成功: 601339-2026-04-16-百隆东方-百隆东方2025年度报告.pdf
+2026-04-16 07:10:02,859 - __main___file_only - INFO - 文件处理成功: 601339-2026-04-16-百隆东方-百隆东方2025年度报告.pdf (耗时: 25.49秒)
+2026-04-16 07:10:03,387 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-34cdcb068eba4d5bad4cbbfe "HTTP/1.1 200 OK"
+2026-04-16 07:10:03,388 - __main__ - INFO - 开始处理文件: 688019-2026-04-16-安集科技-2025年年度报告.pdf
+2026-04-16 07:10:03,556 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-a2938fc3c7fe4560ba3268ac "HTTP/1.1 200 OK"
+2026-04-16 07:10:03,557 - __main__ - INFO - 开始处理文件: 688273-2026-04-16-麦澜德-2025年年度报告.pdf
+2026-04-16 07:10:04,758 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:04,897 - __main___file_only - INFO - 找到持股数据: 603213 2026-04-16 (14条)
+2026-04-16 07:10:04,898 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:04,944 - __main___file_only - INFO - 找到报酬数据: 603213 2026-04-16
+2026-04-16 07:10:04,945 - __main__ - INFO - 处理成功: 603213-2026-04-16-镇洋发展-浙江镇洋发展股份有限公司2025年年度报告.pdf
+2026-04-16 07:10:04,945 - __main___file_only - INFO - 文件处理成功: 603213-2026-04-16-镇洋发展-浙江镇洋发展股份有限公司2025年年度报告.pdf (耗时: 21.38秒)
+2026-04-16 07:10:05,187 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:05,302 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:05,402 - __main___file_only - INFO - 找到持股数据: 601877 2026-04-16 (16条)
+2026-04-16 07:10:05,450 - __main___file_only - INFO - 找到报酬数据: 601877 2026-04-16
+2026-04-16 07:10:05,451 - __main__ - INFO - 处理成功: 601877-2026-04-16-正泰电器-正泰电器2025年年度报告.pdf
+2026-04-16 07:10:05,451 - __main___file_only - INFO - 文件处理成功: 601877-2026-04-16-正泰电器-正泰电器2025年年度报告.pdf (耗时: 26.80秒)
+2026-04-16 07:10:05,526 - __main___file_only - INFO - 找到持股数据: 603129 2026-04-16 (15条)
+2026-04-16 07:10:05,574 - __main___file_only - INFO - 找到报酬数据: 603129 2026-04-16
+2026-04-16 07:10:05,574 - __main__ - INFO - 处理成功: 603129-2026-04-16-春风动力-春风动力2025年年度报告.pdf
+2026-04-16 07:10:05,574 - __main___file_only - INFO - 文件处理成功: 603129-2026-04-16-春风动力-春风动力2025年年度报告.pdf (耗时: 23.60秒)
+2026-04-16 07:10:05,595 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-3d587550bb10445b84e9867b "HTTP/1.1 200 OK"
+2026-04-16 07:10:05,596 - __main__ - INFO - 开始处理文件: 688206-2026-04-16-概伦电子-2025年年度报告.pdf
+2026-04-16 07:10:05,602 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:05,732 - __main___file_only - INFO - 找到持股数据: 603383 2026-04-16 (10条)
+2026-04-16 07:10:05,784 - __main___file_only - INFO - 找到报酬数据: 603383 2026-04-16
+2026-04-16 07:10:05,785 - __main__ - INFO - 处理成功: 603383-2026-04-16-顶点软件-顶点软件2025年年度报告.pdf
+2026-04-16 07:10:05,785 - __main___file_only - INFO - 文件处理成功: 603383-2026-04-16-顶点软件-顶点软件2025年年度报告.pdf (耗时: 18.47秒)
+2026-04-16 07:10:05,927 - __main___file_only - INFO - 找到持股数据: 600935 2026-04-16 (20条)
+2026-04-16 07:10:06,087 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-64c50ed70d7b417584cf815a "HTTP/1.1 200 OK"
+2026-04-16 07:10:06,088 - __main__ - INFO - 开始处理文件: 688612-2026-04-16-威迈斯-2025年年度报告.pdf
+2026-04-16 07:10:06,101 - __main___file_only - INFO - 未找到报酬数据: 600935 2026-04-16
+2026-04-16 07:10:06,102 - __main__ - INFO - 处理成功: 600935-2026-04-16-华塑股份-安徽华塑股份有限公司2025年年度报告.pdf
+2026-04-16 07:10:06,102 - __main___file_only - INFO - 文件处理成功: 600935-2026-04-16-华塑股份-安徽华塑股份有限公司2025年年度报告.pdf (耗时: 28.46秒)
+2026-04-16 07:10:06,177 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-ade2fde163854f83ab68f898 "HTTP/1.1 200 OK"
+2026-04-16 07:10:06,178 - __main__ - INFO - 开始处理文件: 688499-2026-04-16-利元亨-广东利元亨智能装备股份有限公司2025年年度报告.pdf
+2026-04-16 07:10:06,572 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-cdc75e8c84c94e2bb9f2e566 "HTTP/1.1 200 OK"
+2026-04-16 07:10:06,573 - __main__ - INFO - 开始处理文件: 688681-2026-04-16-科汇股份-2025年年度报告.pdf
+2026-04-16 07:10:06,892 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-7d5c3565df5f43559da3ab11 "HTTP/1.1 200 OK"
+2026-04-16 07:10:06,893 - __main__ - INFO - 开始处理文件: 688690-2026-04-16-纳微科技-苏州纳微科技股份有限公司2025年年度报告.pdf
+2026-04-16 07:10:08,736 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:08,884 - __main___file_only - INFO - 找到持股数据: 603916 2026-04-16 (9条)
+2026-04-16 07:10:08,929 - __main___file_only - INFO - 找到报酬数据: 603916 2026-04-16
+2026-04-16 07:10:08,929 - __main__ - INFO - 处理成功: 603916-2026-04-16-苏博特-2025年年度报告.pdf
+2026-04-16 07:10:08,929 - __main___file_only - INFO - 文件处理成功: 603916-2026-04-16-苏博特-2025年年度报告.pdf (耗时: 17.53秒)
+2026-04-16 07:10:09,539 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-2a9b09bf3c1646bfb6fdc384 "HTTP/1.1 200 OK"
+2026-04-16 07:10:09,540 - __main__ - INFO - 开始处理文件: 688698-2026-04-16-伟创电气-2025年年度报告.pdf
+2026-04-16 07:10:09,922 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:10,056 - __main___file_only - INFO - 未找到持股数据: 603186 2026-04-16
+2026-04-16 07:10:10,102 - __main___file_only - INFO - 未找到报酬数据: 603186 2026-04-16
+2026-04-16 07:10:10,103 - __main__ - INFO - 处理成功: 603186-2026-04-16-华正新材-浙江华正新材料股份有限公司2025年年度报告（修订版）.pdf
+2026-04-16 07:10:10,103 - __main___file_only - INFO - 文件处理成功: 603186-2026-04-16-华正新材-浙江华正新材料股份有限公司2025年年度报告（修订版）.pdf (耗时: 23.07秒)
+2026-04-16 07:10:10,741 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-e646a8e95f234d8e9e623d27 "HTTP/1.1 200 OK"
+2026-04-16 07:10:10,741 - __main__ - INFO - 开始处理文件: 920007-2026-04-15-酉立智能-2025年年度报告.pdf
+2026-04-16 07:10:10,924 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:11,067 - __main___file_only - INFO - 找到持股数据: 603536 2026-04-16 (12条)
+2026-04-16 07:10:11,113 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:11,121 - __main___file_only - INFO - 找到报酬数据: 603536 2026-04-16
+2026-04-16 07:10:11,121 - __main__ - INFO - 处理成功: 603536-2026-04-16-惠发食品-惠发食品2025年年度报告.pdf
+2026-04-16 07:10:11,121 - __main___file_only - INFO - 文件处理成功: 603536-2026-04-16-惠发食品-惠发食品2025年年度报告.pdf (耗时: 21.27秒)
+2026-04-16 07:10:11,261 - __main___file_only - INFO - 找到持股数据: 603355 2026-04-16 (13条)
+2026-04-16 07:10:11,314 - __main___file_only - INFO - 找到报酬数据: 603355 2026-04-16
+2026-04-16 07:10:11,314 - __main__ - INFO - 处理成功: 603355-2026-04-16-莱克电气-莱克电气2025年年度报告.pdf
+2026-04-16 07:10:11,314 - __main___file_only - INFO - 文件处理成功: 603355-2026-04-16-莱克电气-莱克电气2025年年度报告.pdf (耗时: 21.51秒)
+2026-04-16 07:10:11,762 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-1be7f88e88a848f79e52c423 "HTTP/1.1 200 OK"
+2026-04-16 07:10:11,763 - __main__ - INFO - 开始处理文件: 920020-2026-04-15-泰凯英-2025年年度报告.pdf
+2026-04-16 07:10:11,924 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-4e1ae04503ea4edab0643359 "HTTP/1.1 200 OK"
+2026-04-16 07:10:11,925 - __main__ - INFO - 开始处理文件: 920149-2026-04-15-旭杰科技-2025年年度报告.pdf
+2026-04-16 07:10:13,006 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:13,151 - __main___file_only - INFO - 找到持股数据: 605166 2026-04-16 (8条)
+2026-04-16 07:10:13,198 - __main___file_only - INFO - 找到报酬数据: 605166 2026-04-16
+2026-04-16 07:10:13,199 - __main__ - INFO - 处理成功: 605166-2026-04-16-聚合顺-聚合顺新材料股份有限公司2025年年度报告.pdf
+2026-04-16 07:10:13,199 - __main___file_only - INFO - 文件处理成功: 605166-2026-04-16-聚合顺-聚合顺新材料股份有限公司2025年年度报告.pdf (耗时: 14.04秒)
+2026-04-16 07:10:13,549 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:13,689 - __main___file_only - INFO - 找到持股数据: 603938 2026-04-16 (10条)
+2026-04-16 07:10:13,736 - __main___file_only - INFO - 找到报酬数据: 603938 2026-04-16
+2026-04-16 07:10:13,736 - __main__ - INFO - 处理成功: 603938-2026-04-16-三孚股份-2025年年度报告.pdf
+2026-04-16 07:10:13,736 - __main___file_only - INFO - 文件处理成功: 603938-2026-04-16-三孚股份-2025年年度报告.pdf (耗时: 18.51秒)
+2026-04-16 07:10:13,866 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-eca9418861b345fcbb13b393 "HTTP/1.1 200 OK"
+2026-04-16 07:10:13,866 - __main__ - INFO - 开始处理文件: 920199-2026-04-15-倍益康-2025年年度报告.pdf
+2026-04-16 07:10:14,039 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:14,181 - __main___file_only - INFO - 找到持股数据: 605058 2026-04-16 (11条)
+2026-04-16 07:10:14,226 - __main___file_only - INFO - 找到报酬数据: 605058 2026-04-16
+2026-04-16 07:10:14,226 - __main__ - INFO - 处理成功: 605058-2026-04-16-澳弘电子-澳弘电子2025年年度报告.pdf
+2026-04-16 07:10:14,226 - __main___file_only - INFO - 文件处理成功: 605058-2026-04-16-澳弘电子-澳弘电子2025年年度报告.pdf (耗时: 17.98秒)
+2026-04-16 07:10:14,389 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-86b9a88140e947bbb416c96f "HTTP/1.1 200 OK"
+2026-04-16 07:10:14,390 - __main__ - INFO - 开始处理文件: 920223-2026-04-15-荣亿精密-2025年年度报告.pdf
+2026-04-16 07:10:14,711 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:14,847 - __main___file_only - INFO - 找到持股数据: 603977 2026-04-16 (13条)
+2026-04-16 07:10:14,869 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-d287e7b781f94110b3f78c49 "HTTP/1.1 200 OK"
+2026-04-16 07:10:14,869 - __main__ - INFO - 开始处理文件: 920230-2026-04-15-欧康医药-2025年年度报告.pdf
+2026-04-16 07:10:14,892 - __main___file_only - INFO - 找到报酬数据: 603977 2026-04-16
+2026-04-16 07:10:14,892 - __main__ - INFO - 处理成功: 603977-2026-04-16-国泰集团-江西国泰集团股份有限公司2025年年度报告.pdf
+2026-04-16 07:10:14,892 - __main___file_only - INFO - 文件处理成功: 603977-2026-04-16-国泰集团-江西国泰集团股份有限公司2025年年度报告.pdf (耗时: 21.51秒)
+2026-04-16 07:10:15,508 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-1cfbe37b1e7244c5a61ec7ef "HTTP/1.1 200 OK"
+2026-04-16 07:10:15,508 - __main__ - INFO - 开始处理文件: 920249-2026-04-15-利尔达-2025年年度报告.pdf
+2026-04-16 07:10:22,963 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:23,142 - __main___file_only - INFO - 找到持股数据: 688273 2026-04-16 (12条)
+2026-04-16 07:10:23,246 - __main___file_only - INFO - 未找到报酬数据: 688273 2026-04-16
+2026-04-16 07:10:23,246 - __main__ - INFO - 处理成功: 688273-2026-04-16-麦澜德-2025年年度报告.pdf
+2026-04-16 07:10:23,246 - __main___file_only - INFO - 文件处理成功: 688273-2026-04-16-麦澜德-2025年年度报告.pdf (耗时: 19.69秒)
+2026-04-16 07:10:23,270 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:23,841 - __main___file_only - INFO - 找到持股数据: 605580 2026-04-16 (14条)
+2026-04-16 07:10:23,903 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-38f4b1a08d37440ca77ea074 "HTTP/1.1 200 OK"
+2026-04-16 07:10:23,904 - __main__ - INFO - 开始处理文件: 920357-2026-04-15-雅葆轩-2025年年度报告.pdf
+2026-04-16 07:10:23,952 - __main___file_only - INFO - 找到报酬数据: 605580 2026-04-16
+2026-04-16 07:10:23,952 - __main__ - INFO - 处理成功: 605580-2026-04-16-恒盛能源-恒盛能源股份有限公司2025年年度报告全文.pdf
+2026-04-16 07:10:23,952 - __main___file_only - INFO - 文件处理成功: 605580-2026-04-16-恒盛能源-恒盛能源股份有限公司2025年年度报告全文.pdf (耗时: 24.41秒)
+2026-04-16 07:10:24,560 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-7f9cc6736b0c40dbacc98a0a "HTTP/1.1 200 OK"
+2026-04-16 07:10:24,561 - __main__ - INFO - 开始处理文件: 920367-2026-04-15-新赣江-2025年年度报告.pdf
+2026-04-16 07:10:24,918 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:25,837 - __main___file_only - INFO - 找到持股数据: 920149 2026-04-15 (8条)
+2026-04-16 07:10:25,884 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:25,961 - __main___file_only - INFO - 未找到报酬数据: 920149 2026-04-15
+2026-04-16 07:10:25,961 - __main__ - INFO - 处理成功: 920149-2026-04-15-旭杰科技-2025年年度报告.pdf
+2026-04-16 07:10:25,961 - __main___file_only - INFO - 文件处理成功: 920149-2026-04-15-旭杰科技-2025年年度报告.pdf (耗时: 14.04秒)
+2026-04-16 07:10:26,130 - __main___file_only - INFO - 找到持股数据: 920007 2026-04-15 (7条)
+2026-04-16 07:10:26,175 - __main___file_only - INFO - 找到报酬数据: 920007 2026-04-15
+2026-04-16 07:10:26,175 - __main__ - INFO - 处理成功: 920007-2026-04-15-酉立智能-2025年年度报告.pdf
+2026-04-16 07:10:26,175 - __main___file_only - INFO - 文件处理成功: 920007-2026-04-15-酉立智能-2025年年度报告.pdf (耗时: 15.43秒)
+2026-04-16 07:10:26,529 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-fdc170045eda41cdb16f815f "HTTP/1.1 200 OK"
+2026-04-16 07:10:26,529 - __main__ - INFO - 开始处理文件: 920689-2026-04-15-克莱特-2025年年度报告.pdf
+2026-04-16 07:10:27,006 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-fbefc98b95cb4d139e54a03c "HTTP/1.1 200 OK"
+2026-04-16 07:10:27,006 - __main__ - INFO - 开始处理文件: 920526-2026-04-15-凯华材料-2025年年度报告.pdf
+2026-04-16 07:10:27,055 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:27,197 - __main___file_only - INFO - 找到持股数据: 688019 2026-04-16 (14条)
+2026-04-16 07:10:27,241 - __main___file_only - INFO - 未找到报酬数据: 688019 2026-04-16
+2026-04-16 07:10:27,242 - __main__ - INFO - 处理成功: 688019-2026-04-16-安集科技-2025年年度报告.pdf
+2026-04-16 07:10:27,242 - __main___file_only - INFO - 文件处理成功: 688019-2026-04-16-安集科技-2025年年度报告.pdf (耗时: 23.85秒)
+2026-04-16 07:10:27,937 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-162a6c655a6d43689e7ca485 "HTTP/1.1 200 OK"
+2026-04-16 07:10:27,938 - __main__ - INFO - 开始处理文件: 920768-2026-04-15-拾比佰-2025年年度报告.pdf
+2026-04-16 07:10:27,988 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:28,184 - __main___file_only - INFO - 找到持股数据: 688698 2026-04-16 (12条)
+2026-04-16 07:10:28,265 - __main___file_only - INFO - 未找到报酬数据: 688698 2026-04-16
+2026-04-16 07:10:28,266 - __main__ - INFO - 处理成功: 688698-2026-04-16-伟创电气-2025年年度报告.pdf
+2026-04-16 07:10:28,266 - __main___file_only - INFO - 文件处理成功: 688698-2026-04-16-伟创电气-2025年年度报告.pdf (耗时: 18.73秒)
+2026-04-16 07:10:28,628 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:28,775 - __main___file_only - INFO - 找到持股数据: 920199 2026-04-15 (9条)
+2026-04-16 07:10:28,820 - __main___file_only - INFO - 未找到报酬数据: 920199 2026-04-15
+2026-04-16 07:10:28,820 - __main__ - INFO - 处理成功: 920199-2026-04-15-倍益康-2025年年度报告.pdf
+2026-04-16 07:10:28,820 - __main___file_only - INFO - 文件处理成功: 920199-2026-04-15-倍益康-2025年年度报告.pdf (耗时: 14.95秒)
+2026-04-16 07:10:28,957 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-2a9ed0f44654415189297d55 "HTTP/1.1 200 OK"
+2026-04-16 07:10:28,957 - __main__ - INFO - 开始处理文件: 920693-2026-04-15-阿为特-2025年年度报告.pdf
+2026-04-16 07:10:29,498 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-e7aef30c8dd9488b9f034412 "HTTP/1.1 200 OK"
+2026-04-16 07:10:29,672 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:29,867 - __main___file_only - INFO - 找到持股数据: 688206 2026-04-16 (16条)
+2026-04-16 07:10:29,929 - __main___file_only - INFO - 未找到报酬数据: 688206 2026-04-16
+2026-04-16 07:10:29,930 - __main__ - INFO - 处理成功: 688206-2026-04-16-概伦电子-2025年年度报告.pdf
+2026-04-16 07:10:29,930 - __main___file_only - INFO - 文件处理成功: 688206-2026-04-16-概伦电子-2025年年度报告.pdf (耗时: 24.33秒)
+2026-04-16 07:10:30,504 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-2fe5b708bede4c95a00e990b "HTTP/1.1 200 OK"
+2026-04-16 07:10:32,006 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:32,140 - __main___file_only - INFO - 找到持股数据: 920020 2026-04-15 (12条)
+2026-04-16 07:10:32,193 - __main___file_only - INFO - 未找到报酬数据: 920020 2026-04-15
+2026-04-16 07:10:32,193 - __main__ - INFO - 处理成功: 920020-2026-04-15-泰凯英-2025年年度报告.pdf
+2026-04-16 07:10:32,193 - __main___file_only - INFO - 文件处理成功: 920020-2026-04-15-泰凯英-2025年年度报告.pdf (耗时: 20.43秒)
+2026-04-16 07:10:32,808 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-1f98e8131d7f42f8aa84ab42 "HTTP/1.1 200 OK"
+2026-04-16 07:10:32,924 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:33,052 - __main___file_only - INFO - 找到持股数据: 688499 2026-04-16 (14条)
+2026-04-16 07:10:33,099 - __main___file_only - INFO - 未找到报酬数据: 688499 2026-04-16
+2026-04-16 07:10:33,100 - __main__ - INFO - 处理成功: 688499-2026-04-16-利元亨-广东利元亨智能装备股份有限公司2025年年度报告.pdf
+2026-04-16 07:10:33,100 - __main___file_only - INFO - 文件处理成功: 688499-2026-04-16-利元亨-广东利元亨智能装备股份有限公司2025年年度报告.pdf (耗时: 26.92秒)
+2026-04-16 07:10:33,367 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:33,533 - __main___file_only - INFO - 找到持股数据: 920230 2026-04-15 (10条)
+2026-04-16 07:10:33,578 - __main___file_only - INFO - 未找到报酬数据: 920230 2026-04-15
+2026-04-16 07:10:33,578 - __main__ - INFO - 处理成功: 920230-2026-04-15-欧康医药-2025年年度报告.pdf
+2026-04-16 07:10:33,578 - __main___file_only - INFO - 文件处理成功: 920230-2026-04-15-欧康医药-2025年年度报告.pdf (耗时: 18.71秒)
+2026-04-16 07:10:33,865 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-fa23924219cd40488aa19573 "HTTP/1.1 200 OK"
+2026-04-16 07:10:34,221 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-5f1179715b424c90ab75c49d "HTTP/1.1 200 OK"
+2026-04-16 07:10:34,673 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:34,814 - __main___file_only - INFO - 找到持股数据: 920223 2026-04-15 (13条)
+2026-04-16 07:10:34,877 - __main___file_only - INFO - 未找到报酬数据: 920223 2026-04-15
+2026-04-16 07:10:34,877 - __main__ - INFO - 处理成功: 920223-2026-04-15-荣亿精密-2025年年度报告.pdf
+2026-04-16 07:10:34,877 - __main___file_only - INFO - 文件处理成功: 920223-2026-04-15-荣亿精密-2025年年度报告.pdf (耗时: 20.49秒)
+2026-04-16 07:10:35,231 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:35,373 - __main___file_only - INFO - 找到持股数据: 920357 2026-04-15 (7条)
+2026-04-16 07:10:35,438 - __main___file_only - INFO - 找到报酬数据: 920357 2026-04-15
+2026-04-16 07:10:35,438 - __main__ - INFO - 处理成功: 920357-2026-04-15-雅葆轩-2025年年度报告.pdf
+2026-04-16 07:10:35,438 - __main___file_only - INFO - 文件处理成功: 920357-2026-04-15-雅葆轩-2025年年度报告.pdf (耗时: 11.53秒)
+2026-04-16 07:10:35,450 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-267fc0e15b7545d2a116dca9 "HTTP/1.1 200 OK"
+2026-04-16 07:10:36,136 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-efcec82a76584f34b5b9bd17 "HTTP/1.1 200 OK"
+2026-04-16 07:10:40,696 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:40,816 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:40,844 - __main___file_only - INFO - 找到持股数据: 920249 2026-04-15 (14条)
+2026-04-16 07:10:40,893 - __main___file_only - INFO - 未找到报酬数据: 920249 2026-04-15
+2026-04-16 07:10:40,894 - __main__ - INFO - 处理成功: 920249-2026-04-15-利尔达-2025年年度报告.pdf
+2026-04-16 07:10:40,894 - __main___file_only - INFO - 文件处理成功: 920249-2026-04-15-利尔达-2025年年度报告.pdf (耗时: 25.39秒)
+2026-04-16 07:10:40,953 - __main___file_only - INFO - 找到持股数据: 688690 2026-04-16 (18条)
+2026-04-16 07:10:41,029 - __main___file_only - INFO - 找到报酬数据: 688690 2026-04-16
+2026-04-16 07:10:41,030 - __main__ - INFO - 处理成功: 688690-2026-04-16-纳微科技-苏州纳微科技股份有限公司2025年年度报告.pdf
+2026-04-16 07:10:41,030 - __main___file_only - INFO - 文件处理成功: 688690-2026-04-16-纳微科技-苏州纳微科技股份有限公司2025年年度报告.pdf (耗时: 34.14秒)
+2026-04-16 07:10:41,118 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:41,504 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:41,530 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-5d36abb77baa4d95a7c2121a "HTTP/1.1 200 OK"
+2026-04-16 07:10:41,616 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-9954562717fc4c15ba5a2f42 "HTTP/1.1 200 OK"
+2026-04-16 07:10:41,643 - __main___file_only - INFO - 找到持股数据: 920526 2026-04-15 (8条)
+2026-04-16 07:10:41,689 - __main___file_only - INFO - 未找到报酬数据: 920526 2026-04-15
+2026-04-16 07:10:41,690 - __main__ - INFO - 处理成功: 920526-2026-04-15-凯华材料-2025年年度报告.pdf
+2026-04-16 07:10:41,690 - __main___file_only - INFO - 文件处理成功: 920526-2026-04-15-凯华材料-2025年年度报告.pdf (耗时: 14.68秒)
+2026-04-16 07:10:41,703 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:41,779 - __main___file_only - INFO - 找到持股数据: 920367 2026-04-15 (9条)
+2026-04-16 07:10:41,826 - __main___file_only - INFO - 未找到报酬数据: 920367 2026-04-15
+2026-04-16 07:10:41,826 - __main__ - INFO - 处理成功: 920367-2026-04-15-新赣江-2025年年度报告.pdf
+2026-04-16 07:10:41,826 - __main___file_only - INFO - 文件处理成功: 920367-2026-04-15-新赣江-2025年年度报告.pdf (耗时: 17.27秒)
+2026-04-16 07:10:41,840 - __main___file_only - INFO - 找到持股数据: 920693 2026-04-15 (7条)
+2026-04-16 07:10:41,885 - __main___file_only - INFO - 未找到报酬数据: 920693 2026-04-15
+2026-04-16 07:10:41,885 - __main__ - INFO - 处理成功: 920693-2026-04-15-阿为特-2025年年度报告.pdf
+2026-04-16 07:10:41,886 - __main___file_only - INFO - 文件处理成功: 920693-2026-04-15-阿为特-2025年年度报告.pdf (耗时: 12.93秒)
+2026-04-16 07:10:42,037 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:42,181 - __main___file_only - INFO - 找到持股数据: 688612 2026-04-16 (20条)
+2026-04-16 07:10:42,226 - __main___file_only - INFO - 未找到报酬数据: 688612 2026-04-16
+2026-04-16 07:10:42,227 - __main__ - INFO - 处理成功: 688612-2026-04-16-威迈斯-2025年年度报告.pdf
+2026-04-16 07:10:42,227 - __main___file_only - INFO - 文件处理成功: 688612-2026-04-16-威迈斯-2025年年度报告.pdf (耗时: 36.14秒)
+2026-04-16 07:10:42,444 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-8b679cef097940d7b429a289 "HTTP/1.1 200 OK"
+2026-04-16 07:10:42,449 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-d6b7eb885c6d40a581c0ce87 "HTTP/1.1 200 OK"
+2026-04-16 07:10:42,520 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-a9d3a62a657f4ab394747276 "HTTP/1.1 200 OK"
+2026-04-16 07:10:42,891 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-1ecf3884e2064afa816268cd "HTTP/1.1 200 OK"
+2026-04-16 07:10:44,295 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:44,431 - __main___file_only - INFO - 找到持股数据: 688681 2026-04-16 (24条)
+2026-04-16 07:10:44,476 - __main___file_only - INFO - 找到报酬数据: 688681 2026-04-16
+2026-04-16 07:10:44,478 - __main__ - INFO - 处理成功: 688681-2026-04-16-科汇股份-2025年年度报告.pdf
+2026-04-16 07:10:44,478 - __main___file_only - INFO - 文件处理成功: 688681-2026-04-16-科汇股份-2025年年度报告.pdf (耗时: 37.91秒)
+2026-04-16 07:10:45,261 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-fe0ea7e1a9fc466f954bd938 "HTTP/1.1 200 OK"
+2026-04-16 07:10:46,793 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:47,008 - __main___file_only - INFO - 找到持股数据: 920768 2026-04-15 (12条)
+2026-04-16 07:10:47,060 - __main___file_only - INFO - 找到报酬数据: 920768 2026-04-15
+2026-04-16 07:10:47,060 - __main__ - INFO - 处理成功: 920768-2026-04-15-拾比佰-2025年年度报告.pdf
+2026-04-16 07:10:47,060 - __main___file_only - INFO - 文件处理成功: 920768-2026-04-15-拾比佰-2025年年度报告.pdf (耗时: 19.12秒)
+2026-04-16 07:10:47,792 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-7d2714330bf94a89b69abc35 "HTTP/1.1 200 OK"
+2026-04-16 07:10:48,395 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:48,551 - __main___file_only - INFO - 找到持股数据: 920689 2026-04-15 (12条)
+2026-04-16 07:10:48,602 - __main___file_only - INFO - 未找到报酬数据: 920689 2026-04-15
+2026-04-16 07:10:48,602 - __main__ - INFO - 处理成功: 920689-2026-04-15-克莱特-2025年年度报告.pdf
+2026-04-16 07:10:48,603 - __main___file_only - INFO - 文件处理成功: 920689-2026-04-15-克莱特-2025年年度报告.pdf (耗时: 22.07秒)
+2026-04-16 07:10:49,157 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-1f931970783a48b385b0fc99 "HTTP/1.1 200 OK"
+2026-04-16 07:10:49,208 - __main__ - INFO - 开始关闭线程池...
+2026-04-16 07:10:49,224 - __main__ - INFO - 所有线程池已关闭
+2026-04-16 07:10:49,495 - __main__ - INFO - 程序执行完成 - 总耗时: 0:02:17.268363

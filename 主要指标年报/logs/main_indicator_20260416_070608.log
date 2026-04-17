@@ -1,0 +1,743 @@
+2026-04-16 07:07:25,679 - __main__ - INFO - 程序开始执行 - 目录: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益, 模块一文件数量: 82, 模块二文件数量: 0
+2026-04-16 07:07:25,681 - __main__ - INFO - 文件配对完成: 模块一文件 82 个, 模块二文件 0 个, 配对结果 82 组
+2026-04-16 07:07:26,865 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:26,868 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\000533-2026-04-16-顺钠股份-2025年年度报告_mgsy.pdf (文件ID: file-fe-aed3a6b6a3e84c69a63719b9)
+2026-04-16 07:07:26,868 - __main___file_only - INFO - 上传文件: 000533-2026-04-16-顺钠股份-2025年年度报告_mgsy.pdf (大小: 0.31 MB, ID: file-fe-aed3a6b6a3e84c69a63719b9)
+2026-04-16 07:07:26,881 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\000533-2026-04-16-顺钠股份-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:26,924 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:26,925 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002001-2026-04-16-新和成-2025年年度报告_mgsy.pdf (文件ID: file-fe-5e8e3f6847ad4678924d7bfe)
+2026-04-16 07:07:26,925 - __main___file_only - INFO - 上传文件: 002001-2026-04-16-新和成-2025年年度报告_mgsy.pdf (大小: 0.38 MB, ID: file-fe-5e8e3f6847ad4678924d7bfe)
+2026-04-16 07:07:27,142 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002001-2026-04-16-新和成-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:27,868 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:27,869 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002344-2026-04-16-海宁皮城-2025年年度报告_mgsy.pdf (文件ID: file-fe-f0156028e6594ae29183967a)
+2026-04-16 07:07:27,869 - __main___file_only - INFO - 上传文件: 002344-2026-04-16-海宁皮城-2025年年度报告_mgsy.pdf (大小: 0.32 MB, ID: file-fe-f0156028e6594ae29183967a)
+2026-04-16 07:07:27,937 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002344-2026-04-16-海宁皮城-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:28,260 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:28,261 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002180-2026-04-15-纳思达-2025年年度报告_mgsy.pdf (文件ID: file-fe-3400f7c3890a4cf1811676c1)
+2026-04-16 07:07:28,261 - __main___file_only - INFO - 上传文件: 002180-2026-04-15-纳思达-2025年年度报告_mgsy.pdf (大小: 0.25 MB, ID: file-fe-3400f7c3890a4cf1811676c1)
+2026-04-16 07:07:28,466 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002180-2026-04-15-纳思达-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:28,917 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:28,918 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002407-2026-04-16-多氟多-2025年年度报告_mgsy.pdf (文件ID: file-fe-ebd23acadab34f77a84ba7eb)
+2026-04-16 07:07:28,918 - __main___file_only - INFO - 上传文件: 002407-2026-04-16-多氟多-2025年年度报告_mgsy.pdf (大小: 0.34 MB, ID: file-fe-ebd23acadab34f77a84ba7eb)
+2026-04-16 07:07:28,994 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002407-2026-04-16-多氟多-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:29,472 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:29,473 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002628-2026-04-16-成都路桥-2025年年度报告_mgsy.pdf (文件ID: file-fe-3f3998188b194e9f8aa40259)
+2026-04-16 07:07:29,473 - __main___file_only - INFO - 上传文件: 002628-2026-04-16-成都路桥-2025年年度报告_mgsy.pdf (大小: 0.35 MB, ID: file-fe-3f3998188b194e9f8aa40259)
+2026-04-16 07:07:29,522 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002628-2026-04-16-成都路桥-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:30,681 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:30,682 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002629-2026-04-16-仁智股份-2025年年度报告_mgsy.pdf (文件ID: file-fe-d0e9bfc285b5473b8bb4ea3c)
+2026-04-16 07:07:30,682 - __main___file_only - INFO - 上传文件: 002629-2026-04-16-仁智股份-2025年年度报告_mgsy.pdf (大小: 0.26 MB, ID: file-fe-d0e9bfc285b5473b8bb4ea3c)
+2026-04-16 07:07:30,840 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002629-2026-04-16-仁智股份-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:31,035 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:31,035 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002762-2026-04-16-ST金比-2025年年度报告_mgsy.pdf (文件ID: file-fe-87132e971f224b6db49a7ad0)
+2026-04-16 07:07:31,036 - __main___file_only - INFO - 上传文件: 002762-2026-04-16-ST金比-2025年年度报告_mgsy.pdf (大小: 0.51 MB, ID: file-fe-87132e971f224b6db49a7ad0)
+2026-04-16 07:07:31,108 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002762-2026-04-16-ST金比-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:32,076 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:32,076 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002823-2026-04-16-凯中精密-2025年年度报告_mgsy.pdf (文件ID: file-fe-47fc4c7235f24b6b9548b740)
+2026-04-16 07:07:32,077 - __main___file_only - INFO - 上传文件: 002823-2026-04-16-凯中精密-2025年年度报告_mgsy.pdf (大小: 0.32 MB, ID: file-fe-47fc4c7235f24b6b9548b740)
+2026-04-16 07:07:32,163 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002823-2026-04-16-凯中精密-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:32,682 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:32,683 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002896-2026-04-16-中大力德-2025年年度报告_mgsy.pdf (文件ID: file-fe-0ed3a541fb3741fcb3c6b10e)
+2026-04-16 07:07:32,683 - __main___file_only - INFO - 上传文件: 002896-2026-04-16-中大力德-2025年年度报告_mgsy.pdf (大小: 0.28 MB, ID: file-fe-0ed3a541fb3741fcb3c6b10e)
+2026-04-16 07:07:32,689 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002896-2026-04-16-中大力德-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:34,431 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:34,432 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002949-2026-04-16-华阳国际-2025年年度报告_mgsy.pdf (文件ID: file-fe-ae9d389c297e415c9956a13c)
+2026-04-16 07:07:34,432 - __main___file_only - INFO - 上传文件: 002949-2026-04-16-华阳国际-2025年年度报告_mgsy.pdf (大小: 0.56 MB, ID: file-fe-ae9d389c297e415c9956a13c)
+2026-04-16 07:07:34,538 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002949-2026-04-16-华阳国际-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:34,701 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:34,701 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002971-2026-04-16-和远气体-2025年年度报告_mgsy.pdf (文件ID: file-fe-3f419b5512ff43f784a13657)
+2026-04-16 07:07:34,702 - __main___file_only - INFO - 上传文件: 002971-2026-04-16-和远气体-2025年年度报告_mgsy.pdf (大小: 0.34 MB, ID: file-fe-3f419b5512ff43f784a13657)
+2026-04-16 07:07:34,802 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002971-2026-04-16-和远气体-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:34,809 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:07:34,849 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:07:35,141 - __main___file_only - INFO - 找到数据: 000533 2026-04-16 (3条)
+2026-04-16 07:07:35,141 - __main__ - INFO - 处理成功: 000533-2026-04-16
+2026-04-16 07:07:35,141 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\000533-2026-04-16-顺钠股份-2025年年度报告_mgsy.pdf (耗时: 8.26秒)
+2026-04-16 07:07:35,210 - __main___file_only - INFO - 找到数据: 002001 2026-04-16 (3条)
+2026-04-16 07:07:35,210 - __main__ - INFO - 处理成功: 002001-2026-04-16
+2026-04-16 07:07:35,210 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002001-2026-04-16-新和成-2025年年度报告_mgsy.pdf (耗时: 8.07秒)
+2026-04-16 07:07:35,488 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:07:35,589 - __main___file_only - INFO - 找到数据: 002344 2026-04-16 (3条)
+2026-04-16 07:07:35,589 - __main__ - INFO - 处理成功: 002344-2026-04-16
+2026-04-16 07:07:35,589 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002344-2026-04-16-海宁皮城-2025年年度报告_mgsy.pdf (耗时: 7.65秒)
+2026-04-16 07:07:35,661 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:07:35,731 - __main___file_only - INFO - 找到数据: 002180 2026-04-15 (3条)
+2026-04-16 07:07:35,732 - __main__ - INFO - 处理成功: 002180-2026-04-15
+2026-04-16 07:07:35,732 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002180-2026-04-15-纳思达-2025年年度报告_mgsy.pdf (耗时: 7.27秒)
+2026-04-16 07:07:35,797 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-aed3a6b6a3e84c69a63719b9 "HTTP/1.1 200 OK"
+2026-04-16 07:07:35,917 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-5e8e3f6847ad4678924d7bfe "HTTP/1.1 200 OK"
+2026-04-16 07:07:36,224 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-f0156028e6594ae29183967a "HTTP/1.1 200 OK"
+2026-04-16 07:07:36,493 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-3400f7c3890a4cf1811676c1 "HTTP/1.1 200 OK"
+2026-04-16 07:07:36,566 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:36,566 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300058-2026-04-16-蓝色光标-2025年年度报告_mgsy.pdf (文件ID: file-fe-37d44fe7b7924e2da871531d)
+2026-04-16 07:07:36,567 - __main___file_only - INFO - 上传文件: 300058-2026-04-16-蓝色光标-2025年年度报告_mgsy.pdf (大小: 0.56 MB, ID: file-fe-37d44fe7b7924e2da871531d)
+2026-04-16 07:07:36,652 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300058-2026-04-16-蓝色光标-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:36,670 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:36,671 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\003027-2026-04-16-同兴科技-2025年年度报告_mgsy.pdf (文件ID: file-fe-abeaf3ff76da4d5c8e8d8a5c)
+2026-04-16 07:07:36,671 - __main___file_only - INFO - 上传文件: 003027-2026-04-16-同兴科技-2025年年度报告_mgsy.pdf (大小: 0.35 MB, ID: file-fe-abeaf3ff76da4d5c8e8d8a5c)
+2026-04-16 07:07:36,746 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:07:36,825 - __main___file_only - INFO - 找到数据: 002407 2026-04-16 (3条)
+2026-04-16 07:07:36,825 - __main__ - INFO - 处理成功: 002407-2026-04-16
+2026-04-16 07:07:36,825 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002407-2026-04-16-多氟多-2025年年度报告_mgsy.pdf (耗时: 7.83秒)
+2026-04-16 07:07:36,913 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\003027-2026-04-16-同兴科技-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:37,435 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-ebd23acadab34f77a84ba7eb "HTTP/1.1 200 OK"
+2026-04-16 07:07:38,708 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:38,708 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300174-2026-04-16-元力股份-2025年年度报告_mgsy.pdf (文件ID: file-fe-628b0101178f44df82daa5dc)
+2026-04-16 07:07:38,708 - __main___file_only - INFO - 上传文件: 300174-2026-04-16-元力股份-2025年年度报告_mgsy.pdf (大小: 0.26 MB, ID: file-fe-628b0101178f44df82daa5dc)
+2026-04-16 07:07:38,744 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:38,744 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300075-2026-04-16-数字政通-2025年年度报告_mgsy.pdf (文件ID: file-fe-fe65430bf16d4c72a929450e)
+2026-04-16 07:07:38,744 - __main___file_only - INFO - 上传文件: 300075-2026-04-16-数字政通-2025年年度报告_mgsy.pdf (大小: 0.28 MB, ID: file-fe-fe65430bf16d4c72a929450e)
+2026-04-16 07:07:38,745 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300174-2026-04-16-元力股份-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:38,745 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300075-2026-04-16-数字政通-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:40,634 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:07:40,712 - __main___file_only - INFO - 找到数据: 002628 2026-04-16 (3条)
+2026-04-16 07:07:40,712 - __main__ - INFO - 处理成功: 002628-2026-04-16
+2026-04-16 07:07:40,712 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002628-2026-04-16-成都路桥-2025年年度报告_mgsy.pdf (耗时: 11.19秒)
+2026-04-16 07:07:40,863 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:07:40,915 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:40,916 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300296-2026-04-16-利亚德-2025年年度报告_mgsy.pdf (文件ID: file-fe-4a02bff071f2469bb6be3df1)
+2026-04-16 07:07:40,916 - __main___file_only - INFO - 上传文件: 300296-2026-04-16-利亚德-2025年年度报告_mgsy.pdf (大小: 0.39 MB, ID: file-fe-4a02bff071f2469bb6be3df1)
+2026-04-16 07:07:40,922 - __main___file_only - INFO - 找到数据: 002762 2026-04-16 (3条)
+2026-04-16 07:07:40,923 - __main__ - INFO - 处理成功: 002762-2026-04-16
+2026-04-16 07:07:40,923 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002762-2026-04-16-ST金比-2025年年度报告_mgsy.pdf (耗时: 9.81秒)
+2026-04-16 07:07:41,130 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300296-2026-04-16-利亚德-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:41,166 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:41,167 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300281-2026-04-16-金明精机-2025年年度报告_mgsy.pdf (文件ID: file-fe-9504320fc3944704b09bd4cb)
+2026-04-16 07:07:41,167 - __main___file_only - INFO - 上传文件: 300281-2026-04-16-金明精机-2025年年度报告_mgsy.pdf (大小: 0.36 MB, ID: file-fe-9504320fc3944704b09bd4cb)
+2026-04-16 07:07:41,185 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:07:41,247 - __main___file_only - INFO - 找到数据: 002629 2026-04-16 (3条)
+2026-04-16 07:07:41,247 - __main__ - INFO - 处理成功: 002629-2026-04-16
+2026-04-16 07:07:41,247 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002629-2026-04-16-仁智股份-2025年年度报告_mgsy.pdf (耗时: 10.41秒)
+2026-04-16 07:07:41,395 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300281-2026-04-16-金明精机-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:41,490 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-87132e971f224b6db49a7ad0 "HTTP/1.1 200 OK"
+2026-04-16 07:07:41,501 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-3f3998188b194e9f8aa40259 "HTTP/1.1 200 OK"
+2026-04-16 07:07:41,802 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-d0e9bfc285b5473b8bb4ea3c "HTTP/1.1 200 OK"
+2026-04-16 07:07:43,029 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:07:43,043 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:43,044 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300440-2026-04-16-运达科技-2025年年度报告_mgsy.pdf (文件ID: file-fe-3bda98daa44b4ae0a54516fe)
+2026-04-16 07:07:43,044 - __main___file_only - INFO - 上传文件: 300440-2026-04-16-运达科技-2025年年度报告_mgsy.pdf (大小: 0.67 MB, ID: file-fe-3bda98daa44b4ae0a54516fe)
+2026-04-16 07:07:43,122 - __main___file_only - INFO - 找到数据: 002823 2026-04-16 (3条)
+2026-04-16 07:07:43,122 - __main__ - INFO - 处理成功: 002823-2026-04-16
+2026-04-16 07:07:43,122 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002823-2026-04-16-凯中精密-2025年年度报告_mgsy.pdf (耗时: 10.96秒)
+2026-04-16 07:07:43,169 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:43,170 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300305-2026-04-16-裕兴股份-2025年年度报告_mgsy.pdf (文件ID: file-fe-ac2303581ae0497d836ac4ee)
+2026-04-16 07:07:43,170 - __main___file_only - INFO - 上传文件: 300305-2026-04-16-裕兴股份-2025年年度报告_mgsy.pdf (大小: 0.30 MB, ID: file-fe-ac2303581ae0497d836ac4ee)
+2026-04-16 07:07:43,170 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300440-2026-04-16-运达科技-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:43,171 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300305-2026-04-16-裕兴股份-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:43,232 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:07:43,296 - __main___file_only - INFO - 找到数据: 002896 2026-04-16 (3条)
+2026-04-16 07:07:43,296 - __main__ - INFO - 处理成功: 002896-2026-04-16
+2026-04-16 07:07:43,296 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002896-2026-04-16-中大力德-2025年年度报告_mgsy.pdf (耗时: 10.61秒)
+2026-04-16 07:07:43,779 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-47fc4c7235f24b6b9548b740 "HTTP/1.1 200 OK"
+2026-04-16 07:07:43,888 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-0ed3a541fb3741fcb3c6b10e "HTTP/1.1 200 OK"
+2026-04-16 07:07:45,144 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:07:45,153 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:45,154 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300618-2026-04-16-寒锐钴业-2025年年度报告_mgsy.pdf (文件ID: file-fe-83028fce222442c68db32148)
+2026-04-16 07:07:45,154 - __main___file_only - INFO - 上传文件: 300618-2026-04-16-寒锐钴业-2025年年度报告_mgsy.pdf (大小: 0.35 MB, ID: file-fe-83028fce222442c68db32148)
+2026-04-16 07:07:45,165 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:45,166 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300623-2026-04-16-捷捷微电-2025年年度报告_mgsy.pdf (文件ID: file-fe-f151c428ede64b4db7f5c577)
+2026-04-16 07:07:45,166 - __main___file_only - INFO - 上传文件: 300623-2026-04-16-捷捷微电-2025年年度报告_mgsy.pdf (大小: 0.34 MB, ID: file-fe-f151c428ede64b4db7f5c577)
+2026-04-16 07:07:45,177 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:07:45,189 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300623-2026-04-16-捷捷微电-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:45,189 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300618-2026-04-16-寒锐钴业-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:45,212 - __main___file_only - INFO - 找到数据: 002971 2026-04-16 (3条)
+2026-04-16 07:07:45,212 - __main__ - INFO - 处理成功: 002971-2026-04-16
+2026-04-16 07:07:45,212 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002971-2026-04-16-和远气体-2025年年度报告_mgsy.pdf (耗时: 10.41秒)
+2026-04-16 07:07:45,243 - __main___file_only - INFO - 找到数据: 300058 2026-04-16 (3条)
+2026-04-16 07:07:45,243 - __main__ - INFO - 处理成功: 300058-2026-04-16
+2026-04-16 07:07:45,243 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300058-2026-04-16-蓝色光标-2025年年度报告_mgsy.pdf (耗时: 8.59秒)
+2026-04-16 07:07:45,840 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-3f419b5512ff43f784a13657 "HTTP/1.1 200 OK"
+2026-04-16 07:07:45,986 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-37d44fe7b7924e2da871531d "HTTP/1.1 200 OK"
+2026-04-16 07:07:46,250 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:07:46,312 - __main___file_only - INFO - 找到数据: 003027 2026-04-16 (3条)
+2026-04-16 07:07:46,312 - __main__ - INFO - 处理成功: 003027-2026-04-16
+2026-04-16 07:07:46,312 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\003027-2026-04-16-同兴科技-2025年年度报告_mgsy.pdf (耗时: 9.40秒)
+2026-04-16 07:07:46,410 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:07:46,475 - __main___file_only - INFO - 找到数据: 002949 2026-04-16 (3条)
+2026-04-16 07:07:46,476 - __main__ - INFO - 处理成功: 002949-2026-04-16
+2026-04-16 07:07:46,476 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\002949-2026-04-16-华阳国际-2025年年度报告_mgsy.pdf (耗时: 11.94秒)
+2026-04-16 07:07:46,929 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-abeaf3ff76da4d5c8e8d8a5c "HTTP/1.1 200 OK"
+2026-04-16 07:07:47,023 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-ae9d389c297e415c9956a13c "HTTP/1.1 200 OK"
+2026-04-16 07:07:47,361 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:47,362 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300685-2026-04-16-艾德生物-2025年年度报告_mgsy.pdf (文件ID: file-fe-1373a56f550a4d08b72228b0)
+2026-04-16 07:07:47,362 - __main___file_only - INFO - 上传文件: 300685-2026-04-16-艾德生物-2025年年度报告_mgsy.pdf (大小: 0.48 MB, ID: file-fe-1373a56f550a4d08b72228b0)
+2026-04-16 07:07:47,370 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:47,371 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300666-2026-04-16-江丰电子-2025年年度报告_mgsy.pdf (文件ID: file-fe-45475d7ec250495dae1d8e77)
+2026-04-16 07:07:47,371 - __main___file_only - INFO - 上传文件: 300666-2026-04-16-江丰电子-2025年年度报告_mgsy.pdf (大小: 0.35 MB, ID: file-fe-45475d7ec250495dae1d8e77)
+2026-04-16 07:07:47,441 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:07:47,457 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300685-2026-04-16-艾德生物-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:47,457 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300666-2026-04-16-江丰电子-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:47,501 - __main___file_only - INFO - 找到数据: 300174 2026-04-16 (3条)
+2026-04-16 07:07:47,501 - __main__ - INFO - 处理成功: 300174-2026-04-16
+2026-04-16 07:07:47,501 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300174-2026-04-16-元力股份-2025年年度报告_mgsy.pdf (耗时: 8.76秒)
+2026-04-16 07:07:48,029 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:07:48,064 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-628b0101178f44df82daa5dc "HTTP/1.1 200 OK"
+2026-04-16 07:07:48,095 - __main___file_only - INFO - 找到数据: 300075 2026-04-16 (3条)
+2026-04-16 07:07:48,095 - __main__ - INFO - 处理成功: 300075-2026-04-16
+2026-04-16 07:07:48,095 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300075-2026-04-16-数字政通-2025年年度报告_mgsy.pdf (耗时: 9.35秒)
+2026-04-16 07:07:48,736 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-fe65430bf16d4c72a929450e "HTTP/1.1 200 OK"
+2026-04-16 07:07:49,420 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:49,420 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300732-2026-04-16-设研院-2025年年度报告_mgsy.pdf (文件ID: file-fe-b1fa229785ed4da79974be87)
+2026-04-16 07:07:49,421 - __main___file_only - INFO - 上传文件: 300732-2026-04-16-设研院-2025年年度报告_mgsy.pdf (大小: 0.61 MB, ID: file-fe-b1fa229785ed4da79974be87)
+2026-04-16 07:07:49,431 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:49,432 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300717-2026-04-16-华信新材-2025年年度报告_mgsy.pdf (文件ID: file-fe-a5bf15fa710245b6ae991ecd)
+2026-04-16 07:07:49,432 - __main___file_only - INFO - 上传文件: 300717-2026-04-16-华信新材-2025年年度报告_mgsy.pdf (大小: 0.26 MB, ID: file-fe-a5bf15fa710245b6ae991ecd)
+2026-04-16 07:07:49,467 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300732-2026-04-16-设研院-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:49,468 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300717-2026-04-16-华信新材-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:49,940 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:07:50,012 - __main___file_only - INFO - 找到数据: 300281 2026-04-16 (3条)
+2026-04-16 07:07:50,013 - __main__ - INFO - 处理成功: 300281-2026-04-16
+2026-04-16 07:07:50,013 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300281-2026-04-16-金明精机-2025年年度报告_mgsy.pdf (耗时: 8.62秒)
+2026-04-16 07:07:50,544 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:07:50,605 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-9504320fc3944704b09bd4cb "HTTP/1.1 200 OK"
+2026-04-16 07:07:50,616 - __main___file_only - INFO - 找到数据: 300296 2026-04-16 (3条)
+2026-04-16 07:07:50,616 - __main__ - INFO - 处理成功: 300296-2026-04-16
+2026-04-16 07:07:50,616 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300296-2026-04-16-利亚德-2025年年度报告_mgsy.pdf (耗时: 9.49秒)
+2026-04-16 07:07:51,373 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-4a02bff071f2469bb6be3df1 "HTTP/1.1 200 OK"
+2026-04-16 07:07:51,578 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:51,579 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300886-2026-04-16-华业香料-2025年年度报告_mgsy.pdf (文件ID: file-fe-b67811d5c7cd4a0da672972b)
+2026-04-16 07:07:51,579 - __main___file_only - INFO - 上传文件: 300886-2026-04-16-华业香料-2025年年度报告_mgsy.pdf (大小: 0.33 MB, ID: file-fe-b67811d5c7cd4a0da672972b)
+2026-04-16 07:07:51,579 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300886-2026-04-16-华业香料-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:51,846 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:51,847 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300918-2026-04-16-南山智尚-2025年年度报告_mgsy.pdf (文件ID: file-fe-92b221887f674f84b030c550)
+2026-04-16 07:07:51,847 - __main___file_only - INFO - 上传文件: 300918-2026-04-16-南山智尚-2025年年度报告_mgsy.pdf (大小: 1.23 MB, ID: file-fe-92b221887f674f84b030c550)
+2026-04-16 07:07:51,847 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300918-2026-04-16-南山智尚-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:52,111 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:07:52,182 - __main___file_only - INFO - 找到数据: 300305 2026-04-16 (3条)
+2026-04-16 07:07:52,182 - __main__ - INFO - 处理成功: 300305-2026-04-16
+2026-04-16 07:07:52,182 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300305-2026-04-16-裕兴股份-2025年年度报告_mgsy.pdf (耗时: 9.01秒)
+2026-04-16 07:07:52,909 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-ac2303581ae0497d836ac4ee "HTTP/1.1 200 OK"
+2026-04-16 07:07:53,403 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:07:53,481 - __main___file_only - INFO - 找到数据: 300440 2026-04-16 (3条)
+2026-04-16 07:07:53,482 - __main__ - INFO - 处理成功: 300440-2026-04-16
+2026-04-16 07:07:53,482 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300440-2026-04-16-运达科技-2025年年度报告_mgsy.pdf (耗时: 10.31秒)
+2026-04-16 07:07:53,701 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:53,701 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300967-2026-04-16-晓鸣股份-2025年年度报告_mgsy.pdf (文件ID: file-fe-0582f4fcb047462dbe0cd102)
+2026-04-16 07:07:53,701 - __main___file_only - INFO - 上传文件: 300967-2026-04-16-晓鸣股份-2025年年度报告_mgsy.pdf (大小: 0.34 MB, ID: file-fe-0582f4fcb047462dbe0cd102)
+2026-04-16 07:07:53,789 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:53,790 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\301128-2026-04-16-强瑞技术-2025年年度报告_mgsy.pdf (文件ID: file-fe-9e52050800124ac4b8cc87d3)
+2026-04-16 07:07:53,790 - __main___file_only - INFO - 上传文件: 301128-2026-04-16-强瑞技术-2025年年度报告_mgsy.pdf (大小: 0.35 MB, ID: file-fe-9e52050800124ac4b8cc87d3)
+2026-04-16 07:07:53,857 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\301128-2026-04-16-强瑞技术-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:53,858 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300967-2026-04-16-晓鸣股份-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:54,138 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-3bda98daa44b4ae0a54516fe "HTTP/1.1 200 OK"
+2026-04-16 07:07:55,324 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:07:55,393 - __main___file_only - INFO - 找到数据: 300623 2026-04-16 (3条)
+2026-04-16 07:07:55,393 - __main__ - INFO - 处理成功: 300623-2026-04-16
+2026-04-16 07:07:55,393 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300623-2026-04-16-捷捷微电-2025年年度报告_mgsy.pdf (耗时: 10.20秒)
+2026-04-16 07:07:55,766 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:07:55,841 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:55,841 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\301283-2026-04-16-聚胶股份-2025年年度报告_mgsy.pdf (文件ID: file-fe-3558f50ed9d54d409750536c)
+2026-04-16 07:07:55,842 - __main___file_only - INFO - 上传文件: 301283-2026-04-16-聚胶股份-2025年年度报告_mgsy.pdf (大小: 0.43 MB, ID: file-fe-3558f50ed9d54d409750536c)
+2026-04-16 07:07:55,854 - __main___file_only - INFO - 找到数据: 300666 2026-04-16 (3条)
+2026-04-16 07:07:55,854 - __main__ - INFO - 处理成功: 300666-2026-04-16
+2026-04-16 07:07:55,855 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300666-2026-04-16-江丰电子-2025年年度报告_mgsy.pdf (耗时: 8.40秒)
+2026-04-16 07:07:55,970 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\301283-2026-04-16-聚胶股份-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:56,074 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-f151c428ede64b4db7f5c577 "HTTP/1.1 200 OK"
+2026-04-16 07:07:56,109 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:56,109 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\301281-2026-04-16-科源制药-2025年年度报告_mgsy.pdf (文件ID: file-fe-ad143075e42346d6a638fc51)
+2026-04-16 07:07:56,110 - __main___file_only - INFO - 上传文件: 301281-2026-04-16-科源制药-2025年年度报告_mgsy.pdf (大小: 0.31 MB, ID: file-fe-ad143075e42346d6a638fc51)
+2026-04-16 07:07:56,234 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\301281-2026-04-16-科源制药-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:56,449 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:07:56,480 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-45475d7ec250495dae1d8e77 "HTTP/1.1 200 OK"
+2026-04-16 07:07:56,517 - __main___file_only - INFO - 找到数据: 300685 2026-04-16 (3条)
+2026-04-16 07:07:56,517 - __main__ - INFO - 处理成功: 300685-2026-04-16
+2026-04-16 07:07:56,517 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300685-2026-04-16-艾德生物-2025年年度报告_mgsy.pdf (耗时: 9.06秒)
+2026-04-16 07:07:57,076 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-1373a56f550a4d08b72228b0 "HTTP/1.1 200 OK"
+2026-04-16 07:07:57,113 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:07:57,233 - __main___file_only - INFO - 找到数据: 300618 2026-04-16 (3条)
+2026-04-16 07:07:57,233 - __main__ - INFO - 处理成功: 300618-2026-04-16
+2026-04-16 07:07:57,234 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300618-2026-04-16-寒锐钴业-2025年年度报告_mgsy.pdf (耗时: 12.04秒)
+2026-04-16 07:07:57,707 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:07:57,825 - __main___file_only - INFO - 找到数据: 300717 2026-04-16 (3条)
+2026-04-16 07:07:57,825 - __main__ - INFO - 处理成功: 300717-2026-04-16
+2026-04-16 07:07:57,826 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300717-2026-04-16-华信新材-2025年年度报告_mgsy.pdf (耗时: 8.36秒)
+2026-04-16 07:07:57,956 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:57,957 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\301366-2026-04-16-一博科技-2025年年度报告_mgsy.pdf (文件ID: file-fe-133eea909d5b4a7eacf4b6ae)
+2026-04-16 07:07:57,957 - __main___file_only - INFO - 上传文件: 301366-2026-04-16-一博科技-2025年年度报告_mgsy.pdf (大小: 0.33 MB, ID: file-fe-133eea909d5b4a7eacf4b6ae)
+2026-04-16 07:07:57,974 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:07:57,975 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\301286-2026-04-16-侨源股份-2025年年度报告_mgsy.pdf (文件ID: file-fe-9e425920109e49d7b9763be9)
+2026-04-16 07:07:57,975 - __main___file_only - INFO - 上传文件: 301286-2026-04-16-侨源股份-2025年年度报告_mgsy.pdf (大小: 0.28 MB, ID: file-fe-9e425920109e49d7b9763be9)
+2026-04-16 07:07:57,978 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\301366-2026-04-16-一博科技-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:57,979 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\301286-2026-04-16-侨源股份-2025年年度报告_mgsy.pdf
+2026-04-16 07:07:57,998 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-83028fce222442c68db32148 "HTTP/1.1 200 OK"
+2026-04-16 07:07:58,209 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:07:58,333 - __main___file_only - INFO - 找到数据: 300732 2026-04-16 (3条)
+2026-04-16 07:07:58,333 - __main__ - INFO - 处理成功: 300732-2026-04-16
+2026-04-16 07:07:58,334 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300732-2026-04-16-设研院-2025年年度报告_mgsy.pdf (耗时: 8.87秒)
+2026-04-16 07:07:58,547 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-a5bf15fa710245b6ae991ecd "HTTP/1.1 200 OK"
+2026-04-16 07:07:59,076 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-b1fa229785ed4da79974be87 "HTTP/1.1 200 OK"
+2026-04-16 07:08:00,032 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:00,033 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\301373-2026-04-16-凌玮科技-2025年年度报告_mgsy.pdf (文件ID: file-fe-d5aef1cc3fd24f448eae08a5)
+2026-04-16 07:08:00,033 - __main___file_only - INFO - 上传文件: 301373-2026-04-16-凌玮科技-2025年年度报告_mgsy.pdf (大小: 0.30 MB, ID: file-fe-d5aef1cc3fd24f448eae08a5)
+2026-04-16 07:08:00,086 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\301373-2026-04-16-凌玮科技-2025年年度报告_mgsy.pdf
+2026-04-16 07:08:00,107 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:00,108 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\600089-2026-04-16-特变电工-特变电工股份有限公司2025年年度报告_mgsy.pdf (文件ID: file-fe-58641d309c2b461aa5681d0d)
+2026-04-16 07:08:00,108 - __main___file_only - INFO - 上传文件: 600089-2026-04-16-特变电工-特变电工股份有限公司2025年年度报告_mgsy.pdf (大小: 0.28 MB, ID: file-fe-58641d309c2b461aa5681d0d)
+2026-04-16 07:08:00,350 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\600089-2026-04-16-特变电工-特变电工股份有限公司2025年年度报告_mgsy.pdf
+2026-04-16 07:08:02,140 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:02,141 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\600371-2026-04-16-万向德农-万向德农股份有限公司2025年年度报告_mgsy.pdf (文件ID: file-fe-aec81c222728402baa5d9eeb)
+2026-04-16 07:08:02,141 - __main___file_only - INFO - 上传文件: 600371-2026-04-16-万向德农-万向德农股份有限公司2025年年度报告_mgsy.pdf (大小: 0.65 MB, ID: file-fe-aec81c222728402baa5d9eeb)
+2026-04-16 07:08:02,232 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\600371-2026-04-16-万向德农-万向德农股份有限公司2025年年度报告_mgsy.pdf
+2026-04-16 07:08:02,272 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:02,272 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\600283-2026-04-16-钱江水利-钱江水利2025年年度报告_mgsy.pdf (文件ID: file-fe-ff73e98042fe4e84935e5e0e)
+2026-04-16 07:08:02,273 - __main___file_only - INFO - 上传文件: 600283-2026-04-16-钱江水利-钱江水利2025年年度报告_mgsy.pdf (大小: 0.29 MB, ID: file-fe-ff73e98042fe4e84935e5e0e)
+2026-04-16 07:08:02,277 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:02,362 - __main___file_only - INFO - 找到数据: 300967 2026-04-16 (3条)
+2026-04-16 07:08:02,363 - __main__ - INFO - 处理成功: 300967-2026-04-16
+2026-04-16 07:08:02,363 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300967-2026-04-16-晓鸣股份-2025年年度报告_mgsy.pdf (耗时: 8.51秒)
+2026-04-16 07:08:02,497 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\600283-2026-04-16-钱江水利-钱江水利2025年年度报告_mgsy.pdf
+2026-04-16 07:08:02,571 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:02,675 - __main___file_only - INFO - 找到数据: 300886 2026-04-16 (3条)
+2026-04-16 07:08:02,676 - __main__ - INFO - 处理成功: 300886-2026-04-16
+2026-04-16 07:08:02,676 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300886-2026-04-16-华业香料-2025年年度报告_mgsy.pdf (耗时: 11.10秒)
+2026-04-16 07:08:02,934 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:02,934 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-0582f4fcb047462dbe0cd102 "HTTP/1.1 200 OK"
+2026-04-16 07:08:03,048 - __main___file_only - INFO - 找到数据: 300918 2026-04-16 (3条)
+2026-04-16 07:08:03,049 - __main__ - INFO - 处理成功: 300918-2026-04-16
+2026-04-16 07:08:03,049 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\300918-2026-04-16-南山智尚-2025年年度报告_mgsy.pdf (耗时: 11.20秒)
+2026-04-16 07:08:03,262 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-b67811d5c7cd4a0da672972b "HTTP/1.1 200 OK"
+2026-04-16 07:08:03,668 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-92b221887f674f84b030c550 "HTTP/1.1 200 OK"
+2026-04-16 07:08:04,303 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:04,303 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\600386-2026-04-16-北巴传媒-北京巴士传媒股份有限公司2025年年度报告_mgsy.pdf (文件ID: file-fe-82d3e6746a164a61ab1718e6)
+2026-04-16 07:08:04,304 - __main___file_only - INFO - 上传文件: 600386-2026-04-16-北巴传媒-北京巴士传媒股份有限公司2025年年度报告_mgsy.pdf (大小: 0.25 MB, ID: file-fe-82d3e6746a164a61ab1718e6)
+2026-04-16 07:08:04,346 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\600386-2026-04-16-北巴传媒-北京巴士传媒股份有限公司2025年年度报告_mgsy.pdf
+2026-04-16 07:08:04,349 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:04,350 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\600461-2026-04-16-洪城环境-江西洪城环境股份有限公司2025年年度报告_mgsy.pdf (文件ID: file-fe-5aeb7ae785b84a8d98ec195b)
+2026-04-16 07:08:04,350 - __main___file_only - INFO - 上传文件: 600461-2026-04-16-洪城环境-江西洪城环境股份有限公司2025年年度报告_mgsy.pdf (大小: 0.24 MB, ID: file-fe-5aeb7ae785b84a8d98ec195b)
+2026-04-16 07:08:04,502 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:04,614 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\600461-2026-04-16-洪城环境-江西洪城环境股份有限公司2025年年度报告_mgsy.pdf
+2026-04-16 07:08:04,637 - __main___file_only - INFO - 找到数据: 301281 2026-04-16 (3条)
+2026-04-16 07:08:04,637 - __main__ - INFO - 处理成功: 301281-2026-04-16
+2026-04-16 07:08:04,637 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\301281-2026-04-16-科源制药-2025年年度报告_mgsy.pdf (耗时: 8.40秒)
+2026-04-16 07:08:04,675 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:04,741 - __main___file_only - INFO - 找到数据: 301128 2026-04-16 (3条)
+2026-04-16 07:08:04,742 - __main__ - INFO - 处理成功: 301128-2026-04-16
+2026-04-16 07:08:04,742 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\301128-2026-04-16-强瑞技术-2025年年度报告_mgsy.pdf (耗时: 10.88秒)
+2026-04-16 07:08:04,863 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:04,952 - __main___file_only - INFO - 找到数据: 301283 2026-04-16 (3条)
+2026-04-16 07:08:04,953 - __main__ - INFO - 处理成功: 301283-2026-04-16
+2026-04-16 07:08:04,953 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\301283-2026-04-16-聚胶股份-2025年年度报告_mgsy.pdf (耗时: 8.98秒)
+2026-04-16 07:08:05,295 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-ad143075e42346d6a638fc51 "HTTP/1.1 200 OK"
+2026-04-16 07:08:05,312 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-9e52050800124ac4b8cc87d3 "HTTP/1.1 200 OK"
+2026-04-16 07:08:05,617 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-3558f50ed9d54d409750536c "HTTP/1.1 200 OK"
+2026-04-16 07:08:06,439 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:06,440 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\600666-2026-04-16-奥瑞德-奥瑞德2025年年度报告_mgsy.pdf (文件ID: file-fe-1281255d30ce4bd69a9f89c4)
+2026-04-16 07:08:06,440 - __main___file_only - INFO - 上传文件: 600666-2026-04-16-奥瑞德-奥瑞德2025年年度报告_mgsy.pdf (大小: 0.26 MB, ID: file-fe-1281255d30ce4bd69a9f89c4)
+2026-04-16 07:08:06,467 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\600666-2026-04-16-奥瑞德-奥瑞德2025年年度报告_mgsy.pdf
+2026-04-16 07:08:06,472 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:06,473 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\600707-2026-04-16-彩虹股份-彩虹股份2025年年度报告_mgsy.pdf (文件ID: file-fe-810184e9633c48fe817c3ed6)
+2026-04-16 07:08:06,473 - __main___file_only - INFO - 上传文件: 600707-2026-04-16-彩虹股份-彩虹股份2025年年度报告_mgsy.pdf (大小: 0.35 MB, ID: file-fe-810184e9633c48fe817c3ed6)
+2026-04-16 07:08:06,731 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\600707-2026-04-16-彩虹股份-彩虹股份2025年年度报告_mgsy.pdf
+2026-04-16 07:08:08,228 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:08,290 - __main___file_only - INFO - 找到数据: 301286 2026-04-16 (3条)
+2026-04-16 07:08:08,290 - __main__ - INFO - 处理成功: 301286-2026-04-16
+2026-04-16 07:08:08,290 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\301286-2026-04-16-侨源股份-2025年年度报告_mgsy.pdf (耗时: 10.31秒)
+2026-04-16 07:08:08,525 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:08,526 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\600757-2026-04-16-长江传媒-长江传媒2025年年度报告_mgsy.pdf (文件ID: file-fe-15abb8b9f51c42b487fe778a)
+2026-04-16 07:08:08,526 - __main___file_only - INFO - 上传文件: 600757-2026-04-16-长江传媒-长江传媒2025年年度报告_mgsy.pdf (大小: 0.27 MB, ID: file-fe-15abb8b9f51c42b487fe778a)
+2026-04-16 07:08:08,542 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:08,543 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\600854-2026-04-16-春兰股份-600854_春兰股份_2025年_年度报告_mgsy.pdf (文件ID: file-fe-2e234b1424cf4a00b2f5d787)
+2026-04-16 07:08:08,543 - __main___file_only - INFO - 上传文件: 600854-2026-04-16-春兰股份-600854_春兰股份_2025年_年度报告_mgsy.pdf (大小: 0.21 MB, ID: file-fe-2e234b1424cf4a00b2f5d787)
+2026-04-16 07:08:08,543 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\600757-2026-04-16-长江传媒-长江传媒2025年年度报告_mgsy.pdf
+2026-04-16 07:08:08,544 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\600854-2026-04-16-春兰股份-600854_春兰股份_2025年_年度报告_mgsy.pdf
+2026-04-16 07:08:08,998 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-9e425920109e49d7b9763be9 "HTTP/1.1 200 OK"
+2026-04-16 07:08:09,190 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:09,206 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:09,256 - __main___file_only - INFO - 找到数据: 301366 2026-04-16 (3条)
+2026-04-16 07:08:09,256 - __main__ - INFO - 处理成功: 301366-2026-04-16
+2026-04-16 07:08:09,256 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\301366-2026-04-16-一博科技-2025年年度报告_mgsy.pdf (耗时: 11.28秒)
+2026-04-16 07:08:09,271 - __main___file_only - INFO - 找到数据: 600089 2026-04-16 (3条)
+2026-04-16 07:08:09,271 - __main__ - INFO - 处理成功: 600089-2026-04-16
+2026-04-16 07:08:09,271 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\600089-2026-04-16-特变电工-特变电工股份有限公司2025年年度报告_mgsy.pdf (耗时: 8.92秒)
+2026-04-16 07:08:09,844 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:09,847 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-133eea909d5b4a7eacf4b6ae "HTTP/1.1 200 OK"
+2026-04-16 07:08:09,909 - __main___file_only - INFO - 找到数据: 301373 2026-04-16 (3条)
+2026-04-16 07:08:09,910 - __main__ - INFO - 处理成功: 301373-2026-04-16
+2026-04-16 07:08:09,910 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\301373-2026-04-16-凌玮科技-2025年年度报告_mgsy.pdf (耗时: 9.82秒)
+2026-04-16 07:08:09,959 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-58641d309c2b461aa5681d0d "HTTP/1.1 200 OK"
+2026-04-16 07:08:10,527 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-d5aef1cc3fd24f448eae08a5 "HTTP/1.1 200 OK"
+2026-04-16 07:08:10,684 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:10,684 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\601339-2026-04-16-百隆东方-百隆东方2025年度报告_mgsy.pdf (文件ID: file-fe-3d7496a8f8074b4289e5ee10)
+2026-04-16 07:08:10,684 - __main___file_only - INFO - 上传文件: 601339-2026-04-16-百隆东方-百隆东方2025年度报告_mgsy.pdf (大小: 0.26 MB, ID: file-fe-3d7496a8f8074b4289e5ee10)
+2026-04-16 07:08:10,788 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:10,789 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\600935-2026-04-16-华塑股份-安徽华塑股份有限公司2025年年度报告_mgsy.pdf (文件ID: file-fe-17d4ae100c7e453480abc129)
+2026-04-16 07:08:10,789 - __main___file_only - INFO - 上传文件: 600935-2026-04-16-华塑股份-安徽华塑股份有限公司2025年年度报告_mgsy.pdf (大小: 0.27 MB, ID: file-fe-17d4ae100c7e453480abc129)
+2026-04-16 07:08:10,812 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\601339-2026-04-16-百隆东方-百隆东方2025年度报告_mgsy.pdf
+2026-04-16 07:08:10,812 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\600935-2026-04-16-华塑股份-安徽华塑股份有限公司2025年年度报告_mgsy.pdf
+2026-04-16 07:08:10,880 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:10,958 - __main___file_only - INFO - 找到数据: 600283 2026-04-16 (3条)
+2026-04-16 07:08:10,958 - __main__ - INFO - 处理成功: 600283-2026-04-16
+2026-04-16 07:08:10,958 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\600283-2026-04-16-钱江水利-钱江水利2025年年度报告_mgsy.pdf (耗时: 8.46秒)
+2026-04-16 07:08:11,025 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:11,091 - __main___file_only - INFO - 找到数据: 600371 2026-04-16 (3条)
+2026-04-16 07:08:11,091 - __main__ - INFO - 处理成功: 600371-2026-04-16
+2026-04-16 07:08:11,091 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\600371-2026-04-16-万向德农-万向德农股份有限公司2025年年度报告_mgsy.pdf (耗时: 8.86秒)
+2026-04-16 07:08:11,635 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-aec81c222728402baa5d9eeb "HTTP/1.1 200 OK"
+2026-04-16 07:08:11,670 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-ff73e98042fe4e84935e5e0e "HTTP/1.1 200 OK"
+2026-04-16 07:08:12,805 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:12,805 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\601877-2026-04-16-正泰电器-正泰电器2025年年度报告_mgsy.pdf (文件ID: file-fe-8cf23d888d0d4c96bf8a2961)
+2026-04-16 07:08:12,805 - __main___file_only - INFO - 上传文件: 601877-2026-04-16-正泰电器-正泰电器2025年年度报告_mgsy.pdf (大小: 0.32 MB, ID: file-fe-8cf23d888d0d4c96bf8a2961)
+2026-04-16 07:08:12,869 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:12,870 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603075-2026-04-16-热威股份-2025年年度报告_mgsy.pdf (文件ID: file-fe-f77c61f9880d4fd1879cb466)
+2026-04-16 07:08:12,870 - __main___file_only - INFO - 上传文件: 603075-2026-04-16-热威股份-2025年年度报告_mgsy.pdf (大小: 0.26 MB, ID: file-fe-f77c61f9880d4fd1879cb466)
+2026-04-16 07:08:12,870 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\601877-2026-04-16-正泰电器-正泰电器2025年年度报告_mgsy.pdf
+2026-04-16 07:08:12,870 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603075-2026-04-16-热威股份-2025年年度报告_mgsy.pdf
+2026-04-16 07:08:12,998 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:13,062 - __main___file_only - INFO - 找到数据: 600461 2026-04-16 (3条)
+2026-04-16 07:08:13,062 - __main__ - INFO - 处理成功: 600461-2026-04-16
+2026-04-16 07:08:13,062 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\600461-2026-04-16-洪城环境-江西洪城环境股份有限公司2025年年度报告_mgsy.pdf (耗时: 8.45秒)
+2026-04-16 07:08:13,310 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:13,368 - __main___file_only - INFO - 找到数据: 600386 2026-04-16 (3条)
+2026-04-16 07:08:13,368 - __main__ - INFO - 处理成功: 600386-2026-04-16
+2026-04-16 07:08:13,368 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\600386-2026-04-16-北巴传媒-北京巴士传媒股份有限公司2025年年度报告_mgsy.pdf (耗时: 9.02秒)
+2026-04-16 07:08:13,742 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-5aeb7ae785b84a8d98ec195b "HTTP/1.1 200 OK"
+2026-04-16 07:08:14,029 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-82d3e6746a164a61ab1718e6 "HTTP/1.1 200 OK"
+2026-04-16 07:08:14,898 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:14,899 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603129-2026-04-16-春风动力-春风动力2025年年度报告_mgsy.pdf (文件ID: file-fe-a0f280d5002e401c83bf4192)
+2026-04-16 07:08:14,899 - __main___file_only - INFO - 上传文件: 603129-2026-04-16-春风动力-春风动力2025年年度报告_mgsy.pdf (大小: 0.28 MB, ID: file-fe-a0f280d5002e401c83bf4192)
+2026-04-16 07:08:14,951 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:14,952 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603102-2026-04-16-百合股份-威海百合生物技术股份有限公司2025年年度报告_mgsy.pdf (文件ID: file-fe-947dbc2a45e24d0ba117cf6f)
+2026-04-16 07:08:14,952 - __main___file_only - INFO - 上传文件: 603102-2026-04-16-百合股份-威海百合生物技术股份有限公司2025年年度报告_mgsy.pdf (大小: 0.27 MB, ID: file-fe-947dbc2a45e24d0ba117cf6f)
+2026-04-16 07:08:14,952 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603129-2026-04-16-春风动力-春风动力2025年年度报告_mgsy.pdf
+2026-04-16 07:08:14,952 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603102-2026-04-16-百合股份-威海百合生物技术股份有限公司2025年年度报告_mgsy.pdf
+2026-04-16 07:08:15,414 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:15,480 - __main___file_only - INFO - 找到数据: 600666 2026-04-16 (3条)
+2026-04-16 07:08:15,480 - __main__ - INFO - 处理成功: 600666-2026-04-16
+2026-04-16 07:08:15,480 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\600666-2026-04-16-奥瑞德-奥瑞德2025年年度报告_mgsy.pdf (耗时: 9.01秒)
+2026-04-16 07:08:16,104 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-1281255d30ce4bd69a9f89c4 "HTTP/1.1 200 OK"
+2026-04-16 07:08:17,039 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:17,039 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603186-2026-04-16-华正新材-浙江华正新材料股份有限公司2025年年度报告（修订版）_mgsy.pdf (文件ID: file-fe-351fbe6469ba4a27822335b8)
+2026-04-16 07:08:17,040 - __main___file_only - INFO - 上传文件: 603186-2026-04-16-华正新材-浙江华正新材料股份有限公司2025年年度报告（修订版）_mgsy.pdf (大小: 0.27 MB, ID: file-fe-351fbe6469ba4a27822335b8)
+2026-04-16 07:08:17,066 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603186-2026-04-16-华正新材-浙江华正新材料股份有限公司2025年年度报告（修订版）_mgsy.pdf
+2026-04-16 07:08:17,082 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:17,083 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603213-2026-04-16-镇洋发展-浙江镇洋发展股份有限公司2025年年度报告_mgsy.pdf (文件ID: file-fe-033478019cce4caeb02b8654)
+2026-04-16 07:08:17,083 - __main___file_only - INFO - 上传文件: 603213-2026-04-16-镇洋发展-浙江镇洋发展股份有限公司2025年年度报告_mgsy.pdf (大小: 0.27 MB, ID: file-fe-033478019cce4caeb02b8654)
+2026-04-16 07:08:17,328 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603213-2026-04-16-镇洋发展-浙江镇洋发展股份有限公司2025年年度报告_mgsy.pdf
+2026-04-16 07:08:17,415 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:17,482 - __main___file_only - INFO - 找到数据: 600707 2026-04-16 (3条)
+2026-04-16 07:08:17,482 - __main__ - INFO - 处理成功: 600707-2026-04-16
+2026-04-16 07:08:17,482 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\600707-2026-04-16-彩虹股份-彩虹股份2025年年度报告_mgsy.pdf (耗时: 10.75秒)
+2026-04-16 07:08:18,215 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-810184e9633c48fe817c3ed6 "HTTP/1.1 200 OK"
+2026-04-16 07:08:18,978 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:19,042 - __main___file_only - INFO - 找到数据: 600757 2026-04-16 (3条)
+2026-04-16 07:08:19,043 - __main__ - INFO - 处理成功: 600757-2026-04-16
+2026-04-16 07:08:19,043 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\600757-2026-04-16-长江传媒-长江传媒2025年年度报告_mgsy.pdf (耗时: 10.50秒)
+2026-04-16 07:08:19,184 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:19,184 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603383-2026-04-16-顶点软件-顶点软件2025年年度报告_mgsy.pdf (文件ID: file-fe-436d35fad4b64160b7554db2)
+2026-04-16 07:08:19,185 - __main___file_only - INFO - 上传文件: 603383-2026-04-16-顶点软件-顶点软件2025年年度报告_mgsy.pdf (大小: 0.24 MB, ID: file-fe-436d35fad4b64160b7554db2)
+2026-04-16 07:08:19,235 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:19,235 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603355-2026-04-16-莱克电气-莱克电气2025年年度报告_mgsy.pdf (文件ID: file-fe-374f2f015ef84b3cbaa1437b)
+2026-04-16 07:08:19,236 - __main___file_only - INFO - 上传文件: 603355-2026-04-16-莱克电气-莱克电气2025年年度报告_mgsy.pdf (大小: 0.28 MB, ID: file-fe-374f2f015ef84b3cbaa1437b)
+2026-04-16 07:08:19,275 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:19,333 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603383-2026-04-16-顶点软件-顶点软件2025年年度报告_mgsy.pdf
+2026-04-16 07:08:19,334 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603355-2026-04-16-莱克电气-莱克电气2025年年度报告_mgsy.pdf
+2026-04-16 07:08:19,342 - __main___file_only - INFO - 找到数据: 600854 2026-04-16 (3条)
+2026-04-16 07:08:19,342 - __main__ - INFO - 处理成功: 600854-2026-04-16
+2026-04-16 07:08:19,342 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\600854-2026-04-16-春兰股份-600854_春兰股份_2025年_年度报告_mgsy.pdf (耗时: 10.80秒)
+2026-04-16 07:08:19,634 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-15abb8b9f51c42b487fe778a "HTTP/1.1 200 OK"
+2026-04-16 07:08:19,737 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:19,799 - __main___file_only - INFO - 找到数据: 600935 2026-04-16 (3条)
+2026-04-16 07:08:19,799 - __main__ - INFO - 处理成功: 600935-2026-04-16
+2026-04-16 07:08:19,799 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\600935-2026-04-16-华塑股份-安徽华塑股份有限公司2025年年度报告_mgsy.pdf (耗时: 8.99秒)
+2026-04-16 07:08:19,908 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-2e234b1424cf4a00b2f5d787 "HTTP/1.1 200 OK"
+2026-04-16 07:08:20,409 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-17d4ae100c7e453480abc129 "HTTP/1.1 200 OK"
+2026-04-16 07:08:20,852 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:20,923 - __main___file_only - INFO - 找到数据: 601339 2026-04-16 (3条)
+2026-04-16 07:08:20,923 - __main__ - INFO - 处理成功: 601339-2026-04-16
+2026-04-16 07:08:20,923 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\601339-2026-04-16-百隆东方-百隆东方2025年度报告_mgsy.pdf (耗时: 10.11秒)
+2026-04-16 07:08:21,276 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:21,276 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603916-2026-04-16-苏博特-2025年年度报告_mgsy.pdf (文件ID: file-fe-9bdd692383724b8c860091c6)
+2026-04-16 07:08:21,276 - __main___file_only - INFO - 上传文件: 603916-2026-04-16-苏博特-2025年年度报告_mgsy.pdf (大小: 0.26 MB, ID: file-fe-9bdd692383724b8c860091c6)
+2026-04-16 07:08:21,360 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:21,360 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603536-2026-04-16-惠发食品-惠发食品2025年年度报告_mgsy.pdf (文件ID: file-fe-23a026098888452e8d1b38a1)
+2026-04-16 07:08:21,360 - __main___file_only - INFO - 上传文件: 603536-2026-04-16-惠发食品-惠发食品2025年年度报告_mgsy.pdf (大小: 0.26 MB, ID: file-fe-23a026098888452e8d1b38a1)
+2026-04-16 07:08:21,361 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603916-2026-04-16-苏博特-2025年年度报告_mgsy.pdf
+2026-04-16 07:08:21,361 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603536-2026-04-16-惠发食品-惠发食品2025年年度报告_mgsy.pdf
+2026-04-16 07:08:21,469 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:21,533 - __main___file_only - INFO - 找到数据: 603075 2026-04-16 (3条)
+2026-04-16 07:08:21,533 - __main__ - INFO - 处理成功: 603075-2026-04-16
+2026-04-16 07:08:21,533 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603075-2026-04-16-热威股份-2025年年度报告_mgsy.pdf (耗时: 8.66秒)
+2026-04-16 07:08:21,594 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-3d7496a8f8074b4289e5ee10 "HTTP/1.1 200 OK"
+2026-04-16 07:08:22,301 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-f77c61f9880d4fd1879cb466 "HTTP/1.1 200 OK"
+2026-04-16 07:08:22,461 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:22,531 - __main___file_only - INFO - 找到数据: 601877 2026-04-16 (3条)
+2026-04-16 07:08:22,531 - __main__ - INFO - 处理成功: 601877-2026-04-16
+2026-04-16 07:08:22,531 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\601877-2026-04-16-正泰电器-正泰电器2025年年度报告_mgsy.pdf (耗时: 9.66秒)
+2026-04-16 07:08:23,135 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-8cf23d888d0d4c96bf8a2961 "HTTP/1.1 200 OK"
+2026-04-16 07:08:23,411 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:23,411 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603938-2026-04-16-三孚股份-2025年年度报告_mgsy.pdf (文件ID: file-fe-216436af655d4ee7a9404ef9)
+2026-04-16 07:08:23,412 - __main___file_only - INFO - 上传文件: 603938-2026-04-16-三孚股份-2025年年度报告_mgsy.pdf (大小: 0.25 MB, ID: file-fe-216436af655d4ee7a9404ef9)
+2026-04-16 07:08:23,470 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603938-2026-04-16-三孚股份-2025年年度报告_mgsy.pdf
+2026-04-16 07:08:23,499 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:23,499 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603977-2026-04-16-国泰集团-江西国泰集团股份有限公司2025年年度报告_mgsy.pdf (文件ID: file-fe-06a36efd480646ca86cd7e67)
+2026-04-16 07:08:23,500 - __main___file_only - INFO - 上传文件: 603977-2026-04-16-国泰集团-江西国泰集团股份有限公司2025年年度报告_mgsy.pdf (大小: 0.27 MB, ID: file-fe-06a36efd480646ca86cd7e67)
+2026-04-16 07:08:23,737 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603977-2026-04-16-国泰集团-江西国泰集团股份有限公司2025年年度报告_mgsy.pdf
+2026-04-16 07:08:25,091 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:25,154 - __main___file_only - INFO - 找到数据: 603102 2026-04-16 (3条)
+2026-04-16 07:08:25,154 - __main__ - INFO - 处理成功: 603102-2026-04-16
+2026-04-16 07:08:25,154 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603102-2026-04-16-百合股份-威海百合生物技术股份有限公司2025年年度报告_mgsy.pdf (耗时: 10.20秒)
+2026-04-16 07:08:25,585 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:25,586 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\605058-2026-04-16-澳弘电子-澳弘电子2025年年度报告_mgsy.pdf (文件ID: file-fe-0b6afafe0f8140c0885c5767)
+2026-04-16 07:08:25,586 - __main___file_only - INFO - 上传文件: 605058-2026-04-16-澳弘电子-澳弘电子2025年年度报告_mgsy.pdf (大小: 0.26 MB, ID: file-fe-0b6afafe0f8140c0885c5767)
+2026-04-16 07:08:25,600 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:25,600 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\605166-2026-04-16-聚合顺-聚合顺新材料股份有限公司2025年年度报告_mgsy.pdf (文件ID: file-fe-ce3ad54635a54685a387ae45)
+2026-04-16 07:08:25,600 - __main___file_only - INFO - 上传文件: 605166-2026-04-16-聚合顺-聚合顺新材料股份有限公司2025年年度报告_mgsy.pdf (大小: 0.29 MB, ID: file-fe-ce3ad54635a54685a387ae45)
+2026-04-16 07:08:25,706 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-947dbc2a45e24d0ba117cf6f "HTTP/1.1 200 OK"
+2026-04-16 07:08:25,741 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\605166-2026-04-16-聚合顺-聚合顺新材料股份有限公司2025年年度报告_mgsy.pdf
+2026-04-16 07:08:25,741 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\605058-2026-04-16-澳弘电子-澳弘电子2025年年度报告_mgsy.pdf
+2026-04-16 07:08:26,040 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:26,107 - __main___file_only - INFO - 未找到数据: 603186 2026-04-16
+2026-04-16 07:08:26,107 - __main__ - INFO - 处理成功: 603186-2026-04-16
+2026-04-16 07:08:26,107 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603186-2026-04-16-华正新材-浙江华正新材料股份有限公司2025年年度报告（修订版）_mgsy.pdf (耗时: 9.04秒)
+2026-04-16 07:08:26,751 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-351fbe6469ba4a27822335b8 "HTTP/1.1 200 OK"
+2026-04-16 07:08:26,919 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:26,996 - __main___file_only - INFO - 找到数据: 603129 2026-04-16 (3条)
+2026-04-16 07:08:26,996 - __main__ - INFO - 处理成功: 603129-2026-04-16
+2026-04-16 07:08:26,996 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603129-2026-04-16-春风动力-春风动力2025年年度报告_mgsy.pdf (耗时: 12.04秒)
+2026-04-16 07:08:27,703 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:27,704 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\688019-2026-04-16-安集科技-2025年年度报告_mgsy.pdf (文件ID: file-fe-1b44101c3bc54e7abab71378)
+2026-04-16 07:08:27,704 - __main___file_only - INFO - 上传文件: 688019-2026-04-16-安集科技-2025年年度报告_mgsy.pdf (大小: 0.28 MB, ID: file-fe-1b44101c3bc54e7abab71378)
+2026-04-16 07:08:27,719 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:27,719 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\605580-2026-04-16-恒盛能源-恒盛能源股份有限公司2025年年度报告全文_mgsy.pdf (文件ID: file-fe-8f35478d9b384cf2af5f2f3f)
+2026-04-16 07:08:27,719 - __main___file_only - INFO - 上传文件: 605580-2026-04-16-恒盛能源-恒盛能源股份有限公司2025年年度报告全文_mgsy.pdf (大小: 0.26 MB, ID: file-fe-8f35478d9b384cf2af5f2f3f)
+2026-04-16 07:08:27,749 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\688019-2026-04-16-安集科技-2025年年度报告_mgsy.pdf
+2026-04-16 07:08:27,749 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\605580-2026-04-16-恒盛能源-恒盛能源股份有限公司2025年年度报告全文_mgsy.pdf
+2026-04-16 07:08:27,793 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-a0f280d5002e401c83bf4192 "HTTP/1.1 200 OK"
+2026-04-16 07:08:28,311 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:28,373 - __main___file_only - INFO - 找到数据: 603355 2026-04-16 (3条)
+2026-04-16 07:08:28,373 - __main__ - INFO - 处理成功: 603355-2026-04-16
+2026-04-16 07:08:28,373 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603355-2026-04-16-莱克电气-莱克电气2025年年度报告_mgsy.pdf (耗时: 9.04秒)
+2026-04-16 07:08:28,714 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:28,779 - __main___file_only - INFO - 找到数据: 603213 2026-04-16 (3条)
+2026-04-16 07:08:28,779 - __main__ - INFO - 处理成功: 603213-2026-04-16
+2026-04-16 07:08:28,779 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603213-2026-04-16-镇洋发展-浙江镇洋发展股份有限公司2025年年度报告_mgsy.pdf (耗时: 11.45秒)
+2026-04-16 07:08:28,984 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-374f2f015ef84b3cbaa1437b "HTTP/1.1 200 OK"
+2026-04-16 07:08:29,375 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-033478019cce4caeb02b8654 "HTTP/1.1 200 OK"
+2026-04-16 07:08:29,803 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:29,803 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:29,804 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\688273-2026-04-16-麦澜德-2025年年度报告_mgsy.pdf (文件ID: file-fe-80254d14645a4bcd88f9b365)
+2026-04-16 07:08:29,805 - __main___file_only - INFO - 上传文件: 688273-2026-04-16-麦澜德-2025年年度报告_mgsy.pdf (大小: 0.30 MB, ID: file-fe-80254d14645a4bcd88f9b365)
+2026-04-16 07:08:29,813 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:29,813 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\688206-2026-04-16-概伦电子-2025年年度报告_mgsy.pdf (文件ID: file-fe-1c2f93d3c191489aa35ce2b9)
+2026-04-16 07:08:29,813 - __main___file_only - INFO - 上传文件: 688206-2026-04-16-概伦电子-2025年年度报告_mgsy.pdf (大小: 0.29 MB, ID: file-fe-1c2f93d3c191489aa35ce2b9)
+2026-04-16 07:08:29,814 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\688273-2026-04-16-麦澜德-2025年年度报告_mgsy.pdf
+2026-04-16 07:08:29,814 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\688206-2026-04-16-概伦电子-2025年年度报告_mgsy.pdf
+2026-04-16 07:08:29,865 - __main___file_only - INFO - 找到数据: 603383 2026-04-16 (3条)
+2026-04-16 07:08:29,865 - __main__ - INFO - 处理成功: 603383-2026-04-16
+2026-04-16 07:08:29,866 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603383-2026-04-16-顶点软件-顶点软件2025年年度报告_mgsy.pdf (耗时: 10.53秒)
+2026-04-16 07:08:30,482 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-436d35fad4b64160b7554db2 "HTTP/1.1 200 OK"
+2026-04-16 07:08:30,566 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:30,650 - __main___file_only - INFO - 找到数据: 603916 2026-04-16 (3条)
+2026-04-16 07:08:30,650 - __main__ - INFO - 处理成功: 603916-2026-04-16
+2026-04-16 07:08:30,650 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603916-2026-04-16-苏博特-2025年年度报告_mgsy.pdf (耗时: 9.29秒)
+2026-04-16 07:08:30,887 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:30,953 - __main___file_only - INFO - 找到数据: 603536 2026-04-16 (3条)
+2026-04-16 07:08:30,953 - __main__ - INFO - 处理成功: 603536-2026-04-16
+2026-04-16 07:08:30,953 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603536-2026-04-16-惠发食品-惠发食品2025年年度报告_mgsy.pdf (耗时: 9.59秒)
+2026-04-16 07:08:31,386 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-9bdd692383724b8c860091c6 "HTTP/1.1 200 OK"
+2026-04-16 07:08:31,659 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-23a026098888452e8d1b38a1 "HTTP/1.1 200 OK"
+2026-04-16 07:08:31,893 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:31,894 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\688499-2026-04-16-利元亨-广东利元亨智能装备股份有限公司2025年年度报告_mgsy.pdf (文件ID: file-fe-84270687d0ac493ba563a97b)
+2026-04-16 07:08:31,894 - __main___file_only - INFO - 上传文件: 688499-2026-04-16-利元亨-广东利元亨智能装备股份有限公司2025年年度报告_mgsy.pdf (大小: 0.31 MB, ID: file-fe-84270687d0ac493ba563a97b)
+2026-04-16 07:08:31,926 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:31,927 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\688612-2026-04-16-威迈斯-2025年年度报告_mgsy.pdf (文件ID: file-fe-2b14675c0ba44bcda8e87cd0)
+2026-04-16 07:08:31,927 - __main___file_only - INFO - 上传文件: 688612-2026-04-16-威迈斯-2025年年度报告_mgsy.pdf (大小: 0.27 MB, ID: file-fe-2b14675c0ba44bcda8e87cd0)
+2026-04-16 07:08:31,927 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\688499-2026-04-16-利元亨-广东利元亨智能装备股份有限公司2025年年度报告_mgsy.pdf
+2026-04-16 07:08:31,928 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\688612-2026-04-16-威迈斯-2025年年度报告_mgsy.pdf
+2026-04-16 07:08:33,119 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:33,216 - __main___file_only - INFO - 找到数据: 603938 2026-04-16 (3条)
+2026-04-16 07:08:33,217 - __main__ - INFO - 处理成功: 603938-2026-04-16
+2026-04-16 07:08:33,217 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603938-2026-04-16-三孚股份-2025年年度报告_mgsy.pdf (耗时: 9.75秒)
+2026-04-16 07:08:33,469 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:33,532 - __main___file_only - INFO - 找到数据: 603977 2026-04-16 (3条)
+2026-04-16 07:08:33,533 - __main__ - INFO - 处理成功: 603977-2026-04-16
+2026-04-16 07:08:33,533 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\603977-2026-04-16-国泰集团-江西国泰集团股份有限公司2025年年度报告_mgsy.pdf (耗时: 9.80秒)
+2026-04-16 07:08:33,829 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-216436af655d4ee7a9404ef9 "HTTP/1.1 200 OK"
+2026-04-16 07:08:33,979 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:34,025 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:34,046 - __main___file_only - INFO - 找到数据: 605166 2026-04-16 (3条)
+2026-04-16 07:08:34,047 - __main__ - INFO - 处理成功: 605166-2026-04-16
+2026-04-16 07:08:34,047 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\605166-2026-04-16-聚合顺-聚合顺新材料股份有限公司2025年年度报告_mgsy.pdf (耗时: 8.31秒)
+2026-04-16 07:08:34,086 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:34,087 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\688690-2026-04-16-纳微科技-苏州纳微科技股份有限公司2025年年度报告_mgsy.pdf (文件ID: file-fe-03a22a4702084fcc906bbc24)
+2026-04-16 07:08:34,087 - __main___file_only - INFO - 上传文件: 688690-2026-04-16-纳微科技-苏州纳微科技股份有限公司2025年年度报告_mgsy.pdf (大小: 0.31 MB, ID: file-fe-03a22a4702084fcc906bbc24)
+2026-04-16 07:08:34,089 - __main___file_only - INFO - 找到数据: 605058 2026-04-16 (3条)
+2026-04-16 07:08:34,089 - __main__ - INFO - 处理成功: 605058-2026-04-16
+2026-04-16 07:08:34,089 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\605058-2026-04-16-澳弘电子-澳弘电子2025年年度报告_mgsy.pdf (耗时: 8.35秒)
+2026-04-16 07:08:34,156 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-06a36efd480646ca86cd7e67 "HTTP/1.1 200 OK"
+2026-04-16 07:08:34,252 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:34,253 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\688681-2026-04-16-科汇股份-2025年年度报告_mgsy.pdf (文件ID: file-fe-ae0012648aa84b2ca255a6c6)
+2026-04-16 07:08:34,253 - __main___file_only - INFO - 上传文件: 688681-2026-04-16-科汇股份-2025年年度报告_mgsy.pdf (大小: 0.56 MB, ID: file-fe-ae0012648aa84b2ca255a6c6)
+2026-04-16 07:08:34,254 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\688690-2026-04-16-纳微科技-苏州纳微科技股份有限公司2025年年度报告_mgsy.pdf
+2026-04-16 07:08:34,254 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\688681-2026-04-16-科汇股份-2025年年度报告_mgsy.pdf
+2026-04-16 07:08:34,698 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-0b6afafe0f8140c0885c5767 "HTTP/1.1 200 OK"
+2026-04-16 07:08:34,786 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-ce3ad54635a54685a387ae45 "HTTP/1.1 200 OK"
+2026-04-16 07:08:36,163 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:36,163 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\688698-2026-04-16-伟创电气-2025年年度报告_mgsy.pdf (文件ID: file-fe-eabe99e5e9b84ef4bfe33c0f)
+2026-04-16 07:08:36,163 - __main___file_only - INFO - 上传文件: 688698-2026-04-16-伟创电气-2025年年度报告_mgsy.pdf (大小: 0.30 MB, ID: file-fe-eabe99e5e9b84ef4bfe33c0f)
+2026-04-16 07:08:36,186 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:36,186 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920007-2026-04-15-酉立智能-2025年年度报告_mgsy.pdf (文件ID: file-fe-de183417bb844a8db2078d75)
+2026-04-16 07:08:36,186 - __main___file_only - INFO - 上传文件: 920007-2026-04-15-酉立智能-2025年年度报告_mgsy.pdf (大小: 0.40 MB, ID: file-fe-de183417bb844a8db2078d75)
+2026-04-16 07:08:36,256 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\688698-2026-04-16-伟创电气-2025年年度报告_mgsy.pdf
+2026-04-16 07:08:36,256 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920007-2026-04-15-酉立智能-2025年年度报告_mgsy.pdf
+2026-04-16 07:08:36,313 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:36,379 - __main___file_only - INFO - 找到数据: 688019 2026-04-16 (3条)
+2026-04-16 07:08:36,379 - __main__ - INFO - 处理成功: 688019-2026-04-16
+2026-04-16 07:08:36,379 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\688019-2026-04-16-安集科技-2025年年度报告_mgsy.pdf (耗时: 8.63秒)
+2026-04-16 07:08:37,000 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-1b44101c3bc54e7abab71378 "HTTP/1.1 200 OK"
+2026-04-16 07:08:37,719 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:37,879 - __main___file_only - INFO - 找到数据: 605580 2026-04-16 (3条)
+2026-04-16 07:08:37,879 - __main__ - INFO - 处理成功: 605580-2026-04-16
+2026-04-16 07:08:37,879 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\605580-2026-04-16-恒盛能源-恒盛能源股份有限公司2025年年度报告全文_mgsy.pdf (耗时: 10.13秒)
+2026-04-16 07:08:38,287 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:38,288 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920149-2026-04-15-旭杰科技-2025年年度报告_mgsy.pdf (文件ID: file-fe-6a0e79a1ef694dd6ba4b5245)
+2026-04-16 07:08:38,288 - __main___file_only - INFO - 上传文件: 920149-2026-04-15-旭杰科技-2025年年度报告_mgsy.pdf (大小: 0.47 MB, ID: file-fe-6a0e79a1ef694dd6ba4b5245)
+2026-04-16 07:08:38,359 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920149-2026-04-15-旭杰科技-2025年年度报告_mgsy.pdf
+2026-04-16 07:08:38,364 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:38,365 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920020-2026-04-15-泰凯英-2025年年度报告_mgsy.pdf (文件ID: file-fe-3721330353474f16b9d264a7)
+2026-04-16 07:08:38,365 - __main___file_only - INFO - 上传文件: 920020-2026-04-15-泰凯英-2025年年度报告_mgsy.pdf (大小: 0.39 MB, ID: file-fe-3721330353474f16b9d264a7)
+2026-04-16 07:08:38,621 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-8f35478d9b384cf2af5f2f3f "HTTP/1.1 200 OK"
+2026-04-16 07:08:38,623 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920020-2026-04-15-泰凯英-2025年年度报告_mgsy.pdf
+2026-04-16 07:08:39,786 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:39,857 - __main___file_only - INFO - 找到数据: 688206 2026-04-16 (3条)
+2026-04-16 07:08:39,857 - __main__ - INFO - 处理成功: 688206-2026-04-16
+2026-04-16 07:08:39,857 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\688206-2026-04-16-概伦电子-2025年年度报告_mgsy.pdf (耗时: 10.04秒)
+2026-04-16 07:08:40,389 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:40,390 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920199-2026-04-15-倍益康-2025年年度报告_mgsy.pdf (文件ID: file-fe-68314d7a77c242d4bc0de526)
+2026-04-16 07:08:40,390 - __main___file_only - INFO - 上传文件: 920199-2026-04-15-倍益康-2025年年度报告_mgsy.pdf (大小: 0.50 MB, ID: file-fe-68314d7a77c242d4bc0de526)
+2026-04-16 07:08:40,469 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920199-2026-04-15-倍益康-2025年年度报告_mgsy.pdf
+2026-04-16 07:08:40,473 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:40,474 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920223-2026-04-15-荣亿精密-2025年年度报告_mgsy.pdf (文件ID: file-fe-931f81d198a843e79e26b4f3)
+2026-04-16 07:08:40,474 - __main___file_only - INFO - 上传文件: 920223-2026-04-15-荣亿精密-2025年年度报告_mgsy.pdf (大小: 0.24 MB, ID: file-fe-931f81d198a843e79e26b4f3)
+2026-04-16 07:08:40,492 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:40,504 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-1c2f93d3c191489aa35ce2b9 "HTTP/1.1 200 OK"
+2026-04-16 07:08:40,552 - __main___file_only - INFO - 找到数据: 688499 2026-04-16 (3条)
+2026-04-16 07:08:40,553 - __main__ - INFO - 处理成功: 688499-2026-04-16
+2026-04-16 07:08:40,553 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\688499-2026-04-16-利元亨-广东利元亨智能装备股份有限公司2025年年度报告_mgsy.pdf (耗时: 8.63秒)
+2026-04-16 07:08:40,684 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:40,730 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920223-2026-04-15-荣亿精密-2025年年度报告_mgsy.pdf
+2026-04-16 07:08:40,744 - __main___file_only - INFO - 找到数据: 688273 2026-04-16 (3条)
+2026-04-16 07:08:40,744 - __main__ - INFO - 处理成功: 688273-2026-04-16
+2026-04-16 07:08:40,744 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\688273-2026-04-16-麦澜德-2025年年度报告_mgsy.pdf (耗时: 10.93秒)
+2026-04-16 07:08:41,174 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-84270687d0ac493ba563a97b "HTTP/1.1 200 OK"
+2026-04-16 07:08:41,370 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-80254d14645a4bcd88f9b365 "HTTP/1.1 200 OK"
+2026-04-16 07:08:41,458 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:41,523 - __main___file_only - INFO - 找到数据: 688612 2026-04-16 (3条)
+2026-04-16 07:08:41,523 - __main__ - INFO - 处理成功: 688612-2026-04-16
+2026-04-16 07:08:41,523 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\688612-2026-04-16-威迈斯-2025年年度报告_mgsy.pdf (耗时: 9.60秒)
+2026-04-16 07:08:42,137 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-2b14675c0ba44bcda8e87cd0 "HTTP/1.1 200 OK"
+2026-04-16 07:08:42,472 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:42,472 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920249-2026-04-15-利尔达-2025年年度报告_mgsy.pdf (文件ID: file-fe-453f5ba633cf411f92556fda)
+2026-04-16 07:08:42,472 - __main___file_only - INFO - 上传文件: 920249-2026-04-15-利尔达-2025年年度报告_mgsy.pdf (大小: 0.28 MB, ID: file-fe-453f5ba633cf411f92556fda)
+2026-04-16 07:08:42,536 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:42,536 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920230-2026-04-15-欧康医药-2025年年度报告_mgsy.pdf (文件ID: file-fe-d9c94ce6d18c4bf991105371)
+2026-04-16 07:08:42,537 - __main___file_only - INFO - 上传文件: 920230-2026-04-15-欧康医药-2025年年度报告_mgsy.pdf (大小: 0.30 MB, ID: file-fe-d9c94ce6d18c4bf991105371)
+2026-04-16 07:08:42,537 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920249-2026-04-15-利尔达-2025年年度报告_mgsy.pdf
+2026-04-16 07:08:42,537 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920230-2026-04-15-欧康医药-2025年年度报告_mgsy.pdf
+2026-04-16 07:08:42,633 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:42,709 - __main___file_only - INFO - 找到数据: 688690 2026-04-16 (3条)
+2026-04-16 07:08:42,709 - __main__ - INFO - 处理成功: 688690-2026-04-16
+2026-04-16 07:08:42,709 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\688690-2026-04-16-纳微科技-苏州纳微科技股份有限公司2025年年度报告_mgsy.pdf (耗时: 8.46秒)
+2026-04-16 07:08:43,335 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-03a22a4702084fcc906bbc24 "HTTP/1.1 200 OK"
+2026-04-16 07:08:44,686 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:44,687 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920357-2026-04-15-雅葆轩-2025年年度报告_mgsy.pdf (文件ID: file-fe-4d64f624c9a240cb861699a9)
+2026-04-16 07:08:44,687 - __main___file_only - INFO - 上传文件: 920357-2026-04-15-雅葆轩-2025年年度报告_mgsy.pdf (大小: 0.29 MB, ID: file-fe-4d64f624c9a240cb861699a9)
+2026-04-16 07:08:44,735 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:44,735 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920367-2026-04-15-新赣江-2025年年度报告_mgsy.pdf (文件ID: file-fe-74a8b2a959604f94984b6985)
+2026-04-16 07:08:44,735 - __main___file_only - INFO - 上传文件: 920367-2026-04-15-新赣江-2025年年度报告_mgsy.pdf (大小: 0.47 MB, ID: file-fe-74a8b2a959604f94984b6985)
+2026-04-16 07:08:44,810 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920367-2026-04-15-新赣江-2025年年度报告_mgsy.pdf
+2026-04-16 07:08:44,810 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920357-2026-04-15-雅葆轩-2025年年度报告_mgsy.pdf
+2026-04-16 07:08:45,919 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:45,983 - __main___file_only - INFO - 找到数据: 688681 2026-04-16 (3条)
+2026-04-16 07:08:45,983 - __main__ - INFO - 处理成功: 688681-2026-04-16
+2026-04-16 07:08:45,983 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\688681-2026-04-16-科汇股份-2025年年度报告_mgsy.pdf (耗时: 11.73秒)
+2026-04-16 07:08:46,738 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-ae0012648aa84b2ca255a6c6 "HTTP/1.1 200 OK"
+2026-04-16 07:08:46,864 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:46,865 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920689-2026-04-15-克莱特-2025年年度报告_mgsy.pdf (文件ID: file-fe-b2a15111062d4b3a8c8df9e8)
+2026-04-16 07:08:46,865 - __main___file_only - INFO - 上传文件: 920689-2026-04-15-克莱特-2025年年度报告_mgsy.pdf (大小: 0.32 MB, ID: file-fe-b2a15111062d4b3a8c8df9e8)
+2026-04-16 07:08:46,922 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920689-2026-04-15-克莱特-2025年年度报告_mgsy.pdf
+2026-04-16 07:08:47,112 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:47,112 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920526-2026-04-15-凯华材料-2025年年度报告_mgsy.pdf (文件ID: file-fe-a769949a15fe45928bfca778)
+2026-04-16 07:08:47,113 - __main___file_only - INFO - 上传文件: 920526-2026-04-15-凯华材料-2025年年度报告_mgsy.pdf (大小: 0.45 MB, ID: file-fe-a769949a15fe45928bfca778)
+2026-04-16 07:08:47,185 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920526-2026-04-15-凯华材料-2025年年度报告_mgsy.pdf
+2026-04-16 07:08:47,970 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:48,033 - __main___file_only - INFO - 找到数据: 688698 2026-04-16 (3条)
+2026-04-16 07:08:48,034 - __main__ - INFO - 处理成功: 688698-2026-04-16
+2026-04-16 07:08:48,034 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\688698-2026-04-16-伟创电气-2025年年度报告_mgsy.pdf (耗时: 11.78秒)
+2026-04-16 07:08:48,175 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:48,240 - __main___file_only - INFO - 找到数据: 920020 2026-04-15 (3条)
+2026-04-16 07:08:48,240 - __main__ - INFO - 处理成功: 920020-2026-04-15
+2026-04-16 07:08:48,240 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920020-2026-04-15-泰凯英-2025年年度报告_mgsy.pdf (耗时: 9.62秒)
+2026-04-16 07:08:48,717 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-eabe99e5e9b84ef4bfe33c0f "HTTP/1.1 200 OK"
+2026-04-16 07:08:48,920 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:48,921 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920768-2026-04-15-拾比佰-2025年年度报告_mgsy.pdf (文件ID: file-fe-f0ac57ab586e4d43a98e1353)
+2026-04-16 07:08:48,921 - __main___file_only - INFO - 上传文件: 920768-2026-04-15-拾比佰-2025年年度报告_mgsy.pdf (大小: 0.46 MB, ID: file-fe-f0ac57ab586e4d43a98e1353)
+2026-04-16 07:08:48,993 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-3721330353474f16b9d264a7 "HTTP/1.1 200 OK"
+2026-04-16 07:08:49,030 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920768-2026-04-15-拾比佰-2025年年度报告_mgsy.pdf
+2026-04-16 07:08:49,117 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:49,178 - __main___file_only - INFO - 找到数据: 920199 2026-04-15 (3条)
+2026-04-16 07:08:49,178 - __main__ - INFO - 处理成功: 920199-2026-04-15
+2026-04-16 07:08:49,178 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920199-2026-04-15-倍益康-2025年年度报告_mgsy.pdf (耗时: 8.71秒)
+2026-04-16 07:08:49,272 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:08:49,273 - ai_service_enhanced - INFO - 文件上传成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920693-2026-04-15-阿为特-2025年年度报告_mgsy.pdf (文件ID: file-fe-a5e045d744e5415580a75464)
+2026-04-16 07:08:49,273 - __main___file_only - INFO - 上传文件: 920693-2026-04-15-阿为特-2025年年度报告_mgsy.pdf (大小: 0.29 MB, ID: file-fe-a5e045d744e5415580a75464)
+2026-04-16 07:08:49,274 - __main__ - INFO - 开始处理: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920693-2026-04-15-阿为特-2025年年度报告_mgsy.pdf
+2026-04-16 07:08:49,593 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:49,656 - __main___file_only - INFO - 找到数据: 920223 2026-04-15 (3条)
+2026-04-16 07:08:49,656 - __main__ - INFO - 处理成功: 920223-2026-04-15
+2026-04-16 07:08:49,656 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920223-2026-04-15-荣亿精密-2025年年度报告_mgsy.pdf (耗时: 8.93秒)
+2026-04-16 07:08:49,866 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-68314d7a77c242d4bc0de526 "HTTP/1.1 200 OK"
+2026-04-16 07:08:50,216 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-931f81d198a843e79e26b4f3 "HTTP/1.1 200 OK"
+2026-04-16 07:08:52,026 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:52,067 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:52,092 - __main___file_only - INFO - 找到数据: 920249 2026-04-15 (3条)
+2026-04-16 07:08:52,092 - __main__ - INFO - 处理成功: 920249-2026-04-15
+2026-04-16 07:08:52,092 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920249-2026-04-15-利尔达-2025年年度报告_mgsy.pdf (耗时: 9.56秒)
+2026-04-16 07:08:52,132 - __main___file_only - INFO - 找到数据: 920230 2026-04-15 (3条)
+2026-04-16 07:08:52,132 - __main__ - INFO - 处理成功: 920230-2026-04-15
+2026-04-16 07:08:52,132 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920230-2026-04-15-欧康医药-2025年年度报告_mgsy.pdf (耗时: 9.59秒)
+2026-04-16 07:08:52,705 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-d9c94ce6d18c4bf991105371 "HTTP/1.1 200 OK"
+2026-04-16 07:08:52,707 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-453f5ba633cf411f92556fda "HTTP/1.1 200 OK"
+2026-04-16 07:08:53,331 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:53,381 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:53,396 - __main___file_only - INFO - 找到数据: 920149 2026-04-15 (3条)
+2026-04-16 07:08:53,397 - __main__ - INFO - 处理成功: 920149-2026-04-15
+2026-04-16 07:08:53,397 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920149-2026-04-15-旭杰科技-2025年年度报告_mgsy.pdf (耗时: 15.04秒)
+2026-04-16 07:08:53,453 - __main___file_only - INFO - 找到数据: 920007 2026-04-15 (3条)
+2026-04-16 07:08:53,453 - __main__ - INFO - 处理成功: 920007-2026-04-15
+2026-04-16 07:08:53,453 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920007-2026-04-15-酉立智能-2025年年度报告_mgsy.pdf (耗时: 17.20秒)
+2026-04-16 07:08:53,891 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:53,942 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-6a0e79a1ef694dd6ba4b5245 "HTTP/1.1 200 OK"
+2026-04-16 07:08:53,957 - __main___file_only - INFO - 找到数据: 920357 2026-04-15 (3条)
+2026-04-16 07:08:53,957 - __main__ - INFO - 处理成功: 920357-2026-04-15
+2026-04-16 07:08:53,957 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920357-2026-04-15-雅葆轩-2025年年度报告_mgsy.pdf (耗时: 9.15秒)
+2026-04-16 07:08:54,136 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-de183417bb844a8db2078d75 "HTTP/1.1 200 OK"
+2026-04-16 07:08:54,321 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:54,384 - __main___file_only - INFO - 找到数据: 920367 2026-04-15 (3条)
+2026-04-16 07:08:54,385 - __main__ - INFO - 处理成功: 920367-2026-04-15
+2026-04-16 07:08:54,385 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920367-2026-04-15-新赣江-2025年年度报告_mgsy.pdf (耗时: 9.57秒)
+2026-04-16 07:08:54,513 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-4d64f624c9a240cb861699a9 "HTTP/1.1 200 OK"
+2026-04-16 07:08:55,014 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-74a8b2a959604f94984b6985 "HTTP/1.1 200 OK"
+2026-04-16 07:08:56,749 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:56,816 - __main___file_only - INFO - 找到数据: 920689 2026-04-15 (3条)
+2026-04-16 07:08:56,817 - __main__ - INFO - 处理成功: 920689-2026-04-15
+2026-04-16 07:08:56,817 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920689-2026-04-15-克莱特-2025年年度报告_mgsy.pdf (耗时: 9.89秒)
+2026-04-16 07:08:57,386 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:57,481 - __main___file_only - INFO - 找到数据: 920693 2026-04-15 (3条)
+2026-04-16 07:08:57,481 - __main__ - INFO - 处理成功: 920693-2026-04-15
+2026-04-16 07:08:57,481 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920693-2026-04-15-阿为特-2025年年度报告_mgsy.pdf (耗时: 8.21秒)
+2026-04-16 07:08:57,495 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-b2a15111062d4b3a8c8df9e8 "HTTP/1.1 200 OK"
+2026-04-16 07:08:58,093 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-a5e045d744e5415580a75464 "HTTP/1.1 200 OK"
+2026-04-16 07:08:59,429 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:08:59,494 - __main___file_only - INFO - 找到数据: 920526 2026-04-15 (3条)
+2026-04-16 07:08:59,494 - __main__ - INFO - 处理成功: 920526-2026-04-15
+2026-04-16 07:08:59,495 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920526-2026-04-15-凯华材料-2025年年度报告_mgsy.pdf (耗时: 12.31秒)
+2026-04-16 07:09:00,100 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-a769949a15fe45928bfca778 "HTTP/1.1 200 OK"
+2026-04-16 07:09:03,407 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:03,506 - __main___file_only - INFO - 找到数据: 920768 2026-04-15 (3条)
+2026-04-16 07:09:03,506 - __main__ - INFO - 处理成功: 920768-2026-04-15
+2026-04-16 07:09:03,506 - __main___file_only - INFO - 处理成功: C:\Users\chenkk\Desktop\新建文件夹\净资产收益率和每股收益\920768-2026-04-15-拾比佰-2025年年度报告_mgsy.pdf (耗时: 14.48秒)
+2026-04-16 07:09:04,183 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-f0ac57ab586e4d43a98e1353 "HTTP/1.1 200 OK"
+2026-04-16 07:09:04,253 - __main__ - INFO - 开始关闭线程池...
+2026-04-16 07:09:04,274 - __main__ - INFO - 所有线程池已关闭
+2026-04-16 07:09:04,505 - __main__ - INFO - 程序执行完成 - 总耗时: 0:01:38.826232

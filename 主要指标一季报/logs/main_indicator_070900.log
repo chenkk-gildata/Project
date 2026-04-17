@@ -1,0 +1,238 @@
+2026-04-16 07:09:00,433 - __main__ - INFO - 程序启动，会话ID: 070900
+2026-04-16 07:09:04,740 - __main__ - INFO - 用户选择: 完整流程
+2026-04-16 07:09:12,122 - __main__ - INFO - 用户选择的日期范围: 2026-04-15 ~ 2026-04-15
+2026-04-16 07:09:12,418 - downloader - INFO - 查询到 18 条公告记录
+2026-04-16 07:09:12,418 - __main__ - INFO - 查询到 18 条公告
+2026-04-16 07:09:12,419 - downloader - INFO - 创建下载文件夹: E:\Project\主要指标一季报\files\20260415_070900
+2026-04-16 07:09:12,420 - __main__ - INFO - 下载文件夹: E:\Project\主要指标一季报\files\20260415_070900
+2026-04-16 07:09:12,420 - downloader - INFO - 开始批量下载 18 个公告，使用 5 个并发线程
+2026-04-16 07:09:12,919 - downloader - INFO - 下载成功: 688525-2026-04-16-佰维存储2026年第一季度报告.PDF
+2026-04-16 07:09:12,919 - downloader - INFO - 下载成功: 301377-2026-04-16-鼎泰高科2026年一季度报告.PDF
+2026-04-16 07:09:12,959 - downloader - INFO - 下载成功: 603129-2026-04-16-春风动力春风动力2026年第一季度报告.PDF
+2026-04-16 07:09:12,972 - downloader - INFO - 下载成功: 300967-2026-04-16-晓鸣股份2026年一季度报告.PDF
+2026-04-16 07:09:13,001 - downloader - INFO - 下载成功: 300996-2026-04-16-普联软件2026年一季度报告.PDF
+2026-04-16 07:09:13,688 - downloader - INFO - 下载成功: 605507-2026-04-16-国邦医药国邦医药2026年第一季度报告.PDF
+2026-04-16 07:09:13,714 - downloader - INFO - 下载成功: 920357-2026-04-15-雅葆轩2026年一季度报告.PDF
+2026-04-16 07:09:13,726 - downloader - INFO - 下载成功: 600702-2026-04-16-舍得酒业舍得酒业2026年第一季度报告.PDF
+2026-04-16 07:09:13,727 - downloader - INFO - 下载成功: 601877-2026-04-16-正泰电器正泰电器2026年第一季度报告.PDF
+2026-04-16 07:09:13,760 - downloader - INFO - 下载成功: 000506-2026-04-16-招金黄金2026年一季度报告.PDF
+2026-04-16 07:09:13,872 - downloader - INFO - 下载成功: 600318-2026-04-16-新力金融安徽新力金融股份有限公司2026年第一季度报告.PDF
+2026-04-16 07:09:13,903 - downloader - INFO - 下载成功: 002546-2026-04-16-新联电子2026年一季度报告.PDF
+2026-04-16 07:09:13,976 - downloader - INFO - 下载成功: 300433-2026-04-16-蓝思科技2026年一季度报告.PDF
+2026-04-16 07:09:13,978 - downloader - INFO - 下载成功: 603102-2026-04-16-百合股份威海百合生物技术股份有限公司2026年第一季度报告.PDF
+2026-04-16 07:09:13,993 - downloader - INFO - 下载成功: 300750-2026-04-16-宁德时代2026年一季度报告.PDF
+2026-04-16 07:09:14,050 - downloader - INFO - 下载成功: 688668-2026-04-16-鼎通科技2026年第一季度报告.PDF
+2026-04-16 07:09:14,151 - downloader - INFO - 下载成功: 603061-2026-04-16-金海通2026年第一季度报告.PDF
+2026-04-16 07:09:14,198 - downloader - INFO - 下载成功: 688273-2026-04-16-麦澜德2026年第一季度报告.PDF
+2026-04-16 07:09:14,218 - __main__ - INFO - 下载完成! 成功: 18, 失败: 0
+2026-04-16 07:09:14,220 - __main__ - INFO - 找到 18 个PDF文件
+2026-04-16 07:09:14,220 - pdf_processor - INFO - 开始批量处理 18 个PDF文件，使用 8 个并发线程
+2026-04-16 07:09:14,384 - pdf_processor - INFO - 开始关键词和结束关键词在同一页，直接裁剪该页面
+2026-04-16 07:09:14,469 - pdf_processor - INFO - 已处理并保存到: E:\Project\主要指标一季报\files\20260415_070900\000506-2026-04-16-招金黄金2026年一季度报告.PDF.temp
+2026-04-16 07:09:14,471 - pdf_processor - INFO - 已处理并保存到: E:\Project\主要指标一季报\files\20260415_070900\300996-2026-04-16-普联软件2026年一季度报告.PDF.temp
+2026-04-16 07:09:14,472 - pdf_processor - INFO - 已处理并保存到: E:\Project\主要指标一季报\files\20260415_070900\600318-2026-04-16-新力金融安徽新力金融股份有限公司2026年第一季度报告.PDF.temp
+2026-04-16 07:09:14,472 - pdf_processor - INFO - 已处理并保存到: E:\Project\主要指标一季报\files\20260415_070900\002546-2026-04-16-新联电子2026年一季度报告.PDF.temp
+2026-04-16 07:09:14,475 - pdf_processor - INFO - 处理成功: 000506-2026-04-16-招金黄金2026年一季度报告.PDF
+2026-04-16 07:09:14,476 - pdf_processor - INFO - 已裁剪页面并保存到: E:\Project\主要指标一季报\files\20260415_070900\301377-2026-04-16-鼎泰高科2026年一季度报告.PDF.temp
+2026-04-16 07:09:14,476 - pdf_processor - INFO - 已处理并保存到: E:\Project\主要指标一季报\files\20260415_070900\300433-2026-04-16-蓝思科技2026年一季度报告.PDF.temp
+2026-04-16 07:09:14,477 - pdf_processor - INFO - 已处理并保存到: E:\Project\主要指标一季报\files\20260415_070900\300967-2026-04-16-晓鸣股份2026年一季度报告.PDF.temp
+2026-04-16 07:09:14,477 - pdf_processor - INFO - 已处理并保存到: E:\Project\主要指标一季报\files\20260415_070900\300750-2026-04-16-宁德时代2026年一季度报告.PDF.temp
+2026-04-16 07:09:14,478 - pdf_processor - INFO - 处理成功: 300996-2026-04-16-普联软件2026年一季度报告.PDF
+2026-04-16 07:09:14,497 - pdf_processor - INFO - 处理成功: 002546-2026-04-16-新联电子2026年一季度报告.PDF
+2026-04-16 07:09:14,497 - pdf_processor - INFO - 处理成功: 600318-2026-04-16-新力金融安徽新力金融股份有限公司2026年第一季度报告.PDF
+2026-04-16 07:09:14,507 - pdf_processor - INFO - 处理成功: 301377-2026-04-16-鼎泰高科2026年一季度报告.PDF
+2026-04-16 07:09:14,546 - pdf_processor - INFO - 处理成功: 300750-2026-04-16-宁德时代2026年一季度报告.PDF
+2026-04-16 07:09:14,511 - pdf_processor - INFO - 处理成功: 300967-2026-04-16-晓鸣股份2026年一季度报告.PDF
+2026-04-16 07:09:14,511 - pdf_processor - INFO - 处理成功: 300433-2026-04-16-蓝思科技2026年一季度报告.PDF
+2026-04-16 07:09:14,561 - pdf_processor - INFO - 已处理并保存到: E:\Project\主要指标一季报\files\20260415_070900\600702-2026-04-16-舍得酒业舍得酒业2026年第一季度报告.PDF.temp
+2026-04-16 07:09:14,595 - pdf_processor - INFO - 已处理并保存到: E:\Project\主要指标一季报\files\20260415_070900\603061-2026-04-16-金海通2026年第一季度报告.PDF.temp
+2026-04-16 07:09:14,607 - pdf_processor - INFO - 已处理并保存到: E:\Project\主要指标一季报\files\20260415_070900\601877-2026-04-16-正泰电器正泰电器2026年第一季度报告.PDF.temp
+2026-04-16 07:09:14,655 - pdf_processor - INFO - 处理成功: 600702-2026-04-16-舍得酒业舍得酒业2026年第一季度报告.PDF
+2026-04-16 07:09:14,655 - pdf_processor - INFO - 处理成功: 603061-2026-04-16-金海通2026年第一季度报告.PDF
+2026-04-16 07:09:14,659 - pdf_processor - INFO - 处理成功: 601877-2026-04-16-正泰电器正泰电器2026年第一季度报告.PDF
+2026-04-16 07:09:14,666 - pdf_processor - INFO - 已处理并保存到: E:\Project\主要指标一季报\files\20260415_070900\603102-2026-04-16-百合股份威海百合生物技术股份有限公司2026年第一季度报告.PDF.temp
+2026-04-16 07:09:14,668 - pdf_processor - INFO - 已处理并保存到: E:\Project\主要指标一季报\files\20260415_070900\605507-2026-04-16-国邦医药国邦医药2026年第一季度报告.PDF.temp
+2026-04-16 07:09:14,668 - pdf_processor - INFO - 已处理并保存到: E:\Project\主要指标一季报\files\20260415_070900\603129-2026-04-16-春风动力春风动力2026年第一季度报告.PDF.temp
+2026-04-16 07:09:14,684 - pdf_processor - INFO - 已处理并保存到: E:\Project\主要指标一季报\files\20260415_070900\688273-2026-04-16-麦澜德2026年第一季度报告.PDF.temp
+2026-04-16 07:09:14,684 - pdf_processor - INFO - 已处理并保存到: E:\Project\主要指标一季报\files\20260415_070900\688525-2026-04-16-佰维存储2026年第一季度报告.PDF.temp
+2026-04-16 07:09:14,734 - pdf_processor - INFO - 处理成功: 605507-2026-04-16-国邦医药国邦医药2026年第一季度报告.PDF
+2026-04-16 07:09:14,734 - pdf_processor - INFO - 处理成功: 603102-2026-04-16-百合股份威海百合生物技术股份有限公司2026年第一季度报告.PDF
+2026-04-16 07:09:14,741 - pdf_processor - INFO - 已处理并保存到: E:\Project\主要指标一季报\files\20260415_070900\688668-2026-04-16-鼎通科技2026年第一季度报告.PDF.temp
+2026-04-16 07:09:14,749 - pdf_processor - INFO - 处理成功: 603129-2026-04-16-春风动力春风动力2026年第一季度报告.PDF
+2026-04-16 07:09:14,750 - pdf_processor - INFO - 处理成功: 688273-2026-04-16-麦澜德2026年第一季度报告.PDF
+2026-04-16 07:09:14,751 - pdf_processor - INFO - 处理成功: 688668-2026-04-16-鼎通科技2026年第一季度报告.PDF
+2026-04-16 07:09:14,750 - pdf_processor - INFO - 处理成功: 688525-2026-04-16-佰维存储2026年第一季度报告.PDF
+2026-04-16 07:09:14,753 - pdf_processor - INFO - 已处理并保存到: E:\Project\主要指标一季报\files\20260415_070900\920357-2026-04-15-雅葆轩2026年一季度报告.PDF.temp
+2026-04-16 07:09:14,755 - pdf_processor - INFO - 处理成功: 920357-2026-04-15-雅葆轩2026年一季度报告.PDF
+2026-04-16 07:09:14,759 - __main__ - INFO - PDF处理完成! 成功: 18, 失败: 0
+2026-04-16 07:09:14,761 - __main__ - INFO - 找到 18 个处理后的PDF文件
+2026-04-16 07:09:14,762 - __main__ - INFO - 开始AI比对处理...
+2026-04-16 07:09:15,607 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:15,608 - ai_service_enhanced - INFO - 文件上传成功: E:\Project\主要指标一季报\files\20260415_070900\000506-2026-04-16-招金黄金2026年一季度报告.PDF (文件ID: file-fe-74fcbb19dacf4822b25b1e63)
+2026-04-16 07:09:15,608 - comparison_processor_file_only - INFO - 上传文件: 000506-2026-04-16-招金黄金2026年一季度报告.PDF (大小: 0.11 MB, ID: file-fe-74fcbb19dacf4822b25b1e63)
+2026-04-16 07:09:15,652 - comparison_processor - INFO - 开始处理文件: 000506-2026-04-16-招金黄金2026年一季度报告.PDF (文件ID: file-fe-74fcbb19dacf4822b25b1e63)
+2026-04-16 07:09:15,955 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:15,958 - ai_service_enhanced - INFO - 文件上传成功: E:\Project\主要指标一季报\files\20260415_070900\002546-2026-04-16-新联电子2026年一季度报告.PDF (文件ID: file-fe-29155de7408b4079809092b6)
+2026-04-16 07:09:15,958 - comparison_processor_file_only - INFO - 上传文件: 002546-2026-04-16-新联电子2026年一季度报告.PDF (大小: 0.15 MB, ID: file-fe-29155de7408b4079809092b6)
+2026-04-16 07:09:16,183 - comparison_processor - INFO - 开始处理文件: 002546-2026-04-16-新联电子2026年一季度报告.PDF (文件ID: file-fe-29155de7408b4079809092b6)
+2026-04-16 07:09:16,355 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:16,355 - ai_service_enhanced - INFO - 文件上传成功: E:\Project\主要指标一季报\files\20260415_070900\300433-2026-04-16-蓝思科技2026年一季度报告.PDF (文件ID: file-fe-d1bb2238922c4862a76aa98f)
+2026-04-16 07:09:16,356 - comparison_processor_file_only - INFO - 上传文件: 300433-2026-04-16-蓝思科技2026年一季度报告.PDF (大小: 0.30 MB, ID: file-fe-d1bb2238922c4862a76aa98f)
+2026-04-16 07:09:16,451 - comparison_processor - INFO - 开始处理文件: 300433-2026-04-16-蓝思科技2026年一季度报告.PDF (文件ID: file-fe-d1bb2238922c4862a76aa98f)
+2026-04-16 07:09:17,050 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:17,050 - ai_service_enhanced - INFO - 文件上传成功: E:\Project\主要指标一季报\files\20260415_070900\300750-2026-04-16-宁德时代2026年一季度报告.PDF (文件ID: file-fe-fb01db79f7f34498992b496c)
+2026-04-16 07:09:17,051 - comparison_processor_file_only - INFO - 上传文件: 300750-2026-04-16-宁德时代2026年一季度报告.PDF (大小: 0.24 MB, ID: file-fe-fb01db79f7f34498992b496c)
+2026-04-16 07:09:17,242 - comparison_processor - INFO - 开始处理文件: 300750-2026-04-16-宁德时代2026年一季度报告.PDF (文件ID: file-fe-fb01db79f7f34498992b496c)
+2026-04-16 07:09:17,729 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:17,730 - ai_service_enhanced - INFO - 文件上传成功: E:\Project\主要指标一季报\files\20260415_070900\300967-2026-04-16-晓鸣股份2026年一季度报告.PDF (文件ID: file-fe-d715e270ac754013a5c5fa80)
+2026-04-16 07:09:17,730 - comparison_processor_file_only - INFO - 上传文件: 300967-2026-04-16-晓鸣股份2026年一季度报告.PDF (大小: 0.15 MB, ID: file-fe-d715e270ac754013a5c5fa80)
+2026-04-16 07:09:17,770 - comparison_processor - INFO - 开始处理文件: 300967-2026-04-16-晓鸣股份2026年一季度报告.PDF (文件ID: file-fe-d715e270ac754013a5c5fa80)
+2026-04-16 07:09:18,597 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:18,598 - ai_service_enhanced - INFO - 文件上传成功: E:\Project\主要指标一季报\files\20260415_070900\300996-2026-04-16-普联软件2026年一季度报告.PDF (文件ID: file-fe-e6e44d1ba02c42229dd08d09)
+2026-04-16 07:09:18,598 - comparison_processor_file_only - INFO - 上传文件: 300996-2026-04-16-普联软件2026年一季度报告.PDF (大小: 0.14 MB, ID: file-fe-e6e44d1ba02c42229dd08d09)
+2026-04-16 07:09:18,831 - comparison_processor - INFO - 开始处理文件: 300996-2026-04-16-普联软件2026年一季度报告.PDF (文件ID: file-fe-e6e44d1ba02c42229dd08d09)
+2026-04-16 07:09:19,058 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:19,059 - ai_service_enhanced - INFO - 文件上传成功: E:\Project\主要指标一季报\files\20260415_070900\301377-2026-04-16-鼎泰高科2026年一季度报告.PDF (文件ID: file-fe-8d374f0e440745e68ccb5b43)
+2026-04-16 07:09:19,059 - comparison_processor_file_only - INFO - 上传文件: 301377-2026-04-16-鼎泰高科2026年一季度报告.PDF (大小: 0.15 MB, ID: file-fe-8d374f0e440745e68ccb5b43)
+2026-04-16 07:09:19,093 - comparison_processor - INFO - 开始处理文件: 301377-2026-04-16-鼎泰高科2026年一季度报告.PDF (文件ID: file-fe-8d374f0e440745e68ccb5b43)
+2026-04-16 07:09:20,559 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:20,560 - ai_service_enhanced - INFO - 文件上传成功: E:\Project\主要指标一季报\files\20260415_070900\600318-2026-04-16-新力金融安徽新力金融股份有限公司2026年第一季度报告.PDF (文件ID: file-fe-65abe1cd782045a399e41aab)
+2026-04-16 07:09:20,560 - comparison_processor_file_only - INFO - 上传文件: 600318-2026-04-16-新力金融安徽新力金融股份有限公司2026年第一季度报告.PDF (大小: 0.11 MB, ID: file-fe-65abe1cd782045a399e41aab)
+2026-04-16 07:09:20,674 - comparison_processor - INFO - 开始处理文件: 600318-2026-04-16-新力金融安徽新力金融股份有限公司2026年第一季度报告.PDF (文件ID: file-fe-65abe1cd782045a399e41aab)
+2026-04-16 07:09:20,720 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:20,720 - ai_service_enhanced - INFO - 文件上传成功: E:\Project\主要指标一季报\files\20260415_070900\600702-2026-04-16-舍得酒业舍得酒业2026年第一季度报告.PDF (文件ID: file-fe-38280e0611104b5996ebe497)
+2026-04-16 07:09:20,720 - comparison_processor_file_only - INFO - 上传文件: 600702-2026-04-16-舍得酒业舍得酒业2026年第一季度报告.PDF (大小: 0.11 MB, ID: file-fe-38280e0611104b5996ebe497)
+2026-04-16 07:09:20,938 - comparison_processor - INFO - 开始处理文件: 600702-2026-04-16-舍得酒业舍得酒业2026年第一季度报告.PDF (文件ID: file-fe-38280e0611104b5996ebe497)
+2026-04-16 07:09:22,308 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:22,308 - ai_service_enhanced - INFO - 文件上传成功: E:\Project\主要指标一季报\files\20260415_070900\601877-2026-04-16-正泰电器正泰电器2026年第一季度报告.PDF (文件ID: file-fe-f3c3603cc8704fd291a28182)
+2026-04-16 07:09:22,309 - comparison_processor_file_only - INFO - 上传文件: 601877-2026-04-16-正泰电器正泰电器2026年第一季度报告.PDF (大小: 0.12 MB, ID: file-fe-f3c3603cc8704fd291a28182)
+2026-04-16 07:09:22,523 - comparison_processor - INFO - 开始处理文件: 601877-2026-04-16-正泰电器正泰电器2026年第一季度报告.PDF (文件ID: file-fe-f3c3603cc8704fd291a28182)
+2026-04-16 07:09:22,945 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:22,946 - ai_service_enhanced - INFO - 文件上传成功: E:\Project\主要指标一季报\files\20260415_070900\603061-2026-04-16-金海通2026年第一季度报告.PDF (文件ID: file-fe-ac86644784e94003a0770b55)
+2026-04-16 07:09:22,946 - comparison_processor_file_only - INFO - 上传文件: 603061-2026-04-16-金海通2026年第一季度报告.PDF (大小: 0.12 MB, ID: file-fe-ac86644784e94003a0770b55)
+2026-04-16 07:09:23,054 - comparison_processor - INFO - 开始处理文件: 603061-2026-04-16-金海通2026年第一季度报告.PDF (文件ID: file-fe-ac86644784e94003a0770b55)
+2026-04-16 07:09:24,729 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:24,730 - ai_service_enhanced - INFO - 文件上传成功: E:\Project\主要指标一季报\files\20260415_070900\603102-2026-04-16-百合股份威海百合生物技术股份有限公司2026年第一季度报告.PDF (文件ID: file-fe-2217960aa937428db03be4ed)
+2026-04-16 07:09:24,730 - comparison_processor_file_only - INFO - 上传文件: 603102-2026-04-16-百合股份威海百合生物技术股份有限公司2026年第一季度报告.PDF (大小: 0.13 MB, ID: file-fe-2217960aa937428db03be4ed)
+2026-04-16 07:09:24,843 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:24,843 - ai_service_enhanced - INFO - 文件上传成功: E:\Project\主要指标一季报\files\20260415_070900\603129-2026-04-16-春风动力春风动力2026年第一季度报告.PDF (文件ID: file-fe-c6473188bc5e45f694cd0de7)
+2026-04-16 07:09:24,844 - comparison_processor_file_only - INFO - 上传文件: 603129-2026-04-16-春风动力春风动力2026年第一季度报告.PDF (大小: 0.15 MB, ID: file-fe-c6473188bc5e45f694cd0de7)
+2026-04-16 07:09:24,845 - comparison_processor - INFO - 开始处理文件: 603102-2026-04-16-百合股份威海百合生物技术股份有限公司2026年第一季度报告.PDF (文件ID: file-fe-2217960aa937428db03be4ed)
+2026-04-16 07:09:24,845 - comparison_processor - INFO - 开始处理文件: 603129-2026-04-16-春风动力春风动力2026年第一季度报告.PDF (文件ID: file-fe-c6473188bc5e45f694cd0de7)
+2026-04-16 07:09:26,890 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:26,891 - ai_service_enhanced - INFO - 文件上传成功: E:\Project\主要指标一季报\files\20260415_070900\605507-2026-04-16-国邦医药国邦医药2026年第一季度报告.PDF (文件ID: file-fe-6e29b703f6ca4267babbec43)
+2026-04-16 07:09:26,891 - comparison_processor_file_only - INFO - 上传文件: 605507-2026-04-16-国邦医药国邦医药2026年第一季度报告.PDF (大小: 0.11 MB, ID: file-fe-6e29b703f6ca4267babbec43)
+2026-04-16 07:09:26,960 - comparison_processor - INFO - 开始处理文件: 605507-2026-04-16-国邦医药国邦医药2026年第一季度报告.PDF (文件ID: file-fe-6e29b703f6ca4267babbec43)
+2026-04-16 07:09:27,152 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:27,153 - ai_service_enhanced - INFO - 文件上传成功: E:\Project\主要指标一季报\files\20260415_070900\688273-2026-04-16-麦澜德2026年第一季度报告.PDF (文件ID: file-fe-bc9bae627154416ca61b729d)
+2026-04-16 07:09:27,153 - comparison_processor_file_only - INFO - 上传文件: 688273-2026-04-16-麦澜德2026年第一季度报告.PDF (大小: 0.15 MB, ID: file-fe-bc9bae627154416ca61b729d)
+2026-04-16 07:09:27,220 - comparison_processor - INFO - 开始处理文件: 688273-2026-04-16-麦澜德2026年第一季度报告.PDF (文件ID: file-fe-bc9bae627154416ca61b729d)
+2026-04-16 07:09:29,035 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:29,035 - ai_service_enhanced - INFO - 文件上传成功: E:\Project\主要指标一季报\files\20260415_070900\688668-2026-04-16-鼎通科技2026年第一季度报告.PDF (文件ID: file-fe-33cc6fae4831404a86005b9f)
+2026-04-16 07:09:29,035 - comparison_processor_file_only - INFO - 上传文件: 688668-2026-04-16-鼎通科技2026年第一季度报告.PDF (大小: 0.12 MB, ID: file-fe-33cc6fae4831404a86005b9f)
+2026-04-16 07:09:29,066 - comparison_processor - INFO - 开始处理文件: 688668-2026-04-16-鼎通科技2026年第一季度报告.PDF (文件ID: file-fe-33cc6fae4831404a86005b9f)
+2026-04-16 07:09:29,093 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:29,094 - ai_service_enhanced - INFO - 文件上传成功: E:\Project\主要指标一季报\files\20260415_070900\688525-2026-04-16-佰维存储2026年第一季度报告.PDF (文件ID: file-fe-808e782fd7ca4671917f08c2)
+2026-04-16 07:09:29,094 - comparison_processor_file_only - INFO - 上传文件: 688525-2026-04-16-佰维存储2026年第一季度报告.PDF (大小: 0.17 MB, ID: file-fe-808e782fd7ca4671917f08c2)
+2026-04-16 07:09:30,837 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:30,928 - comparison_processor_file_only - INFO - 找到数据: 000506 2026-04-16 (2条)
+2026-04-16 07:09:30,928 - comparison_processor - INFO - 处理成功: 000506-2026-04-16-招金黄金2026年一季度报告.PDF
+2026-04-16 07:09:30,928 - comparison_processor_file_only - INFO - 文件处理成功: 000506-2026-04-16-招金黄金2026年一季度报告.PDF (耗时: 15.28秒)
+2026-04-16 07:09:31,096 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:31,157 - comparison_processor_file_only - INFO - 找到数据: 002546 2026-04-16 (2条)
+2026-04-16 07:09:31,157 - comparison_processor - INFO - 处理成功: 002546-2026-04-16-新联电子2026年一季度报告.PDF
+2026-04-16 07:09:31,157 - comparison_processor_file_only - INFO - 文件处理成功: 002546-2026-04-16-新联电子2026年一季度报告.PDF (耗时: 14.97秒)
+2026-04-16 07:09:31,173 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-04-16 07:09:31,174 - ai_service_enhanced - INFO - 文件上传成功: E:\Project\主要指标一季报\files\20260415_070900\920357-2026-04-15-雅葆轩2026年一季度报告.PDF (文件ID: file-fe-53d67cef4ce043a3adf4d868)
+2026-04-16 07:09:31,174 - comparison_processor_file_only - INFO - 上传文件: 920357-2026-04-15-雅葆轩2026年一季度报告.PDF (大小: 0.19 MB, ID: file-fe-53d67cef4ce043a3adf4d868)
+2026-04-16 07:09:31,698 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-74fcbb19dacf4822b25b1e63 "HTTP/1.1 200 OK"
+2026-04-16 07:09:31,699 - comparison_processor - INFO - 开始处理文件: 688525-2026-04-16-佰维存储2026年第一季度报告.PDF (文件ID: file-fe-808e782fd7ca4671917f08c2)
+2026-04-16 07:09:31,820 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-29155de7408b4079809092b6 "HTTP/1.1 200 OK"
+2026-04-16 07:09:31,820 - comparison_processor - INFO - 开始处理文件: 920357-2026-04-15-雅葆轩2026年一季度报告.PDF (文件ID: file-fe-53d67cef4ce043a3adf4d868)
+2026-04-16 07:09:32,269 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:32,334 - comparison_processor_file_only - INFO - 找到数据: 600318 2026-04-16 (2条)
+2026-04-16 07:09:32,335 - comparison_processor - INFO - 处理成功: 600318-2026-04-16-新力金融安徽新力金融股份有限公司2026年第一季度报告.PDF
+2026-04-16 07:09:32,335 - comparison_processor_file_only - INFO - 文件处理成功: 600318-2026-04-16-新力金融安徽新力金融股份有限公司2026年第一季度报告.PDF (耗时: 11.66秒)
+2026-04-16 07:09:32,351 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:32,409 - comparison_processor_file_only - INFO - 找到数据: 300433 2026-04-16 (2条)
+2026-04-16 07:09:32,409 - comparison_processor - INFO - 处理成功: 300433-2026-04-16-蓝思科技2026年一季度报告.PDF
+2026-04-16 07:09:32,409 - comparison_processor_file_only - INFO - 文件处理成功: 300433-2026-04-16-蓝思科技2026年一季度报告.PDF (耗时: 15.96秒)
+2026-04-16 07:09:32,952 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-d1bb2238922c4862a76aa98f "HTTP/1.1 200 OK"
+2026-04-16 07:09:33,013 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-65abe1cd782045a399e41aab "HTTP/1.1 200 OK"
+2026-04-16 07:09:33,062 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:33,126 - comparison_processor_file_only - INFO - 找到数据: 300967 2026-04-16 (2条)
+2026-04-16 07:09:33,126 - comparison_processor - INFO - 处理成功: 300967-2026-04-16-晓鸣股份2026年一季度报告.PDF
+2026-04-16 07:09:33,126 - comparison_processor_file_only - INFO - 文件处理成功: 300967-2026-04-16-晓鸣股份2026年一季度报告.PDF (耗时: 15.36秒)
+2026-04-16 07:09:33,333 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:33,424 - comparison_processor_file_only - INFO - 找到数据: 300750 2026-04-16 (2条)
+2026-04-16 07:09:33,425 - comparison_processor - INFO - 处理成功: 300750-2026-04-16-宁德时代2026年一季度报告.PDF
+2026-04-16 07:09:33,425 - comparison_processor_file_only - INFO - 文件处理成功: 300750-2026-04-16-宁德时代2026年一季度报告.PDF (耗时: 16.18秒)
+2026-04-16 07:09:33,558 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:33,616 - comparison_processor_file_only - INFO - 找到数据: 600702 2026-04-16 (2条)
+2026-04-16 07:09:33,616 - comparison_processor - INFO - 处理成功: 600702-2026-04-16-舍得酒业舍得酒业2026年第一季度报告.PDF
+2026-04-16 07:09:33,616 - comparison_processor_file_only - INFO - 文件处理成功: 600702-2026-04-16-舍得酒业舍得酒业2026年第一季度报告.PDF (耗时: 12.68秒)
+2026-04-16 07:09:33,711 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:33,743 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-d715e270ac754013a5c5fa80 "HTTP/1.1 200 OK"
+2026-04-16 07:09:33,770 - comparison_processor_file_only - INFO - 找到数据: 300996 2026-04-16 (2条)
+2026-04-16 07:09:33,771 - comparison_processor - INFO - 处理成功: 300996-2026-04-16-普联软件2026年一季度报告.PDF
+2026-04-16 07:09:33,771 - comparison_processor_file_only - INFO - 文件处理成功: 300996-2026-04-16-普联软件2026年一季度报告.PDF (耗时: 14.94秒)
+2026-04-16 07:09:34,018 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-fb01db79f7f34498992b496c "HTTP/1.1 200 OK"
+2026-04-16 07:09:34,206 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-38280e0611104b5996ebe497 "HTTP/1.1 200 OK"
+2026-04-16 07:09:34,309 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:34,368 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-e6e44d1ba02c42229dd08d09 "HTTP/1.1 200 OK"
+2026-04-16 07:09:34,375 - comparison_processor_file_only - INFO - 找到数据: 301377 2026-04-16 (2条)
+2026-04-16 07:09:34,376 - comparison_processor - INFO - 处理成功: 301377-2026-04-16-鼎泰高科2026年一季度报告.PDF
+2026-04-16 07:09:34,376 - comparison_processor_file_only - INFO - 文件处理成功: 301377-2026-04-16-鼎泰高科2026年一季度报告.PDF (耗时: 15.28秒)
+2026-04-16 07:09:35,126 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-8d374f0e440745e68ccb5b43 "HTTP/1.1 200 OK"
+2026-04-16 07:09:35,906 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:35,975 - comparison_processor_file_only - INFO - 找到数据: 603061 2026-04-16 (2条)
+2026-04-16 07:09:35,976 - comparison_processor - INFO - 处理成功: 603061-2026-04-16-金海通2026年第一季度报告.PDF
+2026-04-16 07:09:35,976 - comparison_processor_file_only - INFO - 文件处理成功: 603061-2026-04-16-金海通2026年第一季度报告.PDF (耗时: 12.92秒)
+2026-04-16 07:09:36,306 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:36,384 - comparison_processor_file_only - INFO - 找到数据: 601877 2026-04-16 (2条)
+2026-04-16 07:09:36,384 - comparison_processor - INFO - 处理成功: 601877-2026-04-16-正泰电器正泰电器2026年第一季度报告.PDF
+2026-04-16 07:09:36,384 - comparison_processor_file_only - INFO - 文件处理成功: 601877-2026-04-16-正泰电器正泰电器2026年第一季度报告.PDF (耗时: 13.86秒)
+2026-04-16 07:09:36,732 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-ac86644784e94003a0770b55 "HTTP/1.1 200 OK"
+2026-04-16 07:09:37,046 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-f3c3603cc8704fd291a28182 "HTTP/1.1 200 OK"
+2026-04-16 07:09:37,283 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:37,350 - comparison_processor_file_only - INFO - 找到数据: 603102 2026-04-16 (2条)
+2026-04-16 07:09:37,350 - comparison_processor - INFO - 处理成功: 603102-2026-04-16-百合股份威海百合生物技术股份有限公司2026年第一季度报告.PDF
+2026-04-16 07:09:37,350 - comparison_processor_file_only - INFO - 文件处理成功: 603102-2026-04-16-百合股份威海百合生物技术股份有限公司2026年第一季度报告.PDF (耗时: 12.51秒)
+2026-04-16 07:09:38,122 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-2217960aa937428db03be4ed "HTTP/1.1 200 OK"
+2026-04-16 07:09:38,212 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:38,276 - comparison_processor_file_only - INFO - 找到数据: 603129 2026-04-16 (2条)
+2026-04-16 07:09:38,276 - comparison_processor - INFO - 处理成功: 603129-2026-04-16-春风动力春风动力2026年第一季度报告.PDF
+2026-04-16 07:09:38,277 - comparison_processor_file_only - INFO - 文件处理成功: 603129-2026-04-16-春风动力春风动力2026年第一季度报告.PDF (耗时: 13.43秒)
+2026-04-16 07:09:38,978 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-c6473188bc5e45f694cd0de7 "HTTP/1.1 200 OK"
+2026-04-16 07:09:39,812 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:39,878 - comparison_processor_file_only - INFO - 找到数据: 688273 2026-04-16 (2条)
+2026-04-16 07:09:39,878 - comparison_processor - INFO - 处理成功: 688273-2026-04-16-麦澜德2026年第一季度报告.PDF
+2026-04-16 07:09:39,878 - comparison_processor_file_only - INFO - 文件处理成功: 688273-2026-04-16-麦澜德2026年第一季度报告.PDF (耗时: 12.66秒)
+2026-04-16 07:09:40,407 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:40,466 - comparison_processor_file_only - INFO - 找到数据: 605507 2026-04-16 (2条)
+2026-04-16 07:09:40,466 - comparison_processor - INFO - 处理成功: 605507-2026-04-16-国邦医药国邦医药2026年第一季度报告.PDF
+2026-04-16 07:09:40,466 - comparison_processor_file_only - INFO - 文件处理成功: 605507-2026-04-16-国邦医药国邦医药2026年第一季度报告.PDF (耗时: 13.51秒)
+2026-04-16 07:09:40,507 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-bc9bae627154416ca61b729d "HTTP/1.1 200 OK"
+2026-04-16 07:09:41,103 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-6e29b703f6ca4267babbec43 "HTTP/1.1 200 OK"
+2026-04-16 07:09:41,929 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:42,023 - comparison_processor_file_only - INFO - 找到数据: 688668 2026-04-16 (2条)
+2026-04-16 07:09:42,023 - comparison_processor - INFO - 处理成功: 688668-2026-04-16-鼎通科技2026年第一季度报告.PDF
+2026-04-16 07:09:42,023 - comparison_processor_file_only - INFO - 文件处理成功: 688668-2026-04-16-鼎通科技2026年第一季度报告.PDF (耗时: 12.96秒)
+2026-04-16 07:09:42,661 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-33cc6fae4831404a86005b9f "HTTP/1.1 200 OK"
+2026-04-16 07:09:43,468 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:09:43,534 - comparison_processor_file_only - INFO - 找到数据: 688525 2026-04-16 (2条)
+2026-04-16 07:09:43,534 - comparison_processor - INFO - 处理成功: 688525-2026-04-16-佰维存储2026年第一季度报告.PDF
+2026-04-16 07:09:43,534 - comparison_processor_file_only - INFO - 文件处理成功: 688525-2026-04-16-佰维存储2026年第一季度报告.PDF (耗时: 11.84秒)
+2026-04-16 07:09:44,074 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-808e782fd7ca4671917f08c2 "HTTP/1.1 200 OK"
+2026-04-16 07:09:52,226 - openai._base_client - INFO - Retrying request to /chat/completions in 0.379159 seconds
+2026-04-16 07:10:03,303 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-04-16 07:10:03,362 - comparison_processor_file_only - INFO - 找到数据: 920357 2026-04-15 (2条)
+2026-04-16 07:10:03,363 - comparison_processor - INFO - 处理成功: 920357-2026-04-15-雅葆轩2026年一季度报告.PDF
+2026-04-16 07:10:03,363 - comparison_processor_file_only - INFO - 文件处理成功: 920357-2026-04-15-雅葆轩2026年一季度报告.PDF (耗时: 31.54秒)
+2026-04-16 07:10:04,022 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-53d67cef4ce043a3adf4d868 "HTTP/1.1 200 OK"
+2026-04-16 07:10:04,073 - comparison_processor - INFO - 开始关闭线程池...
+2026-04-16 07:10:04,074 - comparison_processor - INFO - 等待 0 个上传任务完成...
+2026-04-16 07:10:04,074 - comparison_processor - INFO - 等待 0 个处理任务完成...
+2026-04-16 07:10:04,092 - comparison_processor - INFO - 所有线程池已关闭
+2026-04-16 07:10:04,093 - __main__ - INFO - 比对处理完成! 共处理 18/18 个文件，耗时: 0:00:49.330142
+2026-04-16 07:10:04,336 - __main__ - INFO - 报告已生成: E:\Project\主要指标一季报\reports\主要指标一季报比对报告_070900.xlsx
