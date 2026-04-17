@@ -84,7 +84,7 @@ class BaseProcessor(ABC):
         return os.path.join(self.output_dir, f"{base_name}.pdf")
     
     def update_sub_module_status(self, sub_module_name: str, status: ProcessStatus, error: str = None):
-        """更新子模块状态（同步写入，确保数据一致性）"""
+        """更新子模块状态（异步写入，避免阻塞主处理链路）"""
         if not self._current_hashcode:
             return
         success = db.update_module_status(
@@ -93,7 +93,7 @@ class BaseProcessor(ABC):
             status,
             error,
             self._current_retry_count,
-            sync=True
+            sync=False
         )
         if not success:
             logger.error(f"更新子模块状态失败: {sub_module_name} - {status.value}")
@@ -115,7 +115,8 @@ class BaseProcessor(ABC):
             logger.debug(f"{self.MODULE_NAME}: {hashcode} 已处理过,跳过")
             db.update_module_status(
                 hashcode, self.MODULE_NAME, 
-                ProcessStatus.SKIPPED
+                ProcessStatus.SKIPPED,
+                sync=True
             )
             return True, "已处理过,跳过", ProcessStatus.SKIPPED
         
@@ -124,13 +125,14 @@ class BaseProcessor(ABC):
             logger.error(f"{self.MODULE_NAME}: {error_msg}")
             db.update_module_status(
                 hashcode, self.MODULE_NAME,
-                ProcessStatus.FAILED, error_msg, task.retry_count
+                ProcessStatus.FAILED, error_msg, task.retry_count, sync=True
             )
             return False, error_msg, ProcessStatus.FAILED
         
         db.update_module_status(
             hashcode, self.MODULE_NAME,
-            ProcessStatus.PROCESSING
+            ProcessStatus.PROCESSING,
+            sync=False
         )
         
         try:
@@ -142,7 +144,8 @@ class BaseProcessor(ABC):
             if output_path and os.path.exists(output_path):
                 db.update_module_status(
                     hashcode, self.MODULE_NAME,
-                    ProcessStatus.SUCCESS
+                    ProcessStatus.SUCCESS,
+                    sync=True
                 )
                 logger.debug(f"{self.MODULE_NAME}: 处理成功 {os.path.basename(pdf_path)}")
                 return True, f"处理成功: {output_path}", ProcessStatus.SUCCESS
@@ -151,7 +154,8 @@ class BaseProcessor(ABC):
                     hashcode, self.MODULE_NAME,
                     ProcessStatus.NO_OUTPUT,
                     "未找到关键词或无法提取内容",
-                    task.retry_count
+                    task.retry_count,
+                    sync=True
                 )
                 logger.debug(f"{self.MODULE_NAME}: 无输出 {os.path.basename(pdf_path)}")
                 return True, "无输出(正常执行)", ProcessStatus.NO_OUTPUT
@@ -169,6 +173,6 @@ class BaseProcessor(ABC):
             
             db.update_module_status(
                 hashcode, self.MODULE_NAME,
-                status, error_msg, retry_count
+                status, error_msg, retry_count, sync=True
             )
             return False, error_msg, status

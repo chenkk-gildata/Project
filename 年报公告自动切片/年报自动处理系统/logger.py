@@ -5,7 +5,13 @@ import logging
 import logging.handlers
 import os
 import sys
+import threading
+from contextlib import contextmanager
+from typing import Optional
 from config import LOG_CONFIG
+
+_console_handler: Optional[logging.Handler] = None
+_console_handler_lock = threading.Lock()
 
 
 def setup_logger(name: str = None) -> logging.Logger:
@@ -32,10 +38,12 @@ def setup_logger(name: str = None) -> logging.Logger:
     formatter = logging.Formatter(LOG_CONFIG["format"])
     
     # 控制台处理器
+    global _console_handler
     console_handler = logging.StreamHandler(sys.stdout)
     console_handler.setLevel(level)
     console_handler.setFormatter(formatter)
     logger.addHandler(console_handler)
+    _console_handler = console_handler
     
     # 文件处理器(带轮转)
     log_file = LOG_CONFIG["file"]
@@ -56,3 +64,24 @@ def setup_logger(name: str = None) -> logging.Logger:
 
 # 全局logger实例
 logger = setup_logger("年报自动处理系统")
+
+
+def set_console_log_level(level: int) -> Optional[int]:
+    """Set console handler level only. Return previous level."""
+    with _console_handler_lock:
+        if _console_handler is None:
+            return None
+        old_level = _console_handler.level
+        _console_handler.setLevel(level)
+        return old_level
+
+
+@contextmanager
+def temporarily_raise_console_level(level: int = logging.CRITICAL):
+    """Temporarily raise console log threshold while keeping file logs unchanged."""
+    old_level = set_console_log_level(level)
+    try:
+        yield
+    finally:
+        if old_level is not None:
+            set_console_log_level(old_level)

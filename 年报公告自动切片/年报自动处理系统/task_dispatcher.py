@@ -215,7 +215,9 @@ class TaskDispatcher:
                 
                 if all_modules_finished:
                     skipped_all_success += 1
-                    db.update_process_status(announcement.hashcode, ProcessStatus.SUCCESS)
+                    db.recompute_announcement_process_status(
+                        announcement.hashcode, PROCESS_CONFIG["modules"]
+                    )
             
             if recovered_announcements > 0:
                 logger.info(f"恢复了 {recovered_announcements} 个公告的 {recovered_modules} 个待处理模块任务")
@@ -299,18 +301,15 @@ class TaskDispatcher:
             if len(finished_modules) >= total_modules:
                 if len(failed) > 0:
                     failed_modules = "/".join(sorted(failed))
-                    logger.info(f"✗ {file_name} ({len(failed)}模块失败: {failed_modules})")
-                    db.update_process_status(hashcode, ProcessStatus.FAILED)
+                    logger.info(f"失败 {file_name} ({len(failed)}模块失败: {failed_modules})")
                 elif len(no_output) > 0 or len(skipped) > 0:
                     no_output_modules = "/".join(sorted(no_output | skipped))
                     logger.info(
-                        f"△ {file_name} ({len(completed)}模块完成, {len(no_output | skipped)}模块无输出/跳过: {no_output_modules})"
+                        f"完成 {file_name} ({len(completed)}模块完成, {len(no_output | skipped)}模块无输出/跳过: {no_output_modules})"
                     )
-                    db.update_process_status(hashcode, ProcessStatus.SUCCESS)
                 else:
-                    logger.info(f"✓ {file_name} ({total_modules}模块完成)")
-                    db.update_process_status(hashcode, ProcessStatus.SUCCESS)
-                
+                    logger.info(f"完成 {file_name} ({total_modules}模块完成)")
+                db.recompute_announcement_process_status(hashcode, all_modules)
                 with self._lock:
                     self._announcement_status.pop(hashcode, None)
                     self._file_names.pop(hashcode, None)
@@ -333,7 +332,6 @@ class TaskDispatcher:
             logger.error(f"未找到处理器: {module_name}")
             process_queue.task_done(task)
             return
-        
         with self._lock:
             self._active_tasks += 1
             self._file_names[task.hashcode] = file_name
@@ -348,7 +346,6 @@ class TaskDispatcher:
         try:
             logger.debug(f"开始处理任务: {module_name} - {file_name}")
             success, message, final_status = processor.execute(task)
-
             with self._lock:
                 announcement_status = self._announcement_status[task.hashcode]
                 for key in ("completed", "no_output", "failed", "skipped"):
@@ -376,7 +373,6 @@ class TaskDispatcher:
                 process_queue.task_done(task)
             except Exception as done_error:
                 logger.error(f"处理队列 task_done 失败 {task.hashcode}/{module_name}: {done_error}")
-
             with self._lock:
                 self._active_tasks -= 1
     

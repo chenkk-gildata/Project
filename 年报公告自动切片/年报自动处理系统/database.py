@@ -350,8 +350,13 @@ class Database:
             logger.error(f"子模块一致性检查失败: {e}")
             return 0
     
-    def save_announcement(self, announcement: Announcement) -> bool:
-        """保存或更新公告记录"""
+    def save_announcement(self, announcement: Announcement, sync: bool = False) -> bool:
+        """保存或更新公告记录
+
+        Args:
+            announcement: 公告对象
+            sync: 是否同步写入并等待结果
+        """
         data = announcement.to_db_dict()
         data["updated_at"] = datetime.now().isoformat()
         
@@ -365,7 +370,13 @@ class Database:
             ON CONFLICT(hashcode) DO UPDATE SET {', '.join(updates)}
         """
         
-        return self._execute_write(sql, tuple(data.values()))
+        params = tuple(data.values())
+        if sync:
+            success, result, _ = self._execute_write_sync(sql, params)
+            if not success:
+                logger.error(f"同步保存公告失败 {announcement.hashcode}: {result}")
+            return success
+        return self._execute_write(sql, params)
     
     def get_announcement(self, hashcode: str) -> Optional[Announcement]:
         """根据hashcode获取公告记录"""
@@ -398,6 +409,185 @@ class Database:
             logger.error(f"获取公告记录失败 {hashcode}: {e}")
             return None
     
+    def ensure_minimal_announcement(self, hashcode: str) -> bool:
+        """Ensure announcement row exists for a hashcode."""
+        hashcode = (hashcode or "").strip().upper()
+        now = datetime.now().isoformat()
+        sql = """
+            INSERT OR IGNORE INTO announcements (
+                hashcode, download_status, process_status, created_at, updated_at
+            ) VALUES (?, 'pending', 'pending', ?, ?)
+        """
+        success, result, _ = self._execute_write_sync(sql, (hashcode, now, now))
+        if not success:
+            logger.error(f"ensure_minimal_announcement failed {hashcode}: {result}")
+        return success
+
+    def reset_announcement_for_full_rerun(self, hashcode: str) -> bool:
+        """Reset announcement/module records for full rerun."""
+        hashcode = (hashcode or "").strip().upper()
+        if not self.ensure_minimal_announcement(hashcode):
+            return False
+
+        # 清理同一hashcode的大小写历史重复记录，仅保留标准大写主记录
+        dedup_sql = """
+            DELETE FROM announcements
+            WHERE lower(hashcode) = lower(?) AND hashcode <> ?
+        """
+        success, result, _ = self._execute_write_sync(dedup_sql, (hashcode, hashcode))
+        if not success:
+            logger.error(f"dedup announcement failed {hashcode}: {result}")
+            return False
+
+        now = datetime.now().isoformat()
+        update_sql = """
+            UPDATE announcements
+            SET download_status = 'pending',
+                download_time = NULL,
+                download_retry_count = 0,
+                download_error = NULL,
+                file_path = NULL,
+                process_status = 'pending',
+                process_time = NULL,
+                process_retry_count = 0,
+                process_error = NULL,
+                updated_at = ?
+            WHERE hashcode = ?
+        """
+        success, result, _ = self._execute_write_sync(update_sql, (now, hashcode))
+        if not success:
+            logger.error(f"reset announcement failed {hashcode}: {result}")
+            return False
+
+        delete_sql = "DELETE FROM module_records WHERE lower(hashcode) = lower(?)"
+        success, result, _ = self._execute_write_sync(delete_sql, (hashcode,))
+        if not success:
+            logger.error(f"clear module_records failed {hashcode}: {result}")
+            return False
+        return True
+
+    def get_recent_downloaded_announcements(self, limit: int = 50, keyword: str = "") -> List[Announcement]:
+        """Get downloaded announcements for semi-auto reprocess selection."""
+        try:
+            with self._get_read_conn() as conn:
+                cursor = conn.cursor()
+                if keyword:
+                    kw = f"%{keyword}%"
+                    cursor.execute(
+                        """
+                        SELECT * FROM announcements
+                        WHERE download_status = 'success'
+                          AND file_path IS NOT NULL
+                          AND file_path != ''
+                          AND (
+                                hashcode LIKE ?
+                             OR IFNULL(gpdm, '') LIKE ?
+                             OR IFNULL(zqjc, '') LIKE ?
+                             OR IFNULL(title, '') LIKE ?
+                          )
+                        ORDER BY
+                          CASE WHEN download_time IS NULL OR download_time = '' THEN 1 ELSE 0 END,
+                          download_time DESC,
+                          updated_at DESC
+                        LIMIT ?
+                        """,
+                        (kw, kw, kw, kw, limit),
+                    )
+                else:
+                    cursor.execute(
+                        """
+                        SELECT * FROM announcements
+                        WHERE download_status = 'success'
+                          AND file_path IS NOT NULL
+                          AND file_path != ''
+                        ORDER BY
+                          CASE WHEN download_time IS NULL OR download_time = '' THEN 1 ELSE 0 END,
+                          download_time DESC,
+                          updated_at DESC
+                        LIMIT ?
+                        """,
+                        (limit,),
+                    )
+                rows = cursor.fetchall()
+                return [Announcement.from_db_dict(dict(row)) for row in rows]
+        except Exception as e:
+            logger.error(f"get_recent_downloaded_announcements failed: {e}")
+            return []
+
+    def recompute_announcement_process_status(self, hashcode: str, module_names: List[str]) -> Optional[ProcessStatus]:
+        """Recompute announcement process_status from module_records."""
+        if not module_names:
+            return None
+
+        try:
+            with self._get_read_conn() as conn:
+                cursor = conn.cursor()
+                placeholders = ",".join(["?"] * len(module_names))
+                cursor.execute(
+                    f"""
+                    SELECT module_name, status
+                    FROM module_records
+                    WHERE hashcode = ? AND module_name IN ({placeholders})
+                    """,
+                    (hashcode, *module_names),
+                )
+                rows = cursor.fetchall()
+
+            status_map = {row["module_name"]: row["status"] for row in rows}
+            statuses = [status_map.get(m, "pending") for m in module_names]
+
+            if any(s == ProcessStatus.FAILED.value for s in statuses):
+                final_status = ProcessStatus.FAILED
+            elif all(s in (ProcessStatus.SUCCESS.value, ProcessStatus.NO_OUTPUT.value, ProcessStatus.SKIPPED.value) for s in statuses):
+                final_status = ProcessStatus.SUCCESS
+            elif any(s == ProcessStatus.PROCESSING.value for s in statuses):
+                final_status = ProcessStatus.PROCESSING
+            else:
+                final_status = ProcessStatus.PENDING
+
+            now = datetime.now().isoformat()
+            if final_status == ProcessStatus.SUCCESS:
+                sql = """
+                    UPDATE announcements
+                    SET process_status = ?,
+                        process_error = NULL,
+                        process_time = ?,
+                        updated_at = ?
+                    WHERE hashcode = ?
+                """
+                params = (final_status.value, now, now, hashcode)
+            elif final_status == ProcessStatus.FAILED:
+                failed_modules = [m for m in module_names if status_map.get(m) == ProcessStatus.FAILED.value]
+                err = f"failed modules: {', '.join(failed_modules)}" if failed_modules else "module failed"
+                sql = """
+                    UPDATE announcements
+                    SET process_status = ?,
+                        process_error = ?,
+                        process_time = NULL,
+                        updated_at = ?
+                    WHERE hashcode = ?
+                """
+                params = (final_status.value, err, now, hashcode)
+            else:
+                sql = """
+                    UPDATE announcements
+                    SET process_status = ?,
+                        process_error = NULL,
+                        process_time = NULL,
+                        updated_at = ?
+                    WHERE hashcode = ?
+                """
+                params = (final_status.value, now, hashcode)
+
+            success, result, _ = self._execute_write_sync(sql, params)
+            if not success:
+                logger.error(f"recompute status write failed {hashcode}: {result}")
+                return None
+            return final_status
+        except Exception as e:
+            logger.error(f"recompute_announcement_process_status failed {hashcode}: {e}")
+            return None
+
     def get_pending_downloads(self, limit: int = 100) -> List[Announcement]:
         """获取待下载的公告列表"""
         try:
@@ -491,7 +681,8 @@ class Database:
         status: DownloadStatus, 
         file_path: Optional[str] = None,
         error: Optional[str] = None,
-        retry_count: Optional[int] = None
+        retry_count: Optional[int] = None,
+        sync: bool = False
     ) -> bool:
         """更新下载状态"""
         updates = ["download_status = ?", "updated_at = ?"]
@@ -515,7 +706,12 @@ class Database:
         
         values.append(hashcode)
         sql = f"UPDATE announcements SET {', '.join(updates)} WHERE hashcode = ?"
-        
+
+        if sync:
+            success, result, _ = self._execute_write_sync(sql, tuple(values))
+            if not success:
+                logger.error(f"同步更新下载状态失败 {hashcode}: {result}")
+            return success
         return self._execute_write(sql, tuple(values))
     
     def update_process_status(

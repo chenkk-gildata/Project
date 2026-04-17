@@ -11,6 +11,8 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from tools.status_viewer import show_status, show_failed_modules
 from tools.announcement_viewer import show_announcements
+from tools.missing_viewer import show_missing_menu
+from tools.record_deleter import show_delete_menu
 
 
 def show_menu():
@@ -21,10 +23,12 @@ def show_menu():
         print("  1. 查看数据库状态")
         print("  2. 查看失败模块列表")
         print("  3. 查看公告列表")
+        print("  4. 查看遗漏公告")
+        print("  5. 删除数据库记录")
         print("  0. 退出")
         print("-" * 60)
         
-        choice = input("请选择操作 (0-3): ").strip()
+        choice = input("请选择操作 (0-5): ").strip()
         
         if choice == "1":
             show_status()
@@ -32,6 +36,10 @@ def show_menu():
             show_failed_modules()
         elif choice == "3":
             show_announcements()
+        elif choice == "4":
+            show_missing_menu()
+        elif choice == "5":
+            show_delete_menu()
         elif choice == "0":
             print("\n已退出状态查看工具")
             break

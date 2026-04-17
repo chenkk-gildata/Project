@@ -41,6 +41,17 @@ class Downloader:
     
     def _get_filename(self, announcement: Announcement) -> str:
         """生成文件名"""
+        # 兜底从数据库补齐元数据，避免队列任务对象字段不完整导致文件名异常
+        if (not announcement.gpdm) or (not announcement.publish_date) or (not announcement.title):
+            latest = db.get_announcement(announcement.hashcode)
+            if latest:
+                if not announcement.gpdm:
+                    announcement.gpdm = latest.gpdm
+                if not announcement.publish_date:
+                    announcement.publish_date = latest.publish_date
+                if not announcement.title:
+                    announcement.title = latest.title
+
         # 使用股票代码+发布日期+标题作为文件名
         gpdm = announcement.gpdm or "UNKNOWN"
         date = announcement.publish_date or datetime.now().strftime("%Y%m%d")
@@ -131,12 +142,17 @@ class Downloader:
                         return False
                     if chunk:
                         f.write(chunk)
+
+            # 网络盘存在短暂可见性延迟，文件就绪后再进入处理环节，避免首轮模块全部重试
+            if not self._wait_file_ready(file_path, max_wait=5.0):
+                raise RuntimeError(f"下载文件就绪检查失败: {file_path}")
             
             # 更新状态为成功
             db.update_download_status(
                 hashcode, 
                 DownloadStatus.SUCCESS,
-                file_path=file_path
+                file_path=file_path,
+                sync=False
             )
             
             # 更新announcement对象
@@ -170,7 +186,8 @@ class Downloader:
                 hashcode,
                 status,
                 error=error_msg,
-                retry_count=retry_count
+                retry_count=retry_count,
+                sync=(status == DownloadStatus.FAILED)
             )
             return False
             
@@ -190,7 +207,8 @@ class Downloader:
                 hashcode,
                 status,
                 error=error_msg,
-                retry_count=retry_count
+                retry_count=retry_count,
+                sync=(status == DownloadStatus.FAILED)
             )
             return False
             
@@ -209,13 +227,45 @@ class Downloader:
         - 队列 > 100: 5个线程(最大)
         """
         if queue_size < 10:
-            return 1
+            # 小批量任务也允许并发下载，减少串行等待
+            return min(3, max(1, queue_size))
         elif queue_size < 50:
             return 2
         elif queue_size < 100:
             return 3
         else:
             return self.max_workers
+
+    def _wait_file_ready(self, file_path: str, max_wait: float = 5.0, interval: float = 0.2) -> bool:
+        """等待文件在网络盘上可稳定读取"""
+        deadline = time.time() + max_wait
+        last_size = -1
+        stable_count = 0
+
+        while time.time() < deadline:
+            if os.path.exists(file_path):
+                try:
+                    size = os.path.getsize(file_path)
+                except OSError:
+                    size = 0
+
+                if size > 0 and size == last_size:
+                    stable_count += 1
+                else:
+                    stable_count = 0
+                last_size = size
+
+                if size > 0 and stable_count >= 1:
+                    try:
+                        with open(file_path, 'rb') as f:
+                            _ = f.read(1)
+                        return True
+                    except OSError:
+                        pass
+
+            time.sleep(interval)
+
+        return False
     
     def _recover_pending_downloads(self):
         """恢复待下载的任务"""
