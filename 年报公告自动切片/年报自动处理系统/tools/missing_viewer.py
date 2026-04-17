@@ -229,18 +229,18 @@ def show_missing_by_module():
         print("\n请选择要查看的模块:")
         for i, name in enumerate(MODULE_NAMES, 1):
             print(f"  {i}. {name}")
-        print("  r. 查看原文件(raw)遗漏")
-        print("  a. 查看全部统计")
+        print("  7. 查看原文件(raw)遗漏")
+        print("  8. 查看全部统计")
         print("  0. 返回上级")
         print("-" * 60)
         
-        choice = input("请选择 (0-r/a): ").strip().lower()
+        choice = input("请选择 (0-8): ").strip()
         
         if choice == "0":
             break
-        elif choice == "r":
+        elif choice == "7":
             _show_raw_missing()
-        elif choice == "a":
+        elif choice == "8":
             check_missing_announcements()
             input("\n按回车继续...")
         elif choice.isdigit():
