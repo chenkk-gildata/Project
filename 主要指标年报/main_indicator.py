@@ -752,9 +752,10 @@ class EnhancedDataProcessor:
         
         处理内容：
         1. 对所有字段值进行预处理（去逗号、处理负数、百分号等）
-        2. 处理同比字段：如果金额字段为空，对应的同比字段也置空
-        3. 按JZRQ倒序排列
-        4. 国际会计准则字段处理：如果第一条数据的GJKJZEJLR或GJKJZZJZC不为空，则后面每条数据的这两个字段都置空
+        2. 如果KCHYYSR=KCFJYXSYHDJLR，则将KCHYYSR字段置空
+        3. 处理同比字段：如果金额字段为空，对应的同比字段也置空
+        4. 按JZRQ倒序排列
+        5. 国际会计准则字段处理：如果第一条数据的GJKJZEJLR或GJKJZZJZC不为空，则后面每条数据的这两个字段都置空
         
         Args:
             data_list: AI提取的数据列表
@@ -771,6 +772,11 @@ class EnhancedDataProcessor:
             
             for key, value in record.items():
                 processed_record[key] = self._preprocess_value(value)
+            
+            kchyysr = processed_record.get("KCHYYSR", "")
+            kcfjyxsyhdjlr = processed_record.get("KCFJYXSYHDJLR", "")
+            if kchyysr and kcfjyxsyhdjlr and kchyysr == kcfjyxsyhdjlr:
+                processed_record["KCHYYSR"] = ""
             
             for value_field, tbzz_field in self.VALUE_TBZZ_MAPPING.items():
                 value = processed_record.get(value_field, "")
@@ -1298,37 +1304,34 @@ def main():
                 if len(module1_files) != len(module2_files):
                     print("\n⚠️ 警告：模块一和模块二文件数量不一致！")
                     
-                    module1_keys = set()
+                    module1_file_map = {}
                     for m1_file in module1_files:
                         key = processor._get_company_key(m1_file.name)
                         if key:
-                            module1_keys.add(key)
+                            module1_file_map[m1_file.name] = key
                     
-                    module2_keys = set()
+                    module2_file_map = {}
                     for m2_file in module2_files:
                         key = processor._get_company_key(m2_file.name)
                         if key:
-                            module2_keys.add(key)
+                            module2_file_map[m2_file.name] = key
                     
-                    only_in_module1 = module1_keys - module2_keys
-                    if only_in_module1:
-                        print(f"\n仅在模块一中存在的文件 ({len(only_in_module1)} 个):")
-                        for key in sorted(only_in_module1):
-                            parts = key.split('-')
-                            if len(parts) >= 4:
-                                code = parts[0]
-                                date = '-'.join(parts[1:4])
-                                print(f"  - 股票代码: {code}, 信息发布日期: {date}")
+                    module1_keys = set(module1_file_map.values())
+                    module2_keys = set(module2_file_map.values())
                     
-                    only_in_module2 = module2_keys - module1_keys
-                    if only_in_module2:
-                        print(f"\n仅在模块二中存在的文件 ({len(only_in_module2)} 个):")
-                        for key in sorted(only_in_module2):
-                            parts = key.split('-')
-                            if len(parts) >= 4:
-                                code = parts[0]
-                                date = '-'.join(parts[1:4])
-                                print(f"  - 股票代码: {code}, 信息发布日期: {date}")
+                    only_in_module1_keys = module1_keys - module2_keys
+                    if only_in_module1_keys:
+                        print(f"\n仅在模块一中存在的文件 ({len(only_in_module1_keys)} 个):")
+                        for filename, key in sorted(module1_file_map.items(), key=lambda x: x[1]):
+                            if key in only_in_module1_keys:
+                                print(f"  - {filename}")
+                    
+                    only_in_module2_keys = module2_keys - module1_keys
+                    if only_in_module2_keys:
+                        print(f"\n仅在模块二中存在的文件 ({len(only_in_module2_keys)} 个):")
+                        for filename, key in sorted(module2_file_map.items(), key=lambda x: x[1]):
+                            if key in only_in_module2_keys:
+                                print(f"  - {filename}")
 
                 program_start_time = datetime.now()
                 logger.info(f"程序开始执行 - 目录: {custom_dir}, 模块一文件数量: {len(module1_files)}, 模块二文件数量: {len(module2_files)}")
