@@ -293,7 +293,6 @@ class SemiAutoMenu:
     @staticmethod
     def _read_multiline_tokens(prompt: str) -> list[str]:
         print(prompt)
-        print("支持逗号/空格/换行分隔，空行结束输入")
         lines: list[str] = []
         while True:
             line = input("> ").strip()
@@ -588,17 +587,19 @@ class SemiAutoMenu:
 
     @staticmethod
     def _select_announcements_for_reprocess() -> list[Announcement]:
-        keyword = input("\n可选：输入筛选关键词(MD5/股票代码/简称/标题)，回车默认最近50条: ").strip()
+        keyword_tokens = SemiAutoMenu._read_multiline_tokens(
+            "可选：输入筛选关键词(MD5/股票代码/简称/标题，支持多行，空行结束；直接空行=默认最近50条):"
+        )
+        keyword = " ".join(keyword_tokens).strip()
         items = db.get_recent_downloaded_announcements(limit=50, keyword=keyword)
         if not items:
             print("\n[提示] 没有可重处理公告")
             return []
 
         SemiAutoMenu._print_announcement_candidates(items)
-        tokens = SemiAutoMenu._read_multiline_tokens("请输入要重处理的序号或MD5(支持混合):")
+        tokens = SemiAutoMenu._read_multiline_tokens("请输入要重处理的序号或MD5(支持混合，直接空行=全选当前列表):")
         if not tokens:
-            print("\n[提示] 已取消")
-            return []
+            return items
 
         idx_tokens = [t for t in tokens if t.isdigit()]
         md5_tokens = [t for t in tokens if not t.isdigit()]
@@ -696,6 +697,63 @@ class SemiAutoMenu:
             time.sleep(2)
 
     @staticmethod
+    def _collect_module_name_by_status(hashcode: str, modules: list[str]) -> dict[str, list[str]]:
+        names = {
+            "success": [],
+            "no_output": [],
+            "skipped": [],
+            "failed": [],
+            "pending": [],
+            "processing": [],
+        }
+        for module_name in modules:
+            st = db.get_module_status(hashcode, module_name)
+            key = st.value if st else "pending"
+            if key not in names:
+                key = "pending"
+            names[key].append(module_name)
+        return names
+
+    @staticmethod
+    def _print_reprocess_announcement_table(anns: list[Announcement], modules: list[str]):
+        print("\n公告处理明细")
+        print("-" * 60)
+        try:
+            from prettytable import PrettyTable
+
+            table = PrettyTable()
+            table.field_names = ["股票代码", "信息发布日期", "完成数", "无输出/跳过模块", "失败模块"]
+            table.align["股票代码"] = "l"
+            table.align["信息发布日期"] = "l"
+            table.align["完成数"] = "r"
+            table.align["无输出/跳过模块"] = "l"
+            table.align["失败模块"] = "l"
+
+            for ann in anns:
+                module_names = SemiAutoMenu._collect_module_name_by_status(ann.hashcode, modules)
+                no_or_skip = module_names["no_output"] + module_names["skipped"]
+                table.add_row(
+                    [
+                        ann.gpdm or "-",
+                        ann.publish_date or "-",
+                        len(module_names["success"]),
+                        "/".join(no_or_skip) if no_or_skip else "-",
+                        "/".join(module_names["failed"]) if module_names["failed"] else "-",
+                    ]
+                )
+            print(table)
+        except Exception:
+            for ann in anns:
+                module_names = SemiAutoMenu._collect_module_name_by_status(ann.hashcode, modules)
+                no_or_skip = module_names["no_output"] + module_names["skipped"]
+                parts = [f"完成{len(module_names['success'])}模块"]
+                if no_or_skip:
+                    parts.append(f"无输出/跳过: {'/'.join(no_or_skip)}")
+                if module_names["failed"]:
+                    parts.append(f"失败: {'/'.join(module_names['failed'])}")
+                print(f"  {(ann.gpdm or '-')} | {(ann.publish_date or '-')} | {' | '.join(parts)}")
+
+    @staticmethod
     def _fetch_announcement_by_hash_from_source(hashcode: str) -> Optional[Announcement]:
         """按HASHCODE从源库补齐元数据"""
         sql = """
@@ -789,6 +847,7 @@ class SemiAutoMenu:
         print(f"  失败: {count.get('failed', 0)}")
         print(f"  待处理: {count.get('pending', 0)}")
         print(f"  处理中: {count.get('processing', 0)}")
+        SemiAutoMenu._print_reprocess_announcement_table(anns, modules)
 
         logger.info(f"[半自动重处理] 批次 {batch_id} 完成")
 

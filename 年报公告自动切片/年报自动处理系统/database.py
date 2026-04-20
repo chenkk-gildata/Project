@@ -11,6 +11,7 @@
 import sqlite3
 import os
 import queue
+import re
 import threading
 import atexit
 from datetime import datetime
@@ -472,27 +473,53 @@ class Database:
             with self._get_read_conn() as conn:
                 cursor = conn.cursor()
                 if keyword:
-                    kw = f"%{keyword}%"
-                    cursor.execute(
+                    tokens = [t for t in re.split(r"[\s,;，；]+", keyword.strip()) if t]
+                    if tokens:
+                        conds = []
+                        params = []
+                        for token in tokens:
+                            kw = f"%{token}%"
+                            conds.append(
+                                """
+                                (
+                                      UPPER(hashcode) LIKE UPPER(?)
+                                   OR IFNULL(gpdm, '') LIKE ?
+                                   OR IFNULL(zqjc, '') LIKE ?
+                                   OR IFNULL(title, '') LIKE ?
+                                )
+                                """
+                            )
+                            params.extend([kw, kw, kw, kw])
+
+                        sql = f"""
+                            SELECT * FROM announcements
+                            WHERE download_status = 'success'
+                              AND file_path IS NOT NULL
+                              AND file_path != ''
+                              AND ({' OR '.join(conds)})
+                            ORDER BY
+                              CASE WHEN download_time IS NULL OR download_time = '' THEN 1 ELSE 0 END,
+                              download_time DESC,
+                              updated_at DESC
+                            LIMIT ?
                         """
-                        SELECT * FROM announcements
-                        WHERE download_status = 'success'
-                          AND file_path IS NOT NULL
-                          AND file_path != ''
-                          AND (
-                                hashcode LIKE ?
-                             OR IFNULL(gpdm, '') LIKE ?
-                             OR IFNULL(zqjc, '') LIKE ?
-                             OR IFNULL(title, '') LIKE ?
-                          )
-                        ORDER BY
-                          CASE WHEN download_time IS NULL OR download_time = '' THEN 1 ELSE 0 END,
-                          download_time DESC,
-                          updated_at DESC
-                        LIMIT ?
-                        """,
-                        (kw, kw, kw, kw, limit),
-                    )
+                        params.append(limit)
+                        cursor.execute(sql, params)
+                    else:
+                        cursor.execute(
+                            """
+                            SELECT * FROM announcements
+                            WHERE download_status = 'success'
+                              AND file_path IS NOT NULL
+                              AND file_path != ''
+                            ORDER BY
+                              CASE WHEN download_time IS NULL OR download_time = '' THEN 1 ELSE 0 END,
+                              download_time DESC,
+                              updated_at DESC
+                            LIMIT ?
+                            """,
+                            (limit,),
+                        )
                 else:
                     cursor.execute(
                         """
