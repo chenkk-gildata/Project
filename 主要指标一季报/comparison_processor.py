@@ -297,6 +297,8 @@ class ComparisonProcessor:
             except Exception:
                 pass
 
+            ai_datas = self._preprocess_ai_data(ai_datas)
+
             try:
                 sql_data = self._query_database(stock_code, publish_date)
             except Exception as e:
@@ -511,6 +513,28 @@ class ComparisonProcessor:
             return "数据一致"
 
         return "；".join(error_messages)
+
+    def _preprocess_ai_data(self, ai_datas: Union[Dict[str, Any], List[Dict[str, Any]]]) -> Union[Dict[str, Any], List[Dict[str, Any]]]:
+        """AI数据预处理入口 - 可扩展的预处理框架"""
+        if ai_datas is None:
+            return ai_datas
+
+        is_list = isinstance(ai_datas, list)
+        data_list = ai_datas if is_list else [ai_datas]
+
+        for data in data_list:
+            if isinstance(data, dict):
+                self._preprocess_replace_not_applicable(data)
+
+        return data_list if is_list else data_list[0]
+
+    def _preprocess_replace_not_applicable(self, data: Dict[str, Any]) -> None:
+        """预处理：将'不适用'替换为空字符串"""
+        not_applicable_values = ['不适用']
+
+        for key, value in data.items():
+            if isinstance(value, str) and value.strip() in not_applicable_values:
+                data[key] = ""
 
     def _preprocess_value(self, value: Any) -> Any:
         """预处理值，处理AI返回的数据类型不稳定的问题"""
