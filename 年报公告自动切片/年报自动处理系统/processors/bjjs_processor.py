@@ -26,7 +26,7 @@ class BjjsProcessor(BaseProcessor):
         
         if exchange_code == "bjs":
             start_pattern = re.compile(
-                r'^[（(]?[\d一二三四五六七八九]*.*[）)]?[、.．]?\s*持股5%以上的股东或前十名股东情况\s*$',
+                r'^[（(]?[\d一二三四五六七八九]*.*[）)]?[、.．]?\s*持股\s*5%以上的股东或前十名股东情况\s*$',
                 re.IGNORECASE | re.MULTILINE
             )
             end_pattern = re.compile(
