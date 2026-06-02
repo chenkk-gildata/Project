@@ -119,7 +119,7 @@ exe = EXE(
     a.zipfiles,
     a.datas,
     [],
-    name='股东大会-决议公告比对V2.2',
+    name='股东大会-决议公告比对 V2.5',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,

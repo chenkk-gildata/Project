@@ -2,6 +2,7 @@ from datetime import datetime, timezone, timedelta
 from time import sleep
 
 from openai import OpenAI
+from openai import OpenAIError
 
 client = OpenAI(
     # 若没有配置环境变量，请用阿里云百炼API Key将下行替换为：api_key="sk-xxx",
@@ -13,45 +14,49 @@ client = OpenAI(
 
 # 获取当前时间
 now = datetime.now()
-# 计算3天前的时间
+# 计算1天前的时间
 three_days_ago = (now - timedelta(days=1)).strftime("%Y-%m-%d %H:%M:%S")
+
+print("开始执行查询……")
 
 # 获取文件列表
 file_list = client.files.list()
-print(f"总文件数量: {len(file_list.data)}")
 
-#  打印文件列表
-# for file in file_list:
-#     file_name = file.filename
-#     print(file_name)
-
-# 删除3天前创建的文件
 deleted_count = 0
-for file in file_list.data:
-    # 将时间戳转换为datetime对象
-    file_time = datetime.fromtimestamp(file.created_at, timezone.utc)
-    formatted_file_time = file_time.strftime("%Y-%m-%d %H:%M:%S")
-    # 如果文件创建时间早于3天前，则删除
-    if formatted_file_time < three_days_ago:
-        try:
-            client.files.delete(file.id)
-            print(f"已删除文件: {file.filename} (ID: {file.id}, 创建时间: {file_time})")
-            deleted_count += 1
-        except Exception as e:
-            print(f"删除文件失败: {file.filename} (ID: {file.id} - {e})")
-            continue
+file_data = []
+#  打印文件列表
+for file in file_list:
+    file_data.append(file)
 
-        sleep(0.1)
+print(f"共查询到 {len(file_data)} 个文件，开始执行删除操作")
+    
+for file in file_data:
+    file_name = file.filename
+    file_id = file.id
+    file_time = datetime.fromtimestamp(file.created_at, timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
+    # print(f"{file_name} (ID: {file_id}, 创建时间: {file_time})")
+    try:
+        # 删除1天前文件
+        # if file_time < three_days_ago:
+        #     client.files.delete(file_id)
+        #     print(f"已删除文件: {file_name} (ID: {file_id}, 创建时间: {file_time})")
+        #     deleted_count += 1
+        # else:
+        #     print(f"⏭️ 跳过 : {file_name} ({file_id}, 创建时间: {file_time})")
+
+        # 删除所有
+        client.files.delete(file_id)
+        print(f"已删除文件: {file_name} (ID: {file_id}, 创建时间: {file_time})")
+        deleted_count += 1
+
+    except Exception as e:
+        print(f"❌ 未知异常 {file_name}: {e}")
 
 print(f"总共删除了 {deleted_count} 个文件")
 
-# 再次检查剩余文件数量
-remaining_files = client.files.list()
-print(f"剩余文件数量: {len(remaining_files.data)}")
 
 
-#
-#
+
 # file_list = client.files.list()
 # print(file_list)
 # # 删除文件名包含"股东"的所有文件
@@ -62,3 +67,14 @@ print(f"剩余文件数量: {len(remaining_files.data)}")
 # files = list(file_list)
 # file_count = len(files)
 # print(file_count)
+
+
+
+
+
+# # 再次检查剩余文件数量
+# remaining_files = client.files.list()
+# print(f"剩余文件数量: {len(remaining_files.data)}")
+
+
+

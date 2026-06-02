@@ -3,6 +3,8 @@ import pymssql
 from datetime import datetime
 import requests
 import json
+import pandas as pd
+import os
 
 
 # 查询任务中心
@@ -76,14 +78,9 @@ def jyp_check():
 
 # 本地数据库
 def local_check():
-    conn = pymysql.connect(host="127.0.0.1", user="root", password="Andy01404", database="equity_department")
-    cursor = conn.cursor()
-    sql = 'select 任务池 task_name, 任务时效 task_time from zengfa_task_pool_timely'
-    cursor.execute(sql)
-    result = cursor.fetchall()
-    cursor.close()
-    conn.close()
-
+    file_path = os.path.join(os.path.dirname(__file__), '任务监控.xlsx')
+    df = pd.read_excel(file_path)
+    result = [(row['任务池'], row['任务时效']) for _, row in df.iterrows()]
     return result
 
 

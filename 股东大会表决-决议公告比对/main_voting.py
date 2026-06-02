@@ -60,6 +60,11 @@ logger = get_logger(__name__)
 class EnhancedDataProcessor:
     """股东大会决议公告数据处理类 - 优化版本V2"""
 
+    POSITION_EQUIVALENT_GROUPS = [
+        {"总经理", "总裁"},
+        {"副总经理", "副总裁"},
+    ]
+
     def __init__(self):
         self.data_cache = {}
         self.processed_count = 0
@@ -304,17 +309,18 @@ class EnhancedDataProcessor:
             # AI返回的数据结构是 {"届次": "1", "extracted_data": [表决数据数组]}
             # 从AI结果中提取届次，结合会议类型判断届次是否有效
             ai_jc = extracted_data.get("届次", "")
-            meeting_type = basic_data.get("meeting_type", "")
             
             if ai_jc and str(ai_jc).strip():
-                # AI届次有值，直接使用
-                basic_data["meeting_session"] = str(ai_jc).strip()
-            elif meeting_type == "1":
-                # 年度股东大会，届次为空是正常的
-                basic_data["meeting_session"] = ""
+                # AI届次有值，判断是否是年度
+                if str(ai_jc).strip() == "99":
+                    basic_data["meeting_session"] = ""
+                    basic_data["meeting_type"] = "1"
+                else:
+                    basic_data["meeting_session"] = str(ai_jc).strip()
+                    basic_data["meeting_type"] = "3"
             else:
-                # 临时股东大会但AI届次为空，说明AI提取异常，使用文件名解析值备用
-                logger.warning(f"临时股东大会AI届次为空，使用文件名解析值: {basic_data.get('meeting_session')}")
+                # AI届次为空，说明AI提取异常，使用文件名解析值备用
+                logger.warning(f"股东大会AI届次为空，使用文件名解析值: {basic_data.get('meeting_session')}")
                 # 保持basic_data中的meeting_session（文件名解析值）
             
             # 需要获取实际的表决数据数组
@@ -328,6 +334,8 @@ class EnhancedDataProcessor:
             if not proposal_voting_data:
                 logger.warning(f"没有提取到AI内的数组数据: {filename}")
                 return None
+            
+            proposal_voting_data = self._preprocess_ai_data_bj(proposal_voting_data)
 
             # 从数据库获取数据
             sql_data = self.get_data_from_db_bj(**basic_data)
@@ -384,17 +392,18 @@ class EnhancedDataProcessor:
                 # 从AI结果中提取届次，结合会议类型判断届次是否有效
                 if isinstance(extracted_data, dict):
                     ai_jc = extracted_data.get("届次", "")
-                    meeting_type = basic_data.get("meeting_type", "")
                     
                     if ai_jc and str(ai_jc).strip():
-                        # AI届次有值，直接使用
-                        basic_data["meeting_session"] = str(ai_jc).strip()
-                    elif meeting_type == "1":
-                        # 年度股东大会，届次为空是正常的
-                        basic_data["meeting_session"] = ""
+                        # AI届次有值，判断是否是年度
+                        if str(ai_jc).strip() == "99":
+                            basic_data["meeting_session"] = ""
+                            basic_data["meeting_type"] = "1"
+                        else:
+                            basic_data["meeting_session"] = str(ai_jc).strip()
+                            basic_data["meeting_type"] = "3"
                     else:
-                        # 临时股东大会但AI届次为空，说明AI提取异常，使用文件名解析值备用
-                        logger.warning(f"临时股东大会AI届次为空，使用文件名解析值: {basic_data.get('meeting_session')}")
+                        # AI届次为空，说明AI提取异常，使用文件名解析值备用
+                        logger.warning(f"股东大会AI届次为空，使用文件名解析值: {basic_data.get('meeting_session')}")
                         # 保持basic_data中的meeting_session（文件名解析值）
                 
                 if isinstance(extracted_data, list):
@@ -417,12 +426,12 @@ class EnhancedDataProcessor:
                 logger.warning(f"没有提取到AI内的数组数据: {filename}")
                 return None
 
-            # 从数据库获取数据
+            proposal_voting_data = self._preprocess_ai_data_hbbj(proposal_voting_data)
+
             sql_data = self.get_data_from_db_hb(**basic_data)
             if not sql_data:
                 logger.warning(f"数据库中未找到对应数据: {basic_data}")
 
-            # 比对数据
             comparison_results = self.compare_data_hb({"proposal_voting_data": proposal_voting_data}, sql_data, filename, **basic_data)
 
             return {
@@ -579,6 +588,150 @@ class EnhancedDataProcessor:
             processed_data.append(record)
         return processed_data
 
+    def _preprocess_avoid_shareholder(self, shareholder: str) -> str:
+        """预处理回避股东字段
+        
+        Args:
+            shareholder: 原始回避股东字符串
+            
+        Returns:
+            处理后的回避股东字符串
+        """
+        if not shareholder:
+            return ""
+        
+        result = str(shareholder).strip()
+        
+        result = result.replace('（', '(').replace('）', ')')
+
+        result = result.replace('先生', '').replace('女士', '')
+        
+        result = result.replace(' ', '').replace('\t', '').replace('\n', '').replace('\r', '')
+        
+        result = result.replace('－', '-').replace('—', '-').replace('─', '-').replace('—', '-')
+        
+        return result
+
+    def _preprocess_host_position(self, position: str) -> str:
+        """预处理主持人职位字段
+        
+        Args:
+            position: 原始主持人职位字符串
+            
+        Returns:
+            处理后的主持人职位字符串
+        """
+        if not position:
+            return ""
+        
+        result = str(position).strip()
+        
+        result = result.replace('兼', '、').replace(',', '、').replace('，', '、')
+        
+        return result
+
+    def _preprocess_ai_data_bj(self, ai_data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """预处理AI提取的表决情况数据，合并大小议案重复的记录
+        
+        Args:
+            ai_data: AI提取的原始数据列表
+            
+        Returns:
+            预处理后的数据列表
+        """
+        if not ai_data:
+            return ai_data
+        
+        merged_data = {}
+        
+        for item in ai_data:
+            if not isinstance(item, dict):
+                continue
+            
+            dbtxh = str(item.get('大议案序号', '')).strip()
+            xbtxh = str(item.get('小议案序号', '')).strip()
+            key = f"{dbtxh}_{xbtxh}"
+            
+            if key in merged_data:
+                existing_item = merged_data[key]
+                for field, value in item.items():
+                    if field not in existing_item or not existing_item.get(field):
+                        existing_item[field] = value
+                    elif value and str(value).strip() and str(existing_item.get(field, '')).strip() != str(value).strip():
+                        existing_item[field] = value
+            else:
+                merged_data[key] = item.copy()
+        
+        return list(merged_data.values())
+
+    def _preprocess_ai_data_hbbj(self, ai_data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """预处理AI提取的回避表决数据
+        
+        Args:
+            ai_data: AI提取的原始数据列表
+            
+        Returns:
+            预处理后的数据列表
+        """
+        if not ai_data:
+            return ai_data
+        
+        processed_data = []
+        
+        for item in ai_data:
+            if not isinstance(item, dict):
+                processed_data.append(item)
+                continue
+            
+            processed_item = item.copy()
+            
+            if 'basic_data' in processed_item and isinstance(processed_item['basic_data'], dict):
+                basic_data = processed_item['basic_data'].copy()
+                if '主持人职位' in basic_data:
+                    basic_data['主持人职位'] = self._preprocess_host_position(basic_data.get('主持人职位', ''))
+                if '主持人' in basic_data:
+                    host = basic_data.get('主持人', '')
+                    host_filter_keywords = ['董事长', '副董事长', '主持人']
+                    if any(keyword in str(host) for keyword in host_filter_keywords):
+                        host.replace('keyword','')
+                        basic_data['主持人'] = ''
+                processed_item['basic_data'] = basic_data
+            
+            if 'avoid_data' in processed_item and isinstance(processed_item['avoid_data'], list):
+                avoid_data = processed_item['avoid_data'].copy()
+                filtered_avoid_data = []
+                
+                filter_keywords = ['股东', '关联', '激励对象', '持有人', '董事', '高级管理人员']
+                
+                for avoid_item in avoid_data:
+                    if not isinstance(avoid_item, dict):
+                        filtered_avoid_data.append(avoid_item)
+                        continue
+                    
+                    processed_avoid_item = avoid_item.copy()
+                    
+                    if '回避股东' in processed_avoid_item:
+                        original_shareholder = processed_avoid_item.get('回避股东', '')
+                        processed_shareholder = self._preprocess_avoid_shareholder(original_shareholder)
+                        
+                        if any(keyword in processed_shareholder for keyword in filter_keywords):
+                            continue
+                        
+                        processed_avoid_item['回避股东'] = processed_shareholder
+                    
+                    if '回避议案' in processed_avoid_item:
+                        avoid_proposal = processed_avoid_item.get('回避议案', '')
+                        if not avoid_proposal or str(avoid_proposal).strip() == '':
+                            continue
+                    
+                    filtered_avoid_data.append(processed_avoid_item)
+                
+                processed_item['avoid_data'] = filtered_avoid_data
+            
+            processed_data.append(processed_item)
+        
+        return processed_data
+
     def compare_data_bj(self, current_data: Dict[str, Any], sql_data_list: Optional[List[Dict[str, Any]]], filename, stock_code: str, info_date: str, meeting_type: str, meeting_session: str) -> List[
         Dict[str, Any]]:
         """比对AI数据与SQL数据"""
@@ -703,21 +856,104 @@ class EnhancedDataProcessor:
 
         return comparison_results
 
+    def _split_to_set(self, value: str) -> set:
+        """将字符串按分隔符分割成集合
+        
+        Args:
+            value: 待分割的字符串
+            
+        Returns:
+            分割后的集合
+        """
+        if not value:
+            return set()
+        
+        value_str = str(value).strip()
+        
+        items = re.split(r'、', value_str)
+        
+        return set(item.strip() for item in items if item.strip())
+
+    def _match_positions(self, ai_value: str, sql_value: str) -> bool:
+        """比对主持人职位，支持等价匹配
+        
+        Args:
+            ai_value: AI提取的职位字符串
+            sql_value: SQL中的职位字符串
+            
+        Returns:
+            是否匹配成功
+        """
+        if not ai_value:
+            return True
+        
+        ai_positions = self._split_to_set(ai_value)
+        sql_positions_raw = self._split_to_set(sql_value)
+        
+        sql_positions_expanded = set()
+        sql_equivalent_groups = []
+        
+        for pos in sql_positions_raw:
+            if '/' in pos or '\\' in pos:
+                split_positions = [p.strip() for p in re.split(r'[/\\]', pos) if p.strip()]
+                sql_positions_expanded.update(split_positions)
+                if len(split_positions) > 1:
+                    sql_equivalent_groups.append(set(split_positions))
+            else:
+                sql_positions_expanded.add(pos)
+        
+        all_equivalent_groups = list(self.POSITION_EQUIVALENT_GROUPS) + sql_equivalent_groups
+        
+        def find_equivalent_position(position: str, target_set: set) -> bool:
+            if position in target_set:
+                return True
+            for group in all_equivalent_groups:
+                if position in group and group & target_set:
+                    return True
+            return False
+        
+        for ai_pos in ai_positions:
+            if not find_equivalent_position(ai_pos, sql_positions_expanded):
+                return False
+        
+        matched_sql_positions = set()
+        for ai_pos in ai_positions:
+            if ai_pos in sql_positions_expanded:
+                matched_sql_positions.add(ai_pos)
+                for group in all_equivalent_groups:
+                    if ai_pos in group:
+                        matched_sql_positions.update(group & sql_positions_expanded)
+            else:
+                for group in all_equivalent_groups:
+                    if ai_pos in group:
+                        matched_sql_positions.update(group & sql_positions_expanded)
+                        break
+        
+        unmatched_sql = sql_positions_expanded - matched_sql_positions
+        if unmatched_sql:
+            return False
+        
+        return True
+
     def _compare_basic_fields_attendinfo(self, ai_item, sql_item) -> List[str]:
         """比对出席表表决数据字段"""
         error_messages = []
 
-        # 使用映射配置进行字段比对
         for ai_field, sql_field in BASIC_MAPPING.items():
             ai_value = ai_item.get(ai_field, "").replace('（', '(').replace('）', ')')
             sql_value = sql_item.get(sql_field, "")
 
-            if ai_field in ("主持人", "见证律师事务所", "经办律师"):
-                # 字符串比较
+            if ai_field in ("主持人", "见证律师事务所"):
                 if str(ai_value).strip() != str(sql_value).strip() and ai_value:
                     error_messages.append(f"{ai_field}【正式库：{sql_value}，AI：{ai_value}】")
-            if ai_field == "主持人职位":
-                if str(ai_value).strip() != str(sql_value).strip() and ai_value:
+            elif ai_field == "主持人职位":
+                if not self._match_positions(ai_value, sql_value):
+                    error_messages.append(f"{ai_field}【正式库：{sql_value}，AI：{ai_value}】")
+            elif ai_field == "经办律师":
+                ai_set = self._split_to_set(ai_value)
+                sql_set = self._split_to_set(sql_value)
+                
+                if ai_set != sql_set and ai_value:
                     error_messages.append(f"{ai_field}【正式库：{sql_value}，AI：{ai_value}】")
 
         return error_messages
@@ -789,46 +1025,49 @@ class EnhancedDataProcessor:
         """比对回避股东数据"""
 
         if not ai_avoid_list:
-            # 检查AI是否有回避数据但数据库没有
-            if sql_data_list:
-                for sql_item in sql_data_list:
-                    if sql_item.get('GDMC'):
-                        error_messages.append(f"AI提取数据为空【股东：{sql_item.get('GDMC')}】")
+            # # 检查AI是否有回避数据但数据库没有
+            # if sql_data_list:
+            #     for sql_item in sql_data_list:
+            #         if sql_item.get('GDMC'):
+            #             error_messages.append(f"AI提取数据为空【股东：{sql_item.get('GDMC')}】")
             return error_messages
 
         # 提取AI中的回避股东列表和议案信息
         def preprocess_proposal(proposal_str):
-            """预处理议案编号，去除多余的0"""
+            """预处理议案编号，去除多余的0和.00后缀"""
             if not proposal_str:
                 return proposal_str
             try:
+                proposal_str = re.sub(r'\.00(?=[,，、]|$)', '', proposal_str)
+                
                 for i in range(3):
-                    if '.0' in proposal_str:
-                        proposal_str = proposal_str.replace('.0', '.')
+                    if '.' in proposal_str:
+                        proposal_str = proposal_str.replace('.', '-')
+                    if '-0' in proposal_str:
+                        proposal_str = proposal_str.replace('-0', '-')
                     else:
                         return proposal_str
 
             except (ValueError, TypeError):
-                # 如果转换失败，返回原始字符串
                 return proposal_str
         
         ai_avoid_shareholders = {}
         for ai_item in ai_avoid_list:
-            shareholder = str(ai_item.get('回避股东', '')).strip().replace('（','(').replace('）',')')
+            shareholder = str(ai_item.get('回避股东', '')).replace(' ', '').upper().strip()
             proposal = preprocess_proposal(str(ai_item.get('回避议案', '')).strip())
             if shareholder:
                 ai_avoid_shareholders[shareholder] = proposal
-
+        
         # 提取SQL中的回避股东列表和议案信息
         sql_avoid_shareholders = {}
         for sql_item in sql_data_list:
-            shareholder = str(sql_item.get('GDMC', '')).strip()
+            shareholder = str(sql_item.get('GDMC', '')).replace(' ', '').upper().strip()
             if shareholder:
                 # 从数据库记录中提取议案信息，SJYAXH字段表示议案编号
                 proposal_code = sql_item.get('SJYAXH', '')
                 if proposal_code:
                     # 直接使用议案编号（阿拉伯数字）
-                    proposal = str(proposal_code)
+                    proposal = preprocess_proposal(str(proposal_code))
                 else:
                     proposal = ''
                     
@@ -850,7 +1089,7 @@ class EnhancedDataProcessor:
         sql_only = sql_shareholders - ai_shareholders
         for shareholder in sql_only:
             sql_item = sql_avoid_shareholders[shareholder]['sql_item']
-            error_messages.append(f"正式库多处理【股东：{shareholder}，回避议案{sql_item['SJYAXH']}】")
+            error_messages.append(f"正式库多处理【股东：{shareholder}，回避议案：{sql_item['SJYAXH']}】")
 
         # 检查共同股东的比对议案是否一致
         common_shareholders = ai_shareholders & sql_shareholders
@@ -858,9 +1097,19 @@ class EnhancedDataProcessor:
             ai_proposal = ai_avoid_shareholders[shareholder]
             sql_proposal = sql_avoid_shareholders[shareholder]['proposal']
             
-            # 比对回避议案是否一致
-            if str(ai_proposal).strip() != str(sql_proposal).strip():
-                error_messages.append(f"回避议案不一致【股东：{shareholder}，AI议案：{ai_proposal}，正式库议案：{sql_proposal}】")
+            def normalize_proposal(proposal_str):
+                """将议案字符串分割、排序后返回标准化字符串"""
+                if not proposal_str:
+                    return ''
+                items = re.split(r'[,，、]', str(proposal_str).strip())
+                items = [item.strip() for item in items if item.strip()]
+                return ','.join(sorted(items))
+            
+            ai_proposal_normalized = normalize_proposal(ai_proposal)
+            sql_proposal_normalized = normalize_proposal(sql_proposal)
+            
+            if ai_proposal_normalized != sql_proposal_normalized:
+                error_messages.append(f"回避议案不一致【{shareholder}：正式库议案：{sql_proposal}，AI议案：{ai_proposal}】")
 
         return error_messages
 
@@ -952,7 +1201,7 @@ class EnhancedDataProcessor:
 
             # 确定会议类型
             meeting_type = "3"  # 默认为临时股东大会
-            if "年度" in meeting_info and "临时" not in meeting_info:
+            if ("年度" in meeting_info or "年年股东" in meeting_info) and "临时" not in meeting_info:
                 meeting_type = "1"
             elif "出资人组" in meeting_info:
                 meeting_type = "5"
