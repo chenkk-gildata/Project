@@ -1,0 +1,92 @@
+2026-06-25 16:35:26,663 - __main__ - INFO - 程序启动，会话ID: 0625163526
+2026-06-25 16:35:28,796 - __main__ - INFO - 用户选择: 运行新增数据公告处理
+2026-06-25 16:35:45,343 - __main__ - INFO - 用户选择的日期范围: 2026-06-20 ~ 2026-06-25
+2026-06-25 16:35:45,344 - downloader - INFO - SQL日期条件: AND A.XXFBRQ BETWEEN '2026-06-20' AND '2026-06-25'
+2026-06-25 16:35:45,669 - downloader - INFO - 查询到 4 条公告记录 (SQL: daily.sql)
+2026-06-25 16:35:45,670 - __main__ - INFO - 查询到 4 条公告
+2026-06-25 16:35:45,670 - downloader - INFO - 创建下载文件夹: e:\Project\申报稿领导人介绍\files\20260620-20260625_20260625_163545
+2026-06-25 16:35:45,671 - __main__ - INFO - 下载文件夹: e:\Project\申报稿领导人介绍\files\20260620-20260625_20260625_163545
+2026-06-25 16:35:45,671 - downloader - INFO - 开始批量下载 4 个公告，使用 3 个并发线程
+2026-06-25 16:35:46,354 - downloader - INFO - 下载成功: X26087-2026-06-24-国电股份招股说明书（申报稿）-188.PDF
+2026-06-25 16:35:48,222 - downloader - INFO - 下载成功: X26091-2026-06-24-延长中科（大连）能源科技股份有限公司_招股说明书(申报稿)-906.PDF
+2026-06-25 16:35:48,243 - downloader - INFO - 下载成功: X26089-2026-06-24-恒业股份招股说明书（申报稿）-188.PDF
+2026-06-25 16:35:48,371 - downloader - INFO - 下载成功: X26088-2026-06-24-爱思益普招股说明书（申报稿）-188.PDF
+2026-06-25 16:35:48,373 - downloader - INFO - 元数据已保存: e:\Project\申报稿领导人介绍\files\20260620-20260625_20260625_163545\metadata.json
+2026-06-25 16:35:48,373 - __main__ - INFO - 下载完成! 成功: 4, 失败: 0
+2026-06-25 16:35:48,374 - __main__ - INFO - 找到 4 个PDF文件
+2026-06-25 16:35:48,374 - pdf_processor - INFO - 开始批量处理 4 个PDF文件，使用 4 个并发线程
+2026-06-25 16:35:48,579 - pdf_processor - INFO - 找到开始关键词在第 57 页
+2026-06-25 16:35:48,607 - pdf_processor - INFO - 找到开始关键词在第 35 页
+2026-06-25 16:35:48,617 - pdf_processor - INFO - 找到开始关键词在第 61 页
+2026-06-25 16:35:48,617 - pdf_processor - INFO - 找到结束关键词在第 59 页
+2026-06-25 16:35:48,660 - pdf_processor - INFO - 找到开始关键词在第 53 页
+2026-06-25 16:35:48,673 - pdf_processor - INFO - 找到结束关键词在第 39 页
+2026-06-25 16:35:48,689 - pdf_processor - INFO - 找到结束关键词在第 68 页
+2026-06-25 16:35:48,778 - pdf_processor - INFO - 找到结束关键词在第 56 页
+2026-06-25 16:35:48,804 - pdf_processor - INFO - 找到委员会开始关键词在第 324 页
+2026-06-25 16:35:48,992 - pdf_processor - INFO - 找到委员会开始关键词在第 138 页
+2026-06-25 16:35:49,002 - pdf_processor - INFO - 找到委员会开始关键词在第 95 页
+2026-06-25 16:35:49,088 - pdf_processor - INFO - 找到核心技术人员结束关键词在第 133 页
+2026-06-25 16:35:49,159 - pdf_processor - INFO - 找到核心技术人员结束关键词在第 88 页
+2026-06-25 16:35:49,161 - pdf_processor - INFO - 找到核心技术人员开始关键词在第 131 页
+2026-06-25 16:35:49,172 - pdf_processor - INFO - 找到委员会开始关键词在第 122 页
+2026-06-25 16:35:49,182 - pdf_processor - INFO - 找到核心技术人员开始关键词在第 87 页
+2026-06-25 16:35:49,218 - pdf_processor - INFO - 找到核心技术人员结束关键词在第 114 页
+2026-06-25 16:35:49,348 - pdf_processor - INFO - 找到核心技术人员开始关键词在第 113 页
+2026-06-25 16:35:49,397 - pdf_processor - INFO - 委员会后续页面第 325 页不包含'委员会'关键词，仅输出1页
+2026-06-25 16:35:49,398 - pdf_processor - INFO - 委员会后续页面第 139 页包含'委员会'关键词且位置在40%以上，完整输出
+2026-06-25 16:35:49,506 - pdf_processor - INFO - 委员会后续页面第 96 页包含'委员会'关键词且位置在40%以上，完整输出
+2026-06-25 16:35:49,526 - pdf_processor - INFO - 委员会后续页面第 123 页包含'委员会'关键词且位置在40%以上，完整输出
+2026-06-25 16:35:49,529 - pdf_processor - INFO - 已处理并保存到: e:\Project\申报稿领导人介绍\files\20260620-20260625_20260625_163545\X26091-2026-06-24-延长中科（大连）能源科技股份有限公司_招股说明书(申报稿)-906.PDF.temp
+2026-06-25 16:35:49,533 - pdf_processor - INFO - 处理成功: X26091-2026-06-24-延长中科（大连）能源科技股份有限公司_招股说明书(申报稿)-906.PDF
+2026-06-25 16:35:49,533 - pdf_processor - INFO - 已处理并保存到: e:\Project\申报稿领导人介绍\files\20260620-20260625_20260625_163545\X26087-2026-06-24-国电股份招股说明书（申报稿）-188.PDF.temp
+2026-06-25 16:35:49,536 - pdf_processor - INFO - 已处理并保存到: e:\Project\申报稿领导人介绍\files\20260620-20260625_20260625_163545\X26088-2026-06-24-爱思益普招股说明书（申报稿）-188.PDF.temp
+2026-06-25 16:35:49,537 - pdf_processor - INFO - 已处理并保存到: e:\Project\申报稿领导人介绍\files\20260620-20260625_20260625_163545\X26089-2026-06-24-恒业股份招股说明书（申报稿）-188.PDF.temp
+2026-06-25 16:35:49,539 - pdf_processor - INFO - 处理成功: X26087-2026-06-24-国电股份招股说明书（申报稿）-188.PDF
+2026-06-25 16:35:49,540 - pdf_processor - INFO - 处理成功: X26088-2026-06-24-爱思益普招股说明书（申报稿）-188.PDF
+2026-06-25 16:35:49,540 - pdf_processor - INFO - 处理成功: X26089-2026-06-24-恒业股份招股说明书（申报稿）-188.PDF
+2026-06-25 16:35:49,553 - __main__ - INFO - PDF处理完成! 成功: 4, 失败: 0
+2026-06-25 16:35:49,555 - data_processor - INFO - 已加载提示词文件: e:\Project\申报稿领导人介绍\prompt_step2_rules.md
+2026-06-25 16:35:49,555 - data_processor - INFO - 开始处理 4 个PDF文件，使用 4 个并发线程
+2026-06-25 16:35:50,679 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-06-25 16:35:50,681 - ai_service_enhanced - INFO - 文件上传成功: e:\Project\申报稿领导人介绍\files\20260620-20260625_20260625_163545\X26087-2026-06-24-国电股份招股说明书（申报稿）-188.PDF (文件ID: file-fe-dc438e4149554519bd102071)
+2026-06-25 16:35:50,681 - data_processor - INFO - 文件上传成功: X26087-2026-06-24-国电股份招股说明书（申报稿）-188.PDF (ID: file-fe-dc438e4149554519bd102071)
+2026-06-25 16:35:50,681 - ai_service_enhanced - INFO - Step1: 表格转录 (prompt: 851 chars)
+2026-06-25 16:35:50,833 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-06-25 16:35:50,833 - ai_service_enhanced - INFO - 文件上传成功: e:\Project\申报稿领导人介绍\files\20260620-20260625_20260625_163545\X26088-2026-06-24-爱思益普招股说明书（申报稿）-188.PDF (文件ID: file-fe-5cd90c2bf3cd4b39b625affc)
+2026-06-25 16:35:50,833 - data_processor - INFO - 文件上传成功: X26088-2026-06-24-爱思益普招股说明书（申报稿）-188.PDF (ID: file-fe-5cd90c2bf3cd4b39b625affc)
+2026-06-25 16:35:50,834 - ai_service_enhanced - INFO - Step1: 表格转录 (prompt: 851 chars)
+2026-06-25 16:35:50,951 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-06-25 16:35:50,951 - ai_service_enhanced - INFO - 文件上传成功: e:\Project\申报稿领导人介绍\files\20260620-20260625_20260625_163545\X26089-2026-06-24-恒业股份招股说明书（申报稿）-188.PDF (文件ID: file-fe-e6d4da2e55d342dc98ec1026)
+2026-06-25 16:35:50,952 - data_processor - INFO - 文件上传成功: X26089-2026-06-24-恒业股份招股说明书（申报稿）-188.PDF (ID: file-fe-e6d4da2e55d342dc98ec1026)
+2026-06-25 16:35:50,952 - ai_service_enhanced - INFO - Step1: 表格转录 (prompt: 851 chars)
+2026-06-25 16:35:50,976 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/files "HTTP/1.1 200 OK"
+2026-06-25 16:35:50,977 - ai_service_enhanced - INFO - 文件上传成功: e:\Project\申报稿领导人介绍\files\20260620-20260625_20260625_163545\X26091-2026-06-24-延长中科（大连）能源科技股份有限公司_招股说明书(申报稿)-906.PDF (文件ID: file-fe-c43760a91ab14b48b1992523)
+2026-06-25 16:35:50,977 - data_processor - INFO - 文件上传成功: X26091-2026-06-24-延长中科（大连）能源科技股份有限公司_招股说明书(申报稿)-906.PDF (ID: file-fe-c43760a91ab14b48b1992523)
+2026-06-25 16:35:50,977 - ai_service_enhanced - INFO - Step1: 表格转录 (prompt: 851 chars)
+2026-06-25 16:36:13,365 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-25 16:36:13,373 - ai_service_enhanced - INFO - Step1 完成，输出 1575 chars
+2026-06-25 16:36:13,373 - ai_service_enhanced - INFO - Step2: 规则推理 (prompt: 2018 chars)
+2026-06-25 16:36:38,969 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-25 16:36:39,154 - data_processor - INFO - Excel已输出: e:\Project\申报稿领导人介绍\output\新增\X26087-2026-06-24\X26087_0625163526.xlsx
+2026-06-25 16:36:39,834 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-dc438e4149554519bd102071 "HTTP/1.1 200 OK"
+2026-06-25 16:36:40,025 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-25 16:36:40,026 - ai_service_enhanced - INFO - Step1 完成，输出 3768 chars
+2026-06-25 16:36:40,026 - ai_service_enhanced - INFO - Step2: 规则推理 (prompt: 2018 chars)
+2026-06-25 16:36:40,162 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-25 16:36:40,162 - ai_service_enhanced - INFO - Step1 完成，输出 3700 chars
+2026-06-25 16:36:40,162 - ai_service_enhanced - INFO - Step2: 规则推理 (prompt: 2018 chars)
+2026-06-25 16:36:47,152 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-25 16:36:47,154 - ai_service_enhanced - INFO - Step1 完成，输出 5209 chars
+2026-06-25 16:36:47,154 - ai_service_enhanced - INFO - Step2: 规则推理 (prompt: 2018 chars)
+2026-06-25 16:37:27,152 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-25 16:37:27,176 - data_processor - INFO - Excel已输出: e:\Project\申报稿领导人介绍\output\新增\X26089-2026-06-24\X26089_0625163526.xlsx
+2026-06-25 16:37:27,873 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-e6d4da2e55d342dc98ec1026 "HTTP/1.1 200 OK"
+2026-06-25 16:37:39,839 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-25 16:37:39,862 - data_processor - INFO - Excel已输出: e:\Project\申报稿领导人介绍\output\新增\X26088-2026-06-24\X26088_0625163526.xlsx
+2026-06-25 16:37:40,465 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-5cd90c2bf3cd4b39b625affc "HTTP/1.1 200 OK"
+2026-06-25 16:38:02,995 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2026-06-25 16:38:03,019 - data_processor - INFO - Excel已输出: e:\Project\申报稿领导人介绍\output\新增\X26091-2026-06-24\X26091_0625163526.xlsx
+2026-06-25 16:38:03,710 - httpx - INFO - HTTP Request: DELETE https://dashscope.aliyuncs.com/compatible-mode/v1/files/file-fe-c43760a91ab14b48b1992523 "HTTP/1.1 200 OK"
+2026-06-25 16:38:03,712 - data_processor - INFO - AI提取完成! 成功: 4, 失败: 0
+2026-06-25 16:38:03,712 - __main__ - INFO - Excel文件已输出到: e:\Project\申报稿领导人介绍\output\新增

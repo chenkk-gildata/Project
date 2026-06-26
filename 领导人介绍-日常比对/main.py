@@ -350,8 +350,17 @@ class DataProcessor:
     def load_prompt_from_md(self, md_file_path: str = "prompt_LDRJS.md") -> str:
         """从MD文件加载提示词"""
         try:
-            if os.path.exists(md_file_path):
-                with open(md_file_path, 'r', encoding='utf-8') as f:
+            # 获取脚本所在目录，确保无论从哪里运行都能找到文件
+            if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
+                script_dir = os.path.dirname(sys.executable)
+            else:
+                script_dir = os.path.dirname(os.path.abspath(__file__))
+            
+            # 构建完整路径
+            full_path = os.path.join(script_dir, md_file_path)
+            
+            if os.path.exists(full_path):
+                with open(full_path, 'r', encoding='utf-8') as f:
                     return f.read()
             return ""
         except Exception as e:
@@ -360,7 +369,7 @@ class DataProcessor:
     def _call_ai_service(self, system_prompt, file_id: str) -> Dict[str, Any]:
         """调用AI服务进行数据提取"""
         client = self._initialize_client()
-        
+
         try:
             # 设置超时时间为120秒
             completion = client.chat.completions.create(
@@ -370,7 +379,7 @@ class DataProcessor:
                     {"role": "user", "content": system_prompt},
                 ],
                 response_format={"type": "json_object"},
-                temperature=0.5,  # 低随机性，确保输出确定性
+                temperature=0.3,  # 低随机性，确保输出确定性
                 top_p=0.3,  # 窄采样范围，减少创造性输出
                 timeout=120  # 设置超时时间为120秒
             )
@@ -438,28 +447,6 @@ class DataProcessor:
         reverse_mapping = {v: k for k, v in self.field_mapping.items()}
 
         comparison_results = []
-        ai_data_dict_by_name = {}  # 以职位名称做主键
-        ai_data_dict_by_code = {}  # 以职位代码做主键
-
-        # 先构建AI数据的索引
-        for item in ai_data_list:
-            ai_xm = str(item.get("领导人姓名", "")).strip()
-            ai_zwmc = str(item.get("职位名称", "")).strip()
-            ai_zw = self.map_position(ai_zwmc)
-
-            # 按名称索引
-            name_key = (ai_xm, ai_zwmc)
-            if name_key[0] and name_key[1]:
-                if name_key not in ai_data_dict_by_name:
-                    ai_data_dict_by_name[name_key] = []
-                ai_data_dict_by_name[name_key].append(item)
-
-            # 按代码索引
-            if ai_zw:
-                code_key = (ai_xm, ai_zw)
-                if code_key not in ai_data_dict_by_code:
-                    ai_data_dict_by_code[code_key] = []
-                ai_data_dict_by_code[code_key].append(item)
 
         # 为每个AI数据项查找匹配的SQL数据
         for ai_data in ai_data_list:
@@ -470,6 +457,22 @@ class DataProcessor:
             if not ai_xm:
                 comparison_result = self._create_comparison_result({}, ai_data, "AI数据缺少领导人姓名")
                 comparison_results.append(comparison_result)
+                continue
+
+            # 特殊处理"所有职位"的情况
+            if ai_zwmc == "所有职位":
+                # 检查该领导人在正式库是否有在任职位
+                has_active_position = any(
+                    str(sql_data.get("CZYF", "")).strip() == "在任"
+                    for sql_data in sql_data_list
+                    if str(sql_data.get("XM", "")).strip() == ai_xm
+                )
+
+                if has_active_position:
+                    # 有在任职位，输出这条AI数据，错误描述为"在任职位漏下任"
+                    comparison_result = self._create_comparison_result({}, ai_data, "在任职位漏下任")
+                    comparison_results.append(comparison_result)
+                # 如果没有在任职位，则过滤掉这条数据（不添加到comparison_results）
                 continue
 
             matched = False
@@ -610,7 +613,7 @@ class DataProcessor:
         else:
             error_desc = str(error_description) if error_description else ""
 
-        gpdm = ai_data.get("股票代码", "") if ai_data.get("股票代码", "") else sql_data.get("GPDM", "")
+        gpdm = sql_data.get("GPDM", "")
 
         ldrxm = ai_data.get("领导人姓名", "") if ai_data.get("领导人姓名", "") else sql_data.get("XM", "")
 

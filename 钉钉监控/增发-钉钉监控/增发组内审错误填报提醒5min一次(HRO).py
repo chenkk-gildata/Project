@@ -20,7 +20,7 @@ def team_errors_query():
             case when c.AD is not null then c.AD else a.SJKB end SJKB, 
             CWMS, 
             PTID, 
-            JHRY,
+            JHRY, 
             TZRY, 
             YWRY, 
             b.LXDH
@@ -28,11 +28,10 @@ from [10.101.1.144].FSCSJ.dbo.usrNBSYJHCWTB a
     join [10.101.0.212].JYPRIME.dbo.usrSJCBYGZLB b on a.TZRY = b.XM and b.SFZZ=1
 	join [10.101.0.212].JYPRIME.dbo.dscmdTABLES c on a.SJKB = c.AB
         where  (YWX = 'A股-增发组')
-        and SCSFJS = '否'
-        and TBSFRK = '否'
+        and (SCSFJS is null or TBSFRK is null)
         and SJJHRQ >= '2026-01-01'
-        and BZSM like '%增发内审%'
-        --and FBSJ > DATEADD(MINUTE,-200,GETDATE())
+        and BZSM like '%HRO%'
+        and FBSJ > DATEADD(MINUTE,-3,GETDATE())
         ;
     """
     cursor.execute(sql)
@@ -50,14 +49,20 @@ def message_trans(single_record):
     header = '内审错误填报-消息提醒 \n\n'
     sub_header = f'【告警时间】： {date} \n\n'
 
-    SJSJK = single_record[0].encode('latin-1').decode('gbk')
-    SJKB = single_record[1].encode('latin-1').decode('gbk')
-    CWMS = single_record[2].encode('latin-1').decode('gbk')
-    JHRY = single_record[4].encode('latin-1').decode('gbk')
-    TZRY = single_record[5].encode('latin-1').decode('gbk')
-    YWRY = single_record[6].encode('latin-1').decode('gbk')
-    LXDH = single_record[7].encode('latin-1').decode('gbk')
-    
+    # 安全解码函数，处理可能为None的字段
+    def safe_decode(value):
+        if value is None:
+            return ''
+        return value.encode('latin-1').decode('gbk')
+
+    SJSJK = safe_decode(single_record[0])
+    SJKB = safe_decode(single_record[1])
+    CWMS = safe_decode(single_record[2])
+    JHRY = safe_decode(single_record[4])
+    TZRY = safe_decode(single_record[5])
+    YWRY = safe_decode(single_record[6])
+    LXDH = safe_decode(single_record[7])
+
     reportId = single_record[3]
     
     body = f'【告警内容】：[你有一个错误待确认：{SJSJK}-{SJKB}] \n\n'
@@ -66,7 +71,8 @@ def message_trans(single_record):
     body += f'+  错误填报人：{JHRY} \n\n'
     body += f'+  通知修改人员：{TZRY} \n\n'
     body += f'+  问题责任人：{YWRY} \n\n'
-    body += f'@{LXDH} \n\n'
+    if LXDH:
+        body += f'@{LXDH} \n\n'
 
     msg = f'{header}{sub_header}{body}'
 
@@ -74,8 +80,8 @@ def message_trans(single_record):
 
 # 钉钉
 def dingding(msg, phone_number):
-    webhook_url = 'https://oapi.dingtalk.com/robot/send?access_token=3050a412c9039d5d3471f64b9b6b23463d6c79bc5cb6fe217ea915542855cf8c' # 测试
-    # webhook_url = 'https://oapi.dingtalk.com/robot/send?access_token=d6c7b38861b83b71da4c4be43bd714f7cd45a4e31071736fbbfbd3492fdde468'  # 增发组
+    # webhook_url = 'https://oapi.dingtalk.com/robot/send?access_token=3050a412c9039d5d3471f64b9b6b23463d6c79bc5cb6fe217ea915542855cf8c' # 测试
+    webhook_url = 'https://oapi.dingtalk.com/robot/send?access_token=457f940a29f2886643fb24a82e5f4d403a9e267ea510d6b0b12f3d04e3ce936e'  # 增发组
     headers = {
         'Content-Type': 'application/json',
     }
@@ -86,7 +92,7 @@ def dingding(msg, phone_number):
             'text': msg,
         },
         'at': {
-            'atMobiles': [phone_number],
+            'atMobiles': [phone_number] if phone_number else [],
             'isAtAll': False
         }
     }

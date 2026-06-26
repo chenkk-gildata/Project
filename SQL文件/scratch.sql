@@ -655,12 +655,7 @@ order by 2 DESC
 
 
 
-
-
-
-
-
-
+SELECT * FROM [10.101.0.212].JYPRIME.dbo.usrXTCLB
 
 
 

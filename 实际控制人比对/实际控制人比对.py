@@ -4,12 +4,21 @@ import pandas as pd
 import pyodbc
 import glob
 import re
+import sys
+from pathlib import Path
 from openpyxl import load_workbook, Workbook
 from openpyxl.utils.dataframe import dataframe_to_rows
 from copy import copy
 
+def get_base_dir():
+    if getattr(sys, 'frozen', False):
+        return Path(sys.executable).resolve().parent
+    return Path(__file__).resolve().parent
+
+BASE_DIR = get_base_dir()
+
 # Wind最新结果文件  从终端下载
-wd_excel_path = "实际控制人-wd.xlsx"
+wd_excel_path = BASE_DIR / "实际控制人-wd.xlsx"
 
 SERVER = '10.102.25.11,8080'  # 服务器名称或IP地址
 USERNAME = 'WebResourceNew_Read'  # 登录用户名
@@ -45,6 +54,9 @@ ORDER BY 1'''
 
 #读取excel文件
 def read_excel():
+    if not wd_excel_path.exists():
+        raise FileNotFoundError(f"未找到Wind结果文件: {wd_excel_path}")
+
     # 读取第一页（主要数据）和第二页（统计数据）
     excel_data = pd.read_excel(wd_excel_path, sheet_name=0, dtype=str).fillna('')
     excel_sheet2 = pd.read_excel(wd_excel_path, sheet_name=1, dtype=str).fillna('')
@@ -94,7 +106,7 @@ def preprocess_compare_data(excel_data, sql_data):
     
     # 查找最新的比对结果文件
     pattern = "权益部-境内股票-增发组-实际控制人三方比对结果*.xlsx"
-    result_files = glob.glob(pattern)
+    result_files = glob.glob(str(BASE_DIR / pattern))
     
     if not result_files:
         print("未找到历史比对结果文件，返回空数据")
@@ -443,7 +455,7 @@ def save_results(comparison_results, excel_data, excel_sheet2, sql_data, wb_sour
         ws_jy.append(r)
     
     # 保存文件
-    wb_new.save(f'权益部-境内股票-增发组-实际控制人三方比对结果({now_date}).xlsx')
+    wb_new.save(BASE_DIR / f'权益部-境内股票-增发组-实际控制人三方比对结果({now_date}).xlsx')
 
 def run_comparison():
     # 读取Excel数据
